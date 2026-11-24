@@ -1,9 +1,9 @@
-/* Snail City v0.8.93 — PW-01 offline bootstrap and deterministic app shell.
+/* Snail City v0.8.92 — PW-01 offline bootstrap and deterministic app shell.
  * One SW for current registration scope. No dynamic/API caching. Offline data in
  * IndexedDB is never removed or modified by this script.
  */
 'use strict';
-const CACHE_NAME = 'snail-city-shell-0.8.93-deco-webp-r1';
+const CACHE_NAME = 'snail-city-shell-0.8.92-css-unified-p1-r1';
 const OWNED_PREFIXES = ['snail-city-08', 'snail-city-shell-'];
 const CORE_PATHS = [
   './index.html', './manifest.webmanifest',
