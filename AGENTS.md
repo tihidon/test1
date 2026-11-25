@@ -28,8 +28,8 @@ Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SK
 
 ## Uloge dva agenta
 
-- **Stres-test specijalista** koristi `.agents/skills/chromium-runtime-qa/SKILL.md`. Vodi reprodukciju, kontrolne scenarije i regresione provere D2/D4/D6. Predaje sirove dokaze, prvo opaženo odstupanje i granice nalaza.
-- **Arhitektura i infrastruktura** koristi `.agents/skills/snail-city-engineering/SKILL.md`. Vodi D0/D1/D3/D5, određuje postojećeg vlasnika izmene i odgovara za build, publish identitet i CI. Za promenu koja utiče na rezultat testa dogovara zamrznute uslove sa stres-test specijalistom.
+- **Stres-test specijalista** koristi `.agents/skills/snail-city-stress-test-specialist/SKILL.md` zajedno sa `.agents/skills/chromium-runtime-qa/SKILL.md`. Vodi reprodukciju, kontrolne scenarije i regresione provere D2/D4/D6. Predaje sirove dokaze, prvo opaženo odstupanje i granice nalaza.
+- **Arhitektura i infrastruktura** koristi `.agents/skills/snail-city-architecture-infrastructure/SKILL.md` uz `.agents/skills/snail-city-engineering/SKILL.md`. Vodi D0/D1/D3/D5, određuje postojećeg vlasnika izmene i odgovara za build, publish identitet i CI. Za promenu koja utiče na rezultat testa dogovara zamrznute uslove sa stres-test specijalistom.
 - Za D7/D8 primeni `agent-reliability` u nezavisnom pregledu originalnih dokaza. Ako su oba agenta učestvovala u istrazi ili implementaciji, nezavisni pregled može obaviti vlasnik ili drugi reviewer. Do tada status kandidata je **ZADRŽI ZA QA**.
 
 ## Chromium Runtime QA
@@ -41,7 +41,7 @@ Za runtime bag, hang, loop, performance, save/offline ili funkcionalni QA korist
 Za audit dokaza, zaključak o popravci, release i kontradikcije učitaj `.agents/skills/agent-reliability/SKILL.md` i [SC-REL-01](docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md). Nezavisni oracle, dokaz identiteta i izvorni logovi obavezni; structural checker PASS nije agent evaluation. Bez lažnog PASS i bez merge/deploy bez odobrenja.
 
 ## Shared decision chain
-Primeni [SC-DEC-01](docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md) za zajednički D0–D8 proces tri postojeća skilla. Jedan decision record, frozen oracle, originalni dokazi, nezavisan pregled. Structural PASS nije release authorization. Ne uvoditi četvrti skill niti preskakati relevantne gate-ove.
+Primeni [SC-DEC-01](docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md) za zajednički D0–D8 proces tri postojeća skilla. Jedan decision record, frozen oracle, originalni dokazi, nezavisan pregled. Structural PASS nije release authorization. Dva specijalistička skilla koriste postojeće vlasnike D0–D8 i obavezne gate-ove.
 
 ## Executable complexity checks
 Apply [SC-CODE-02](docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md) with canonical SC-CODE-01 tool, extended AST loop inventory and live DOM snapshots. Do not raise baselines or auto-delete. Distinguish fixture and game evidence under SC-DEC-01.

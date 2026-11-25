@@ -1,6 +1,6 @@
 # SC-DEC-01 — lanac pouzdanog odlučivanja
 
-Status: kandidat za CI i nezavisnu evaluaciju; vlasnik odobrio nadogradnju. Baseline 9d638c4730caf63c02e2c01397a1eea96f2197eb. Dodatak SC-REL-01, SC-QA-02, SC-AGENT-01, PL-01, PW-01; ne zamenjuje nijedan gate. Jedan decision record po zadatku; ne uvoditi četvrti skill niti paralelni runtime sistem.
+Status: kandidat za CI i nezavisnu evaluaciju; vlasnik odobrio nadogradnju. Baseline 9d638c4730caf63c02e2c01397a1eea96f2197eb. Dodatak SC-REL-01, SC-QA-02, SC-AGENT-01, PL-01, PW-01; ne zamenjuje nijedan gate. Jedan decision record po zadatku; dva specijalistička skilla primenjuju postojeći D0–D8 proces.
 
 ## D0–D8
 - D0 Engineering: zamrzni zahtev, scope, baseline SHA, candidate plan, nezavisni oracle i required gates pre izmena. Za dirty tree zabeleži diff/hash; ne tvrdi clean commit identity za lokalne izmene.

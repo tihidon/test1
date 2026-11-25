@@ -32,6 +32,8 @@ jobs:
           skills-ref validate .agents/skills/snail-city-engineering
           skills-ref validate .agents/skills/chromium-runtime-qa
           skills-ref validate .agents/skills/agent-reliability
+          skills-ref validate .agents/skills/snail-city-stress-test-specialist
+          skills-ref validate .agents/skills/snail-city-architecture-infrastructure
           skills-ref read-properties .agents/skills/snail-city-engineering
           skills-ref to-prompt .agents/skills/snail-city-engineering .agents/skills/chromium-runtime-qa .agents/skills/agent-reliability
       - name: Tool regression fixtures
