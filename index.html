@@ -37,7 +37,7 @@
         .then(()=>emit('span','decode.promiseLatency.'+label,begin,now(),'opt-in;may-perturb'))
         .catch(()=>emit('mark','decode.rejected.'+label,now()));
     },
-    export:()=>({schema:1,build:'0.8.92-css-unified-p3',timeOrigin:performance.timeOrigin,
+    export:()=>({schema:1,build:'0.8.92-css-unified-p2',timeOrigin:performance.timeOrigin,
       timings:events.slice(),longTasks:longTasks.slice(),
       navigation:performance.getEntriesByType('navigation').map(e=>({
         type:e.type,fetchStart:+e.fetchStart.toFixed(1),responseEnd:+e.responseEnd.toFixed(1),
@@ -2207,7 +2207,7 @@ const { getLogin, creditLogin, queueReturnGift, creditMuseum }=modules.playerPro
 const { SUMMON_COST, SUMMON_COOLDOWN, STONE_DUST_BACK, timeBreakCost, craterPrice, nextCraterPrice, summonChoices, creditDiamonds,
   canCare, releaseExpiredHalf, accelerateEgg, tickMeteorRain, nextMeteor, creditPrestige, prestigeBoost, showReference }=modules.islandEvents;
 const { getSeason, leagueOf, previousReward, creditWeekly, cosmicTradeCost, exchanges, packAmount, upgradeInfo, improveSnail, inheritedStat }=modules.progression;
-const VERSION = '0.8.92-css-unified-p3';
+const VERSION = '0.8.92-css-unified-p2';
 const WHEAT_LEVEL=5, WHEAT_AMOUNT=60, WHEAT_CYCLE=15*60000;
 const WHEAT_UPGRADES=Object.freeze([
   {level:8,cost:3000}, {level:12,cost:8000},
@@ -7159,7 +7159,7 @@ async function commit(type,fields={}){
   if(!s||savePending)return {ok:false};
   savePending=true;
   try{
-    const {state,value}=applyCommand(s,{id:uuid(),type,...fields,...(view.touchAt?{touch:view.touchAt}:{})},nowBound());
+    const {state,value}=applyCommand(s,{id:uuid(),type,...fields,...(view.touchAt?{touch:view.touchAt}:{})},Date.now());
     if(state===s)return {ok:true,value};
     if(repo&&!testing())await repo.commit(s.revision,state,s.saveId);
     const former=s;
