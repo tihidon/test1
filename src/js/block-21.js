@@ -288,7 +288,7 @@ const { getLogin, creditLogin, queueReturnGift, creditMuseum }=modules.playerPro
 const { SUMMON_COST, SUMMON_COOLDOWN, STONE_DUST_BACK, timeBreakCost, craterPrice, nextCraterPrice, summonChoices, creditDiamonds,
   canCare, releaseExpiredHalf, accelerateEgg, tickMeteorRain, nextMeteor, creditPrestige, prestigeBoost, showReference }=modules.islandEvents;
 const { getSeason, leagueOf, previousReward, creditWeekly, cosmicTradeCost, exchanges, packAmount, upgradeInfo, improveSnail, inheritedStat }=modules.progression;
-const VERSION = '0.8.92-css-unified-p3';
+const VERSION = '0.8.92-css-unified-p4';
 const WHEAT_LEVEL=5, WHEAT_AMOUNT=60, WHEAT_CYCLE=15*60000;
 const WHEAT_UPGRADES=Object.freeze([
   {level:8,cost:3000}, {level:12,cost:8000},
@@ -1920,7 +1920,7 @@ class Renderer{
     this.gl.bindTexture(this.gl.TEXTURE_2D,this.textures.get(this.active));
     return true;
   }
-  drawIllustratedMap(x,y,w,h,animateWater=true){
+  drawIllustratedMap({x,y,w,h},animateWater=true){
     if(!this.mapImage)return false;
     if(!this.gl){this.ctx.drawImage(this.mapImage,x,y,w,h);return true;}
     if(!this.mapTexture)return false;
@@ -2687,7 +2687,7 @@ function paintMap(renderer,s,camera,objects,now,editor,animateWater=true){
   const {width,height,atlas}=renderer,view=mapView(width,height,camera);
   // Permanent terrain contains only cliffs, paths, water, mine and fountain.
   // Buildings, five farms and five habitats are in ONE batched sprite atlas.
-  const ok=renderer.drawIllustratedMap(view.x,view.y,view.sizeX,view.sizeY,animateWater);
+  const ok=renderer.drawIllustratedMap({x:view.x,y:view.y,w:view.sizeX,h:view.sizeY},animateWater);
   if(!ok){renderer.flush();return false;}
   const independent=[],labels=[];
   let scReservoirRect=null;
