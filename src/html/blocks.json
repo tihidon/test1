@@ -45,7 +45,15 @@
     "open_tag": "<script type=\"application/json\" id=\"illustrated-map-webp\">",
     "close_tag": "</script>",
     "file": "src/data/block-05.b64",
-    "sha256": "c7978bdae8bfdc1bf5a45d1db58b23dab27286b38deaeb05ccba4f1736f1749b"
+    "sha256": "186365d7bb09a39da1a6d82f8afa43014be7d0f7e8593746f572c7e04ebbe38d"
+  },
+  {
+    "id": "22",
+    "element": "script",
+    "open_tag": "<script type=\"text/plain\" id=\"illustrated-fountain-webp\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-22.b64",
+    "sha256": "490ed55d9f5b21d52ba87cec6983ad3f63ae73169ede0429ff479d6382a0d18a"
   },
   {
     "id": "06",
