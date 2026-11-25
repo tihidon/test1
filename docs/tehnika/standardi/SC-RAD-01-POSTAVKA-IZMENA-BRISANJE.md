@@ -125,9 +125,9 @@ node --check sw.js      # SW nema automatski test u ovom repou
 git diff --stat         # samo očekivani fajlovi
 ```
 
-**K2 u test1:** `verify_edit.py` traži i `version.json`, pa ovde uvek prijavljuje FAIL „nije pronađeno: version.json“ (provereno 25.11.2026). Do odluke o alatu (SC-REND-01 §10, otvoreno 2) K2 se proverava ručno: iste verzije na svih šest mesta iz §3 (`grep -n '0\.8\.9' index.html sw.js`, pa pregled pogodaka); K1, K3–K5 važe normalno.
+**K2 u test1:** alat `verify_edit.py` živi u `snail-city-test` (`tools/sc-rad-01/`), ne u test1. Ispravka K2 (šest tačaka, `version.json` opcion) je spojena u `snail-city-test` (PR #13, commit `26722c4`). U test1 K2 se proverava ručno: iste verzije na svih šest mesta iz §3 (`grep -n '0\.8\.9' index.html sw.js`, pa pregled pogodaka).
 
-`verify_edit.py` proverava: **K1** sintaksu svih izvršnih blokova (`node --check`), **K2** usklađenost četiri verzijske tačke, **K3** da je svaka linija ugrađenog resursa bajt-identična osnovi, i izveštava **K4** broj blokova i **K5** obim izmene. Izmena resursa koja je deo zadatka prolazi samo uz `--allow-asset-change`, navedeno u PR-u.
+`verify_edit.py` proverava: **K1** sintaksu svih izvršnih blokova (`node --check`), **K2** usklađenost šest verzijskih tačaka iz §3, **K3** da je svaka linija ugrađenog resursa bajt-identična osnovi, i izveštava **K4** broj blokova i **K5** obim izmene. Izmena resursa koja je deo zadatka prolazi samo uz `--allow-asset-change`, navedeno u PR-u.
 
 ### R05 — Verzija (MORA)
 - Izmena izvršnog koda: podići **sve verzijske tačke** iz §3 u istom commitu (u test1 šest mesta); K2 mora proći (u test1 ručno, vidi R04).
