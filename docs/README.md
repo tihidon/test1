@@ -105,3 +105,12 @@ Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
 6. PR #12 u `snail-city-test` (SC-REND-01, SC-CODE-01, SC-RAD-01) spojen je 25.11.2026 kao `f32b290`. Kopije u ovom repou su rađene sa `12f986c`, koji je sadržan u tom spajanju.
 
 <sub>[↑ Sadržaj](#sadržaj)</sub>
+
+## 7. Agent upgrade v1.1.0 (25.11.2026)
+
+- [SC-BUILD-01](tehnika/standardi/SC-BUILD-01-PYTHON-BUILD.md) — izolovani istorijski round-trip, current-source gate, build/publish identitet.
+- [SC-LOOP-01](tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md) — AST kandidati, watchdog, lifecycle, PL-01, agent retry.
+- [SC-CLI-01](alati/SC-CLI-01-AGENT-INSTALACIJA.md) — projektna instalacija, zavisnosti, komande, eval.
+- [SKILL.md](../.agents/skills/snail-city-engineering/SKILL.md) — operativni ulaz, postojeći standardi ostaju kanonski.
+
+Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0794191c53; stariji identiteti u odeljcima 1–6 nisu trenutna verifikacija. Netlify konfiguracija sada postoji i objavljuje whitelist u dist/; ne menja se u ovom upgrade-u. Python/JS i official CLI rezultate vezati za tačan commit i izvršne logove. Originalne projektne priloge i raniji overlay ZIP nije bilo moguće ponovo pročitati u ovom okruženju; postojeća test1 izdanja standarda sačuvana su bez prepisivanja. Ne tvrditi byte-identical prenos kompletnog v1.0.0/v1.1.0 paketa.

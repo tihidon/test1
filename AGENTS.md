@@ -21,3 +21,7 @@ Ovaj repozitorijum sadrži build Snail City **0.8.92-css-unified-p3** (`index.ht
 ## Izveštaj posle rada
 
 Navedi: izmenjene fajlove i funkcije, izmenu po funkciji, i kako je provereno (sa stvarnim komandama i njihovim izlazom). Šta nije testirano na uređaju, to jasno označi kao **NIJE TESTIRANO**.
+
+## Skill i dodatni gate-ovi (25.11.2026)
+
+Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SKILL.md` (Codex: `$snail-city-engineering`), bez učitavanja kompletnog istorijskog registra. Primenjuj [SC-BUILD-01](docs/tehnika/standardi/SC-BUILD-01-PYTHON-BUILD.md), [SC-LOOP-01](docs/tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md) i [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md). Stari P3 identitet iz vrha je istorijski; stvarni target/version/hash i publish root proveriti svaki put. Ne pokretati split nad aktivnim src/. Pre i posle runtime izmene dokazati build/publish jednakost; ako nedostaje alat ili postojeći baseline ne prolazi, prijavi BLOCKED/FAIL. Zadržati sve relevantne G0–G7 i ne menjati deploy bez odobrenja.
