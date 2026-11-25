@@ -37,7 +37,7 @@
         .then(()=>emit('span','decode.promiseLatency.'+label,begin,now(),'opt-in;may-perturb'))
         .catch(()=>emit('mark','decode.rejected.'+label,now()));
     },
-    export:()=>({schema:1,build:'0.8.92-css-unified-p1',timeOrigin:performance.timeOrigin,
+    export:()=>({schema:1,build:'0.8.92-css-unified-p2',timeOrigin:performance.timeOrigin,
       timings:events.slice(),longTasks:longTasks.slice(),
       navigation:performance.getEntriesByType('navigation').map(e=>({
         type:e.type,fetchStart:+e.fetchStart.toFixed(1),responseEnd:+e.responseEnd.toFixed(1),
@@ -2207,7 +2207,7 @@ const { getLogin, creditLogin, queueReturnGift, creditMuseum }=modules.playerPro
 const { SUMMON_COST, SUMMON_COOLDOWN, STONE_DUST_BACK, timeBreakCost, craterPrice, nextCraterPrice, summonChoices, creditDiamonds,
   canCare, releaseExpiredHalf, accelerateEgg, tickMeteorRain, nextMeteor, creditPrestige, prestigeBoost, showReference }=modules.islandEvents;
 const { getSeason, leagueOf, previousReward, creditWeekly, cosmicTradeCost, exchanges, packAmount, upgradeInfo, improveSnail, inheritedStat }=modules.progression;
-const VERSION = '0.8.92-css-unified-p1';
+const VERSION = '0.8.92-css-unified-p2';
 const WHEAT_LEVEL=5, WHEAT_AMOUNT=60, WHEAT_CYCLE=15*60000;
 const WHEAT_UPGRADES=Object.freeze([
   {level:8,cost:3000}, {level:12,cost:8000},
@@ -3839,7 +3839,7 @@ class Renderer{
     this.gl.bindTexture(this.gl.TEXTURE_2D,this.textures.get(this.active));
     return true;
   }
-  drawIllustratedMap(x,y,w,h){
+  drawIllustratedMap(x,y,w,h,animateWater=true){
     if(!this.mapImage)return false;
     if(!this.gl){this.ctx.drawImage(this.mapImage,x,y,w,h);return true;}
     if(!this.mapTexture)return false;
@@ -3850,7 +3850,6 @@ class Renderer{
     this.gl.bindTexture(this.gl.TEXTURE_2D,this.mapTexture);
     // Only the illustrated map quad uses the water shader. All other sprites
     // retain the exact previous shader path and GPU state.
-    const animateWater=!globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     this.gl.uniform1f(this.waterEnabledLocation,animateWater?1:0);
     this.gl.uniform1f(this.waterTimeLocation,performance.now()/1000);
     const baseIslandWidth=Math.min(this.width*1.16,this.height*(1448/1086)*1.03,1120);
@@ -4600,14 +4599,14 @@ function scUpdateReservoirFx(s,now,rect=null){
   if(scReservoirFx.dataset.state!==state)scReservoirFx.dataset.state=state;
   scReservoirFx.hidden=document.hidden||state==='idle';
 }
-function paintMap(renderer,s,camera,objects,now,editor){
+function paintMap(renderer,s,camera,objects,now,editor,animateWater=true){
   const phase=weatherFor(s,now).hour,night=phase==='night';
   if(!renderer.begin('island',night?'#151739':'#71a7a5'))return false;
   renderer.drawSky(night?'night':'day');
   const {width,height,atlas}=renderer,view=mapView(width,height,camera);
   // Permanent terrain contains only cliffs, paths, water, mine and fountain.
   // Buildings, five farms and five habitats are in ONE batched sprite atlas.
-  const ok=renderer.drawIllustratedMap(view.x,view.y,view.sizeX,view.sizeY);
+  const ok=renderer.drawIllustratedMap(view.x,view.y,view.sizeX,view.sizeY,animateWater);
   if(!ok){renderer.flush();return false;}
   const independent=[],labels=[];
   let scReservoirRect=null;
@@ -6772,7 +6771,11 @@ const cloudBackup=modules.cloud;
 const $=id=>document.getElementById(id);
 const stage=$('stage'), panel=$('panel'), sheet=$('sheet'), gameplay=$('race-ui');
 const metrics=createMetrics();
-const reduceMotion=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches??false;
+const reduceMotionQuery=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')??null;
+let reduceMotion=reduceMotionQuery?.matches??false;
+const onReduceMotionChange=event=>{reduceMotion=event.matches;};
+if(reduceMotionQuery?.addEventListener)reduceMotionQuery.addEventListener('change',onReduceMotionChange);
+else reduceMotionQuery?.addListener?.(onReduceMotionChange);
 const prefs=(()=>{
   try{return JSON.parse(localStorage.getItem('snail-city-rebuild.preferences')??'null')??{};}catch{return {};}
 })();
@@ -7375,7 +7378,7 @@ function loop(now){
     if(dirty){
       dirty=false;
       const begin=baseTime();
-      const painted=paintMap(renderer,s,mapCamera,objects,nowBound(),islandEditor);
+      const painted=paintMap(renderer,s,mapCamera,objects,nowBound(),islandEditor,!reduceMotion);
       if(painted){sceneManager.paintedMap();metrics.islandDraw(baseTime()-begin);}
       if(painted&&firstIslandPaint){firstIslandPaint=false;metrics.markLoading('firstIslandFrameMs',baseTime());globalThis.SC_STARTUP_TRACE?.mark('canvas.firstSubmittedFrame','not necessarily compositor presented');}
 
