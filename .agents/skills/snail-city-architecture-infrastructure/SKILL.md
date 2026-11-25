@@ -41,3 +41,6 @@ Use the role procedure and evidence record for every investigation. Other refere
 - [SC-REND-01-CIST-KOD-I-RENDER.md](references/SC-REND-01-CIST-KOD-I-RENDER.md)
 - [evidence.md](references/evidence.md)
 - [procedure.md](references/procedure.md)
+
+## Reliable debugging and specialist handoff
+Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own D0/D1/D3/D5 and shared lint/AST/CI; preserve existing owner and frozen oracle; no self-approval.

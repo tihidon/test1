@@ -11,6 +11,7 @@ import sys
 import tempfile
 import threading
 from dom_audit import measure_dom
+from cdp_diagnostic import Diagnostic, has_observations
 
 PUBLIC = ("index.html", "sw.js", "manifest.webmanifest", "_headers",
           "privacy.html", "delete-account.html", "img")
@@ -57,14 +58,14 @@ def scenario_steps(path):
     return data
 
 
-def run(root, out, scenario):
+def run(root, out, scenario, diagnostic=False):
     try:
         from playwright.sync_api import sync_playwright, expect
     except ImportError:
         write(out, "report.json", {"status":"BLOCKED","reason":"Playwright not installed"})
         return 2
     report = {"status":"FAIL","scope":"local Chromium shell; not complete gameplay, save or Android QA",
-              "steps":[],"dom_snapshots":[],"page_errors":[],"local_http_errors":[],"blocked_external_requests":0}
+              "diagnostic_mode":diagnostic,"steps":[],"dom_snapshots":[],"page_errors":[],"local_http_errors":[],"blocked_external_requests":0}
     def stage(name):
         report["steps"].append(name)
         write(out,"report.json",report)
@@ -115,7 +116,8 @@ def run(root, out, scenario):
                             report["blocked_external_requests"]+=1
                             r.abort()
                     context.route("**/*",route)
-                    context.tracing.start(screenshots=True,snapshots=True,sources=False)
+                    if not diagnostic:
+                        context.tracing.start(screenshots=True,snapshots=True,sources=False)
                     page=context.new_page()
                     page.set_default_timeout(10000)
                     page.on("pageerror",lambda e:report["page_errors"].append(str(e)[:500]))
@@ -123,10 +125,14 @@ def run(root, out, scenario):
                         {"url":r.url,"status":r.status}) if r.url.startswith(origin+"/") and r.status>=400 else None)
                     cdp=context.new_cdp_session(page)
                     profiling=False
+                    probe=Diagnostic(cdp) if diagnostic else None
                     try:
-                        cdp.send("Profiler.enable")
-                        cdp.send("Profiler.start")
-                        profiling=True
+                        if probe:
+                            probe.start()
+                        else:
+                            cdp.send("Profiler.enable")
+                            cdp.send("Profiler.start")
+                            profiling=True
                         stage("online navigation")
                         response=page.goto(origin+"/index.html",wait_until="domcontentloaded",timeout=25000)
                         require(response is not None and response.ok,"online navigation failed")
@@ -160,6 +166,10 @@ def run(root, out, scenario):
                         report["cached_html_sha256"]=cached
                         require(cached==report["html_sha256"],"wrong cached HTML")
                         report["dom_snapshots"].append(measure_dom(page,"online-before-scenario"))
+                        if probe:
+                            phase=probe.capture("online-startup-identity")
+                            require(has_observations(phase,origin+"/index.html"),"missing startup CDP observations")
+                            write(out,"diagnostic.json",probe.report())
                         for i,s in enumerate(steps):
                             stage(f"scenario step {i+1}: {s['op']} {s['selector']}")
                             loc=page.locator(s["selector"])
@@ -171,7 +181,13 @@ def run(root, out, scenario):
                                 expect(loc).to_have_text(s["expected"],timeout=10000)
                             if s["op"] != "click":
                                 report["dom_snapshots"].append(measure_dom(page,f"scenario assertion {i+1}"))
+                                if probe:
+                                    probe.capture(f"scenario-through-assertion-{i+1}")
+                                    write(out,"diagnostic.json",probe.report())
                         page.screenshot(path=str(out/"online.png"),timeout=10000,animations="allow")
+                        if probe:
+                            probe.capture("online-before-reload")
+                            write(out,"diagnostic.json",probe.report())
                         stage("offline navigation in same isolated context")
                         context.set_offline(True)
                         response=page.reload(wait_until="domcontentloaded",timeout=25000)
@@ -185,13 +201,21 @@ def run(root, out, scenario):
                                 "offline startup version mismatch")
                         report["dom_snapshots"].append(measure_dom(page,"offline-shell"))
                         page.screenshot(path=str(out/"offline.png"),timeout=10000,animations="allow")
+                        if probe:
+                            phase=probe.capture("offline-reload-shell")
+                            require(has_observations(phase,origin+"/index.html"),"missing offline CDP observations")
+                            write(out,"diagnostic.json",probe.report())
                         require(not report["page_errors"],"uncaught page errors")
                         require(not report["local_http_errors"],"local HTTP errors")
                         stage("assertions complete")
                     finally:
                         if profiling:
                             write(out,"cpu-profile.json",cdp.send("Profiler.stop")["profile"])
-                        context.tracing.stop(path=str(out/"trace.zip"))
+                        if probe:
+                            probe.stop()
+                            write(out,"diagnostic.json",probe.report())
+                        else:
+                            context.tracing.stop(path=str(out/"trace.zip"))
                         context.close()
                         browser.close()
             finally:
@@ -212,5 +236,6 @@ if __name__=="__main__":
     p.add_argument("--root",type=Path,required=True)
     p.add_argument("--out",type=Path,required=True)
     p.add_argument("--scenario",type=Path)
+    p.add_argument("--diagnostic",action="store_true")
     a=p.parse_args()
-    sys.exit(run(a.root.resolve(),a.out.resolve(),a.scenario))
+    sys.exit(run(a.root.resolve(),a.out.resolve(),a.scenario,a.diagnostic))

@@ -128,3 +128,6 @@ Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0
 
 ## 11. Executable complexity controls
 [SC-CODE-02](tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md): canonical SC-CODE-01 tools installed, historical baseline preserved, current ratchet and locations, loop inventory and Chromium fixtures/live DOM. CI candidate; no runtime game changes.
+
+## SC-DEBUG-01 phase A
+[Pouzdano debugovanje](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md): selected lint ratchet, exact AST duplicates, separate CDP counts/CSS deltas and shared specialist handoff. Candidate; game unchanged.
