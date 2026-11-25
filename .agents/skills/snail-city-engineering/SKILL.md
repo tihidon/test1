@@ -1,47 +1,47 @@
 ---
 name: snail-city-engineering
 description: >-
-  Implement, review, debug, profile, refactor and test Snail City HTML/CSS/JavaScript PWA changes. Enforce existing architecture, function registry, CSS/DOM, render lifecycle, save and offline integrity, safe Python builds, loop investigation and evidence-based QA. Activate for game changes, bug investigation, deletion, performance, releases and agent tooling.
+  Implement, review, debug, profile, refactor and test Snail City HTML/CSS/JavaScript PWA changes. Enforce existing architecture, function registry, CSS/DOM rules, WebGL lifecycle, save integrity, offline behavior, deterministic Python builds, loop investigation and evidence-based QA. Activate for game code, bugs, deletion, optimization, map placement, race/battle, releases and agent tooling.
 metadata:
   version: "1.1.0"
   project: "Snail City"
   status: "owner-approved-candidate"
-compatibility: "Project-local Codex skill; Python 3.11+, Node.js and optional isolated CLI/parser/browser tooling. No new game runtime dependencies."
+compatibility: "Compatible Agent Skills host with repository access; Python 3.11+, Node.js and isolated developer CLI/parser/browser tools for applicable checks. No additional game runtime dependencies."
 ---
 
 # Snail City engineering
 
-Read root AGENTS.md and docs/README.md, then only the relevant canonical standard below. Do not load the full function registry, HTML or asset data into the model. Locate repository root, target branch/commit, actual version, publish root, source/manifest and existing changes. A past PASS is not current proof. Code identifies observed behavior; owner decisions and adopted standards identify intended behavior. Record conflicts; never silently change intended behavior or invent evidence.
+## Authority
+Read target AGENTS.md and docs/README.md, then relevant canonical standards. Confirm target checkout, SHA, version, deployment root, source authority and user changes. Repository-approved standards and owner decisions define intended behavior; actual code defines observed behavior. Bundled copies are dated references, not a competing policy. Report contradictions; preserve protective invariants; do not make unauthorized changes. If target documents or tools are unavailable, use available evidence and mark verification BLOCKED. Never dump entire registry or embedded assets into context.
 
-## Mandatory invariants
+## Mandatory rules
+1. Find existing owner by symbol and responsibility before adding code. Inspect full affected bodies, callers, aliases, dynamic dispatch, reads/writes, dependencies and tests. No duplicate renderer, projection, state, economy, pricing, clock, terrain, save adapter, styles or game loop.
+2. UI emits intent; app orchestrates; domain validates/settles; storage confirms durability; renderer paints. No gameplay writes in paint. Preserve public contracts and approved balance. Invalid/duplicate actions cannot debit, reward or move objects. Shared ground footprint, terrain, projection and placement validation for preview/hit-test/confirm/persistence; apply DPR once.
+3. Persist canonical effective game clock and absolute deadlines. Separate simulation/frame timing and profiling from offline settlement. Bound catch-up, test clock changes, pause/resume and duplicate events. Preserve save identity, revisions, backup, migration and recovery; never silently reset or clear real storage. Isolated test profiles, no secrets or real player data in logs.
+4. Existing scheduler/renderer only. Dirty idle map, bounded active simulation, no unnecessary layout reads, texture upload or cache churn. Clean timers/listeners/observers/RAF/textures and restore GPU resources after context loss. Never remove needed invalidation/resize, graphics or controls for better metrics.
+5. Existing CSS owner and cascade, scoped DOM updates, native controls, delegated actions, SR/EN localization, focus and accessibility. Apply approved SC-CODE-01 C/D/J and ratchet constraints; no new duplicate selectors/logic, style system, mass format or patch-on-patch. Validate output by context; generic HTML escaping does not secure URL/JS/CSS.
+6. Python standard-library build stays. Once migration verified, src/ is development authority; reference HTML frozen. Never run split.py on active edited src/. In test1 current Netlify layout, prove generated dist/index.html equals published root index.html. Don't silently overwrite mismatch or change deployment. Maintain all six actual version points for runtime changes; docs-only no runtime/SW bump. Never invent version.json.
+7. Detect loops with AST and bounded real runtime tracing. Static warnings are candidates, not proven bugs. Review exit/progress, reentry, recursion, RAF/timers, microtask starvation, observers, render/layout cycles, save/retry and cleanup. No deleting valid loops to improve metrics. After three failed attempts at one hypothesis stop or get owner authorization; retry only with new evidence.
+8. Preserve user edits. No destructive actions, unapproved feature deletion, balance changes, architecture migration, merge/deploy or production operations. No fabricated PASS, screenshot, simulated motion or current claim from historical evidence. GML only for actual explicitly identified port.
 
-- Find by responsibility, symbol, aliases, callbacks and readers/writers before adding code. Extend existing owner. No parallel renderer, projection, terrain validation, clock, state, economy, storage, CSS or game loop. UI intent → app orchestration → domain validation → storage durability → presentation. Renderer does not mutate game state.
-- One projection and support footprint for preview, hit-test, terrain validation, confirm and persistence. DPR once. Revalidate at commit; reject without debit/movement. No unauthorized balance, pricing, reward or snail-stat changes.
-- One authoritative persisted game clock and absolute deadlines; bounded simulation steps independent of offline settlement. Test invalid time, duplicates, reentry and resume. Preserve save identity, revisions, backups, migration and recovery. No silent reset or clearing real storage; test isolated origin/profile.
-- One existing scheduler; dirty idle map, bounded active simulation, cleanup timers/listeners/observers/textures, restore GPU resources after context loss. Do not remove needed invalidation/resize or artwork to make metrics green. Trace before optimizing.
-- Use existing CSS owner/cascade, native controls, delegation, SR/EN localization, accessibility and safe context-specific output encoding. Apply SC-CODE-01 limits and ratchets; no automatic exceptions, extra style blocks or mass formatting. Function registry is an index, not a complete dynamic graph. Do not delete on zero incoming static calls; use all three deletion checks.
-- Python standard-library build stays. Do not run split.py on active src; historical roundtrip isolated. Confirm src/template/manifest matches actual published root index.html before release; do not switch Netlify publish logic without approval. Preserve all six actual version points when version changes. Docs-only no runtime bump. No npm/bundler migration or added game dependencies without approval.
-- No destructive operations, unrelated cleanup, merge/deploy or production changes without authorization. No fabricated PASS, screenshot, performance number or test coverage. Block release on required G0–G7 failures/missing evidence. Use actual Chromium frames for graphics/motion; device test for Android claim. Actual GML port requires separate approved standard; do not introduce GML into web.
-- Detect loops via AST inventory, then actual reproduction and bounded runtime tracing; static warning is not a bug. Never automatically delete a loop or cap a legitimate simulation just to pass. Separate game RAF, timers, promises/microtasks, observers, recursive calls and agent retry loops. No retry without changed hypothesis/evidence; after 3 unsuccessful attempts stop and report unless owner authorizes new experiment.
-
-## Routing (from repository root)
-
-| Task | Canonical source |
+## Load only relevant references
+| Task | Read |
 |---|---|
-| All edits, agent QA | docs/tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md; SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md |
-| Ownership, placement, state | docs/tehnika/standardi/SC-ARCH-01-STRUKTURA-I-ARHITEKTURA.md; PRAVILO-JEDAN-IZVOR-ISTINE.md |
-| Function changes / deletion | docs/tehnika/standardi/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md; SC-BRISANJE-3-PROVERE.md |
-| CSS/DOM/JS | docs/tehnika/standardi/SC-CODE-01-CSS-DOM-FUNKCIJE.md |
-| Rendering/latency | docs/tehnika/standardi/SC-REND-01-CIST-KOD-I-RENDER.md; SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md |
-| Save/PWA | docs/tehnika/pwa-offline/PW-01-STANJE-0.8.92.md |
-| Build | docs/tehnika/standardi/SC-BUILD-01-PYTHON-BUILD.md |
-| Loops and bugs | docs/tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md |
-| CLI setup, verification | docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md |
+| Any runtime edit/deletion | [workflow](references/workflow.md) |
+| Ownership, map, state | [architecture](references/architecture.md) |
+| CSS, DOM, JS | [coding](references/coding.md) |
+| Render/latency/loops | [render-performance](references/render-performance.md), [SC-LOOP-01](references/standards/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md) |
+| Save/PWA/release | [qa-release](references/qa-release.md) |
+| Build/CLI | [SC-BUILD-01](references/standards/standardi/SC-BUILD-01-PYTHON-BUILD.md), [cli](references/cli.md) |
+| Registry | [sources](references/sources.md); search current source first |
+| Conflicts | [audit](references/audit.md) |
 
-## Execute
+## Execution
+1. Identify deliverables, acceptance, target SHA/hash, current versions/source/publish identity, local changes, risk, rollback, access/tools and scope. Docs-only work does not require fake runtime QA.
+2. Search actual owner, contract and call chain including SR/EN, generated DOM/actions and dynamic keys. Record function card: owner/symbol, file+SHA/anchor, contract/units/errors, callers/dependencies, reads/writes, lifecycle and tests. Extract full relevant bodies with local tools; avoid dumping base64 or all HTML.
+3. Run applicable G0–G7 and existing static/ratchet tools. For compatible trusted checkout use bundled scripts only as fallback, with explicit target path (see cli.md). Verify parser coverage; missing tools, skips and zero input not PASS. Baseline failures stay separate. Deletion needs all three independent checks; if dynamic use unresolved, NO-CHANGE.
+4. Minimal targeted patch, unique anchors, preserve unrelated bytes/assets, encoding, cascade and user edits. Update existing change record and canonical function index via SC-F08.
+5. Actual positive/negative/repeated/reload/lifecycle tests; real Chromium before/after screenshots and actual frame GIF/video (Pogledaj kretanje) for graphics/motion. PL-01 A/B/R for performance, 20–30 repeats when required, matched actual target device for Android. For hangs, external watchdog and trace; timeout alone doesn't identify culprit. No runtime watchdog installed by this skill.
+6. Report changed files/symbols, unchanged systems, actual commands/exits/coverage, artifacts, risks and rollback. Per deliverable URAĐENO / DELIMIČNO / NIJE URAĐENO; per test PASS / FAIL / BLOCKED / NOT RUN / N/A with reason. Decision PRIHVATI KANDIDAT / ZADRŽI ZA QA / ROLLBACK / NO-CHANGE. No release with required P0/P1 failures or missing evidence.
 
-1. Specify acceptance criteria; inspect scope, baseline, rollback, owner/contract, dependency chain, all affected call sites and test coverage. Use current source, not obsolete line numbers. Preserve user changes.
-2. For source changes run trusted checker `python tools/agent/check_build.py --require-publish-match` before and after; do not regenerate active source using split. If baseline fails report separately; do not hide it by rewriting root HTML or references. Run `node tools/agent/audit_loops.cjs` with existing isolated Acorn dependencies; record parsed counts and candidates, compare baseline and changed owner, investigate rather than treating counts as bugs. For documentation-only use relevant validation only.
-3. Make minimal targeted patch in existing owner. Follow existing SC-F08 registry generator, ratchets and source-specific rules. If tool is unavailable or skips inputs mark BLOCKED. No false zero-file PASS.
-4. Apply applicable G0–G7: syntax and determinism are not functional QA. Test positive, negative, repeat, cancellation, reload, lifecycle, offline, relevant visual and physical device cases; PL-01 A/B/R for performance claims. For suspected hang use externally bounded runner and record exact action, stack/trace, owner and progress criterion; compare unaffected features.
-5. Record changed files/symbols, untouched systems, baseline/commit, commands/exit/output, artifacts, risks and rollback. Each deliverable URAĐENO / DELIMIČNO / NIJE URAĐENO; tests PASS / FAIL / BLOCKED / NOT RUN / N/A with reason. Decision PRIHVATI KANDIDAT / ZADRŽI ZA QA / ROLLBACK / NO-CHANGE. Do not accept release solely from CLI or fixture checks.
+Scope-aware reading never waives applicable gates. CLI format validation is not agent or runtime proof. See VALIDATION.md.
