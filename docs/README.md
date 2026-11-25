@@ -125,3 +125,6 @@ Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0
 
 ## 10. Shared Decision Chain
 [SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md), zajednički D0–D8, tools/reliability/check_decision.py i regression fixtures; postojeći CI discovery pokriva nove testove. Verzije skillova 1.2.0 / 1.1.0 / 1.1.0. Runtime igre nepromenjen. Trace(2).zip analiza BLOCKED, stvarni agent eval NOT RUN.
+
+## 11. Executable complexity controls
+[SC-CODE-02](tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md): canonical SC-CODE-01 tools installed, historical baseline preserved, current ratchet and locations, loop inventory and Chromium fixtures/live DOM. CI candidate; no runtime game changes.

@@ -11,6 +11,8 @@ jobs:
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
         with:
           python-version: '3.12'
@@ -21,6 +23,7 @@ jobs:
         run: |
           python -m venv "$RUNNER_TEMP/sc-cli"
           "$RUNNER_TEMP/sc-cli/bin/python" -m pip install 'git+https://github.com/agentskills/agentskills.git@83021e2be457a9b6679148719c1f6074f0ad975e#subdirectory=skills-ref'
+          "$RUNNER_TEMP/sc-cli/bin/python" -m pip install tinycss2==1.5.1
           echo "$RUNNER_TEMP/sc-cli/bin" >> "$GITHUB_PATH"
           npm install --prefix "$RUNNER_TEMP/sc-ast" --ignore-scripts --no-audit --no-fund acorn@8.19.0 acorn-walk@8.3.5
           echo "NODE_PATH=$RUNNER_TEMP/sc-ast/node_modules" >> "$GITHUB_ENV"
@@ -37,6 +40,20 @@ jobs:
           node --test tools/agent/test_audit_loops.cjs
       - name: Reliability checker regression fixtures
         run: python -m unittest discover -s tools/reliability -p 'test_*.py' -v
+      - name: SC-CODE-01 quality fixtures
+        run: python -m unittest discover -s tools/sc-code-01 -p 'test_*.py' -v
+      - name: SC-CODE-01 canonical ratchet and locations
+        env:
+          SC_BASE: ${{ github.event.pull_request.base.sha || 'eddfa33acf5f875f2dbdf746ebf436651e61f80b' }}
+        run: python tools/sc-code-01/quality_gate.py --base "$SC_BASE" --out "$RUNNER_TEMP/sc-quality.json"
+      - name: Preserve quality report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-quality-inventory
+          path: ${{ runner.temp }}/sc-quality.json
+          if-no-files-found: warn
+          retention-days: 14
       - name: Historical P3 isolated round-trip
         run: python tools/test_roundtrip.py
       - name: Current build and published bytes
