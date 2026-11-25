@@ -39,3 +39,6 @@ https://playwright.dev/python/docs/release-notes
 https://playwright.dev/docs/trace-viewer
 https://playwright.dev/docs/service-workers
 https://developer.chrome.com/docs/devtools/performance/reference/
+
+## CI incident 25.11.2026 — v1.0.1
+Run 45703980206, job 139522291296: package installation succeeded but Playwright 1.56.0 rejected Ubuntu 26.04 (ubuntu-latest). Browser, watchdog fixtures and shell smoke did not run. Artifact upload also failed because runtime directory did not exist. Classification: infrastructure FAIL; game runtime BLOCKED/NOT RUN. Pin browser job to ubuntu-24.04, preserve setup log/status even when browser setup fails, retain fail-fast checks. Do not interpret absence of game report as PASS. No game files changed. Exact new candidate CI must prove compatibility.

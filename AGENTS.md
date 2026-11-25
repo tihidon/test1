@@ -29,3 +29,7 @@ Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SK
 ## Chromium Runtime QA
 
 Za runtime bag, hang, loop, performance, save/offline ili funkcionalni QA koristi i `.agents/skills/chromium-runtime-qa/SKILL.md`. Primeni [SC-QA-02](docs/tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md). Postojeći snail-city-engineering ostaje vlasnik engineering procesa. Novi alati rade samo nad izolovanim kopijama publish fajlova; bez izmena runtime igre. CLI format PASS nije agent eval; shell smoke nije kompletan gameplay/PW-01 ili Android dokaz.
+
+## Agent Reliability
+
+Za audit dokaza, zaključak o popravci, release i kontradikcije učitaj `.agents/skills/agent-reliability/SKILL.md` i [SC-REL-01](docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md). Nezavisni oracle, dokaz identiteta i izvorni logovi obavezni; structural checker PASS nije agent evaluation. Bez lažnog PASS i bez merge/deploy bez odobrenja.
