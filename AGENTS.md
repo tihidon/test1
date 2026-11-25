@@ -45,3 +45,6 @@ Primeni [SC-DEC-01](docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md) za za
 
 ## Executable complexity checks
 Apply [SC-CODE-02](docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md) with canonical SC-CODE-01 tool, extended AST loop inventory and live DOM snapshots. Do not raise baselines or auto-delete. Distinguish fixture and game evidence under SC-DEC-01.
+
+## Reliable debugging
+Apply [SC-DEBUG-01](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md) with SC-DEC-01. Two specialists share tools; independent Reliability review required. Diagnostic coverage is not timing. No auto-fix or deletion.

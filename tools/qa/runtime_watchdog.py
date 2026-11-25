@@ -50,6 +50,7 @@ def main():
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--root", type=Path, default=ROOT)
     p.add_argument("--scenario", type=Path)
+    p.add_argument("--diagnostic", action="store_true")
     p.add_argument("--timeout", type=int, default=120)
     a = p.parse_args()
     root, out = a.root.resolve(), a.out.resolve()
@@ -60,11 +61,15 @@ def main():
                "--root", str(root), "--out", str(out)]
     if a.scenario:
         command += ["--scenario", str(a.scenario.resolve())]
+    if a.diagnostic:
+        command.append("--diagnostic")
     result = run_bounded(command, out, a.timeout)
     if result["status"] == "PASS":
         try:
             report = json.loads((out / "report.json").read_text(encoding="utf-8"))
-            required = ("trace.zip", "cpu-profile.json", "online.png", "offline.png")
+            required = ("diagnostic.json", "online.png", "offline.png") if a.diagnostic else ("trace.zip", "cpu-profile.json", "online.png", "offline.png")
+            if bool(report.get("diagnostic_mode")) != a.diagnostic:
+                raise ValueError("diagnostic mode mismatch")
             if report["status"] != "PASS" or not all((out/f).stat().st_size > 0 for f in required):
                 raise ValueError("missing required evidence")
         except (OSError, ValueError, KeyError) as exc:

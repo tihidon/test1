@@ -34,3 +34,6 @@ Use [the role procedure](references/procedure.md) and [the evidence record](refe
 - [SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD](references/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md)
 - [SC-QA-02-CHROMIUM-RUNTIME](references/SC-QA-02-CHROMIUM-RUNTIME.md)
 - [SC-REL-01-AGENT-RELIABILITY](references/SC-REL-01-AGENT-RELIABILITY.md)
+
+## Reliable debugging and specialist handoff
+Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own real D2/D4/D6 scenario, first divergence and raw evidence. Use shared diagnostic mode, no duplicate probes.

@@ -1,0 +1,13 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict');
+const {lint,compare}=require('./eslint_ratchet.cjs'),{scan,clusters}=require('./audit_duplicates.cjs');
+const input=source=>({file:'src/js/fixture.js',type:'script',source});
+test('lint flags unreachable and self-assign',()=>{const r=lint(input('function f(x){x=x;return x; x++;}'));assert.ok(r.messages.some(m=>m.rule==='no-self-assign'));assert.ok(r.messages.some(m=>m.rule==='no-unreachable'));});
+test('bounded loop accepted',()=>assert.equal(lint(input('async function f(){let i=0;while(i<3){i++;}return i;}')).messages.length,0));
+test('new finding fails despite same total',()=>assert.equal(compare([lint(input('function f(x){x=x;return x;}'))],[lint(input('function f(x){return x;x++;}'))]).status,'FAIL'));
+test('legacy line shift allowed; extra copy fails',()=>{const a=lint(input('function f(x){x=x;return x;}')),b=lint(input('\nfunction f(x){x=x;return x;}'));assert.equal(compare([a],[b]).status,'PASS_NO_NEW_FINDINGS');assert.equal(compare([a],[b,b]).status,'FAIL');});
+test('inline suppression cannot hide issue',()=>assert.ok(lint(input('/* eslint-disable no-self-assign */ function f(x){x=x;return x;}')).messages.some(m=>m.rule==='no-self-assign')));
+test('parse error cannot pass as legacy',()=>{const a=lint(input('function {'));assert.equal(compare([a],[a]).status,'FAIL');});
+test('same substantial body despite comment is candidate',()=>assert.equal(clusters([scan(input('function a(x){let y=x+1;if(y>2)return y*2;return y;} function b(x){/* comment */let y=x+1;if(y>2)return y*2;return y;}'))]).length,1));
+test('different literal or async is distinct',()=>assert.equal(clusters([scan(input('function a(x){let y=x+1;if(y>2)return y*2;return y;} function b(x){let y=x+2;if(y>2)return y*2;return y;} async function c(x){let y=x+1;if(y>2)return y*2;return y;}'))]).length,0));
+test('trivial helpers excluded',()=>assert.equal(clusters([scan(input('function a(){return 1} function b(){return 1}'))]).length,0));

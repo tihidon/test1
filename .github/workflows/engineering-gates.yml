@@ -25,7 +25,7 @@ jobs:
           "$RUNNER_TEMP/sc-cli/bin/python" -m pip install 'git+https://github.com/agentskills/agentskills.git@83021e2be457a9b6679148719c1f6074f0ad975e#subdirectory=skills-ref'
           "$RUNNER_TEMP/sc-cli/bin/python" -m pip install tinycss2==1.5.1
           echo "$RUNNER_TEMP/sc-cli/bin" >> "$GITHUB_PATH"
-          npm install --prefix "$RUNNER_TEMP/sc-ast" --ignore-scripts --no-audit --no-fund acorn@8.19.0 acorn-walk@8.3.5
+          npm install --prefix "$RUNNER_TEMP/sc-ast" --ignore-scripts --no-audit --no-fund acorn@8.19.0 acorn-walk@8.3.5 eslint@10.15.0
           echo "NODE_PATH=$RUNNER_TEMP/sc-ast/node_modules" >> "$GITHUB_ENV"
       - name: Official skill validation
         run: |
@@ -35,11 +35,11 @@ jobs:
           skills-ref validate .agents/skills/snail-city-stress-test-specialist
           skills-ref validate .agents/skills/snail-city-architecture-infrastructure
           skills-ref read-properties .agents/skills/snail-city-engineering
-          skills-ref to-prompt .agents/skills/snail-city-engineering .agents/skills/chromium-runtime-qa .agents/skills/agent-reliability
+          skills-ref to-prompt .agents/skills/snail-city-engineering .agents/skills/chromium-runtime-qa .agents/skills/agent-reliability .agents/skills/snail-city-stress-test-specialist .agents/skills/snail-city-architecture-infrastructure
       - name: Tool regression fixtures
         run: |
           python -m unittest discover -s tools/agent -p 'test_*.py' -v
-          node --test tools/agent/test_audit_loops.cjs
+          node --test tools/agent/test_audit_loops.cjs tools/agent/test_debug_tools.cjs
       - name: Reliability checker regression fixtures
         run: python -m unittest discover -s tools/reliability -p 'test_*.py' -v
       - name: SC-CODE-01 quality fixtures
@@ -55,6 +55,27 @@ jobs:
           name: sc-quality-inventory
           path: ${{ runner.temp }}/sc-quality.json
           if-no-files-found: warn
+          retention-days: 14
+      - name: SC-DEBUG-01 ESLint bug ratchet
+        env:
+          SC_BASE: ${{ github.event.pull_request.base.sha || 'cd79662b45b2477d2d53aba000e60f90fefc8662' }}
+        run: |
+          node tools/agent/eslint_ratchet.cjs "$SC_BASE" "$RUNNER_TEMP/sc-eslint.json"
+          if [ "$SC_BASE" != "cd79662b45b2477d2d53aba000e60f90fefc8662" ]; then
+            node tools/agent/eslint_ratchet.cjs cd79662b45b2477d2d53aba000e60f90fefc8662 "$RUNNER_TEMP/sc-eslint-frozen.json"
+          fi
+      - name: AST duplicate candidate inventory
+        if: always()
+        run: node tools/agent/audit_duplicates.cjs "$RUNNER_TEMP/sc-duplicates.json"
+      - name: Preserve debug static evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-debug-static
+          path: |
+            ${{ runner.temp }}/sc-eslint*.json
+            ${{ runner.temp }}/sc-duplicates.json
+          if-no-files-found: error
           retention-days: 14
       - name: Historical P3 isolated round-trip
         run: python tools/test_roundtrip.py
@@ -99,6 +120,8 @@ jobs:
         run: python -m unittest discover -s tools/qa -p 'test_*.py' -v
       - name: Chromium online/offline shell smoke
         run: python tools/qa/runtime_watchdog.py --out "$RUNNER_TEMP/sc-runtime-evidence"
+      - name: Separate Chromium diagnostic coverage run
+        run: python tools/qa/runtime_watchdog.py --diagnostic --out "$RUNNER_TEMP/sc-diagnostic-evidence"
       - name: Record missing runtime evidence
         if: always()
         env:
@@ -114,5 +137,6 @@ jobs:
           path: |
             ${{ runner.temp }}/sc-runtime-setup/
             ${{ runner.temp }}/sc-runtime-evidence/
+            ${{ runner.temp }}/sc-diagnostic-evidence/
           if-no-files-found: error
           retention-days: 14
