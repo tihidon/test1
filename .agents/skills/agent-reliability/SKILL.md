@@ -3,7 +3,7 @@ name: agent-reliability
 description: >-
   Audit Snail City agent conclusions, QA evidence, tool execution, release readiness and contradictory documents. Use for reliability reviews, bug-fix acceptance, failed or skipped checks, source identity, independent regression oracles, agent evaluations and claims that work is complete.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
   project: "Snail City"
   status: "candidate"
 compatibility: "Agent Skills host with repository access; Python 3.11+ standard library for evidence checker. No game dependencies."
@@ -23,3 +23,6 @@ Read AGENTS.md and docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md. This i
 
 ## Agent evaluation
 Use docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md and tools/reliability/cases.json. Run same tasks with and without skill in disposable independent sessions, record model/version/tools, exact prompt, target, transcript and outputs. Blind independent human/reviewer checks each case against criteria; never let evaluated agent grade itself. Fixtures test checker, not agent. Missing harness or actual transcript = NOT RUN. No release on required FAIL/BLOCKED/NOT RUN. Report findings, limitations, residual risk and decision.
+
+## Shared decision chain (SC-DEC-01)
+Read docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md. Own D7/D8 review, not implementation. Check original evidence against frozen contract, challenge alternative explanations, require same oracle and intended failure reason, reject unresolved contradictions. Use tools/reliability/check_decision.py for bug-fix structural gate; never treat its PASS as independent review or release permission. A role in the same agent is not an independent reviewer. Keep missing evidence BLOCKED/NOT RUN.

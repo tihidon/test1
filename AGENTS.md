@@ -33,3 +33,6 @@ Za runtime bag, hang, loop, performance, save/offline ili funkcionalni QA korist
 ## Agent Reliability
 
 Za audit dokaza, zaključak o popravci, release i kontradikcije učitaj `.agents/skills/agent-reliability/SKILL.md` i [SC-REL-01](docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md). Nezavisni oracle, dokaz identiteta i izvorni logovi obavezni; structural checker PASS nije agent evaluation. Bez lažnog PASS i bez merge/deploy bez odobrenja.
+
+## Shared decision chain
+Primeni [SC-DEC-01](docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md) za zajednički D0–D8 proces tri postojeća skilla. Jedan decision record, frozen oracle, originalni dokazi, nezavisan pregled. Structural PASS nije release authorization. Ne uvoditi četvrti skill niti preskakati relevantne gate-ove.
