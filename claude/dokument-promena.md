@@ -60,6 +60,16 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Provera:** `tools/build.py` + `tools/test_roundtrip.py` PASS; ratchet PASS (25 = baseline). Nije testirano na uređaju: **NIJE TESTIRANO** u igri i na telefonu.
 - **Napomena:** `SC_PWA_STATUS.version` (`0.8.92`) i `<title>` (`Snail City 0.8.92`) nisu menjani, jer nose baznu verziju bez p-sufiksa, kao i pre.
 
+### Uklanjanje neiskorišćene slike `island-map.webp` — build p5 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p4 → 0.8.92-css-unified-p5
+- **Oblast:** assets (paket slika, `asset-secondary`)
+- **Fajl i mesto:** `src/data/block-09.json` — ključ `island-map.webp` (poslednji u objektu); `index.html` — `asset-secondary` (rezultat builda); `src/js/block-00.js` — `build` tag u `#sc-startup-trace`; `src/js/block-21.js` — `VERSION`; `sw.js` — `CACHE_NAME`
+- **Stara vrednost:** `island-map.webp` (480×482, RGBA, 97 KB base64) u `asset-secondary`; `…-p4` u build tagu, VERSION i CACHE
+- **Nova vrednost:** ključ uklonjen; `…-p5` u build tagu, VERSION i CACHE (`snail-city-shell-0.8.92-css-unified-p5-r2`)
+- **Razlog:** provereno pretragom repoa: `island-map` se ne čita ni iz jednog JS fajla (`assetGroup`/`imagePath` ga nikad ne traže). Ostrvo na ekranu dolazi iz `src/data/block-05.b64` (1448×1086, RGB), ne iz ovog fajla.
+- **Provera:** `tools/build.py` izlaz u korenu razlikuje se od `HEAD` tačno za uklonjeni ključ i p4→p5; `node --check` glavnog inline skripta PASS.
+- **Napomena:** ovo ne menja izgled ostrva. Nebo unutar kutije ostrva potiče iz `block-05.b64` i ostaje otvoreno (vidi „Otvoreno“).
+
 ## Odluke
 - Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
@@ -71,3 +81,4 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Vizuelno na deploy-u: ostrvo odsečeno sa leve i desne strane na 360 px; natpisi zgrada (`Razbijač vremena`, `Inkubator`) ispod desnih dugmadi; verzija prekrivena pilulom `Local`.
 - Supabase CDN nije keširan (sync radi samo online, po dizajnu); blok `SC_LEGACY_CLOUD` i dalje postoji sa drugim project ref-om.
 - Bot za 90 dana (`tools/bot-p3.js`): čeka odgovor o grani i definiciji „max“ valuta. Trenutni `tools/bot.js` ne radi na p3.
+- Nebo unutar kutije ostrva: `block-05.b64` je RGB bez alfe. Rešenje (providna verzija ostrva ili uskladjivanje neba) čeka odluku; nije urađeno.
