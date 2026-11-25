@@ -1,5 +1,7 @@
 # Snail City — v0.8.92-css-unified-p1: CSS jedan izvor istine, P1 audit
 
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+
 **Datum:** 23. novembar 2026.  
 **Status:** **IZOLOVANI KANDIDAT, NIJE ODOBREN ZA PRODUKCIJU**  
 **Polazna izvršna aplikacija:** korisnikov `Snail-City-v0.8.91-raster.zip`, lokalno izvučen `index.html` SHA-256 `c92ac29fb2d4f5915e4336c974a496435aeed5ce57b0516f78a79d8168db5d77`.  

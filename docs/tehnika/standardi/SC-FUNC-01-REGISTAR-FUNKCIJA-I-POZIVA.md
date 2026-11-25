@@ -1,5 +1,7 @@
 # SC-FUNC-01 — Registar funkcija, poziva i kontradikcija (test1 0.8.92)
 
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+
 **Oznaka:** SC-FUNC-01 · **Revizija:** 1.1 za test1 · **Datum:** 25.11.2026.
 **Build:** `tihidon/test1` `main` `2d66e55`, `index.html` SHA-256 `c19cc1ac67a2ccc184d2938f0252700205f689d4124bcdf56b672d573c6b7c5d`, `const VERSION = '0.8.92-css-unified-p1'`.
 **Poreklo:** revizija 1.0 je projektni dokument nad ZIP-om 0.8.93 (`index.html` SHA-256 `74dc364a…`, repo `test-2`). Po pravilu SC-F08 registar je **regenerisan** za ovaj build; brojevi linija iz 0.8.93 ovde ne važe. §4 (standard) je prenet bez izmene, §5 je ponovo proveren nad test1.
