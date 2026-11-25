@@ -101,6 +101,16 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Razlog:** posle merge-a p6 animacija nije bila vidljiva. Pomeraji su bili podešeni za ostrvo od 1448 px, a fontana se na ekranu crta na oko 240 px, pa je pomeraj bio oko 0,2 px.
 - **Provera:** headless Chrome, 4 kadra u razmacima od 400 ms. Srednja razlika u kvadratu fontane 11–16 od 255 (pre ~1–2). Ostrvo van kvadrata ~2,9.
 
+### Samo voda se pomera, zidovi fiksni — build p8 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p7 → 0.8.92-css-unified-p8
+- **Oblast:** render (shader fontane)
+- **Fajl i mesto:** `src/js/block-21.js` — `shader main()`: uklonjeno ljuljanje ne-vodenih piksela (zidovi, kamen, listovi, lotos); pomeraj i sjaj samo na `blue` maski; `src/js/block-00.js`, `sw.js`, `index.html`
+- **Stara vrednost:** ceo sprite se pomerao (zidovi su "plivali" sa vodom), p7
+- **Nova vrednost:** pomera se samo voda (`blue`), p8
+- **Razlog:** korisnik: zidovi fontane moraju biti fiksni, a voda treba da osciluje.
+- **Provera:** headless Chrome, 3 kadra po 400 ms: 90% piksela fontane se ne menja između kadrova (p90 = 0), voda oscilira.
+- **Napomena:** lotos i listovi sada stoje (ranije "sve"). Ako ih želimo da ljuljaju, dodaje se zelena maska sa malim pomerajem.
+
 ## Odluke
 - Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
