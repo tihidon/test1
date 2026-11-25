@@ -36,9 +36,9 @@ Kad se dokument i kod ne slažu, važi kod; neslaganje se upisuje, ne rešava pr
 | [SC-FUNC-01](./tehnika/standardi/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md) | registar funkcija, K01–K08 | izdanje za test1; projekat (rev. 1.0, 0.8.93) | registar regenerisan (983 čvora); K01, K02 ne važe za test1, K03–K08 potvrđeni |
 | [SSOT — jedan izvor istine](./tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md) | vlasnici podataka | kopija; `snail-city-test@1e3258f` | svih 19 vlasnika postoji; red verzije dopunjen |
 | [SC-PL-01 / CSS-01](./tehnika/standardi/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md) | layout, canvas resize, velike slike u CSS promenljivama | kopija; `snail-city-test@1e3258f` | tabela CSS-01 potvrđena; dodata peta vrednost `--sc174-snail-art`; trace brojevi su iz 0.8.90 |
-| [SC-CODE-01](./tehnika/standardi/SC-CODE-01-CSS-DOM-FUNKCIJE.md) | pisanje CSS, DOM, funkcija; ratchet | kopija; `snail-city-test@12f986c` (PR #12) | ratchet PASS, 0 razlika prema baseline 0.8.92; dodato pokretanje alata |
-| [SC-RAD-01](./tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md) | postavka, izmena, brisanje koda | kopija; `snail-city-test@12f986c` (PR #12) | §3 prepisan za test1; R04, R05 prilagođeni |
-| [SC-REND-01](./tehnika/standardi/SC-REND-01-CIST-KOD-I-RENDER.md) | render, vreme, keš, invalidacija | kopija; `snail-city-test@12f986c` (PR #12; pisan nad test1) | ratchet PASS; N01, N12 potvrđeni; dva podatka ispravljena (§4) |
+| [SC-CODE-01](./tehnika/standardi/SC-CODE-01-CSS-DOM-FUNKCIJE.md) | pisanje CSS, DOM, funkcija; ratchet | kopija; `snail-city-test@12f986c` (PR #12, spojen `f32b290`) | ratchet PASS, 0 razlika prema baseline 0.8.92; dodato pokretanje alata |
+| [SC-RAD-01](./tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md) | postavka, izmena, brisanje koda | kopija; `snail-city-test@12f986c` (PR #12, spojen `f32b290`) | §3 prepisan za test1; R04, R05 prilagođeni |
+| [SC-REND-01](./tehnika/standardi/SC-REND-01-CIST-KOD-I-RENDER.md) | render, vreme, keš, invalidacija | kopija; `snail-city-test@12f986c` (PR #12, spojen `f32b290`; pisan nad test1) | ratchet PASS; N01, N12 potvrđeni; dva podatka ispravljena (§4) |
 | [SC-BRISANJE-3-PROVERE](./tehnika/standardi/SC-BRISANJE-3-PROVERE.md) | presedan brisanja CSS-a | kopija; `snail-city-test@1e3258f` | **ne opisuje test1**: `.map-controls` ovde i dalje postoji (označeno) |
 
 ### PWA, QA i alati
@@ -97,11 +97,11 @@ Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
 
 ## 6. Otvoreno
 
-1. **Javnost `docs/`:** repo nema `netlify.toml`; ako Netlify objavljuje koren repoa, ova dokumentacija je javno dostupna na sajtu igre. Proveriti publish directory (NIJE PROVERENO).
-2. **`AGENTS.md` u korenu test1** ne postoji, pa agent koji radi u ovom repou ne dobija pravila automatski. Predlog: kratak `AGENTS.md` sa vezom na ovaj indeks.
-3. **`verify_edit.py` K2** u `snail-city-test` ne proverava `SC_PWA_STATUS.version` ni build tag, a u test1 traži nepostojeći `version.json`. Odluka vlasnika (SC-REND-01 §10).
-4. **`snail-city-test` SC-RAD-01 §3** (spojen u PR #11) ima istu grešku broja verzijskih tačaka za 0.8.90 (izostavljena `SC_PWA_STATUS.version`).
+1. **Javnost `docs/`:** repo nema `netlify.toml`; ako Netlify objavljuje koren repoa, ova dokumentacija je javno dostupna na sajtu igre. Proverava vlasnik u Netlify podešavanjima (publish directory); iz repoa se ne može utvrditi. NIJE PROVERENO.
+2. **`AGENTS.md` u korenu test1:** dodat u PR #4 (spojen); sadrži redosled čitanja i ključna pravila sa vezom na ovaj indeks.
+3. **`verify_edit.py` K2:** ispravka (šest tačaka, `version.json` opcion) je u PR #13 `snail-city-test`, čeka spajanje. Provereno: test1 PASS, build tag 0.8.91 u kopiji FAIL.
+4. **`snail-city-test` SC-RAD-01 §3:** broj verzijskih tačaka ispravljen na šest u PR #13 (čeka spajanje).
 5. PW-01 na uređaju, vizuelni QA i animacije za 0.8.92: NIJE TESTIRANO.
-6. PR #12 u `snail-city-test` (SC-REND-01) još nije spojen; kopije SC-CODE-01, SC-RAD-01 i SC-REND-01 su sa te grane.
+6. PR #12 u `snail-city-test` (SC-REND-01, SC-CODE-01, SC-RAD-01) spojen je 25.11.2026 kao `f32b290`. Kopije u ovom repou su rađene sa `12f986c`, koji je sadržan u tom spajanju.
 
 <sub>[↑ Sadržaj](#sadržaj)</sub>
