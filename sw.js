@@ -3,7 +3,7 @@
  * IndexedDB is never removed or modified by this script.
  */
 'use strict';
-const CACHE_NAME = 'snail-city-shell-0.8.92-css-unified-p8-r1';
+const CACHE_NAME = 'snail-city-shell-0.8.92-css-unified-p9-r1';
 const OWNED_PREFIXES = ['snail-city-08', 'snail-city-shell-'];
 const CORE_PATHS = [
   './index.html', './manifest.webmanifest',
