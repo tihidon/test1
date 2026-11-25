@@ -21,3 +21,16 @@ For decisions depending on changing APIs, compatibility, tooling or deployment, 
 | P0 | Evidence-Based QA | Record expected failure reason, completed assertions, raw artifacts and PASS/FAIL/BLOCKED/NOT RUN per scenario. |
 | P0 | Offline & Save Integrity Testing | Use an isolated persistent profile. Cold reopen offline on the same origin and verify save identity, revision, level and inventory. |
 | P1 | Memory & GPU Diagnostics | Track live resources by owner after warm-up and repeated teardown. Check GPU handles separately from JS heap. |
+
+## Operational references
+
+Use [the role procedure](references/procedure.md) and [the evidence record](references/evidence.md) for the task. The following project references are a snapshot of tihidon/test1 at 1706b6c. Verify current rules at the target commit. Historical results retain their original scope.
+
+- [PW-01-STANJE-0.8.92](references/PW-01-STANJE-0.8.92.md)
+- [PRAVILO-JEDAN-IZVOR-ISTINE](references/PRAVILO-JEDAN-IZVOR-ISTINE.md)
+- [SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI](references/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md)
+- [SC-DEC-01-LANAC-ODLUCIVANJA](references/SC-DEC-01-LANAC-ODLUCIVANJA.md)
+- [SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA](references/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md)
+- [SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD](references/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md)
+- [SC-QA-02-CHROMIUM-RUNTIME](references/SC-QA-02-CHROMIUM-RUNTIME.md)
+- [SC-REL-01-AGENT-RELIABILITY](references/SC-REL-01-AGENT-RELIABILITY.md)

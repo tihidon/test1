@@ -1,0 +1,12 @@
+interface:
+  display_name: Snail City Stress Test Specialist
+  short_description: Help with Snail City Stress Test Specialist tasks
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
