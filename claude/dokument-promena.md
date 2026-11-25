@@ -70,10 +70,33 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Provera:** `tools/build.py` izlaz u korenu razlikuje se od `HEAD` tačno za uklonjeni ključ i p4→p5; `node --check` glavnog inline skripta PASS.
 - **Napomena:** ovo ne menja izgled ostrva. Nebo unutar kutije ostrva potiče iz `block-05.b64` i ostaje otvoreno (vidi „Otvoreno“).
 
+### Providno ostrvo + animirana fontana — build p6 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p5 → 0.8.92-css-unified-p6
+- **Oblast:** render (WebGL ostrvo, fontana, shader), assets
+- **Fajl i mesto:**
+  - `src/data/block-05.b64` — ostrvo: RGBA webp 1448×1086, alfa normalizovana (253→255), bez fontane i bez neba (ceo blok zamenjen)
+  - `src/data/block-22.b64` (NOVO) — fontana: RGBA webp 512×512 (izvor 1254×1254, bez pozadine), blok `<script type="text/plain" id="illustrated-fountain-webp">`
+  - `src/html/index.template.html` — marker `<!--SC-INLINE 22-->` odmah posle `05`
+  - `src/html/blocks.json` — novi unos `22`, sha256 za `05` i `22`
+  - `src/js/block-21.js` — `shader main()` (`fountain`/`falling` uv konstante uklonjene, voda se bira bojom); `preloadIllustratedMap` (učitava fontanu); `uploadIllustratedMap` + novi `uploadMapTexture` (jedan helper za ostrvo i fontanu); `drawIllustratedMap` (ostrvo bez vode, pa fontana kao zaseban animirani sprite; 2D fallback crta i fontanu); `webglcontextlost`/restore (`fountainTexture=null`); `getStats` (`illustratedMapBytes` uključuje fontanu)
+  - `src/js/block-00.js`, `src/js/block-21.js` (VERSION), `sw.js` (CACHE_NAME), `index.html` (regenerisan iz `dist`)
+- **Stara vrednost:** ostrvo sa ugrađenom fontanom i nebom (RGB, 1448×1086, 411 KB base64); animacija vode preko fiksnih uv regiona `pool`(0.708,0.639) i `fall` (vodopadi) u shader-u; `…-p5`
+- **Nova vrednost:** ostrvo providno (~386 KB webp, 514 KB base64); fontana sprite 240×240 u koordinatama ostrva, centar x=0.6975..0.8630, y=0.5820..0.8029 (normalizovano 1448×1086); animacija bojom (turkiz voda: ripple + sjaj); ostali delovi fontane (lotos, listovi, kamen) se blago ljuljaju; `…-p6`
+- **Razlog:** odluka korisnika: providno ostrvo bez dvostrukog neba (opcija 1) i animacija cele fontane sa zamenom stare (1 sve, 2 ok). Fiksne uv konstante vezivale su animaciju za jedan raspored ostrva; boja to čini nezavisnim od pozicije.
+- **Provera:**
+  - `tools/build.py` → `dist/index.html`; root `index.html` = kopija; blokovi `05` i `22` u build-u identični fajlovima (base64 poređenje).
+  - `node --check` za `block-21.js` i `block-00.js`: PASS.
+  - Headless Chrome (Playwright, SwiftShader WebGL): stranica se učitava, canvas sa WebGL-om, nema JS grešaka; jedina 404 je `favicon.ico` (postojala i ranije).
+  - Dva snimka u razmaku 700 ms: razlika samo u kvadratu 171×171 px na mestu fontane; ostrvo i ostale zgrade nepromenjeni.
+  - Vizuelno: ostrvo bez kutije neba, fontana bez ostataka stare fontane.
+  - `tools/test_roundtrip.py` NIJE pokrenut (poznata opasnost: prepisuje `src/` iz reference).
+- **Napomena:** `funkcije-i-animacije.md` ne postoji u repou; animacija je opisana u ovom unosu. Ratchet (`sc_code_metrics`) nije pronađen u repou, pa nije pokrenut.
+
 ## Odluke
 - Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
 - Netlify publish ide samo iz bele liste (PR #12).
+- Ostrvo: providna verzija (izrez korisnika) umesto kutije neba; fontana je zaseban sprite, a animacija cele fontane (voda, lotos, listovi) se radi bojom i blagim ljuljanjem (p6).
 
 ## Otvoreno
 - QA na HONOR telefonu, koraci 3–8: prodavnica (ponovljena merenja vs v0.8.90), jaja/inkubator, kartice i modali, portret/landscape, trka i povratak, sejv posle reload-a.
@@ -81,4 +104,5 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Vizuelno na deploy-u: ostrvo odsečeno sa leve i desne strane na 360 px; natpisi zgrada (`Razbijač vremena`, `Inkubator`) ispod desnih dugmadi; verzija prekrivena pilulom `Local`.
 - Supabase CDN nije keširan (sync radi samo online, po dizajnu); blok `SC_LEGACY_CLOUD` i dalje postoji sa drugim project ref-om.
 - Bot za 90 dana (`tools/bot-p3.js`): čeka odgovor o grani i definiciji „max“ valuta. Trenutni `tools/bot.js` ne radi na p3.
-- Nebo unutar kutije ostrva: `block-05.b64` je RGB bez alfe. Rešenje (providna verzija ostrva ili uskladjivanje neba) čeka odluku; nije urađeno.
+- p6 nije testiran na telefonu (HONOR): vizuelno ostrvo i fontana, animacija u trci/povratku, memorija posle više otvaranja ekrana.
+- Ljuljanje lotosa i listova je estetska odluka: proveriti na telefonu da nije previše.

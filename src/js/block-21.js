@@ -288,7 +288,7 @@ const { getLogin, creditLogin, queueReturnGift, creditMuseum }=modules.playerPro
 const { SUMMON_COST, SUMMON_COOLDOWN, STONE_DUST_BACK, timeBreakCost, craterPrice, nextCraterPrice, summonChoices, creditDiamonds,
   canCare, releaseExpiredHalf, accelerateEgg, tickMeteorRain, nextMeteor, creditPrestige, prestigeBoost, showReference }=modules.islandEvents;
 const { getSeason, leagueOf, previousReward, creditWeekly, cosmicTradeCost, exchanges, packAmount, upgradeInfo, improveSnail, inheritedStat }=modules.progression;
-const VERSION = '0.8.92-css-unified-p5';
+const VERSION = '0.8.92-css-unified-p6';
 const WHEAT_LEVEL=5, WHEAT_AMOUNT=60, WHEAT_CYCLE=15*60000;
 const WHEAT_UPGRADES=Object.freeze([
   {level:8,cost:3000}, {level:12,cost:8000},
@@ -1589,37 +1589,26 @@ varying vec2 imageUV;
 varying vec4 color;
 void main(){
   vec2 uv=imageUV;
-  // Water regions in the baked island map (normalised image coordinates).
-  // Blue-colour gating prevents foliage, stone and fountain ornaments from moving.
-  vec2 pool=(uv-vec2(0.708,0.639))/vec2(0.098,0.083);
-  float fountain=1.0-smoothstep(0.72,1.03,length(pool));
-  float fallX=smoothstep(0.682,0.700,uv.x)*(1.0-smoothstep(0.733,0.751,uv.x));
-  float fallY=smoothstep(0.777,0.810,uv.y)*(1.0-smoothstep(0.962,0.982,uv.y));
-  float falling=fallX*fallY;
   vec4 base=texture2D(atlas,uv);
+  // Turquoise water is found by colour, so the animation follows the sprite's own pixels.
   float blue=clamp((base.b-base.r*0.96)*3.2,0.0,1.0)*
              clamp((base.g-base.r*0.53)*2.7,0.0,1.0);
-  float mask=max(fountain,falling)*blue*scWaterEnabled;
-  if(mask>0.005){
-    float time=scWaterTime;
-    // Enlarged visual rhythm when zoomed out: tiny waves would otherwise
-    // disappear during texture minification. Near view keeps finer ripples.
-    float farView=1.0-smoothstep(0.78,1.28,scWaterZoom);
-    float amplitude=mix(1.0,1.65,farView);
-    float poolWave=sin((uv.x+uv.y*0.68)*mix(145.0,88.0,farView)-time*2.2);
-    float fallWave=sin(uv.y*mix(190.0,102.0,farView)-time*3.3+uv.x*21.0);
-    vec2 shifted=uv+vec2(
-      0.00088*amplitude*poolWave*fountain,
-      (0.00078*sin(uv.x*108.0+time*2.1)+0.00090*sin(uv.y*86.0-time*2.6))*amplitude*fountain
-        +0.00205*amplitude*sin(uv.x*120.0-time*2.8)*falling);
-    vec4 flow=texture2D(atlas,shifted);
-    // Bright shimmer survives zoom-out, without modifying non-water pixels.
-    float shimmer=(0.5+0.5*sin(uv.x*mix(130.0,78.0,farView)+uv.y*37.0-time*2.2))*fountain;
-    float cascade=(0.5+0.5*fallWave)*falling;
-    float highlight=(0.045+0.055*farView)*shimmer+(0.055+0.075*farView)*cascade;
-    vec3 animatedWater=mix(base.rgb,flow.rgb,0.78)+vec3(0.23,0.37,0.44)*highlight;
-    base.rgb=mix(base.rgb,animatedWater,clamp(mask*0.86,0.0,1.0));
-  }
+  if(scWaterEnabled<0.5){gl_FragColor=base*color;return;}
+  float time=scWaterTime;
+  // Enlarged visual rhythm when zoomed out: tiny waves would otherwise
+  // disappear during texture minification. Near view keeps finer ripples.
+  float farView=1.0-smoothstep(0.78,1.28,scWaterZoom);
+  float amplitude=mix(1.0,1.65,farView);
+  float poolWave=sin((uv.x+uv.y*0.68)*mix(145.0,88.0,farView)-time*2.2);
+  // Water ripples in place; leaves, lotus and stone sway gently.
+  vec2 shifted=uv+vec2(
+    0.00088*amplitude*poolWave*blue+0.00070*amplitude*sin(uv.y*9.0+time*1.3)*(1.0-blue),
+    (0.00078*sin(uv.x*108.0+time*2.1)+0.00090*sin(uv.y*86.0-time*2.6))*amplitude*blue);
+  vec4 flow=texture2D(atlas,shifted);
+  // Bright shimmer survives zoom-out, and affects water pixels only.
+  float shimmer=(0.5+0.5*sin(uv.x*mix(130.0,78.0,farView)+uv.y*37.0-time*2.2))*blue;
+  float highlight=(0.045+0.055*farView)*shimmer;
+  base.rgb=mix(base.rgb,flow.rgb,mix(1.0,0.78,blue))+vec3(0.23,0.37,0.44)*highlight;
   gl_FragColor=base*color;
 }`;
 
@@ -1715,6 +1704,7 @@ class Renderer{
     this.stats={calls:0,upload:0};
     this.width=1;this.height=1;this.dpr=1;
     this.mapImage=null;this.mapTexture=null;
+    this.fountainImage=null;this.fountainTexture=null;
     this.skyImages={};this.skyTextures={};
     this.detachedImage=null;this.detachedTexture=null;this.detachedUV=DETACHED_MAP_UV;
     this.data=new Float32Array(8192*VERTEX_SIZE);
@@ -1766,7 +1756,7 @@ class Renderer{
     this.canvas=canvas;
     this.gl=null;
     this.textures.clear();
-    this.mapTexture=null;this.detachedTexture=null;this.skyTextures={};
+    this.mapTexture=null;this.fountainTexture=null;this.detachedTexture=null;this.skyTextures={};
     this.program=null;
     this.buffer=null;
     this.viewport=null;
@@ -1779,7 +1769,7 @@ class Renderer{
   initGL(){
     const gl=this.gl;
     this.textures.clear();
-    this.mapTexture=null;this.detachedTexture=null;this.skyTextures={};
+    this.mapTexture=null;this.fountainTexture=null;this.detachedTexture=null;this.skyTextures={};
     this.program=shaderProgram(gl);
     this.buffer=gl.createBuffer();
     gl.useProgram(this.program);gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);
@@ -1824,6 +1814,9 @@ class Renderer{
     const image=await loadImage('data:image/webp;base64,'+raw);
     scT?.end('map.imageOnload',scMapLoad);scT?.probeDecode(image,'map');
     this.mapImage=image;
+    const fountainElement=document.getElementById('illustrated-fountain-webp');
+    if(!fountainElement)throw Error('Nedostaje animirana fontana.');
+    this.fountainImage=await loadImage('data:image/webp;base64,'+fountainElement.textContent.trim());
     if(this.gl&&!this.lost)this.uploadIllustratedMap();
     for(const skyKey of ['day','night']){
       const source=document.getElementById('sc-sky-'+skyKey);
@@ -1848,19 +1841,23 @@ class Renderer{
   }
   uploadIllustratedMap(){
     if(!this.gl||!this.mapImage)return;
+    const scGpuAt=globalThis.SC_STARTUP_TRACE?.begin();
+    this.mapTexture=this.uploadMapTexture(this.mapImage,this.mapTexture);
+    globalThis.SC_STARTUP_TRACE?.end('gpu.texImage2D.map',scGpuAt,'cpu-submission-only');
+    if(this.fountainImage)this.fountainTexture=this.uploadMapTexture(this.fountainImage,this.fountainTexture);
+  }
+  uploadMapTexture(image,previous){
     const gl=this.gl;
-    if(this.mapTexture)gl.deleteTexture(this.mapTexture);
+    if(previous)gl.deleteTexture(previous);
     const texture=gl.createTexture();
     if(!texture)throw Error('GPU tekstura ilustracije nije dostupna.');
     gl.bindTexture(gl.TEXTURE_2D,texture);
-    const scGpuAt=globalThis.SC_STARTUP_TRACE?.begin();
-    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,this.mapImage);
-    globalThis.SC_STARTUP_TRACE?.end('gpu.texImage2D.map',scGpuAt,'cpu-submission-only');
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
-    this.mapTexture=texture;
+    return texture;
   }
   uploadDetachedAtlas(){
     if(!this.gl||!this.detachedImage)return;
@@ -1922,21 +1919,31 @@ class Renderer{
   }
   drawIllustratedMap({x,y,w,h},animateWater=true){
     if(!this.mapImage)return false;
-    if(!this.gl){this.ctx.drawImage(this.mapImage,x,y,w,h);return true;}
+    // Fountain placement inside the island frame (normalised 1448x1086 coordinates).
+    const fountain={x:0.697514,y:0.581952,w:0.165746,h:0.220994};
+    if(!this.gl){
+      this.ctx.drawImage(this.mapImage,x,y,w,h);
+      if(this.fountainImage)this.ctx.drawImage(this.fountainImage,x+fountain.x*w,y+fountain.y*h,fountain.w*w,fountain.h*h);
+      return true;
+    }
     if(!this.mapTexture)return false;
-    // One additional WebGL draw, then restore the active island atlas.
+    // Island and fountain are separate quads; the water shader runs only for the fountain.
     this.flush();
     const original=this.atlas;
     this.atlas={illustrated:[0,0,1,1]};
+    this.gl.uniform1f(this.waterEnabledLocation,0);
     this.gl.bindTexture(this.gl.TEXTURE_2D,this.mapTexture);
-    // Only the illustrated map quad uses the water shader. All other sprites
-    // retain the exact previous shader path and GPU state.
-    this.gl.uniform1f(this.waterEnabledLocation,animateWater?1:0);
-    this.gl.uniform1f(this.waterTimeLocation,performance.now()/1000);
-    const baseIslandWidth=Math.min(this.width*1.16,this.height*(1448/1086)*1.03,1120);
-    this.gl.uniform1f(this.waterZoomLocation,w/Math.max(1,baseIslandWidth));
     this.sprite('illustrated',x,y,w,h);
     this.flush();
+    if(this.fountainTexture){
+      const baseIslandWidth=Math.min(this.width*1.16,this.height*(1448/1086)*1.03,1120);
+      this.gl.bindTexture(this.gl.TEXTURE_2D,this.fountainTexture);
+      this.gl.uniform1f(this.waterEnabledLocation,animateWater?1:0);
+      this.gl.uniform1f(this.waterTimeLocation,performance.now()/1000);
+      this.gl.uniform1f(this.waterZoomLocation,w/Math.max(1,baseIslandWidth));
+      this.sprite('illustrated',x+fountain.x*w,y+fountain.y*h,fountain.w*w,fountain.h*h);
+      this.flush();
+    }
     this.gl.uniform1f(this.waterEnabledLocation,0);
     this.atlas=original;
     this.gl.bindTexture(this.gl.TEXTURE_2D,this.textures.get(this.active));
@@ -2131,7 +2138,7 @@ class Renderer{
     const sizeOf=image=>image?image.width*image.height*4:0;
     // The illustrated island lives outside the atlas Map. Count it as a
     // decoded CPU image and, if uploaded, as an independent GPU texture.
-    const mapBytes=sizeOf(this.mapImage);
+    const mapBytes=sizeOf(this.mapImage)+sizeOf(this.fountainImage);
     return {backend:this.backend,contextRestores:this.gpuResets,buffer:[this.canvas.width,this.canvas.height],
       estimatedTextureBytes:[...this.images.values()].reduce((sum,i)=>sum+sizeOf(i),mapBytes+sizeOf(this.detachedImage)),
       gpuTextureBytes:[...this.textures.keys()].reduce((sum,key)=>sum+sizeOf(this.images.get(key)),
