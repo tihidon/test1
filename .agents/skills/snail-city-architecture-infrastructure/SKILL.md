@@ -23,3 +23,21 @@ For decisions depending on changing APIs, compatibility, tooling or deployment, 
 | P0 | Deterministic Build Engineering | Build from identified inputs twice. Compare hashes of generated output and actual publish root. |
 | P1 | GitHub & CI/CD Engineering | Verify runner and action compatibility, retain failure artifacts and isolate toolchain upgrades from performance comparisons. |
 | P1 | Supabase Infrastructure | Inspect affected schema, migrations, RLS and anonymous identity using isolated test data. Keep privileged credentials out of clients and logs. |
+
+## Detailed procedures and project references
+
+Use the role procedure and evidence record for every investigation. Other references are snapshots from tihidon/test1 at 1706b6c. Verify current versions and record contradictions.
+
+- [PRAVILO-JEDAN-IZVOR-ISTINE.md](references/PRAVILO-JEDAN-IZVOR-ISTINE.md)
+- [PW-01-STANJE-0.8.92.md](references/PW-01-STANJE-0.8.92.md)
+- [SC-ARCH-01-STRUKTURA-I-ARHITEKTURA.md](references/SC-ARCH-01-STRUKTURA-I-ARHITEKTURA.md)
+- [SC-BUILD-01-PYTHON-BUILD.md](references/SC-BUILD-01-PYTHON-BUILD.md)
+- [SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md](references/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md)
+- [SC-DEC-01-LANAC-ODLUCIVANJA.md](references/SC-DEC-01-LANAC-ODLUCIVANJA.md)
+- [SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md](references/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md)
+- [SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md](references/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md)
+- [SC-QA-02-CHROMIUM-RUNTIME.md](references/SC-QA-02-CHROMIUM-RUNTIME.md)
+- [SC-REL-01-AGENT-RELIABILITY.md](references/SC-REL-01-AGENT-RELIABILITY.md)
+- [SC-REND-01-CIST-KOD-I-RENDER.md](references/SC-REND-01-CIST-KOD-I-RENDER.md)
+- [evidence.md](references/evidence.md)
+- [procedure.md](references/procedure.md)
