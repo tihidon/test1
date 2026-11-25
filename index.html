@@ -37,7 +37,7 @@
         .then(()=>emit('span','decode.promiseLatency.'+label,begin,now(),'opt-in;may-perturb'))
         .catch(()=>emit('mark','decode.rejected.'+label,now()));
     },
-    export:()=>({schema:1,build:'0.8.92-css-unified-p9',timeOrigin:performance.timeOrigin,
+    export:()=>({schema:1,build:'0.8.92-css-unified-p10',timeOrigin:performance.timeOrigin,
       timings:events.slice(),longTasks:longTasks.slice(),
       navigation:performance.getEntriesByType('navigation').map(e=>({
         type:e.type,fetchStart:+e.fetchStart.toFixed(1),responseEnd:+e.responseEnd.toFixed(1),
@@ -622,7 +622,7 @@ button.egtap{cursor:pointer}
 .pstats span{display:grid;justify-items:center;padding:8px 4px;border-radius:12px;background:#130c37;color:var(--mut);font-size:12px}.pstats b{font-size:20px;color:#fff}
 .summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:7px}
 .summary-grid div{padding:9px;border-radius:11px;background:#34287b;border:1px solid var(--line)}
-.summary-grid strong,.summary-grid span{display:block}.summary-grid span{font-size:12px;color:var(--mut);margin-top:3px}
+.summary-grid strong{display:block;color:var(--fg)}.summary-grid span{display:block}.summary-grid span{font-size:12px;color:var(--mut);margin-top:3px}
 .calendar-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
 .calendar-strip div{border:1px solid #7960ab;border-radius:8px;padding:7px;background:#34276f;color:#f9e1aa;font-size:12px}.calendar-strip div.ok{border-color:var(--slime)}
 .tbtop{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:8px;align-items:center}.tbtop img{width:100%;max-height:120px;object-fit:contain}
@@ -2208,7 +2208,7 @@ const { getLogin, creditLogin, queueReturnGift, creditMuseum }=modules.playerPro
 const { SUMMON_COST, SUMMON_COOLDOWN, STONE_DUST_BACK, timeBreakCost, craterPrice, nextCraterPrice, summonChoices, creditDiamonds,
   canCare, releaseExpiredHalf, accelerateEgg, tickMeteorRain, nextMeteor, creditPrestige, prestigeBoost, showReference }=modules.islandEvents;
 const { getSeason, leagueOf, previousReward, creditWeekly, cosmicTradeCost, exchanges, packAmount, upgradeInfo, improveSnail, inheritedStat }=modules.progression;
-const VERSION = '0.8.92-css-unified-p9';
+const VERSION = '0.8.92-css-unified-p10';
 const WHEAT_LEVEL=5, WHEAT_AMOUNT=60, WHEAT_CYCLE=15*60000;
 const WHEAT_UPGRADES=Object.freeze([
   {level:8,cost:3000}, {level:12,cost:8000},
