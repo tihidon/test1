@@ -42,3 +42,48 @@ jobs:
         run: |
           node tools/agent/audit_loops.cjs > "$RUNNER_TEMP/sc-loops.json"
           node -e 'const r=require(process.env.RUNNER_TEMP+"/sc-loops.json"); console.log("parsed files",r.parsedFiles); for(const f of r.reports) console.log(f.file, f.counts, "constant-loop candidates", f.loops.length, "name-cycle candidates",f.cycles.length,"scheduler/lifecycle sites",f.sites.length);'
+
+  package-agent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: e6ff70a48e1d0c789b1efcf85a9164c6a638361d
+          persist-credentials: false
+      - name: Stage verified engineering candidate only
+        shell: bash
+        run: |
+          set -euo pipefail
+          target="$RUNNER_TEMP/sc-agent-package"
+          mkdir -p "$target"
+          git archive HEAD .agents/skills/snail-city-engineering docs tools AGENTS.md .github/workflows/engineering-gates.yml | tar -x -C "$target"
+          cat > "$target/INSTALL-AGENT.md" <<'EOF'
+          # Snail City Engineering v1.1.0 — complete repository-local agent package
+
+          Source: tihidon/test1, commit e6ff70a48e1d0c789b1efcf85a9164c6a638361d; engineering gates run 45691651875 succeeded. Package contains the canonical test1 standards, skill, registry tooling, Python/AST checks, fixtures and CI; no game source, saves or binaries. Original historical project attachments outside this repository are not included.
+
+          ## Install
+          Extract into a staging directory first. Compare with the target checkout and preserve user changes. Prefer the source branch engineering/skill-v1.1.0 on test1 instead of overwriting tracked files. For another trusted checkout, retain the existing docs and tools and review the diff before copying the package's paths to the repository root, including the hidden .agents and .github directories. Do not extract into the public deployment root. Do not add a second registry or build owner.
+
+          Open a fresh Codex session at the repository root and explicitly invoke $snail-city-engineering. Follow docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md for dependencies and official CLI setup. Run the applicable gates on the target, not on the extracted package alone (the package intentionally omits the game source). Actual Codex activation and Chromium/device testing are separate from the successful GitHub tooling run.
+
+          ## Status
+          Candidate for QA. No authorization to merge or deploy is implied. See AGENTS.md and docs/README.md. Verify current source identity and dependencies; do not use historical results as proof for a different checkout.
+          EOF
+          cd "$target"
+          test -f .agents/skills/snail-city-engineering/SKILL.md
+          test -f docs/tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md
+          test -f tools/agent/check_build.py
+          test ! -e src
+          test ! -e index.html
+          find . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS
+          sha256sum -c SHA256SUMS
+      - name: Upload complete agent ZIP
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: snail-city-engineering-v1.1.0-complete
+          path: ${{ runner.temp }}/sc-agent-package/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
