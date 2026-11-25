@@ -1,0 +1,178 @@
+[
+  {
+    "id": "00",
+    "element": "script",
+    "open_tag": "<script id=\"sc-startup-trace\">",
+    "close_tag": "</script>",
+    "file": "src/js/block-00.js",
+    "sha256": "6e83d28d0dc309fbef1297a570e2ac3898b670c7b1fea8e540646d1a8bc919e4"
+  },
+  {
+    "id": "01",
+    "element": "script",
+    "open_tag": "<script id=\"sc-pwa-bootstrap\">",
+    "close_tag": "</script>",
+    "file": "src/js/block-01.js",
+    "sha256": "b825582cfdd1d40060545f0b4e82151f0fcb344dc818b1e427b4e545d2d5e3f8"
+  },
+  {
+    "id": "02",
+    "element": "style",
+    "open_tag": "<style id=\"sc-main-css\">",
+    "close_tag": "</style>",
+    "file": "src/css/block-02.css",
+    "sha256": "8c8a4989ae455c77166a84507ab3babe0123ddbbead490c8652a8375a83a3877"
+  },
+  {
+    "id": "03",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"sc-sky-day\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-03.b64",
+    "sha256": "2152adf2092bd140a601fcea7c552d41aca325291a72b4f895acf990decc237d"
+  },
+  {
+    "id": "04",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"sc-sky-night\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-04.b64",
+    "sha256": "03c0c7d74c915205db97294b5d12536752c60241709711a5c4a5c902de6404a1"
+  },
+  {
+    "id": "05",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"illustrated-map-webp\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-05.b64",
+    "sha256": "c7978bdae8bfdc1bf5a45d1db58b23dab27286b38deaeb05ccba4f1736f1749b"
+  },
+  {
+    "id": "06",
+    "element": "script",
+    "open_tag": "<script>",
+    "close_tag": "</script>",
+    "file": "src/js/block-06.js",
+    "sha256": "141243c19617ef00e910d70e97f915e467a942224369f8806a564301c3252c6d"
+  },
+  {
+    "id": "07",
+    "element": "script",
+    "open_tag": "<script id=\"detached-map-sprites\" type=\"text/plain\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-07.b64",
+    "sha256": "7703b94e5f6797dd6961f9b8ff260d45759a3d56108caa140831e8cc03ac9837"
+  },
+  {
+    "id": "08",
+    "element": "script",
+    "open_tag": "<script>",
+    "close_tag": "</script>",
+    "file": "src/js/block-08.js",
+    "sha256": "0e4218c3f9d327c6fa02dd8300af8a06bec2d427e5da7e4eaab922db2b2e8a48"
+  },
+  {
+    "id": "09",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-secondary\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-09.json",
+    "sha256": "322e2170a0463ed2aae802d0a691022ba3b24c48d182a7cc20a46c96721e1b20"
+  },
+  {
+    "id": "10",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-race-extra\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-10.json",
+    "sha256": "a25359e5b2a4f662187219e3a45b493df5416532cd1d101f6d69ea6c730c7f5f"
+  },
+  {
+    "id": "11",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-race\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-11.json",
+    "sha256": "ecd1670eb3b27d8061f848033aadc67cab50d6443cc8bc3fc86dcbbc785c2fa5"
+  },
+  {
+    "id": "12",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-audio\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-12.json",
+    "sha256": "e4b9335e4057dd2bc83935f6efcea798d59159f58fde7819ce0ee0904f1c8c1f"
+  },
+  {
+    "id": "13",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-1\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-13.json",
+    "sha256": "c4a1ad5ed52fc7284cdf69543cde44b90df90f8f3cea583f075a24016cdf70bb"
+  },
+  {
+    "id": "14",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-6\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-14.json",
+    "sha256": "7f427eb5a981afe622a2d46966228dbb196543b47c0620571368c6d709a0ffc7"
+  },
+  {
+    "id": "15",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-5\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-15.json",
+    "sha256": "79607fcfdd8c242b56de64fe99d3f0ecabdc2877c5655f80d962c86274a4b146"
+  },
+  {
+    "id": "16",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-4\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-16.json",
+    "sha256": "f340d4fa9d39ab7d119b7a64184ec726d594d59c85dd346a6df817b3ea152207"
+  },
+  {
+    "id": "17",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-3\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-17.json",
+    "sha256": "4044e880bde3dabb1e3d28b2c11f5a8bd2c8c12555bccc8eb3307702f60ef5d0"
+  },
+  {
+    "id": "18",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-2\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-18.json",
+    "sha256": "fd479e49c040aedee7476d99697e3f537d2cc0c93c3ecec215066ab3aa941d6f"
+  },
+  {
+    "id": "19",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-0\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-19.json",
+    "sha256": "0290b345ce8011f5129948981769223a41e496bb7e52443f047664f475ea811b"
+  },
+  {
+    "id": "20",
+    "element": "script",
+    "open_tag": "<script type=\"application/json\" id=\"asset-snails-7\">",
+    "close_tag": "</script>",
+    "file": "src/data/block-20.json",
+    "sha256": "d72df8f88cfe7b6dc644f4f20da62e83399931dc4d8ec302d2773be01def5ee1"
+  },
+  {
+    "id": "21",
+    "element": "script",
+    "open_tag": "<script>",
+    "close_tag": "</script>",
+    "file": "src/js/block-21.js",
+    "sha256": "d813c34479d59e028c364c68c9a49b8cb0c1507edd15492a03c55dbb59e6b0b6"
+  }
+]

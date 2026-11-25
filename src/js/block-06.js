@@ -1,0 +1,1 @@
+window.SC_LEGACY_CLOUD={url:'https://ezuuiurkelbeillfdxra.supabase.co',key:'sb_publishable_HjjMgld05gwSZ_27Jp6LvQ_S2EKyJpY'};
