@@ -122,3 +122,6 @@ Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0
 ## 9. QA v1.0.1 i Agent Reliability v1.0.0
 
 [SC-QA-02](tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md): CI incident Ubuntu 26.04/Playwright 1.56, pin browser runner 24.04 i setup diagnostics. [SC-REL-01](tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md): nezavisni evidence contract, checker fixtures i behavioral eval katalog. [Agent Reliability skill](../.agents/skills/agent-reliability/SKILL.md). Stvarno ponašanje agenta još NOT RUN. Bez promene igre.
+
+## 10. Shared Decision Chain
+[SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md), zajednički D0–D8, tools/reliability/check_decision.py i regression fixtures; postojeći CI discovery pokriva nove testove. Verzije skillova 1.2.0 / 1.1.0 / 1.1.0. Runtime igre nepromenjen. Trace(2).zip analiza BLOCKED, stvarni agent eval NOT RUN.

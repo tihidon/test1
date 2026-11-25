@@ -1,0 +1,60 @@
+{
+  "note": "Template only; not evidence. Contract hash recorded independently before execution.",
+  "contract": {
+    "baseline": "<baseline commit>",
+    "oracle_sha256": "<unchanged oracle hash>",
+    "expected_failure": "<predeclared reason>",
+    "required": [
+      "regression"
+    ]
+  },
+  "record": {
+    "baseline": "<baseline>",
+    "candidate": "<candidate>",
+    "before": {
+      "commit": "<baseline>",
+      "oracle_sha256": "<oracle>",
+      "status": "FAIL",
+      "failure_reason": "<expected reason>",
+      "capture": {
+        "id": "capture",
+        "status": "PASS",
+        "exit_code": 0,
+        "command": "<capture command>",
+        "artifact": "before.log",
+        "sha256": "<hash>"
+      }
+    },
+    "after": {
+      "commit": "<candidate>",
+      "oracle_sha256": "<oracle>",
+      "status": "PASS",
+      "capture": {
+        "id": "capture",
+        "status": "PASS",
+        "exit_code": 0,
+        "command": "<capture command>",
+        "artifact": "after.log",
+        "sha256": "<hash>"
+      }
+    },
+    "evidence": {
+      "commit": "<candidate>",
+      "checks": []
+    },
+    "first_divergence": {
+      "symbol": "",
+      "anchor": "",
+      "caller": "",
+      "expected": "",
+      "actual": ""
+    },
+    "unresolved_contradictions": [],
+    "decision": "ZADRŽI ZA QA",
+    "review": {
+      "status": "NOT RUN",
+      "reviewer": "",
+      "independent": false
+    }
+  }
+}

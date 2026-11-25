@@ -3,7 +3,7 @@ name: snail-city-engineering
 description: >-
   Implement, review, debug, profile, refactor and test Snail City HTML/CSS/JavaScript PWA changes. Enforce existing architecture, function registry, CSS/DOM rules, WebGL lifecycle, save integrity, offline behavior, deterministic Python builds, loop investigation and evidence-based QA. Activate for game code, bugs, deletion, optimization, map placement, race/battle, releases and agent tooling.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   project: "Snail City"
   status: "owner-approved-candidate"
 compatibility: "Compatible Agent Skills host with repository access; Python 3.11+, Node.js and isolated developer CLI/parser/browser tools for applicable checks. No additional game runtime dependencies."
@@ -45,3 +45,6 @@ Read target AGENTS.md and docs/README.md, then relevant canonical standards. Con
 6. Report changed files/symbols, unchanged systems, actual commands/exits/coverage, artifacts, risks and rollback. Per deliverable URAĐENO / DELIMIČNO / NIJE URAĐENO; per test PASS / FAIL / BLOCKED / NOT RUN / N/A with reason. Decision PRIHVATI KANDIDAT / ZADRŽI ZA QA / ROLLBACK / NO-CHANGE. No release with required P0/P1 failures or missing evidence.
 
 Scope-aware reading never waives applicable gates. CLI format validation is not agent or runtime proof. See VALIDATION.md.
+
+## Shared decision chain (SC-DEC-01)
+Read docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md. Own D0/D1/D3/D5; hand off actual runtime reproduction and regression to Chromium Runtime QA, independent review to Agent Reliability. Freeze oracle and required gates before editing. Do not treat a hypothesis as proof or implement a speculative patch. Scope-specific G0–G7 remain mandatory. Record one shared decision record; no parallel policy.
