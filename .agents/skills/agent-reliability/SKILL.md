@@ -3,7 +3,7 @@ name: agent-reliability
 description: >-
   Audit Snail City agent conclusions, QA evidence, tool execution, release readiness and contradictory documents. Use for reliability reviews, bug-fix acceptance, failed or skipped checks, source identity, independent regression oracles, agent evaluations and claims that work is complete.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
   project: "Snail City"
   status: "candidate"
 compatibility: "Agent Skills host with repository access; Python 3.11+ standard library for evidence checker. No game dependencies."
@@ -12,6 +12,10 @@ compatibility: "Agent Skills host with repository access; Python 3.11+ standard 
 # Agent Reliability
 
 Read AGENTS.md and docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md. This is a cross-check, not a second implementation owner. Use snail-city-engineering for changes and chromium-runtime-qa for runtime reproduction. Do not equate skill presence, CLI validation, tool fixtures or a green aggregate CI with actual agent adherence.
+
+## Independence in the two-agent workflow
+
+Use this skill for D7/D8. A reviewer who took part in the investigation, implementation or production of the evidence cannot independently approve that work. If both agents participated, hand review to the owner or another independent reviewer. Without that review record, keep the candidate at ZADRŽI ZA QA. Verify contract coverage by named assertions and completed steps, including failed runs. Shell, fixture, gameplay, save durability and physical-device claims each require their corresponding evidence.
 
 ## Review workflow
 1. Freeze scope, target commit, source/publish identity, requirements, independent expected results and required gates before edits. Read canonical sources; log contradictions and distinguish current from historical evidence.

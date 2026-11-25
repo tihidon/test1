@@ -27,6 +27,15 @@ python -m playwright show-trace /tmp/sc-qa-run/trace.zip
 ```
 Output direktorijum mora biti nov, izvan repo-a. CI koristi poseban job i privatni artifact. Zahtev za mrežu/dependencies = BLOCKED ako nije dostupan. Pinned direktni Playwright paket; tranzitivne zavisnosti još nisu zaključane; CI beleži pip freeze. Ne dodavati npm u game build.
 
+## Scenario stres-test specijaliste
+
+Prvi prioritet je `grad → trka → povratak na mapu → prvi tap`. Koristi stvarni UI i unapred definiši element, vidljiv odziv i očekivanu tranziciju stanja. Kontrola izvršava istu radnju na mapi bez prethodne trke. Naziv scenarija, početno stanje i profil, identitet builda i browsera, zamrznuta provera, očekivani razlog pada i kontrola ulaze u zajednički zapis pre pokretanja. Za svaki pokušaj sačuvaj poslednji završen korak, ishod imenovanih provera, razlog pada i izvorne artefakte. Sam broj koraka ne dokazuje pokrivenost tražene akcije. Postojeći `--scenario` koristi klik, vidljivost i tekst. Po potrebi proširi postojeći QA runner nezavisnom proverom domenskog stanja.
+
+- **Dijagnostika.** Kreni od handlera stvarne akcije i asinhronog redosleda do prvog opaženog odstupanja od očekivanog ponašanja. Beleži očekivano i stvarno stanje, simbol, source anchor i pozivaoca. Biraj trace, logpoint, brojač aktivnih resursa ili ciljanu CDP sondu prema hipotezi. Precise coverage sa `callCount` remeti optimizaciju JS-a. CSS Coverage važi za obuhvaćene scenarije i služi ručnom pregledu.
+- **Performanse.** Meri od tap-a do prvog vidljivog odziva u posebnom prolazu po PL-01 A/B/R, bez trace-a, precise coverage-a i dijagnostičkih omotača. Beleži uslove i sva ponavljanja. Koristi postojeći Python watchdog, sa svežim testnim kontekstom za nezavisne pokušaje. Node Playwright Test opcije `--repeat-each` i `--fail-on-flaky-tests` nisu opcije tog watchdoga. Pet pokušaja je početna provera nestabilnosti, a broj merenja performansi određuje PL-01. Fizički HONOR ima zaseban rezultat.
+- **Trajnost sejva.** Za puni PW-01 zatvori browser i ponovo pokreni isti izolovani diskovni profil na istom originu. Proveri saveId/revision/level/inventory. Za offline proveri stvarni odgovor SW-a. Prenos IndexedDB snapshot-a služi za pripremu testnih podataka. Reload u istom kontekstu pokriva uži slučaj.
+- **Granica istorijskog dokaza.** Za `cef0990` (`0.8.92-css-unified-p10`, Chromium `141.0.7390.37`) isti HTML je potvrđen online, u kešu i offline. `scenario_steps_executed: 0` daje shell PASS. Gameplay, trajnost sejva i fizički Android su NOT RUN u tom izveštaju. Izvor je istorijski lokalni artefakt `report(1).json`. Online, cache i offline HTML SHA-256 je `7e6213ecadcaa08e8d62a87628b37942c38b8a603fc78e97e3395d62605ded6c`.
+
 ## Sledeće provere nakon shell smoke
 1. 3 while petlje i 63 lifecycle sites iz v1.1.0 istorijskog loga: sačuvati sve AST JSON lokacije i mapirati na funkcije, reentry/exit/cleanup.
 2. Reprodukovati shop first-open, city→race→city, repeated panel enter/exit, resize/orientation, visibility pause/resume. Izmeriti stvarne callback/resource lifetime; ne zaključivati memory leak iz jednog snapshot-a. Ne uvoditi drugi RAF ili globalni instrumentation u produkciju.
@@ -34,6 +43,11 @@ Output direktorijum mora biti nov, izvan repo-a. CI koristi poseban job i privat
 4. Agent eval: isti zadatak sa/bez skilla, proveriti stvarne tool calls i artefakte; negative trigger, unavailable tool, bug vs valid loop, wrong-build detection, failing assertion. Skill format PASS nije dokaz ponašanja agenta.
 
 ## Reference
+https://chromedevtools.github.io/devtools-protocol/tot/Profiler/#method-startPreciseCoverage
+https://developer.chrome.com/docs/devtools/coverage/
+https://playwright.dev/python/docs/api/class-browsertype#browser-type-launch-persistent-context
+https://playwright.dev/python/docs/api/class-browsercontext#browser-context-storage-state
+https://playwright.dev/docs/test-cli
 https://playwright.dev/python/docs/intro
 https://playwright.dev/python/docs/release-notes
 https://playwright.dev/docs/trace-viewer

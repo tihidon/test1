@@ -3,13 +3,17 @@ name: snail-city-engineering
 description: >-
   Implement, review, debug, profile, refactor and test Snail City HTML/CSS/JavaScript PWA changes. Enforce existing architecture, function registry, CSS/DOM rules, WebGL lifecycle, save integrity, offline behavior, deterministic Python builds, loop investigation and evidence-based QA. Activate for game code, bugs, deletion, optimization, map placement, race/battle, releases and agent tooling.
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
   project: "Snail City"
   status: "owner-approved-candidate"
 compatibility: "Compatible Agent Skills host with repository access; Python 3.11+, Node.js and isolated developer CLI/parser/browser tools for applicable checks. No additional game runtime dependencies."
 ---
 
 # Snail City engineering
+
+## Architecture and Infrastructure role
+
+Own system boundaries, the smallest owner-level patch, deterministic Python build, publish identity and CI compatibility. Hand the stress-test specialist the exact baseline and candidate, existing entry point, expected state transition, frozen assertion and controls. Use SC-QA-02 for the evidence record and SC-DEC-01 for independent review. Keep toolchain changes separate from a performance comparison. Reuse SC-CODE-01/02. Evaluate additional lint rules in isolation before making any new check blocking.
 
 ## Authority
 Read target AGENTS.md and docs/README.md, then relevant canonical standards. Confirm target checkout, SHA, version, deployment root, source authority and user changes. Repository-approved standards and owner decisions define intended behavior; actual code defines observed behavior. Bundled copies are dated references, not a competing policy. Report contradictions; preserve protective invariants; do not make unauthorized changes. If target documents or tools are unavailable, use available evidence and mark verification BLOCKED. Never dump entire registry or embedded assets into context.
