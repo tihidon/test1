@@ -92,6 +92,15 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
   - `tools/test_roundtrip.py` NIJE pokrenut (poznata opasnost: prepisuje `src/` iz reference).
 - **Napomena:** `funkcije-i-animacije.md` ne postoji u repou; animacija je opisana u ovom unosu. Ratchet (`sc_code_metrics`) nije pronađen u repou, pa nije pokrenut.
 
+### Vidljivost animacije fontane — build p7 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p6 → 0.8.92-css-unified-p7
+- **Oblast:** render (shader fontane)
+- **Fajl i mesto:** `src/js/block-21.js` — `shader main()`: amplitude pomeraja (`poolWave`, vertikalni talas, ljuljanje listova) i `highlight`; `src/js/block-00.js`, `sw.js`, `index.html`
+- **Stara vrednost:** pomeraj 0.00088 / 0.00078 / 0.00090 / 0.00070 uv, sjaj 0.045+0.055·farView
+- **Nova vrednost:** pomeraj 0.0060 / 0.0050 / 0.0060 / 0.0040 uv, sjaj 0.10+0.08·farView (oko 1–1,5 px na ekranu)
+- **Razlog:** posle merge-a p6 animacija nije bila vidljiva. Pomeraji su bili podešeni za ostrvo od 1448 px, a fontana se na ekranu crta na oko 240 px, pa je pomeraj bio oko 0,2 px.
+- **Provera:** headless Chrome, 4 kadra u razmacima od 400 ms. Srednja razlika u kvadratu fontane 11–16 od 255 (pre ~1–2). Ostrvo van kvadrata ~2,9.
+
 ## Odluke
 - Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
