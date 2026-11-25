@@ -124,6 +124,22 @@ jobs:
         run: python tools/qa/runtime_watchdog.py --diagnostic --out "$RUNNER_TEMP/sc-diagnostic-evidence"
       - name: SC-DEBUG-01 phase B real functional scenarios
         run: python tools/qa/runtime_watchdog.py --functional --timeout 300 --out "$RUNNER_TEMP/sc-functional-evidence"
+      - name: Report functional scenario outcome (including failures)
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path(os.environ["RUNNER_TEMP"])/"sc-functional-evidence"/"report.json"
+          if not p.is_file():
+              print("Functional report absent: BLOCKED_OR_NOT_RUN")
+          else:
+              r=json.loads(p.read_text(encoding="utf-8"))
+              cases=r.get("functional_cases",{})
+              summary={"status":r.get("status"),"commit":r.get("commit"),"last_stage":(r.get("steps") or [None])[-1],
+                  "reason":r.get("reason"),"cases":{k:{x:v.get(x) for x in ("status","assertions","reason")} for k,v in cases.items()}}
+              print(json.dumps(summary,ensure_ascii=True,indent=2))
+          PY
       - name: Record missing runtime evidence
         if: always()
         env:
