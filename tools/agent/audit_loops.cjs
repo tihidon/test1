@@ -13,7 +13,7 @@ function name(n,p) {
 }
 function analyze(src,file,sourceType='script') {
   const ast=acorn.parse(src,{ecmaVersion:'latest',sourceType,locations:true,allowHashBang:true});
-  const loops=[], sites=[], funcs=[], calls=[];
+  const loops=[], sites=[], funcs=[], calls=[], loopInventory=[], loopOperations=[];
   const owners=new Map();
   const counts={};
   walk.fullAncestor(ast,(n,_,anc)=>{
@@ -25,6 +25,12 @@ function analyze(src,file,sourceType='script') {
     const at={file,line:n.loc.start.line,owner:owner?.name || (owner?'anonymous@'+owner.line:'<top-level>')};
     if(LOOP.has(n.type)) {
       counts[n.type]=(counts[n.type]||0)+1;
+      const own=anc.slice(0,-1).reverse();
+      const boundary=own.findIndex(fn);
+      const surrounding=boundary<0?own:own.slice(0,boundary);
+      loopInventory.push({...at,column:n.loc.start.column+1,endLine:n.loc.end.line,type:n.type,
+        nesting:1+surrounding.filter(x=>LOOP.has(x.type)).length,
+        conditionType:n.test?.type??null,condition:n.test?src.slice(n.test.start,n.test.end).slice(0,160):null});
       const unconditional=n.type==='ForStatement' ? !n.test || n.test.type==='Literal' && n.test.value===true :
         (n.type==='WhileStatement'||n.type==='DoWhileStatement') && n.test.type==='Literal' && n.test.value===true;
       if(unconditional) loops.push({...at,kind:'constant-loop-candidate',type:n.type});
@@ -33,6 +39,12 @@ function analyze(src,file,sourceType='script') {
       const c=n.callee;
       const callee=c.type==='Identifier'?c.name:c.type==='MemberExpression'&&!c.computed?c.property.name:null;
       if(SITES.has(callee)) sites.push({...at,kind:callee});
+      const parents=anc.slice(0,-1).reverse();
+      const boundary=parents.findIndex(fn);
+      const sameFunction=boundary<0?parents:parents.slice(0,boundary);
+      const enclosing=sameFunction.find(x=>LOOP.has(x.type));
+      if(enclosing && (SITES.has(callee)||['getBoundingClientRect','getComputedStyle','insertAdjacentHTML','appendChild','replaceChildren'].includes(callee)))
+        loopOperations.push({...at,column:n.loc.start.column+1,kind:callee,loopLine:enclosing.loc.start.line});
       if(owner?.name && c.type==='Identifier') calls.push({from:owner,to:c.name,at});
     }
   });
@@ -55,7 +67,7 @@ function analyze(src,file,sourceType='script') {
     }
     if(cycle)cycles.push({file,line:groups.get(start)[0].line,owner:start,kind:'name-cycle-candidate'});
   }
-  return {file,sha256:crypto.createHash('sha256').update(src).digest('hex'),counts,loops,cycles,sites,functions:funcs.length};
+  return {file,sha256:crypto.createHash('sha256').update(src).digest('hex'),counts,loops,cycles,sites,loopInventory,loopOperations,functions:funcs.length};
 }
 function main(root) {
   const manifest=JSON.parse(fs.readFileSync(path.join(root,'src/html/blocks.json'),'utf8'));
@@ -73,7 +85,7 @@ function main(root) {
   if(fs.existsSync(path.join(root,'sw.js')))inputs.push(['sw.js','script']);
   const reports=inputs.map(([f,t])=>analyze(fs.readFileSync(path.join(root,f),'utf8'),f,t));
   console.log(JSON.stringify({status:'PARSED_REVIEW_REQUIRED',parsedFiles:reports.length,
-    limitations:'Name cycles are heuristic; aliases, property calls, shadowing and runtime termination are not resolved. Sites are not violations.',reports},null,2));
+    limitations:'Name cycles are heuristic; aliases, property calls, shadowing and runtime termination are not resolved. Sites and nested loops are review candidates, not violations; no termination proof.',reports},null,2));
 }
 module.exports={analyze};
 if(require.main===module){

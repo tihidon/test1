@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import threading
+from dom_audit import measure_dom
 
 PUBLIC = ("index.html", "sw.js", "manifest.webmanifest", "_headers",
           "privacy.html", "delete-account.html", "img")
@@ -63,7 +64,7 @@ def run(root, out, scenario):
         write(out, "report.json", {"status":"BLOCKED","reason":"Playwright not installed"})
         return 2
     report = {"status":"FAIL","scope":"local Chromium shell; not complete gameplay, save or Android QA",
-              "steps":[],"page_errors":[],"local_http_errors":[],"blocked_external_requests":0}
+              "steps":[],"dom_snapshots":[],"page_errors":[],"local_http_errors":[],"blocked_external_requests":0}
     def stage(name):
         report["steps"].append(name)
         write(out,"report.json",report)
@@ -158,6 +159,7 @@ def run(root, out, scenario):
                         }""",[cache,origin+"/index.html"])
                         report["cached_html_sha256"]=cached
                         require(cached==report["html_sha256"],"wrong cached HTML")
+                        report["dom_snapshots"].append(measure_dom(page,"online-before-scenario"))
                         for i,s in enumerate(steps):
                             stage(f"scenario step {i+1}: {s['op']} {s['selector']}")
                             loc=page.locator(s["selector"])
@@ -167,6 +169,8 @@ def run(root, out, scenario):
                                 expect(loc).to_be_visible(timeout=10000)
                             else:
                                 expect(loc).to_have_text(s["expected"],timeout=10000)
+                            if s["op"] != "click":
+                                report["dom_snapshots"].append(measure_dom(page,f"scenario assertion {i+1}"))
                         page.screenshot(path=str(out/"online.png"),timeout=10000,animations="allow")
                         stage("offline navigation in same isolated context")
                         context.set_offline(True)
@@ -179,6 +183,7 @@ def run(root, out, scenario):
                             && window.SC_STARTUP_TRACE?.export()?.build""",timeout=15000)
                         require(page.evaluate("() => window.SC_STARTUP_TRACE.export().build")==version,
                                 "offline startup version mismatch")
+                        report["dom_snapshots"].append(measure_dom(page,"offline-shell"))
                         page.screenshot(path=str(out/"offline.png"),timeout=10000,animations="allow")
                         require(not report["page_errors"],"uncaught page errors")
                         require(not report["local_http_errors"],"local HTTP errors")

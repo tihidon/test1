@@ -3,7 +3,7 @@ name: chromium-runtime-qa
 description: >-
   Reproduce Snail City browser bugs, hangs, incorrect state transitions, save/offline failures and performance regressions in isolated Chromium. Trace real user actions to the first divergent function or asynchronous operation, collect reproducible evidence and compare broken and fixed builds. Activate for runtime QA, Playwright, CDP, lifecycle, RAF/timer loops, profiling and regression investigations.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   project: "Snail City"
   status: "candidate"
 compatibility: "Python 3.11+, Playwright Python 1.56.0, matching Chromium, Git, Ubuntu 24.04 for CI and POSIX for automated watchdog; trusted checkout and local isolated origin."
@@ -35,3 +35,6 @@ Before accepting any fix: test oracle independent of candidate; negative control
 
 ## Shared decision chain (SC-DEC-01)
 Read docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md. Own D2/D4/D6; return exact observed action, first divergence, actual/expected state, baseline/candidate identity, unchanged oracle, raw artifacts and limitations. Separate cold startup, offline reload, warm actions and profiling. For texture upload track resource identity/context generation and exact selected call counts in isolated diagnostic runs; sampling is not count. Shell with zero scenario steps is not gameplay proof. If trace unavailable report BLOCKED, do not substitute CPU samples for event timeline.
+
+## Executable complexity checks
+Read docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md. Use expanded loopInventory and loopOperations, and real DOM snapshots in runtime report. Browser loop fixtures validate detector and external watchdog only; actual game loops need independent real action and lifecycle evidence. Apply D05/D09 per real screen, not shell alone.

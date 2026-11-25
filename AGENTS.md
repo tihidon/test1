@@ -36,3 +36,6 @@ Za audit dokaza, zaključak o popravci, release i kontradikcije učitaj `.agents
 
 ## Shared decision chain
 Primeni [SC-DEC-01](docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md) za zajednički D0–D8 proces tri postojeća skilla. Jedan decision record, frozen oracle, originalni dokazi, nezavisan pregled. Structural PASS nije release authorization. Ne uvoditi četvrti skill niti preskakati relevantne gate-ove.
+
+## Executable complexity checks
+Apply [SC-CODE-02](docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md) with canonical SC-CODE-01 tool, extended AST loop inventory and live DOM snapshots. Do not raise baselines or auto-delete. Distinguish fixture and game evidence under SC-DEC-01.

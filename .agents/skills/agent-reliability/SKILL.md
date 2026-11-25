@@ -3,7 +3,7 @@ name: agent-reliability
 description: >-
   Audit Snail City agent conclusions, QA evidence, tool execution, release readiness and contradictory documents. Use for reliability reviews, bug-fix acceptance, failed or skipped checks, source identity, independent regression oracles, agent evaluations and claims that work is complete.
 metadata:
-  version: "1.1.0"
+  version: "1.2.0"
   project: "Snail City"
   status: "candidate"
 compatibility: "Agent Skills host with repository access; Python 3.11+ standard library for evidence checker. No game dependencies."
@@ -26,3 +26,6 @@ Use docs/tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md and tools/reliability/
 
 ## Shared decision chain (SC-DEC-01)
 Read docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md. Own D7/D8 review, not implementation. Check original evidence against frozen contract, challenge alternative explanations, require same oracle and intended failure reason, reject unresolved contradictions. Use tools/reliability/check_decision.py for bug-fix structural gate; never treat its PASS as independent review or release permission. A role in the same agent is not an independent reviewer. Keep missing evidence BLOCKED/NOT RUN.
+
+## Executable complexity checks
+Read docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md. Verify actual parser coverage, historical and current ratchet separately, intentional negative browser fixture reason and live DOM evidence. No-growth PASS cannot erase old debt or prove game performance. Distinguish fixture from game, and source bytes from runtime structure.
