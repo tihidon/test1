@@ -1,0 +1,23 @@
+# AGENTS.md — uputstvo za agente (tihidon/test1)
+
+Ovaj repozitorijum sadrži build Snail City **0.8.92-css-unified-p1** (`index.html` je jedini izvršni fajl igre, plus `sw.js`, `manifest.webmanifest`, `_headers`, `img/`).
+
+## Pre bilo kakve izmene
+
+1. Pročitaj [docs/README.md](docs/README.md) (indeks dokumenata i šta je proveren za ovaj kod).
+2. Pročitaj [SC-RAD-01](docs/tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md) §2 (hijerarhija autoriteta) i [SC-AGENT-01](docs/tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md) (postupak i QA gate-ovi).
+3. Kad se dokument i kod ne slažu, važi kod. Neslaganje prijavi, ne pretpostavljaj.
+
+## Pravila
+
+- **Jedan izvor istine.** Ne pravi paralelni renderer, koordinatnu logiku, listu brzina ili čuvanje. Koristi postojeći vlasnik (tabela u [SSOT](docs/tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md)).
+- **Minimalna izmena.** Menjaj samo ono što je traženo. Ne formatiraj ceo fajl, ne preimenuj i ne diraj delove koji rade.
+- **Verzija na šest mesta.** Svaka promena verzije mora ići na: build tag u `#sc-startup-trace`, `SC_PWA_STATUS.version`, `<title>`, `const VERSION`, komentar u `sw.js` i `CACHE_NAME` u `sw.js`.
+- **Čuvanje.** Promena strukture stanja zahteva migraciju i test. Ne menjaj save/load bez provere.
+- **Balans i ekonomija.** Ne menjaj cene, nagrade, valutu ni verovatnoće bez odluke vlasnika. Ne izmišljaj brojeve.
+- **Dokumentacija.** Svaka promena u igri se beleži u dokumentu promena u istom koraku. Dokumenti moraju odgovarati kodu.
+- **Bez ZIP-ova i binarnih priloga bez zahteva.** Rezultat daj kao link ili PR.
+
+## Izveštaj posle rada
+
+Navedi: izmenjene fajlove i funkcije, izmenu po funkciji, i kako je provereno (sa stvarnim komandama i njihovim izlazom). Šta nije testirano na uređaju, to jasno označi kao **NIJE TESTIRANO**.
