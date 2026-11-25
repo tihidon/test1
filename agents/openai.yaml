@@ -1,0 +1,5 @@
+interface:
+  display_name: "Snail City Engineering"
+  short_description: "Safe game coding, builds, loop audits and QA"
+  icon_small: "./assets/icon.svg"
+  default_prompt: "Use $snail-city-engineering to inspect the actual target, follow the approved standards and verify the smallest safe change."
