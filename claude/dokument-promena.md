@@ -50,7 +50,18 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Razlog:** izvorni kod je izdvojen iz single-file builda; round-trip (split → build) daje bajt-identičan `index.html` (test PASS).
 - **Napomena:** `index.html` je isti kao p3 build na deploy-u. Bez promene logike igre.
 
+### Refaktor `drawIllustratedMap` — build p4 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p3 → 0.8.92-css-unified-p4
+- **Oblast:** render (ilustrovana mapa, vodeni shader)
+- **Fajl i mesto:** `src/js/block-21.js` — `drawIllustratedMap` (potpis) i poziv u `paintMap`; `src/js/block-00.js` — build tag u `#sc-startup-trace`; `src/js/block-21.js` — `VERSION`; `sw.js` — `CACHE_NAME`
+- **Stara vrednost:** `drawIllustratedMap(x,y,w,h,animateWater=true)` (5 parametara); `build:'…-p3'`; `VERSION='…-p3'`; `CACHE_NAME '…-p3-r2'`
+- **Nova vrednost:** `drawIllustratedMap({x,y,w,h},animateWater=true)` (2 parametra), telo nepromenjeno; poziv u `paintMap`: `drawIllustratedMap({x:view.x,y:view.y,w:view.sizeX,h:view.sizeY},animateWater)`; build/VERSION `…-p4`; `CACHE_NAME '…-p4-r2'`
+- **Razlog:** `sc_code_metrics.py` ratchet vs baseline p1 davao FAIL (`functionsOver4Params` 25 → 26). Jedini poziv je u `paintMap`, pa je promena lokalna.
+- **Provera:** `tools/build.py` + `tools/test_roundtrip.py` PASS; ratchet PASS (25 = baseline). Nije testirano na uređaju: **NIJE TESTIRANO** u igri i na telefonu.
+- **Napomena:** `SC_PWA_STATUS.version` (`0.8.92`) i `<title>` (`Snail City 0.8.92`) nisu menjani, jer nose baznu verziju bez p-sufiksa, kao i pre.
+
 ## Odluke
+- Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
 - Netlify publish ide samo iz bele liste (PR #12).
 
