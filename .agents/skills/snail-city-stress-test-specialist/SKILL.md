@@ -37,3 +37,6 @@ Use [the role procedure](references/procedure.md) and [the evidence record](refe
 
 ## Reliable debugging and specialist handoff
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own real D2/D4/D6 scenario, first divergence and raw evidence. Use shared diagnostic mode, no duplicate probes.
+
+## Functional phase B
+Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own phase B real UI and repeated scenario evidence, report B06 imported fixture and no race completion claim.

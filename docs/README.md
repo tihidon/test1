@@ -131,3 +131,6 @@ Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0
 
 ## SC-DEBUG-01 phase A
 [Pouzdano debugovanje](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md): selected lint ratchet, exact AST duplicates, separate CDP counts/CSS deltas and shared specialist handoff. Candidate; game unchanged.
+
+## SC-DEBUG-01 phase B
+Functional contract in [SC-DEBUG-01](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#phase-b--functional-contract-and-scope-candidate). Six real UI/IDB cases, 10 contract fixtures; CI candidate. No production change. B06 fixture not natural progression, cold offline desktop not Android.

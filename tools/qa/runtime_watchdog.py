@@ -7,6 +7,7 @@ import signal
 import subprocess
 import sys
 import time
+from functional_contract import accepted_cases
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -50,9 +51,13 @@ def main():
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--root", type=Path, default=ROOT)
     p.add_argument("--scenario", type=Path)
-    p.add_argument("--diagnostic", action="store_true")
+    mode=p.add_mutually_exclusive_group()
+    mode.add_argument("--diagnostic", action="store_true")
+    mode.add_argument("--functional", action="store_true")
     p.add_argument("--timeout", type=int, default=120)
     a = p.parse_args()
+    if a.functional and a.scenario:
+        p.error('functional suite uses its own reviewed contract')
     root, out = a.root.resolve(), a.out.resolve()
     if out.is_relative_to(root) or not 5 <= a.timeout <= 600:
         p.error("new output outside checkout; timeout 5–600 seconds")
@@ -63,11 +68,20 @@ def main():
         command += ["--scenario", str(a.scenario.resolve())]
     if a.diagnostic:
         command.append("--diagnostic")
+    if a.functional:
+        command.append("--functional")
     result = run_bounded(command, out, a.timeout)
     if result["status"] == "PASS":
         try:
             report = json.loads((out / "report.json").read_text(encoding="utf-8"))
             required = ("diagnostic.json", "online.png", "offline.png") if a.diagnostic else ("trace.zip", "cpu-profile.json", "online.png", "offline.png")
+            if a.functional:
+                required=("functional-online-trace.zip","functional-offline-trace.zip","functional-race-trace.zip",
+                          "functional-purchase.png","functional-offline.png","functional-race.png")
+                if not accepted_cases(report):
+                    raise ValueError("missing or nonpassing functional cases")
+            if bool(report.get("functional_mode")) != a.functional:
+                raise ValueError("functional mode mismatch")
             if bool(report.get("diagnostic_mode")) != a.diagnostic:
                 raise ValueError("diagnostic mode mismatch")
             if report["status"] != "PASS" or not all((out/f).stat().st_size > 0 for f in required):

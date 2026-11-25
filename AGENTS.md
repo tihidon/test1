@@ -48,3 +48,6 @@ Apply [SC-CODE-02](docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNO
 
 ## Reliable debugging
 Apply [SC-DEBUG-01](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md) with SC-DEC-01. Two specialists share tools; independent Reliability review required. Diagnostic coverage is not timing. No auto-fix or deletion.
+
+## SC-DEBUG-01 functional phase B
+Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --functional`, and original per-case evidence. Distinguish shell reload, desktop persistent cold reopen, synthetic race import, natural progression and physical Android. Stress specialist owns scenario execution; architecture specialist owns actual contract and storage/build identity; Reliability independently verifies. No PASS with missing cases or wrong failure reason.

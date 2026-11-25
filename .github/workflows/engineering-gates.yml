@@ -122,6 +122,8 @@ jobs:
         run: python tools/qa/runtime_watchdog.py --out "$RUNNER_TEMP/sc-runtime-evidence"
       - name: Separate Chromium diagnostic coverage run
         run: python tools/qa/runtime_watchdog.py --diagnostic --out "$RUNNER_TEMP/sc-diagnostic-evidence"
+      - name: SC-DEBUG-01 phase B real functional scenarios
+        run: python tools/qa/runtime_watchdog.py --functional --timeout 300 --out "$RUNNER_TEMP/sc-functional-evidence"
       - name: Record missing runtime evidence
         if: always()
         env:
@@ -138,5 +140,6 @@ jobs:
             ${{ runner.temp }}/sc-runtime-setup/
             ${{ runner.temp }}/sc-runtime-evidence/
             ${{ runner.temp }}/sc-diagnostic-evidence/
+            ${{ runner.temp }}/sc-functional-evidence/
           if-no-files-found: error
           retention-days: 14

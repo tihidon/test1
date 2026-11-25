@@ -3,7 +3,7 @@ name: agent-reliability
 description: >-
   Audit Snail City agent conclusions, QA evidence, tool execution, release readiness and contradictory documents. Use for reliability reviews, bug-fix acceptance, failed or skipped checks, source identity, independent regression oracles, agent evaluations and claims that work is complete.
 metadata:
-  version: "1.3.1"
+  version: "1.3.2"
   project: "Snail City"
   status: "candidate"
 compatibility: "Agent Skills host with repository access; Python 3.11+ standard library for evidence checker. No game dependencies."
@@ -36,3 +36,6 @@ Read docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md. Verify
 
 ## Reliable debugging and specialist handoff
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Review original logs and oracle, not counts alone. Reject retry masking, self-review, CSS dead-code claims from coverage.
+
+## Functional phase B
+Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Review functional oracle and raw original artifacts; reject zero assertions, missing cases, substitution of shell for save or synthetic setup for natural progression.
