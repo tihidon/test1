@@ -70,7 +70,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Provera:** `tools/build.py` izlaz u korenu razlikuje se od `HEAD` tačno za uklonjeni ključ i p4→p5; `node --check` glavnog inline skripta PASS.
 - **Napomena:** ovo ne menja izgled ostrva. Nebo unutar kutije ostrva potiče iz `block-05.b64` i ostaje otvoreno (vidi „Otvoreno“).
 
-### Providno ostrvo + animirana fontana — build p6 (ovaj PR)
+### Providno ostrvo + animirana fontana — build p6 (PR #18, spojen)
 - **Verzija:** 0.8.92-css-unified-p5 → 0.8.92-css-unified-p6
 - **Oblast:** render (WebGL ostrvo, fontana, shader), assets
 - **Fajl i mesto:**
@@ -92,7 +92,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
   - `tools/test_roundtrip.py` NIJE pokrenut (poznata opasnost: prepisuje `src/` iz reference).
 - **Napomena:** `funkcije-i-animacije.md` ne postoji u repou; animacija je opisana u ovom unosu. Ratchet (`sc_code_metrics`) nije pronađen u repou, pa nije pokrenut.
 
-### Vidljivost animacije fontane — build p7 (ovaj PR)
+### Vidljivost animacije fontane — build p7 (PR #19, spojen)
 - **Verzija:** 0.8.92-css-unified-p6 → 0.8.92-css-unified-p7
 - **Oblast:** render (shader fontane)
 - **Fajl i mesto:** `src/js/block-21.js` — `shader main()`: amplitude pomeraja (`poolWave`, vertikalni talas, ljuljanje listova) i `highlight`; `src/js/block-00.js`, `sw.js`, `index.html`
@@ -101,7 +101,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Razlog:** posle merge-a p6 animacija nije bila vidljiva. Pomeraji su bili podešeni za ostrvo od 1448 px, a fontana se na ekranu crta na oko 240 px, pa je pomeraj bio oko 0,2 px.
 - **Provera:** headless Chrome, 4 kadra u razmacima od 400 ms. Srednja razlika u kvadratu fontane 11–16 od 255 (pre ~1–2). Ostrvo van kvadrata ~2,9.
 
-### Samo voda se pomera, zidovi fiksni — build p8 (ovaj PR)
+### Samo voda se pomera, zidovi fiksni — build p8 (PR #20, spojen `2e5081f`)
 - **Verzija:** 0.8.92-css-unified-p7 → 0.8.92-css-unified-p8
 - **Oblast:** render (shader fontane)
 - **Fajl i mesto:** `src/js/block-21.js` — `shader main()`: uklonjeno ljuljanje ne-vodenih piksela (zidovi, kamen, listovi, lotos); pomeraj i sjaj samo na `blue` maski; `src/js/block-00.js`, `sw.js`, `index.html`
@@ -111,7 +111,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Provera:** headless Chrome, 3 kadra po 400 ms: 90% piksela fontane se ne menja između kadrova (p90 = 0), voda oscilira.
 - **Napomena:** lotos i listovi sada stoje (ranije "sve"). Ako ih želimo da ljuljaju, dodaje se zelena maska sa malim pomerajem.
 
-### Osvežavanje vode 8 → 4 fps — build p9 (ovaj PR)
+### Osvežavanje vode 8 → 4 fps — build p9 (PR #21, spojen `4fd3976`)
 - **Verzija:** 0.8.92-css-unified-p8 → 0.8.92-css-unified-p9
 - **Oblast:** render (petlja vode)
 - **Fajl i mesto:** `src/js/block-21.js` — `loop()`, uslov `waterActive` (interval osvežavanja)
@@ -120,7 +120,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Razlog:** procena troška: animacija fontane je jeftina, ali ceo grad se iscrtava svakih 125 ms dok je otvoren grad. Na slabijem telefonu to je najveći trošak baterije i zagrevanja. Odluka korisnika: 4 fps.
 - **Provera:** `node --check` PASS. Vizuelni efekat na telefonu: NIJE TESTIRANO.
 
-### Kontrast vrednosti u dijagnostici, obe teme — build p10 (ovaj PR)
+### Kontrast vrednosti u dijagnostici, obe teme — build p10 (PR #22, na čekanju)
 - **Verzija:** 0.8.92-css-unified-p9 → 0.8.92-css-unified-p10
 - **Oblast:** UI (CSS, ekran Analitika / Dijagnostika)
 - **Fajl i mesto:** `src/css/block-02.css` — pravilo `.summary-grid strong` (pločice sa vrednostima)
@@ -134,6 +134,9 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
 - Netlify publish ide samo iz bele liste (PR #12).
 - Ostrvo: providna verzija (izrez korisnika) umesto kutije neba; fontana je zaseban sprite, a animacija cele fontane (voda, lotos, listovi) se radi bojom i blagim ljuljanjem (p6).
+- Fontana (p8): zidovi fontane su fiksni; pomera se samo voda. Korisnik je odbacio varijantu u kojoj se cela okrugla forma talasa.
+- Osvežavanje vode u gradu: 4 fps (250 ms), odobrio korisnik (p9). Tačan trošak baterije se meri na telefonu.
+- Dijagnostika (p10): vrednosti u pločicama su bele (`var(--fg)`) u obe teme; naslovi i opisi ostaju kakvi jesu.
 
 ## Otvoreno
 - Dijagnostika (p10): vizuelna provera vrednosti u tamnoj i toploj temi na telefonu.
@@ -144,3 +147,5 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Bot za 90 dana (`tools/bot-p3.js`): čeka odgovor o grani i definiciji „max“ valuta. Trenutni `tools/bot.js` ne radi na p3.
 - p6 nije testiran na telefonu (HONOR): vizuelno ostrvo i fontana, animacija u trci/povratku, memorija posle više otvaranja ekrana.
 - Ljuljanje lotosa i listova je estetska odluka: proveriti na telefonu da nije previše.
+- Baterija i zagrevanje na 4 fps (p9): nije izmereno na telefonu.
+- Memorija teksture: fontana 512² (~1 MB) i ostrvo 1448×1086 RGBA (~6 MB) na GPU; nije proverena na HONOR-u.
