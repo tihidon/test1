@@ -3,7 +3,7 @@ name: chromium-runtime-qa
 description: >-
   Reproduce Snail City browser bugs, hangs, incorrect state transitions, save/offline failures and performance regressions in isolated Chromium. Trace real user actions to the first divergent function or asynchronous operation, collect reproducible evidence and compare broken and fixed builds. Activate for runtime QA, Playwright, CDP, lifecycle, RAF/timer loops, profiling and regression investigations.
 metadata:
-  version: "1.2.0"
+  version: "1.3.0"
   project: "Snail City"
   status: "candidate"
 compatibility: "Python 3.11+, Playwright Python 1.56.0, matching Chromium, Git, Ubuntu 24.04 for CI and POSIX for automated watchdog; trusted checkout and local isolated origin."
@@ -12,6 +12,10 @@ compatibility: "Python 3.11+, Playwright Python 1.56.0, matching Chromium, Git, 
 # Chromium Runtime QA
 
 Use with snail-city-engineering, not instead of it. Read AGENTS.md, SC-AGENT-01, relevant canonical standards and docs/tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md. No production instrumentation, balance changes, competing schedulers or real player data. Do not alter the game merely to make a test green.
+
+## Stress-test specialist role
+
+Own real user scenarios, controlled repetitions, first observed divergence from expected behavior, and before/after evidence. Use the scenario record, run modes and first gameplay case in SC-QA-02. Keep a per-run record of completed steps, assertion outcomes and failure reason. For any fix under review, transfer original artifacts to the reviewer and leave the decision pending until independent review is complete.
 
 ## Four obligations
 
