@@ -1,5 +1,7 @@
 # Snail City — obavezno pravilo: JEDAN IZVOR ISTINE
 
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+
 > **Kopija za `tihidon/test1` (0.8.92-css-unified-p1).** Izvor: [snail-city-test@1e3258f](https://github.com/tihidon/snail-city-test/blob/1e3258f/docs/tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md). Provereno prema test1 `main` `2d66e55` (`index.html` SHA-256 `c19cc1ac…`) 25.11.2026: svih 19 vlasnika iz tabele postoji u test1 (`git grep`); `RACE_SPEED_OPTIONS` je i ovde `[10,20,30,40,50,55]`, jedna deklaracija; kontrolne komande daju isti rezultat. Izmene u odnosu na izvor: red „Oznaka verzije“ dopunjen za test1 (šest mesta, bez `version.json`). Pregled svih kopija: [docs/README.md](../../README.md).
 
 Datum: 2026-11-22 · Primena: od v0.8.75 · Opseg: svaki budući agent, modul i izmena (HTML/JS PWA).

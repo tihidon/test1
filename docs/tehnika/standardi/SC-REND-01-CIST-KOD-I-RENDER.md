@@ -1,5 +1,7 @@
 # SC-REND-01 — Čist kod i render: bez gomilanja, ponavljanja, invalidacija i kontradikcija
 
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+
 > **Kopija za `tihidon/test1` (0.8.92-css-unified-p1).** Izvor: [snail-city-test@12f986c](https://github.com/tihidon/snail-city-test/blob/12f986c/docs/tehnika/standardi/SC-REND-01-CIST-KOD-I-RENDER.md) (grana otvorenog PR #12). Provereno prema test1 `main` `2d66e55` (`index.html` SHA-256 `c19cc1ac…`) 25.11.2026: dokument je i pisan nad test1; ponovo potvrđeni ratchet (`counts.sh` → RATCHET PASS prema baseline 0.8.92), N12 (`this.lost=false` posle petlje `uploadSky`), N01 (`commit()` → `Date.now()`), 5 izvršnih blokova. **Ispravljena dva netačna podatka:** broj verzijskih tačaka (šest, ne tri) i pozitivan nalaz: van compositora animiraju 3, ne 2 od 26 `@keyframes` (i `logo-fill` animira `clip-path`). Izmene u odnosu na izvor: ispravke u §0, §6 (N11, keyframes) i §10; uputstvo za pokretanje alata u §7. Pregled svih kopija: [docs/README.md](../../README.md).
 
 **Oznaka:** SC-REND-01 · **Revizija:** 1.1 · **Datum:** 25.11.2026.
