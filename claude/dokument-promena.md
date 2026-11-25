@@ -111,6 +111,15 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Provera:** headless Chrome, 3 kadra po 400 ms: 90% piksela fontane se ne menja između kadrova (p90 = 0), voda oscilira.
 - **Napomena:** lotos i listovi sada stoje (ranije "sve"). Ako ih želimo da ljuljaju, dodaje se zelena maska sa malim pomerajem.
 
+### Osvežavanje vode 8 → 4 fps — build p9 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p8 → 0.8.92-css-unified-p9
+- **Oblast:** render (petlja vode)
+- **Fajl i mesto:** `src/js/block-21.js` — `loop()`, uslov `waterActive` (interval osvežavanja)
+- **Stara vrednost:** 125 ms (8 fps); svaki tik postavlja `dirty=true` i ceo grad se ponovo iscrtava
+- **Nova vrednost:** 250 ms (4 fps)
+- **Razlog:** procena troška: animacija fontane je jeftina, ali ceo grad se iscrtava svakih 125 ms dok je otvoren grad. Na slabijem telefonu to je najveći trošak baterije i zagrevanja. Odluka korisnika: 4 fps.
+- **Provera:** `node --check` PASS. Vizuelni efekat na telefonu: NIJE TESTIRANO.
+
 ## Odluke
 - Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
