@@ -120,6 +120,15 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Razlog:** procena troška: animacija fontane je jeftina, ali ceo grad se iscrtava svakih 125 ms dok je otvoren grad. Na slabijem telefonu to je najveći trošak baterije i zagrevanja. Odluka korisnika: 4 fps.
 - **Provera:** `node --check` PASS. Vizuelni efekat na telefonu: NIJE TESTIRANO.
 
+### Kontrast vrednosti u dijagnostici, obe teme — build p10 (ovaj PR)
+- **Verzija:** 0.8.92-css-unified-p9 → 0.8.92-css-unified-p10
+- **Oblast:** UI (CSS, ekran Analitika / Dijagnostika)
+- **Fajl i mesto:** `src/css/block-02.css` — pravilo `.summary-grid strong` (pločice sa vrednostima)
+- **Stara vrednost:** vrednosti nasleđuju boju panela; u toploj temi `#573a22` (tamnosmeđa) na pločici `#34287b`, kontrast oko 1.4:1
+- **Nova vrednost:** `color: var(--fg)` (`#f1ecff`) za obe teme, eksplicitno
+- **Razlog:** vrednosti u pločicama nisu čitljive; zahtev korisnika: promena za obe teme. Naslovi, opisi i tekst izvan pločica ostaju isti.
+- **Provera:** build prolazi; u `dist/index.html` jedno pravilo `.summary-grid strong`. Kontrast izračunat (WCAG): toplo staro 1.17:1 → novo 10.48:1 na `#34287b`, 8.54:1 na `#4d308e`. Vizuelno u pregledaču i na telefonu: NIJE TESTIRANO.
+
 ## Odluke
 - Ratchet baseline se ne podiže; refaktor je izabran umesto ažuriranja baseline-a (SC-CODE-01: baseline se ne podiže da bi prošla nova funkcionalnost).
 - 0.8.90 PW-01 ostaje zvanična stabilna referenca (`docs/SC-PL-01`). p3 je kandidat do završenog QA na fizičkom HONOR uređaju.
@@ -127,6 +136,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Ostrvo: providna verzija (izrez korisnika) umesto kutije neba; fontana je zaseban sprite, a animacija cele fontane (voda, lotos, listovi) se radi bojom i blagim ljuljanjem (p6).
 
 ## Otvoreno
+- Dijagnostika (p10): vizuelna provera vrednosti u tamnoj i toploj temi na telefonu.
 - QA na HONOR telefonu, koraci 3–8: prodavnica (ponovljena merenja vs v0.8.90), jaja/inkubator, kartice i modali, portret/landscape, trka i povratak, sejv posle reload-a.
 - Merenje `firstIslandFrameMs`: prijavljeno 2788,9 ms ranije, trace sa telefona 940 ms. Nisu sigurno isti uslovi; treba ponovljeno merenje.
 - Vizuelno na deploy-u: ostrvo odsečeno sa leve i desne strane na 360 px; natpisi zgrada (`Razbijač vremena`, `Inkubator`) ispod desnih dugmadi; verzija prekrivena pilulom `Local`.
