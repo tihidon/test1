@@ -30,7 +30,7 @@
         .then(()=>emit('span','decode.promiseLatency.'+label,begin,now(),'opt-in;may-perturb'))
         .catch(()=>emit('mark','decode.rejected.'+label,now()));
     },
-    export:()=>({schema:1,build:'0.8.92-css-unified-p4',timeOrigin:performance.timeOrigin,
+    export:()=>({schema:1,build:'0.8.92-css-unified-p5',timeOrigin:performance.timeOrigin,
       timings:events.slice(),longTasks:longTasks.slice(),
       navigation:performance.getEntriesByType('navigation').map(e=>({
         type:e.type,fetchStart:+e.fetchStart.toFixed(1),responseEnd:+e.responseEnd.toFixed(1),
