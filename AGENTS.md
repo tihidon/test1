@@ -25,3 +25,7 @@ Navedi: izmenjene fajlove i funkcije, izmenu po funkciji, i kako je provereno (s
 ## Skill i dodatni gate-ovi (25.11.2026)
 
 Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SKILL.md` (Codex: `$snail-city-engineering`), bez učitavanja kompletnog istorijskog registra. Primenjuj [SC-BUILD-01](docs/tehnika/standardi/SC-BUILD-01-PYTHON-BUILD.md), [SC-LOOP-01](docs/tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md) i [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md). Stari P3 identitet iz vrha je istorijski; stvarni target/version/hash i publish root proveriti svaki put. Ne pokretati split nad aktivnim src/. Pre i posle runtime izmene dokazati build/publish jednakost; ako nedostaje alat ili postojeći baseline ne prolazi, prijavi BLOCKED/FAIL. Zadržati sve relevantne G0–G7 i ne menjati deploy bez odobrenja.
+
+## Chromium Runtime QA
+
+Za runtime bag, hang, loop, performance, save/offline ili funkcionalni QA koristi i `.agents/skills/chromium-runtime-qa/SKILL.md`. Primeni [SC-QA-02](docs/tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md). Postojeći snail-city-engineering ostaje vlasnik engineering procesa. Novi alati rade samo nad izolovanim kopijama publish fajlova; bez izmena runtime igre. CLI format PASS nije agent eval; shell smoke nije kompletan gameplay/PW-01 ili Android dokaz.

@@ -27,8 +27,9 @@ jobs:
       - name: Official skill validation
         run: |
           skills-ref validate .agents/skills/snail-city-engineering
+          skills-ref validate .agents/skills/chromium-runtime-qa
           skills-ref read-properties .agents/skills/snail-city-engineering
-          skills-ref to-prompt .agents/skills/snail-city-engineering
+          skills-ref to-prompt .agents/skills/snail-city-engineering .agents/skills/chromium-runtime-qa
       - name: Tool regression fixtures
         run: |
           python -m unittest discover -s tools/agent -p 'test_*.py' -v
@@ -42,3 +43,41 @@ jobs:
         run: |
           node tools/agent/audit_loops.cjs > "$RUNNER_TEMP/sc-loops.json"
           node -e 'const r=require(process.env.RUNNER_TEMP+"/sc-loops.json"); console.log("parsed files",r.parsedFiles); for(const f of r.reports) console.log(f.file, f.counts, "constant-loop candidates", f.loops.length, "name-cycle candidates",f.cycles.length,"scheduler/lifecycle sites",f.sites.length);'
+
+      - name: Preserve AST inventory
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-ast-inventory
+          path: ${{ runner.temp }}/sc-loops.json
+          if-no-files-found: error
+          retention-days: 14
+  chromium-runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
+        with:
+          python-version: '3.12'
+      - name: Isolated browser tools
+        run: |
+          python -m venv "$RUNNER_TEMP/sc-qa-venv"
+          "$RUNNER_TEMP/sc-qa-venv/bin/python" -m pip install -r tools/qa/requirements.txt
+          "$RUNNER_TEMP/sc-qa-venv/bin/python" -m pip freeze
+          "$RUNNER_TEMP/sc-qa-venv/bin/python" -m playwright install --with-deps chromium
+          echo "$RUNNER_TEMP/sc-qa-venv/bin" >> "$GITHUB_PATH"
+      - name: Watchdog and oracle regression fixtures
+        run: python -m unittest discover -s tools/qa -p 'test_*.py' -v
+      - name: Chromium online/offline shell smoke
+        run: python tools/qa/runtime_watchdog.py --out "$RUNNER_TEMP/sc-runtime-evidence"
+      - name: Preserve private runtime evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-chromium-runtime-evidence
+          path: ${{ runner.temp }}/sc-runtime-evidence/
+          if-no-files-found: error
+          retention-days: 14

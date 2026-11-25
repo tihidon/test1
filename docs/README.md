@@ -114,3 +114,7 @@ Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
 - [SKILL.md](../.agents/skills/snail-city-engineering/SKILL.md) — operativni ulaz, postojeći standardi ostaju kanonski.
 
 Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0794191c53; stariji identiteti u odeljcima 1–6 nisu trenutna verifikacija. Netlify konfiguracija sada postoji i objavljuje whitelist u dist/; ne menja se u ovom upgrade-u. Python/JS i official CLI rezultate vezati za tačan commit i izvršne logove. Originalne projektne priloge i raniji overlay ZIP nije bilo moguće ponovo pročitati u ovom okruženju; postojeća test1 izdanja standarda sačuvana su bez prepisivanja. Ne tvrditi byte-identical prenos kompletnog v1.0.0/v1.1.0 paketa.
+
+## 8. Chromium Runtime QA — kandidat v1.0.0
+
+[SC-QA-02](tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md) i [skill](../.agents/skills/chromium-runtime-qa/SKILL.md). Testni alati tools/qa/; zaseban CI job. Baseline 325ff6a9965a4081bda55f55eb7a35a1881b2e10. Scope: shell identity, worker/cache, offline navigation, external watchdog, trace and CPU sample; gameplay/state/device and actual agent activation remain separate. No game version or publish changes.
