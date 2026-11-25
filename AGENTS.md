@@ -1,6 +1,6 @@
 # AGENTS.md — uputstvo za agente (tihidon/test1)
 
-Ovaj repozitorijum sadrži build Snail City **0.8.92-css-unified-p1** (`index.html` je jedini izvršni fajl igre, plus `sw.js`, `manifest.webmanifest`, `_headers`, `img/`).
+Ovaj repozitorijum sadrži build Snail City **0.8.92-css-unified-p3** (`index.html` je jedini izvršni fajl igre, plus `sw.js`, `manifest.webmanifest`, `_headers`, `img/`). Izvršni kod na `main` je merodavan: `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Dokumenti koji još pominju p1 (`2d66e55`, SHA `c19cc1ac…`) važe samo za taj commit.
 
 ## Pre bilo kakve izmene
 

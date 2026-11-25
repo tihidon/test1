@@ -2,7 +2,7 @@
 
 Poslednja izmena: 2026-11-25 03:47 CET
 
-Dokumenti koji važe za **ovaj build**: `tihidon/test1` `main` `2d66e55`, `index.html` SHA-256 `c19cc1ac67a2ccc1…`, `const VERSION = '0.8.92-css-unified-p1'`, SW `snail-city-shell-0.8.92-css-unified-p1-r2`. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
+Dokumenti koji važe za **ovaj build**: `tihidon/test1` `main` `5b4b030` (PR #13), `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `const VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Kopije označene „`2d66e55` / `c19cc1ac…`“ proverene su samo nad p1 commit-om i nisu ponovo proverene nad p3. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
 
 ## Sadržaj
 
