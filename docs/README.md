@@ -1,0 +1,107 @@
+# Snail City test1 — dokumentacija
+
+Poslednja izmena: 2026-11-25 03:47 CET
+
+Dokumenti koji važe za **ovaj build**: `tihidon/test1` `main` `2d66e55`, `index.html` SHA-256 `c19cc1ac67a2ccc1…`, `const VERSION = '0.8.92-css-unified-p1'`, SW `snail-city-shell-0.8.92-css-unified-p1-r2`. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
+
+## Sadržaj
+
+1. [Odakle početi](#1-odakle-početi)
+2. [Dokumenti i status provere](#2-dokumenti-i-status-provere)
+3. [Šta nije preneto i zašto](#3-šta-nije-preneto-i-zašto)
+4. [Ispravke nađene pri proveri](#4-ispravke-nađene-pri-proveri)
+5. [Održavanje kopija](#5-održavanje-kopija)
+6. [Otvoreno](#6-otvoreno)
+
+## 1. Odakle početi
+
+1. [SC-RAD-01 §2–§3](./tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md#2-hijerarhija-autoriteta): redosled važenja izvora i činjenice o ovom kodu.
+2. [SC-AGENT-01](./tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md): obavezni postupak rada i QA gate-ovi G0–G7.
+3. Za konkretnu izmenu: standard njene oblasti iz tabele ispod.
+
+Kad se dokument i kod ne slažu, važi kod; neslaganje se upisuje, ne rešava pretpostavkom.
+
+<sub>[↑ Sadržaj](#sadržaj)</sub>
+
+## 2. Dokumenti i status provere
+
+**Kopija** = prenet iz drugog izvora uz proveru i ispravke za test1. **Izdanje za test1** = pravila iz izvora, činjenice ponovo izmerene. **Novo** = napisano nad test1.
+
+### Standardi (`tehnika/standardi/`)
+
+| Dokument | Oblast | Vrsta i izvor | Provera prema test1 |
+|---|---|---|---|
+| [SC-AGENT-01](./tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md) | postupak rada agenata, QA gate | izdanje za test1; projekat (rev. 1.0, 0.8.93) | identitet buildova, lista brzina, CSS blok, ikonice ispravljeni; GML deo uklonjen |
+| [SC-ARCH-01](./tehnika/standardi/SC-ARCH-01-STRUKTURA-I-ARHITEKTURA.md) | struktura fajlova i modula, PWA slojevi | izdanje za test1; projekat (rev. 1.0, 0.8.93) | stablo, `_headers`, linije 17 modula, `sw.js` vrednosti i tabela paketa izmereni nad test1 |
+| [SC-FUNC-01](./tehnika/standardi/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md) | registar funkcija, K01–K08 | izdanje za test1; projekat (rev. 1.0, 0.8.93) | registar regenerisan (983 čvora); K01, K02 ne važe za test1, K03–K08 potvrđeni |
+| [SSOT — jedan izvor istine](./tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md) | vlasnici podataka | kopija; `snail-city-test@1e3258f` | svih 19 vlasnika postoji; red verzije dopunjen |
+| [SC-PL-01 / CSS-01](./tehnika/standardi/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md) | layout, canvas resize, velike slike u CSS promenljivama | kopija; `snail-city-test@1e3258f` | tabela CSS-01 potvrđena; dodata peta vrednost `--sc174-snail-art`; trace brojevi su iz 0.8.90 |
+| [SC-CODE-01](./tehnika/standardi/SC-CODE-01-CSS-DOM-FUNKCIJE.md) | pisanje CSS, DOM, funkcija; ratchet | kopija; `snail-city-test@12f986c` (PR #12) | ratchet PASS, 0 razlika prema baseline 0.8.92; dodato pokretanje alata |
+| [SC-RAD-01](./tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md) | postavka, izmena, brisanje koda | kopija; `snail-city-test@12f986c` (PR #12) | §3 prepisan za test1; R04, R05 prilagođeni |
+| [SC-REND-01](./tehnika/standardi/SC-REND-01-CIST-KOD-I-RENDER.md) | render, vreme, keš, invalidacija | kopija; `snail-city-test@12f986c` (PR #12; pisan nad test1) | ratchet PASS; N01, N12 potvrđeni; dva podatka ispravljena (§4) |
+| [SC-BRISANJE-3-PROVERE](./tehnika/standardi/SC-BRISANJE-3-PROVERE.md) | presedan brisanja CSS-a | kopija; `snail-city-test@1e3258f` | **ne opisuje test1**: `.map-controls` ovde i dalje postoji (označeno) |
+
+### PWA, QA i alati
+
+| Dokument | Vrsta | Provera |
+|---|---|---|
+| [PW-01 — stanje u 0.8.92](./tehnika/pwa-offline/PW-01-STANJE-0.8.92.md) | novo | 12 elemenata PW-01 mehanizma iz 0.8.90 potvrđeno u kodu; uređaj nije testiran |
+| [Animacije — inventar 0.8.92](./qa/SC-ANIMACIJE-0.8.92-INVENTAR.md) | novo | 26 `@keyframes` popisano; veza sa 37 istorijskih imena |
+| [docs/alati](./alati/README.md) | novo | generator registra za SC-FUNC-01 |
+
+### Dokumenti koji su već bili u test1 (nisu menjani)
+
+| Dokument | Šta je |
+|---|---|
+| [SC-v0.8.92-P1-CSS-SINGLE-SOURCE-AUDIT.md](./SC-v0.8.92-P1-CSS-SINGLE-SOURCE-AUDIT.md) i [JSON](./SC-v0.8.92-P1-static-audit.json) | audit kandidata 0.8.92 (23.11.2026); isti `index.html` SHA-256 kao ovaj build; jedina razlika je `CACHE_NAME` `…-r1` u auditu, `…-r2` ovde (PR #2). Kao izvor CSS pravila zamenjen je SC-CODE-01 |
+
+<sub>[↑ Sadržaj](#sadržaj)</sub>
+
+## 3. Šta nije preneto i zašto
+
+| Dokument (izvor) | Razlog |
+|---|---|
+| `Snail-City-0.8.93-SOURCES.md` (projekat) | opisuje drugi build (0.8.93 u test-2); linije ne važe za test1. Njegova pravila su u SC-AGENT-01 i SSOT, mapa koda u SC-ARCH-01 i SC-FUNC-01 |
+| `Snail-City-Faza-4-detaljna-revizija-v2.md` (projekat) | cilj je 0.8.87, a izvršni kod tada nije bio pročitan; matrica 42 animacije koristi imena iz v174 koja u test1 uglavnom ne postoje. Zamenjen [inventarom animacija](./qa/SC-ANIMACIJE-0.8.92-INVENTAR.md); ekonomske stavke EC-01–EC-10 ostaju otvorene u projektu |
+| `Snail-City-P1-izolacija-zastoja.md`, `Snail-City-P1-prodavnica.md` (projekat) | merenja na buildu `0.8.90-p1-startup-probe`; ne mogu se ponovo proveriti bez tadašnjih trace-ova i priloga. Zaključci su već u PL-01/CSS-01 |
+| `PW-01-MIGRATION-AND-QA.md` (projekat) | istorija 0.8.90; ono što je i dalje tačno za 0.8.92 provereno je u [PW-01 stanje](./tehnika/pwa-offline/PW-01-STANJE-0.8.92.md) |
+| `claude/dokument-promena.md` (projekat) | jedan dnevnik promena; dupla kopija bi se razišla |
+| Istorijski izveštaji `snail-city-test/docs` (arhitektura 0.8.21–0.8.87, PW-01 0.8.88–0.8.90, cloud v1.0.7, IndexedDB 0.8.87) | opisuju starije buildove; dostupni u [snail-city-test/docs](https://github.com/tihidon/snail-city-test/tree/1e3258f/docs) |
+| `AGENTS.md` (`snail-city-test`) | zadatak je bio `docs/`; vidi §6 |
+
+<sub>[↑ Sadržaj](#sadržaj)</sub>
+
+## 4. Ispravke nađene pri proveri
+
+Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
+
+| Tvrdnja u izvoru | Stvarno stanje | Gde je ispravljeno |
+|---|---|---|
+| „verzijske tačke: 4 sa `version.json`“ (SC-RAD-01), „3 tačke“ za test1 (SC-REND-01) | **šest mesta**: build tag u `#sc-startup-trace`, `SC_PWA_STATUS.version`, `<title>`, `const VERSION`, komentar i `CACHE_NAME` u `sw.js`. `SC_PWA_STATUS.version` postoji i u 0.8.90 i alat ga ne proverava | SC-RAD-01 §3, SSOT, SC-REND-01, SC-CODE-01 §9 |
+| „build tag ne postoji“ | postoji: `build:'0.8.92-css-unified-p1'` u `#sc-startup-trace` | SC-RAD-01 §1, §8 |
+| „samo 2 od 26 `@keyframes` van compositora“ | 3: i `logo-fill` animira `clip-path` | SC-REND-01 §6 |
+| lista brzina `[…,60]` (SC-AGENT-01) | `[10,20,30,40,50,55]` | SC-AGENT-01 §2 |
+| linije modula i funkcija iz 0.8.93 | u test1 su drugačije (npr. `applyCommand` L2678, ne L2690) | SC-ARCH-01 §4, SC-FUNC-01 §4 |
+| K01 ikonice, K02 `_headers` (0.8.93) | u test1 rešeno | SC-FUNC-01 §3 |
+| šest `.map-controls` deklaracija obrisano | u test1 selektor i dalje postoji u 2 grupna pravila | SC-BRISANJE-3-PROVERE (napomena) |
+
+<sub>[↑ Sadržaj](#sadržaj)</sub>
+
+## 5. Održavanje kopija
+
+- Opšta pravila (SSOT, PL-01, SC-CODE-01, SC-RAD-01, SC-REND-01) imaju izvor u `tihidon/snail-city-test`; svaka kopija na vrhu navodi izvor i commit. Izmena opšteg pravila ide prvo u izvor, pa se kopija ponovo prenosi i proverava. Bez toga dve verzije istog pravila se razilaze.
+- Činjenice o ovom buildu (linije, verzije, putanje) važe za `2d66e55`. Posle izmene `index.html` regenerisati [SC-FUNC-01](./tehnika/standardi/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md) (SC-F08) i ažurirati SC-RAD-01 §3 i SC-ARCH-01 §4 u istom PR-u.
+- Mesto u kodu se navodi imenom funkcije ili sidrom; broj linije samo uz commit.
+
+<sub>[↑ Sadržaj](#sadržaj)</sub>
+
+## 6. Otvoreno
+
+1. **Javnost `docs/`:** repo nema `netlify.toml`; ako Netlify objavljuje koren repoa, ova dokumentacija je javno dostupna na sajtu igre. Proveriti publish directory (NIJE PROVERENO).
+2. **`AGENTS.md` u korenu test1** ne postoji, pa agent koji radi u ovom repou ne dobija pravila automatski. Predlog: kratak `AGENTS.md` sa vezom na ovaj indeks.
+3. **`verify_edit.py` K2** u `snail-city-test` ne proverava `SC_PWA_STATUS.version` ni build tag, a u test1 traži nepostojeći `version.json`. Odluka vlasnika (SC-REND-01 §10).
+4. **`snail-city-test` SC-RAD-01 §3** (spojen u PR #11) ima istu grešku broja verzijskih tačaka za 0.8.90 (izostavljena `SC_PWA_STATUS.version`).
+5. PW-01 na uređaju, vizuelni QA i animacije za 0.8.92: NIJE TESTIRANO.
+6. PR #12 u `snail-city-test` (SC-REND-01) još nije spojen; kopije SC-CODE-01, SC-RAD-01 i SC-REND-01 su sa te grane.
+
+<sub>[↑ Sadržaj](#sadržaj)</sub>
