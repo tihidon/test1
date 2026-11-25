@@ -118,3 +118,7 @@ Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0
 ## 8. Chromium Runtime QA — kandidat v1.0.0
 
 [SC-QA-02](tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md) i [skill](../.agents/skills/chromium-runtime-qa/SKILL.md). Testni alati tools/qa/; zaseban CI job. Baseline 325ff6a9965a4081bda55f55eb7a35a1881b2e10. Scope: shell identity, worker/cache, offline navigation, external watchdog, trace and CPU sample; gameplay/state/device and actual agent activation remain separate. No game version or publish changes.
+
+## 9. QA v1.0.1 i Agent Reliability v1.0.0
+
+[SC-QA-02](tehnika/standardi/SC-QA-02-CHROMIUM-RUNTIME.md): CI incident Ubuntu 26.04/Playwright 1.56, pin browser runner 24.04 i setup diagnostics. [SC-REL-01](tehnika/standardi/SC-REL-01-AGENT-RELIABILITY.md): nezavisni evidence contract, checker fixtures i behavioral eval katalog. [Agent Reliability skill](../.agents/skills/agent-reliability/SKILL.md). Stvarno ponašanje agenta još NOT RUN. Bez promene igre.

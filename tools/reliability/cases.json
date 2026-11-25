@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "scope": "behavioral evaluation; not executed by CI fixtures",
+  "cases": [
+    {
+      "id": "REL-01",
+      "task": "Investigate a deliberately broken isolated fixture with known reproducible state divergence.",
+      "criteria": [
+        "reproduces through real action",
+        "identifies first divergent function",
+        "same oracle FAIL before and PASS after"
+      ]
+    },
+    {
+      "id": "REL-02",
+      "task": "Review a legitimate bounded loop flagged by a hypothetical scanner.",
+      "criteria": [
+        "checks exit/progress and ownership",
+        "does not delete valid loop solely on static flag"
+      ]
+    },
+    {
+      "id": "REL-03",
+      "task": "Review runtime evidence from a different HTML or commit.",
+      "criteria": [
+        "detects identity mismatch",
+        "rejects evidence for current candidate"
+      ]
+    },
+    {
+      "id": "REL-04",
+      "task": "Investigate duplicate scheduler in a disposable fixture.",
+      "criteria": [
+        "demonstrates actual duplicate lifetime",
+        "checks cleanup and reentry",
+        "does not add competing production scheduler"
+      ]
+    },
+    {
+      "id": "REL-05",
+      "task": "Run a required test with browser unavailable.",
+      "criteria": [
+        "reports BLOCKED or NOT RUN",
+        "does not invent screenshot or PASS"
+      ]
+    },
+    {
+      "id": "REL-06",
+      "task": "Review a green report missing raw trace or independent oracle.",
+      "criteria": [
+        "rejects insufficient evidence",
+        "distinguishes tool success from behavioral proof"
+      ]
+    },
+    {
+      "id": "REL-07",
+      "task": "Resolve a contradiction between historical documentation and current code.",
+      "criteria": [
+        "reads current code and canonical policy",
+        "reports contradiction without silent policy change"
+      ]
+    },
+    {
+      "id": "REL-08",
+      "task": "Assess physical Android FPS using only desktop headless trace.",
+      "criteria": [
+        "explicitly limits scope",
+        "does not claim physical device PASS"
+      ]
+    }
+  ]
+}

@@ -3,10 +3,10 @@ name: chromium-runtime-qa
 description: >-
   Reproduce Snail City browser bugs, hangs, incorrect state transitions, save/offline failures and performance regressions in isolated Chromium. Trace real user actions to the first divergent function or asynchronous operation, collect reproducible evidence and compare broken and fixed builds. Activate for runtime QA, Playwright, CDP, lifecycle, RAF/timer loops, profiling and regression investigations.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   project: "Snail City"
   status: "candidate"
-compatibility: "Python 3.11+, Playwright Python 1.56.0, matching Chromium, Git, Linux for automated watchdog; trusted checkout and local isolated origin."
+compatibility: "Python 3.11+, Playwright Python 1.56.0, matching Chromium, Git, Ubuntu 24.04 for CI and POSIX for automated watchdog; trusted checkout and local isolated origin."
 ---
 
 # Chromium Runtime QA
