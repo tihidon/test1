@@ -186,3 +186,7 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Nova vrednost: pinned 1.14.0 isolated localhost config, synthetic MCP+Chrome smoke and separate private evidence workflow; SC-CLI-01, SC-QA-02 and AGENTS linked.
 - Razlog: function-level and memory diagnostics; existing gameplay QA unchanged.
 - CI, actual host activation and D7 pending; no game fix counted.
+
+### Chrome DevTools MCP — memory capability correction (26.11.2026)
+- Prior run 45796898865: FAIL, missing compare_heapsnapshots after MCP initialization. PR #48 was merged despite failed dedicated test; PMV not established.
+- Candidate: enable documented --memory-debugging; preserve same smoke assertions. No game/runtime/build/deploy change. CI and D7 pending.
