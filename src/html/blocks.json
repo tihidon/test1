@@ -5,7 +5,7 @@
     "open_tag": "<script id=\"sc-startup-trace\">",
     "close_tag": "</script>",
     "file": "src/js/block-00.js",
-    "sha256": "6e83d28d0dc309fbef1297a570e2ac3898b670c7b1fea8e540646d1a8bc919e4"
+    "sha256": "2d0a1b0ab054e011cb3354d27441a1a514ebc8554b9955e8bd5a72124aadce96"
   },
   {
     "id": "01",
@@ -181,6 +181,6 @@
     "open_tag": "<script>",
     "close_tag": "</script>",
     "file": "src/js/block-21.js",
-    "sha256": "d813c34479d59e028c364c68c9a49b8cb0c1507edd15492a03c55dbb59e6b0b6"
+    "sha256": "e445b35cd63beccb463257539dc1e16f527acf36aa998d0f5af9e296b0258375"
   }
 ]

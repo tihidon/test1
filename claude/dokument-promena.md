@@ -193,3 +193,10 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 
 ### MCP page identity correction (26.11.2026)
 - Run 45798347841 FAIL after successful tool discovery, exact page ID oracle not satisfied. Tagged source shows title (url) format. Candidate parser accepts exact titled/bare URLs, rejects duplicates and wrong URL; four fixture tests; unchanged DOM marker. No game changes. CI/D7/PMV pending.
+
+### QA-003 — PW-DEF-01 correction (draft, 26.11.2026)
+- **Version:** candidate full build 0.8.92-css-unified-p11, cache p11-r1; family 0.8.92 unchanged. Root artifact remains p10 due connector transport failure; do not merge.
+- **Scope:** existing SW install handler, two build identity anchors, manifest digests, CI cache revision gate and regression. No game economy/logic/save change.
+- **Evidence:** Node VM 5/5 PASS; actual Chromium regression pending. Root build/publish gate remains mandatory, D7 and PMV pending.
+
+- Integration follow-up: preserve latest main MCP changes and P11 candidate. Root HTML remains P10; build and release blocked until generated P11 root is committed and CI passes.

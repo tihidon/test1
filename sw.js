@@ -3,7 +3,7 @@
  * IndexedDB is never removed or modified by this script.
  */
 'use strict';
-const CACHE_NAME = 'snail-city-shell-0.8.92-css-unified-p10-r1';
+const CACHE_NAME = 'snail-city-shell-0.8.92-css-unified-p11-r1';
 const OWNED_PREFIXES = ['snail-city-08', 'snail-city-shell-'];
 const CORE_PATHS = [
   './index.html', './manifest.webmanifest',
@@ -26,6 +26,8 @@ function isEntryNavigation(url){
 }
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
+    // An existing namespace may belong to the active worker. Never write or delete it.
+    if (await caches.has(CACHE_NAME)) throw Error('Offline cache namespace already exists: '+CACHE_NAME);
     const cache=await caches.open(CACHE_NAME);
     let total=0;
     try{
