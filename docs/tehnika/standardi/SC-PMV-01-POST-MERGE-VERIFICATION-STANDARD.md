@@ -18,7 +18,9 @@ VERIFIED tek kada svi obavezni dokazi prolaze; MERGED—UNVERIFIED kada merge po
 
 Zadržava se jedan postojeći engineering-gates workflow i oba postojeća joba, pull_request i workflow_dispatch; dodaje se push isključivo na main. Obe grane izvršavanja proveravaju HEAD == GITHUB_SHA. Tooling na push-u koristi github.event.before kao prethodni commit, proverava validan SHA (ne nula), postojanje commit objekta i ancestry; ne prelazi tiho na drugi baseline ako provera padne. PR koristi postojeći PR base SHA. Manualni dispatch zadržava postojeće zamrznute baseline reference; postojeći zamrznuti ESLint ratchet ostaje. Ne menja se runtime/SW/Netlify konfiguracija. G7 i D7 ostaju nepromenjeni.
 
-## QA-001 — reprodukcija i granice
+## QA-001 — istorijska reprodukcija i granice
+
+> Ovaj zapis čuva istorijske dokaze paketa v0.5.1; za aktuelni Team/skill identitet vidi [DOC-003](../../README.md#doc-003--aktuelni-agent-team-registar-snapshot-26112026).
 
 PR #41 merged 2026-11-26T08:14:24Z, SHA 8ed4417a6d2e423800a88436b4465a7a28f1dcab; main pri pregledu 2424de0aabf57294b67610c0344b122ac5209652, merge je predak. PR run 45781425134: tooling i chromium-runtime success; B01–B06 imaju 9/22/3/7/4/6 assertions. To je PR CI, ne PMV. GitHub Actions API lista po SHA za oba commita vratila total_count=0; workflow blob e1628219ccf0a878bee03051ac30488b12357865 ima pull_request i workflow_dispatch, nema push. Zato PR #41 ostaje MERGED—UNVERIFIED. Izmena workflow-a je kandidat dok stvarni push CI i relevantna nezavisna provera ne potvrde rad.
 

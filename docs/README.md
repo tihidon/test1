@@ -6,6 +6,26 @@ Poslednja izmena indeksa: 2026-11-26
 
 Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1` `main` `5b4b030` (PR #13), `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `const VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Kopije označene „`2d66e55` / `c19cc1ac…`“ proverene su samo nad p1 commit-om i nisu ponovo proverene nad p3. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
 
+### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
+
+Kanonski registar je ovaj odeljak u test1; test-cl1 održava njegovu identičnu kopiju. Istorijski snail-city-test se ne prepisuje. Izvor: ChatGPT Plugin Creator, `get_plugin_files` (oba manifesta i svih 11 SKILL.md metapodataka) i `list_plugin_releases`, pročitani 26.11.2026. Aktuelni paket Snail City Agent Team `plugins_6b07821ba2488191803130852db1560a` ima verziju **0.5.5**, release `pluginrel_6b084da02a108191a574be055071a73c`, označen kao current. Istorijski paket **0.5.1**, release `pluginrel_6b07f9c0261c8191b6b53456bcd512cc`, i dalje je u istoriji, nije current. Ne prepisivati QA-001 i ranijih 28 fixture testova kao dokaz za 0.5.5.
+
+| Skill u Team paketu | Pročitana verzija |
+|---|---|
+| `coordinate-team` | 0.5.5 |
+| `team-architecture` | 0.5.5 |
+| `team-chromium-qa` | 0.5.5 |
+| `team-engineering` | 0.5.5 |
+| `team-handoff` | 0.5.4 |
+| `team-qa-assurance` | 0.5.5 |
+| `team-qa-planning` | 0.5.5 |
+| `team-qa-release` | 0.5.5 |
+| `team-reliability` | 0.5.5 |
+| `team-rendering` | 0.5.5 |
+| `team-stress-test` | 0.5.5 |
+
+Team release, verzija pojedinačnog skilla, verzija samostalnog plugina, repo skill i verzija igre/SW su odvojeni identiteti. Ovo je read-back metapodataka Team paketa, ne inventar drugih samostalno instaliranih plugina, lokalne aktivacije ili dokaz nezavisne delegacije. D7/behavioral eval nije potvrđen ovim pregledom. `team-handoff` 0.5.4 je opaženo stanje, ne razlog za automatski bump. Pravilo [DOC-VER-01](tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md#doc-ver-01--identitet-i-istorija-verzija) važi za sve uloge. Ponovo proveriti stvarni release pri svakom update-u; novi snapshot dodati uz očuvanje prethodnog. DOC-003 zatvaranje zahteva odobren merge i SC-PMV-01 na oba repoa; ovaj zapis nije potvrda merge-a.
+
 ### Aktuelni zajednički status — 26.11.2026.
 
 - Kanonski razvojni repo: `tihidon/test1`; referentni main `e51b1e6cba31bedd61ad0bbb269c90f065117279`. Cloudflare testni repo: `tihidon/test-cl1`; referentni main `8d9fec8405674cbfcc97dd97224bb3a8de596c15`. Istorija test1 je povezana kroz `3f5ca38e2e79d1f2f98b27130204addac9a473ff`; zamrznuti CI baseline nije resetovan. Ovi SHA su snapshot dokaza, ne tvrdnja o budućem HEAD-u.
@@ -176,7 +196,9 @@ Dokumentacija pregledana na `test1@d82f17e2149c4c9ec5ed8e950c373eb7487f78de`. Ra
 ## 16. SC-TEAM-004 — infrastructure lesson (26.11.2026)
 See [SC-DEBUG-01 infrastructure strategy pivot](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). The authenticated API tree was accessible at `8ed4417a6d2e423800a88436b4465a7a28f1dcab`; full local snapshot and runtime were not verified. Engineering/Architecture and AGENTS entry points refer to the same rule. External Coordinator package update and behavioral evaluation remain separate. NS01 oracle is defined in the canonical standard; no game fix claimed.
 
-## 17. Central QA / PMV-01 (26.11.2026)
+## 17. Istorijski zapis — Central QA / PMV-01 (26.11.2026)
+
+> Dokazi v0.5.1 pripadaju istorijskom izdanju; aktuelne verzije vidi u DOC-003 registru na početku.
 
 [SC-PMV-01](tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) — mandatory closure gate for all agents, extending existing G0–G7 and D0–D8. QA-001 found no automatic main-push workflow; proposed existing workflow extension, preserved ratchets and exact checkout verification. ChatGPT Coordinator v0.5.1 package read back; 28 helper fixture tests PASS, independent agent eval not run. Actual post-merge CI and release remain unverified until original evidence exists. No game/SW/deploy change.
 
