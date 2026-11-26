@@ -65,6 +65,10 @@ Aktuelni identitet paketa i svakog skilla je u [DOC-003 registru](docs/README.md
 ## Zajedničko ponašanje svih agenata
 Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) uz SC-DEC-01 i SC-REL-01. Važi za sve projektne uloge unutar stvarne hijerarhije instrukcija platforme. Za specijalizovane preglede koristi [pravnog specijalistu](.agents/skills/snail-city-legal/SKILL.md), [defanzivnog auditora](.agents/skills/snail-city-defensive-auditor/SKILL.md) i [kontrolora rada agenata](.agents/skills/snail-city-agent-conduct/SKILL.md). D7 i autorizacija vlasnika idu kroz postojeći SC-DEC-01 postupak. Istorijski Team plugin v0.3.0 sadržao je prateće uputstvo; nezavisna evaluacija nije izvršena.
 
+### Obavezna proaktivnost i usvajanje znanja
+
+Primeni [SC-PRO-01 i SC-KG-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) za sve sadašnje i buduće uloge. Istražuj odobrene alternative, ali ne usvajaj nova znanja, tehnologije, pravila ili skillove bez nezavisne kontrole i eksplicitnog odobrenja vlasnika za tačan pregledani kandidat. Bez samoodobravanja, automatskog preuzimanja instrukcija, širenja dozvola ili prenosa osetljivih podataka. Ako nezavisan pregled nije dostupan, ZADRŽI ZA QA. Jedan SC-DEC-01 zapis; DOC-VER-01 i PMV ostaju.
+
 ## Infrastructure failures — mandatory strategy pivot
 Apply [SC-DEBUG-01 infrastructure strategy pivot](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). Do not repeat unchanged failed operations. Architecture records failure, selects a viable authorized alternative (API, verified snapshot, private CI), preserves identity and gates; Coordinator routes unblocked work. No fabricated PASS or independent review.
 
