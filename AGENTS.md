@@ -57,3 +57,6 @@ Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --
 ## Team coordination (26.11.2026)
 
 Team plugin v0.2.0 koordinira postojeći SC-DEC-01, ne uvodi drugi standard ili registar. Grafički specijalista koristi [projektni rendering candidate](.agents/skills/snail-city-rendering-performance/SKILL.md) kada je odgovarajući zadatak; podržava D1/D3/D4/D6, ne menja vlasnike faza. Bez stvarne delegacije prijaviti sekvencijalno izvršavanje, D7 nezavisnost BLOCKED. Originalni zasebni rendering i komunikacija skill nisu verifikovani; handoff prema SC-DEC-01 ostaje kanonski.
+
+## Zajedničko ponašanje svih agenata
+Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) uz SC-DEC-01 i SC-REL-01. Važi za svih šest projektnih skillova, koordinatora i buduće uloge, unutar stvarne hijerarhije instrukcija platforme. Team plugin v0.3.0 sadrži prateće uputstvo; nezavisna evaluacija nije izvršena.
