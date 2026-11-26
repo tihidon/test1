@@ -1,10 +1,20 @@
-# Snail City test1 — dokumentacija
+# Snail City — zajednička dokumentacija test1 / test-cl1
 
 Poslednja izmena indeksa: 2026-11-26
 
 **P0 — kanonski autoritet:** `tihidon/test1` je primarni razvojni repo; `snail-city-test` je istorijski izvor. Aktivna pravila se održavaju ovde. P1/P3 podaci ispod su istorijski, ne dokaz za P10. P10 je koordinacioni snapshot iz AGENTS.md, ne novo izvršno merenje.
 
 Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1` `main` `5b4b030` (PR #13), `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `const VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Kopije označene „`2d66e55` / `c19cc1ac…`“ proverene su samo nad p1 commit-om i nisu ponovo proverene nad p3. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
+
+### Aktuelni zajednički status — 26.11.2026.
+
+- Kanonski razvojni repo: `tihidon/test1`; referentni main `e51b1e6cba31bedd61ad0bbb269c90f065117279`. Cloudflare testni repo: `tihidon/test-cl1`; referentni main `8d9fec8405674cbfcc97dd97224bb3a8de596c15`. Istorija test1 je povezana kroz `3f5ca38e2e79d1f2f98b27130204addac9a473ff`; zamrznuti CI baseline nije resetovan. Ovi SHA su snapshot dokaza, ne tvrdnja o budućem HEAD-u.
+- Zajednički build `0.8.92-css-unified-p11`, HTML blob `f730698c8251c30c91d798ea816986a91e189a01`, 7606179 B, SHA-256 `492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a`; SW blob `2f57bfd2fd38f8d220af090caa5c55c7580007f3`, cache `snail-city-shell-0.8.92-css-unified-p11-r2`. Family labels ostaju 0.8.92. Oba repoa imaju identične src, HTML, SW i zajedničke CI workflow-e.
+- test1: [post-merge CI PR #54](https://github.com/tihidon/test1/actions/runs/45812765115) success; Netlify publish gate sprečava različite src/root bajtove. [Origin probe](https://github.com/tihidon/test1/actions/runs/45813275480) vratio HTTP 503 za 9 URL-ova; vlasnik prijavio potrošene kredite. Netlify produkcijski identitet nije potvrđen.
+- test-cl1: [post-merge engineering](https://github.com/tihidon/test-cl1/actions/runs/45836823254) success; B01–B06 51/51, QA-003 67/67 kroz 5 scenarija, obe Cloudflare publish kontrole PASS; [MCP push](https://github.com/tihidon/test-cl1/actions/runs/45836823391) success (sintetički click/trace/PNG, ne gameplay/performance). Prvi neuspešni CI zbog nedostajuće istorije [45832281916](https://github.com/tihidon/test-cl1/actions/runs/45832281916) ostaje dokaz incidenta.
+- Cloudflare build `2a7682f6-dee9-4ce2-8b9b-227e3ff58dfd`, deployment `f6ca2f98-9969-41aa-b45e-63771d596006`, version `420b108e-3fcf-4fed-9c62-77f123e4f8c9` 100%; vlasnik potvrdio 7 koraka fizičkog offline testa. Opseg i ograničenja dokaza u kanonskom [PW-01](tehnika/pwa-offline/PW-01-STANJE-0.8.92.md). Public HTTP byte/MIME identitet, potpuni fizički dokaz i nezavisni D7 nisu potvrđeni; PMV/release zatvaranje nije VERIFIED.
+- Cloudflare-specifični fajlovi samo u test-cl1: `wrangler.toml`, `_redirects`, `tools/cloudflare-build.sh`, `tools/agent/test_cloudflare_publish.py`. Netlify koristi postojeći netlify.toml; Cloudflare build koristi isti kanonski whitelist/identity ugovor i dodaje rutiranje. Ne kopirati hosting konfiguracije automatski između repoa. Origin-i imaju odvojeni IndexedDB i keš.
+- Održavanje: zajednička pravila, registri i dokazi najpre se usklađuju u test1, zatim se kontrolisano prenose u test-cl1 uz byte diff i CI. Hosting-specifične promene idu samo u odgovarajući repo; evidencija mora navesti repo/ref/origin. Bez paralelnih standarda, resetovanja istorijskih baseline-a ili automatske objave. P1/P3/P10 i prethodni kandidat zapisi u nastavku ostaju istorijski; funkcijski registri nisu ponovo generisani ovim docs-only zadatkom.
 
 ## Sadržaj
 
@@ -189,3 +199,10 @@ Run [45805792394](https://github.com/tihidon/test1/actions/runs/45805792394) fai
 - Candidate PR and CI required; D7 and post-merge PMV pending. Revert candidate only under owner approval; never delete player data or manually clear caches.
 
 Recovery evidence: [run 45808612656](https://github.com/tihidon/test1/actions/runs/45808612656), job 139870295474, generated commit `bcd3c6e658f1684649fb26dabcca7c0fb8a0cdd5`, HTML blob `f730698c8251c30c91d798ea816986a91e189a01`, SHA-256 `492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a`, 7606179 bytes, independent assembly/syntax and root equality PASS. Temporary write-enabled recovery workflow removed before PR. Full PR CI, D7 and exact-SHA PMV remain pending. No deploy claim.
+
+## Istorijski zapis — Cloudflare Workers static hosting kandidat (26.11.2026)
+
+> Status ovog kandidata je naknadno promenjen; aktuelni dokazi su u zajedničkom statusu na početku dokumenta.
+
+Canonical development: tihidon/test1 at e51b1e6cba31bedd61ad0bbb269c90f065117279; test-cl1 import f6c2b4d91f489e497ead625fda2e437437bf1a16 contains identical P11-r2 runtime/source and 193 matching blobs, but lacks two CI workflow files and all ancestral Git commits (root import). Restore both workflows byte-for-byte; historical ESLint ratchet commit cd79662b45b2477d2d53aba000e60f90fefc8662 is absent (API 404). Full engineering CI cannot be qualified until source history is imported by authorized Git fetch/merge; do not weaken or reset the frozen baseline. Cloudflare candidate only: wrangler.toml static assets ./dist, no server-side script, html_handling none, no wildcard fallback; _redirects exact / -> /index.html 200 internal proxy. Build uses existing Netlify whitelist/identity command, then adds _redirects; Python >=3.11 for tomllib. Dashboard build command: bash tools/cloudflare-build.sh; deploy command: npx wrangler deploy; root /. Keep builds disabled until reviewed and approved. New tests exercise exact whitelist and stale root rejection, not actual Cloudflare routing. Validate live exact URL status/MIME/bytes and no redirects on all SW core resources, private path 404s, physical PWA and synthetic save persistence. No changes to test1, game HTML, SW, save, or cache version. New origin has separate storage. Actual hosting configuration and deploy not accessible here; D7, CI and PMV pending.
+Sources: https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/ ; https://developers.cloudflare.com/workers/static-assets/redirects/ ; https://developers.cloudflare.com/workers/ci-cd/builds/configuration/
