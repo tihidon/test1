@@ -34,8 +34,9 @@ jobs:
           skills-ref validate .agents/skills/agent-reliability
           skills-ref validate .agents/skills/snail-city-stress-test-specialist
           skills-ref validate .agents/skills/snail-city-architecture-infrastructure
+          skills-ref validate .agents/skills/snail-city-rendering-performance
           skills-ref read-properties .agents/skills/snail-city-engineering
-          skills-ref to-prompt .agents/skills/snail-city-engineering .agents/skills/chromium-runtime-qa .agents/skills/agent-reliability .agents/skills/snail-city-stress-test-specialist .agents/skills/snail-city-architecture-infrastructure
+          skills-ref to-prompt .agents/skills/snail-city-engineering .agents/skills/chromium-runtime-qa .agents/skills/agent-reliability .agents/skills/snail-city-stress-test-specialist .agents/skills/snail-city-architecture-infrastructure .agents/skills/snail-city-rendering-performance
       - name: Tool regression fixtures
         run: |
           python -m unittest discover -s tools/agent -p 'test_*.py' -v
