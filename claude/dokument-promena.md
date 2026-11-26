@@ -149,3 +149,9 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Ljuljanje lotosa i listova je estetska odluka: proveriti na telefonu da nije previše.
 - Baterija i zagrevanje na 4 fps (p9): nije izmereno na telefonu.
 - Memorija teksture: fontana 512² (~1 MB) i ostrvo 1448×1086 RGBA (~6 MB) na GPU; nije proverena na HONOR-u.
+
+### SC-TEAM-004 — infrastructure strategy pivot (26.11.2026)
+- Oblast: agent procedure / QA; no game version or runtime/deploy change.
+- Fajlovi: SC-DEBUG-01, AGENTS.md, Engineering/Architecture SKILL.md, docs/README.md.
+- Razlog: repeated unchanged DNS failures during overnight work; API tree access confirmed separately at `8ed4417a6d2e423800a88436b4465a7a28f1dcab`.
+- Nova vrednost: canonical alternate-path procedure, evidence limits and NS01 initial oracle. CI and independent D7 pending; no gameplay fix counted.

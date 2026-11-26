@@ -3,7 +3,7 @@ name: snail-city-engineering
 description: >-
   Implement, review, debug, profile, refactor and test Snail City HTML/CSS/JavaScript PWA changes. Enforce existing architecture, function registry, CSS/DOM rules, WebGL lifecycle, save integrity, offline behavior, deterministic Python builds, loop investigation and evidence-based QA. Activate for game code, bugs, deletion, optimization, map placement, race/battle, releases and agent tooling.
 metadata:
-  version: "1.4.2"
+  version: "1.4.3"
   project: "Snail City"
   status: "owner-approved-candidate"
 compatibility: "Compatible Agent Skills host with repository access; Python 3.11+, Node.js and isolated developer CLI/parser/browser tools for applicable checks. No additional game runtime dependencies."
@@ -61,3 +61,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Use lint ratche
 
 ## Functional phase B
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Use reviewed phase B contract; never change production behavior or prices to pass. Validate source anchors before extending scenario.
+
+## Infrastructure failure recovery
+Apply the canonical SC-DEBUG-01 infrastructure strategy pivot. Record unchanged failure and choose an authorized alternate execution path; verify snapshot bytes/modes and history requirements. Keep D7 and all existing gates. Do not mistake connector read access for a local checkout.
