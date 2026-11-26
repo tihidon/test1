@@ -180,3 +180,9 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Scope:** diagnostic QA and CI only; tools/qa/pwa_migration_diagnostic.py, engineering-gates.yml, SC-DEBUG-01.
 - **Old:** no real Chromium cache migration diagnostic; Node VM reproduced conditional same-name cache loss.
 - **New:** exact-SW synthetic origin test, real transport cut, cache bytes/IDB controls, explicit DEFECT_REPRODUCED status, artifacts. No product acceptance claim; real CI pending.
+
+
+### QA-003 — PW-DEF-01 isolated correction candidate (draft)
+- Scope: test tooling, CI and docs; no production runtime file changes.
+- Guard candidate: reject existing cache name before mutation; p11 isolated build; regression requires preservation and offline navigation, original baseline diagnostic retained for comparison.
+- Add CI shell/cache identity ratchet and fixtures; publish private candidate artifacts. API large HTML write blocked, pivot to CI generation. No merge/deploy; D7 pending.

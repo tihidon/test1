@@ -41,7 +41,7 @@ SEED = """async name=>{const c=await caches.open(name);await c.put('/foreign',ne
  t.objectStore('s').put('test-only','current');t.oncomplete=()=>{d.close();ok()};
  t.onerror=()=>bad(t.error);t.onabort=()=>bad(t.error)}})}"""
 
-def run_case(pw, sw, new, case):
+def run_case(pw, sw, new, case, preserve=False):
     same = case == "same_name_failure"
     fail = case in ("distinct_failure", "same_name_failure")
     old = new if same else OLD
@@ -109,11 +109,15 @@ def run_case(pw, sw, new, case):
                 check("foreign cache bytes unchanged", after.get(FOREIGN) == before[FOREIGN], after)
                 check("synthetic IDB online", p.evaluate(READ) == "test-only")
                 if fail:
-                    check("controlled HTTP failure observed", any(r["path"]=="/img/icon-512.png" and
-                          r["status"]==503 for r in requests), requests)
+                    if same and preserve:
+                        check("reused cache rejected before resource fetch", not any(r["label"]=="new" and r["path"] in PATHS for r in requests), requests)
+                    else:
+                        check("controlled HTTP failure observed", any(r["path"]=="/img/icon-512.png" and
+                              r["status"]==503 for r in requests), requests)
                     check("old controller retained", tab.evaluate("window.changes===0 && !!navigator.serviceWorker.controller"))
-                    if not same:
+                    if not same or preserve:
                         check("old cache bytes unchanged", after.get(old) == before[old], after)
+                    if not same:
                         check("partial new cache removed", new not in after, after)
                 else:
                     check("new cache complete", set(after.get(new, {})) == PATHS, after)
@@ -143,7 +147,7 @@ def run_case(pw, sw, new, case):
                                      "from_sw": response.from_service_worker if response else False}
                 check("real transport remains closed", (transport.assert_closed() is None))
                 check("synthetic IDB offline", tab.evaluate(READ)=="test-only")
-                if same:
+                if same and not preserve:
                     # This explicit diagnostic expectation is NOT a passing product invariant.
                     # No other failure is accepted as reproduction.
                     check("known cache deletion reproduced", old not in after, after)
@@ -169,9 +173,13 @@ def run_case(pw, sw, new, case):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True, type=Path)
+    ap.add_argument("--worker", type=Path)
+    ap.add_argument("--preserve", action="store_true")
     args = ap.parse_args()
+    if args.preserve != bool(args.worker):
+        ap.error("candidate worker and preserve mode required together")
     args.out.mkdir(parents=True, exist_ok=True)
-    sw = (ROOT/"sw.js").read_bytes()
+    sw = (args.worker or ROOT/"sw.js").read_bytes()
     blob = hashlib.sha1(b"blob "+str(len(sw)).encode()+b"\0"+sw).hexdigest()
     report = {"source_blob": blob, "scope": "actual Chromium, synthetic origin/resources and sentinel IDB; not game migration or physical quota",
               "status": "NOT_RUN", "cases": []}
@@ -179,26 +187,27 @@ def main():
         (args.out/"report.json").write_text(json.dumps(report, indent=2)+"\n", encoding="utf-8")
     save()
     try:
-        if blob != BASE_BLOB:
+        if not args.preserve and blob != BASE_BLOB:
             raise AssertionError("diagnostic baseline SW changed; review oracle before running")
         names = re.findall(rb"const CACHE_NAME = '([^']+)'", sw)
         if len(names)!=1:
             raise AssertionError("ambiguous CACHE_NAME")
         with sync_playwright() as pw:
             for case in ("success","distinct_failure","same_name_failure","rollback"):
-                r = run_case(pw,sw,names[0].decode(),case)
+                r = run_case(pw,sw,names[0].decode(),case,args.preserve)
                 report["cases"].append(r)
                 print(json.dumps(r),flush=True)
                 save()
-        expected = ["PASS","PASS","DEFECT_REPRODUCED","PASS"]
-        report["status"] = "DIAGNOSTIC_COMPLETE_DEFECT_OPEN" if [r["status"] for r in report["cases"]]==expected else "FAIL"
+        expected = ["PASS"]*4 if args.preserve else ["PASS","PASS","DEFECT_REPRODUCED","PASS"]
+        success = "PASS" if args.preserve else "DIAGNOSTIC_COMPLETE_DEFECT_OPEN"
+        report["status"] = success if [r["status"] for r in report["cases"]]==expected else "FAIL"
     except Exception:
         report["status"] = "BLOCKED_OR_FAIL"
         report["error"] = traceback.format_exc()
     finally:
         save()
         print(json.dumps({"status":report["status"],"source_blob":blob}),flush=True)
-    return 0 if report["status"]=="DIAGNOSTIC_COMPLETE_DEFECT_OPEN" else 1
+    return 0 if report["status"]==("PASS" if args.preserve else "DIAGNOSTIC_COMPLETE_DEFECT_OPEN") else 1
 
 if __name__ == "__main__":
     raise SystemExit(main())

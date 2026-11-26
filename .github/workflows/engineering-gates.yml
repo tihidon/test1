@@ -93,6 +93,12 @@ jobs:
           retention-days: 14
       - name: Historical P3 isolated round-trip
         run: python tools/test_roundtrip.py
+      - name: PW-01 cache identity ratchet
+        env:
+          SC_CACHE_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          BASE="${SC_CACHE_BASE:-$(git rev-parse HEAD^1)}"
+          python tools/agent/check_cache_release.py --base "$BASE"
       - name: Current build and published bytes
         run: python tools/agent/check_build.py --require-publish-match
       - name: AST loop review inventory
@@ -142,6 +148,13 @@ jobs:
         run: python tools/qa/runtime_watchdog.py --functional --timeout 300 --out "$RUNNER_TEMP/sc-functional-evidence"
       - name: QA-003 migration diagnostic (known defect reproduction, not acceptance)
         run: timeout 180s python tools/qa/pwa_migration_diagnostic.py --out "$RUNNER_TEMP/sc-pwa-migration"
+      - name: PW-DEF-01 isolated candidate build and regression (draft branch only)
+        if: github.event_name == 'pull_request' && github.head_ref == 'qa/pw-def-01-isolated-candidate'
+        run: |
+          git worktree add --detach "$RUNNER_TEMP/sc-pw-worktree" HEAD
+          python tools/qa/prepare_pw_def_01.py --worktree "$RUNNER_TEMP/sc-pw-worktree" --out "$RUNNER_TEMP/sc-pw-candidate"
+          timeout 180s python tools/qa/pwa_migration_diagnostic.py --worker "$RUNNER_TEMP/sc-pw-candidate/sw.js" --preserve --out "$RUNNER_TEMP/sc-pw-regression"
+          python tools/qa/runtime_watchdog.py --root "$RUNNER_TEMP/sc-pw-worktree" --functional --timeout 300 --out "$RUNNER_TEMP/sc-pw-candidate-functional"
       - name: Report functional scenario outcome (including failures)
         if: always()
         run: |
@@ -176,5 +189,8 @@ jobs:
             ${{ runner.temp }}/sc-diagnostic-evidence/
             ${{ runner.temp }}/sc-functional-evidence/
             ${{ runner.temp }}/sc-pwa-migration/
+            ${{ runner.temp }}/sc-pw-candidate/
+            ${{ runner.temp }}/sc-pw-regression/
+            ${{ runner.temp }}/sc-pw-candidate-functional/
           if-no-files-found: error
           retention-days: 14
