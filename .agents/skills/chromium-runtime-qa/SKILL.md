@@ -48,3 +48,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Use separate --
 
 ## Functional phase B
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Run --functional separately; inspect each B01–B06, actual IDB and persistent offline context, traces. Separate fixture setup from gameplay evidence.
+
+## QA procedures
+Use the [shared QA procedures](references/qa-procedures.md) to collect Playwright failure traces and execute same-origin PWA lifecycle checks.

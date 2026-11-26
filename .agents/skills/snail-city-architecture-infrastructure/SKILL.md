@@ -50,3 +50,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own sto
 
 ## Infrastructure strategy pivot
 Own the SC-DEBUG-01 infrastructure strategy pivot: preserve exact errors, change a material condition or select a viable authorized API/snapshot/CI route, verify source identity and history requirements, report BLOCKED per gate rather than repeating identical failures. Do not weaken QA or claim independent review.
+
+## QA procedures
+Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to verify build, origin, service-worker and transport identity and route startup budgets.
