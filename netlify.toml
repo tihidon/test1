@@ -1,6 +1,6 @@
-# Netlify deploy: only whitelisted public files are copied to dist/ and published.
+# Netlify deploy: generate HTML, require exact root equality, then copy only whitelisted public files.
 # Anything not listed here (docs/, AGENTS.md, tools/, test/, .git) never leaves the repo.
 # To publish a new file, add it to the cp list below and verify on the deploy preview.
 [build]
-  command = "rm -rf dist && mkdir -p dist && cp index.html sw.js manifest.webmanifest _headers privacy.html delete-account.html dist/ && cp -r img dist/"
+  command = "rm -rf dist && python3 tools/build.py && (cmp -s dist/index.html index.html || { echo 'SC-PUBLISH-01: root HTML differs from source build' >&2; exit 1; }) && cp sw.js manifest.webmanifest _headers privacy.html delete-account.html dist/ && cp -r img dist/"
   publish = "dist"
