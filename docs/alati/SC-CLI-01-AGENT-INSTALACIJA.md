@@ -47,3 +47,6 @@ Separate CI candidate workflow: `python tools/agent/mcp_smoke.py /tmp/sc-mcp-new
 
 ### MCP capability correction (26.11.2026)
 PR #48 run 45796898865 failed after initialization: required tools missing `compare_heapsnapshots`. Tagged v1.14.0 configuration documents `--memory-debugging` (default false). Enable it without weakening the smoke oracle. Chrome 157.0.8103.78 was reported by runner. Actual post-fix capability, DOM smoke, independent D7 and PMV remain unverified. Earlier merge is not proof of acceptance.
+
+### MCP page identity correction (26.11.2026)
+Run 45798347841 passed initialize/tool discovery but failed `fixture page ID not uniquely listed`; DOM assertion NOT RUN. Tagged v1.14.0 `src/McpResponse.ts` formatPage emits `id: title (url)` for titled pages, while original parser required `id: url`. Candidate accepts both exact URL formats and rejects ambiguity/wrong URL. Original DOM marker and required tools retained; four parser fixture methods added. Actual browser PASS pending. PR #50 merged at 973f1f5 before dedicated test passed; PMV remains open. Source: https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/chrome-devtools-mcp-v1.14.0/src/McpResponse.ts
