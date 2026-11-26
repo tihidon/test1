@@ -2,6 +2,8 @@ name: Snail City engineering gates
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,6 +15,17 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           fetch-depth: 0
+      - name: Verify checked out commit identity
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Verify push baseline ancestry
+        if: github.event_name == 'push'
+        env:
+          SC_PUSH_BASE: ${{ github.event.before }}
+        run: |
+          [[ "$SC_PUSH_BASE" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$SC_PUSH_BASE" != "0000000000000000000000000000000000000000" ]]
+          git cat-file -e "$SC_PUSH_BASE^{commit}"
+          git merge-base --is-ancestor "$SC_PUSH_BASE" HEAD
       - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
         with:
           python-version: '3.12'
@@ -47,7 +60,7 @@ jobs:
         run: python -m unittest discover -s tools/sc-code-01 -p 'test_*.py' -v
       - name: SC-CODE-01 canonical ratchet and locations
         env:
-          SC_BASE: ${{ github.event.pull_request.base.sha || 'eddfa33acf5f875f2dbdf746ebf436651e61f80b' }}
+          SC_BASE: ${{ github.event.pull_request.base.sha || github.event.before || 'eddfa33acf5f875f2dbdf746ebf436651e61f80b' }}
         run: python tools/sc-code-01/quality_gate.py --base "$SC_BASE" --out "$RUNNER_TEMP/sc-quality.json"
       - name: Preserve quality report
         if: always()
@@ -59,7 +72,7 @@ jobs:
           retention-days: 14
       - name: SC-DEBUG-01 ESLint bug ratchet
         env:
-          SC_BASE: ${{ github.event.pull_request.base.sha || 'cd79662b45b2477d2d53aba000e60f90fefc8662' }}
+          SC_BASE: ${{ github.event.pull_request.base.sha || github.event.before || 'cd79662b45b2477d2d53aba000e60f90fefc8662' }}
         run: |
           node tools/agent/eslint_ratchet.cjs "$SC_BASE" "$RUNNER_TEMP/sc-eslint.json"
           if [ "$SC_BASE" != "cd79662b45b2477d2d53aba000e60f90fefc8662" ]; then
@@ -103,6 +116,8 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
+      - name: Verify checked out commit identity
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
         with:
           python-version: '3.12'

@@ -155,3 +155,12 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Fajlovi: SC-DEBUG-01, AGENTS.md, Engineering/Architecture SKILL.md, docs/README.md.
 - Razlog: repeated unchanged DNS failures during overnight work; API tree access confirmed separately at `8ed4417a6d2e423800a88436b4465a7a28f1dcab`.
 - Nova vrednost: canonical alternate-path procedure, evidence limits and NS01 initial oracle. CI and independent D7 pending; no gameplay fix counted.
+
+
+### QA-001 — SC-PMV-01 (kandidat, 26.11.2026)
+- **Verzija:** igra/SW nepromenjeni; ChatGPT Coordinator 0.5.1 (zasebno izdanje).
+- **Oblast:** CI / QA / dokumentacija.
+- **Fajl:** .github/workflows/engineering-gates.yml i povezani kanonski standardi.
+- **Stara vrednost:** pull_request i workflow_dispatch; nema automatskog main push; bez eksplicitne checkout provere.
+- **Nova vrednost:** push main uz postojeće jobove, HEAD == GITHUB_SHA, push baseline event.before i ancestry validacija; PR i manualni/frozen baseline očuvani.
+- **Razlog:** QA-001, PR #41 merged bez potvrđenog post-merge CI. QA-DEF-01–04 popravljeni u zasebnom pluginu, 28 lokalnih fixture testova PASS. CI kandidata i D7 čekaju stvarne dokaze. Bez runtime, SW ili Netlify izmena.
