@@ -8,7 +8,32 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-ChatGPT read-back 26.11.2026. Aktuelni [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) je **0.5.7**, release `pluginrel_6b0865f75ac8819189d12ed145696811`. Verzije ispod su pročitane iz pojedinačnih SKILL.md, a profile opisuje AGENTS.md i uputstvo odgovarajuće uloge. Read-back potvrđuje sadržaj i identitet paketa. Izvršne QA i D7 tvrdnje zahtevaju zaseban dokaz.
+Provereno 26.11.2026. Aktuelni Snail City Agent Team na sajtu je **0.7.0**. U izdanju je 16 timskih profila. Tri nova profila pokrivaju pravnu procenu, defanzivni audit i kontrolu rada agenata. Lokalni profili i njihove verzije vode se u [AGENTS.md](../AGENTS.md) i pripadajućim `SKILL.md` fajlovima. Provera sadržaja izdanja i evaluacija ponašanja agenata imaju odvojene dokaze.
+
+| Profil u Team paketu | Verzija |
+|---|---|
+| `coordinate-team` | 0.5.9 |
+| `team-agent-conduct` | 0.1.0 |
+| `team-architecture` | 0.5.8 |
+| `team-chromium-qa` | 0.5.5 |
+| `team-defensive-auditor` | 0.1.0 |
+| `team-engineering` | 0.5.7 |
+| `team-handoff` | 0.5.5 |
+| `team-legal` | 0.1.0 |
+| `team-marketing` | 0.3.1 |
+| `team-qa-assurance` | 0.5.6 |
+| `team-qa-planning` | 0.5.5 |
+| `team-qa-release` | 0.5.5 |
+| `team-reliability` | 0.5.6 |
+| `team-rendering` | 0.5.6 |
+| `team-stress-test` | 0.5.6 |
+| `team-visual-design` | 0.5.9 |
+
+Za predaju nalaza koristi [SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md), a za procenu ozbiljnosti i eskalaciju [SC-BEH-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md).
+
+### Istorijski DOC-003 snapshot — paket 0.5.7
+
+ChatGPT read-back 26.11.2026. Tadašnji [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) je **0.5.7**, release `pluginrel_6b0865f75ac8819189d12ed145696811`. Verzije ispod su pročitane iz pojedinačnih SKILL.md, a profile opisuje AGENTS.md i uputstvo odgovarajuće uloge. Read-back potvrđuje sadržaj i identitet paketa. Izvršne QA i D7 tvrdnje zahtevaju zaseban dokaz.
 
 | Skill u Team paketu | Pročitana verzija |
 |---|---|
