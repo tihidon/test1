@@ -8,7 +8,32 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-Provereno 26.11.2026. Aktuelni Snail City Agent Team na sajtu je **0.7.1**. U izdanju je 16 timskih profila. Tri nova profila pokrivaju pravnu procenu, defanzivni audit i kontrolu rada agenata. Lokalni profili i njihove verzije vode se u [AGENTS.md](../AGENTS.md) i pripadajućim `SKILL.md` fajlovima. Provera sadržaja izdanja i evaluacija ponašanja agenata imaju odvojene dokaze.
+Read-back 27.11.2026 CET (26.11. UTC), preko autorizovanog Plugin Creator konektora. Aktuelni [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) je **0.7.2**, release `pluginrel_6b08bb6baf108191ac666b7a64f19df1`; oba manifesta 0.7.2, USER/PRIVATE, 34 fajla i 16 skillova u inventaru. Usklađeni Coordinator i zajednički behavior guide sa SC-PRO-01/SC-KG-01; ostali skill headeri ostaju na stvarno pročitanim verzijama. Pravila važe za sve uloge kroz SC-BEH-01 i zajednički vodič; stvarna aktivacija u pojedinačnoj sesiji i ponašanje nisu dokazani read-backom.
+
+| Profil u Team paketu | Pročitana verzija |
+|---|---|
+| `coordinate-team` | 0.5.10 |
+| `team-agent-conduct` | 0.1.0 |
+| `team-architecture` | 0.5.8 |
+| `team-chromium-qa` | 0.5.5 |
+| `team-defensive-auditor` | 0.1.1 |
+| `team-engineering` | 0.5.7 |
+| `team-handoff` | 0.5.5 |
+| `team-legal` | 0.1.0 |
+| `team-marketing` | 0.3.1 |
+| `team-qa-assurance` | 0.5.6 |
+| `team-qa-planning` | 0.5.5 |
+| `team-qa-release` | 0.5.5 |
+| `team-reliability` | 0.5.6 |
+| `team-rendering` | 0.5.6 |
+| `team-stress-test` | 0.5.6 |
+| `team-visual-design` | 0.5.9 |
+
+Vlasnik je eksplicitno autorizovao korišćenje dogovorenih pravila. To nije nezavisni D7 dokaz niti blanket odobrenje budućih predloga, novih dozvola, troškova ili objava. Governance PR [test1 #62](https://github.com/tihidon/test1/pull/62) merge `41ca10af378265a34dcf4a93362e20e6084cd3a3`, [test-cl1 #10](https://github.com/tihidon/test-cl1/pull/10) merge `def076ac44a338f92e9e5d20e78cc5b67600c141`; originalni main push [CI test1](https://github.com/tihidon/test1/actions/runs/45908609505) i [CI test-cl1](https://github.com/tihidon/test-cl1/actions/runs/45908633343) success, attempt 1, po 25 tooling i 16 chromium-runtime koraka success; po 4 neistekla artefakta evidentirana. Sirovi logovi i sadržaj ZIP-ova nisu ponovo pregledani ovim zapisom. Tri dokumenta identični blobovi u oba repoa, HTML/SW nepromenjeni. PMV MERGED/CI PASS/D7 PENDING, K1–K10 behavioral NOT RUN. Bez tvrdnje o produkcionom deploy-u. Prethodni release `pluginrel_6b08b3dcb5f0819187b8779ffe0e4d12` (0.7.1) ostaje istorijski rollback referenca, ne aktivna verzija.
+
+### Istorijski DOC-003 snapshot — paket 0.7.1
+
+Provereno 26.11.2026. Tadašnji Snail City Agent Team na sajtu je **0.7.1**. U izdanju je 16 timskih profila. Tri nova profila pokrivaju pravnu procenu, defanzivni audit i kontrolu rada agenata. Lokalni profili i njihove verzije vode se u [AGENTS.md](../AGENTS.md) i pripadajućim `SKILL.md` fajlovima. Provera sadržaja izdanja i evaluacija ponašanja agenata imaju odvojene dokaze.
 
 | Profil u Team paketu | Verzija |
 |---|---|
