@@ -97,7 +97,7 @@ Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
 
 ## 6. Otvoreno
 
-1. **Javnost `docs/`:** repo nema `netlify.toml`; ako Netlify objavljuje koren repoa, ova dokumentacija je javno dostupna na sajtu igre. Proverava vlasnik u Netlify podešavanjima (publish directory); iz repoa se ne može utvrditi. NIJE PROVERENO.
+1. **Javnost `docs/`:** konfiguracija u repozitorijumu objavljuje whitelist fajlova iz `dist/`. Stvarni Netlify deploy i podešavanja sajta nisu provereni u ovom pregledu.
 2. **`AGENTS.md` u korenu test1:** dodat u PR #4 (spojen); sadrži redosled čitanja i ključna pravila sa vezom na ovaj indeks.
 3. **`verify_edit.py` K2:** ispravka (šest tačaka, `version.json` opcion) je u PR #13 `snail-city-test`, čeka spajanje. Provereno: test1 PASS, build tag 0.8.91 u kopiji FAIL.
 4. **`snail-city-test` SC-RAD-01 §3:** broj verzijskih tačaka ispravljen na šest u PR #13 (čeka spajanje).
@@ -133,7 +133,7 @@ Novi standardi su pripremljeni na osnovu commita 360efc7a88897c50a7d58305e1cbef0
 [Pouzdano debugovanje](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md): selected lint ratchet, exact AST duplicates, separate CDP counts/CSS deltas and shared specialist handoff. Candidate; game unchanged.
 
 ## SC-DEBUG-01 phase B
-Functional contract in [SC-DEBUG-01](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#phase-b--functional-contract-and-scope-candidate). Six real UI/IDB cases, 10 contract fixtures; CI candidate. No production change. B06 fixture not natural progression, cold offline desktop not Android.
+Functional contract in [SC-DEBUG-01](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#phase-b--functional-contract-and-scope-candidate). Six real UI/IDB cases, 10 contract fixtures; desktop CI PASS za B01–B06 (vidi §15). No production change. B06 fixture not natural progression, cold offline desktop not Android.
 
 ## 12. Team coordination (26.11.2026)
 
@@ -143,8 +143,20 @@ Snapshot koordinacije 26.11.2026: commit `5d57b32919477b6636c9093b2f81b9f8ae897e
 
 ## 13. Team CI coverage correction (26.11.2026)
 
-PR #38 merged at `f422312`. Run [45738038440](https://github.com/tihidon/test1/actions/runs/45738038440) tooling job passed but its explicit skill list did not include Rendering Performance. Add the existing rendering candidate to `skills-ref validate` and `to-prompt`; do not weaken any existing gate. Correct historical P3 labels in SC-RAD-01 and SC-AGENT-01 without changing normative rules. Candidate CI and independent review pending; no game/SW/deploy configuration changes. Official skill validation is not behavioral agent evaluation.
+PR #38 merged at `f422312`. Run [45738038440](https://github.com/tihidon/test1/actions/runs/45738038440) tooling job passed but its explicit skill list did not include Rendering Performance. Add the existing rendering candidate to `skills-ref validate` and `to-prompt`; do not weaken any existing gate. Correct historical P3 labels in SC-RAD-01 and SC-AGENT-01 without changing normative rules. CI za PR #39 je prošao (vidi §15); nezavisan pregled ostaje otvoren; no game/SW/deploy configuration changes. Official skill validation is not behavioral agent evaluation.
 
 ## 14. Model Spec — SC-BEH-01 (26.11.2026)
 
 [Zajedničko ponašanje agenata](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md), povezano iz AGENTS.md. Koordinator v0.3.0. Jedini evaluacioni katalog proširen na 26 REL/TEAM/BEH slučajeva; behavioral NOT RUN. Bez runtime/SW/deploy izmene.
+
+## 15. Stanje dokaza tima (26.11.2026)
+
+Dokumentacija pregledana na `test1@d82f17e2149c4c9ec5ed8e950c373eb7487f78de`. Različite verzije repo uputstava i ChatGPT paketa imaju zasebne izvore i cikluse provere.
+
+| Oblast | Potvrda i granica |
+|---|---|
+| CLI, statička analiza, build/publish | `tooling` PASS u [CI za PR #39](https://github.com/tihidon/test1/actions/runs/45738292152), uključujući proveru build/publish bajtova i validaciju strukture uputstava. Rezultat je vezan za taj run. |
+| Funkcionalni desktop Chromium | B01–B06 PASS u istom runu. Obuhvata UI, trajnost sejva i hladno offline pokretanje sa prekidom transporta do lokalnog origina. Detalji i raniji B04 FAIL u [SC-DEBUG-01](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#b04-qa-infrastructure-correction-26112026). |
+| Ponašanje agenata | [SC-BEH-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) definiše 26 slučajeva. Izvršna evaluacija kataloga NOT RUN. D7 nezavisan pregled nije potvrđen. |
+| Android, produkcija i performanse | Sveže izvršavanje za ovaj pregled NOT RUN. Za tvrdnju o uzroku zastoja potrebni su originalni trace, konkretan poziv, prvo odstupanje i uporediv kontrolni scenario. |
+| Noćni zadatak | Prijavljeno 0/10 ispravki i 0 commitova iz tog zadatka. Lokalni Git bio je blokiran DNS-om. Raniji CI prolazi pripadaju zasebnim PR-ovima. |
