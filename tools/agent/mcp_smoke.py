@@ -1,4 +1,5 @@
 """Actual MCP stdio + Chrome smoke; synthetic loopback only, Linux."""
+import hashlib
 import http.server
 import json
 import os
@@ -14,13 +15,16 @@ import tomllib
 
 ROOT = Path(__file__).resolve().parents[2]
 MARKER = "SC-MCP-FIXTURE-41"
+AFTER = "SC-MCP-ACTION-42"
+WRONG = "SC-MCP-NEGATIVE-99"
 REQUIRED = {"list_pages", "new_page", "evaluate_script", "take_snapshot",
             "performance_start_trace", "performance_stop_trace", "set_logpoints",
-            "take_heapsnapshot", "compare_heapsnapshots"}
+            "take_heapsnapshot", "compare_heapsnapshots", "click", "take_screenshot"}
 
 class Fixture(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
-        body = b"<!doctype html><title>SC MCP fixture</title><main id='probe'>SC-MCP-FIXTURE-41</main>"
+        body = (b"<!doctype html><title>SC MCP fixture</title><main id='probe'>SC-MCP-FIXTURE-41</main>"
+                b"<button id='advance' onclick=\"document.getElementById('probe').textContent='SC-MCP-ACTION-42'\">Advance fixture</button>")
         self.send_response(200)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
@@ -41,7 +45,23 @@ def fixture_page_id(pages, url):
     require(len(ids) == 1, "fixture page ID not uniquely listed")
     return int(ids[0])
 
+def snapshot_button_uid(snapshot):
+    text = "\n".join(c.get("text", "") for c in snapshot.get("content", []))
+    ids = re.findall(r'(?m)^\s*uid=([^\s]+)\s+button\s+"Advance fixture"(?:\s|$)', text)
+    require(len(ids) == 1, "fixture button UID not uniquely listed")
+    return ids[0]
+
+def has_marker(result, marker):
+    return any(re.search(r"(?<![A-Za-z0-9_-])" + re.escape(marker) + r"(?![A-Za-z0-9_-])",
+                         c.get("text", "")) for c in result.get("content", []))
+
+def artifact_digest(path):
+    require(path.is_file() and path.stat().st_size > 0, "missing artifact: " + path.name)
+    return {"file": path.name, "bytes": path.stat().st_size,
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+
 def main(out):
+    out = out.resolve()
     out.mkdir(parents=True, exist_ok=False)
     config = tomllib.loads((ROOT / "tools/agent/chrome-devtools-mcp.toml").read_text())["mcp_servers"]["chrome-devtools"]
     report = {"status": "NOT RUN", "scope": "synthetic tool smoke, not game",
@@ -98,12 +118,14 @@ def main(out):
             require(info["protocolVersion"] in ("2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"), "unsupported protocol")
             report["checks"].append("initialize")
             send("notifications/initialized", notification=True)
+            schemas = {}
             names = set()
             cursor = None
             seen = set()
             while True:
                 result = send("tools/list", {"cursor": cursor} if cursor else {})
                 names.update(t["name"] for t in result["tools"])
+                schemas.update({t["name"]: t["inputSchema"] for t in result["tools"]})
                 cursor = result.get("nextCursor")
                 if not cursor:
                     break
@@ -117,8 +139,39 @@ def main(out):
             page_id = fixture_page_id(pages, url)
             result = send("tools/call", {"name": "evaluate_script", "arguments": {
                 "pageId": page_id, "function": "() => document.querySelector('#probe').textContent"}})
-            require(any(MARKER in c.get("text", "") for c in result.get("content", [])), "fixture DOM oracle failed")
+            require(has_marker(result, MARKER) and not has_marker(result, AFTER), "fixture DOM oracle failed")
             report["checks"].append("real Chrome DOM read")
+            # Light qualification: actual native click, same marker oracle, trace and screenshot.
+            # Current server schema is authority, not assumed parameters from upstream main.
+            fields = {"take_snapshot": {"pageId"}, "click": {"pageId", "uid"},
+                      "performance_start_trace": {"pageId", "reload", "autoStop"},
+                      "performance_stop_trace": {"pageId", "filePath"},
+                      "take_screenshot": {"pageId", "filePath"}}
+            for name, expected in fields.items():
+                require(expected <= set(schemas[name].get("properties", {})), "schema mismatch: " + name)
+            def call(name, **arguments):
+                return send("tools/call", {"name": name, "arguments": arguments})
+            snapshot = call("take_snapshot", pageId=page_id)
+            uid = snapshot_button_uid(snapshot)
+            trace = out / "interaction.json"
+            shot = out / "interaction.png"
+            call("performance_start_trace", pageId=page_id, reload=False, autoStop=False)
+            try:
+                call("click", pageId=page_id, uid=uid)
+                after = call("evaluate_script", pageId=page_id,
+                             function="() => document.querySelector('#probe').textContent")
+                require(has_marker(after, AFTER) and not has_marker(after, MARKER), "native click oracle failed")
+                require(not has_marker(after, WRONG), "wrong expected marker accepted")
+                report["checks"].extend(["native click DOM change", "wrong expected marker rejected"])
+            finally:
+                call("performance_stop_trace", pageId=page_id, filePath=str(trace))
+            call("take_screenshot", pageId=page_id, filePath=str(shot))
+            data = json.loads(trace.read_text(encoding="utf-8"))
+            events = data.get("traceEvents") if isinstance(data, dict) else data
+            require(isinstance(events, list) and bool(events), "empty or invalid trace")
+            require(shot.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"), "not a PNG")
+            report["artifacts"] = [artifact_digest(trace), artifact_digest(shot)]
+            report["checks"].append("nonempty parsed trace and PNG")
             report["status"] = "PASS"
     except Exception as exc:
         report.update(status="FAIL", reason=str(exc))
