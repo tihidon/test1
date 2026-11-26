@@ -8,7 +8,7 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-Provereno 26.11.2026. Aktuelni Snail City Agent Team na sajtu je **0.7.0**. U izdanju je 16 timskih profila. Tri nova profila pokrivaju pravnu procenu, defanzivni audit i kontrolu rada agenata. Lokalni profili i njihove verzije vode se u [AGENTS.md](../AGENTS.md) i pripadajućim `SKILL.md` fajlovima. Provera sadržaja izdanja i evaluacija ponašanja agenata imaju odvojene dokaze.
+Provereno 26.11.2026. Aktuelni Snail City Agent Team na sajtu je **0.7.1**. U izdanju je 16 timskih profila. Tri nova profila pokrivaju pravnu procenu, defanzivni audit i kontrolu rada agenata. Lokalni profili i njihove verzije vode se u [AGENTS.md](../AGENTS.md) i pripadajućim `SKILL.md` fajlovima. Provera sadržaja izdanja i evaluacija ponašanja agenata imaju odvojene dokaze.
 
 | Profil u Team paketu | Verzija |
 |---|---|
@@ -16,7 +16,7 @@ Provereno 26.11.2026. Aktuelni Snail City Agent Team na sajtu je **0.7.0**. U iz
 | `team-agent-conduct` | 0.1.0 |
 | `team-architecture` | 0.5.8 |
 | `team-chromium-qa` | 0.5.5 |
-| `team-defensive-auditor` | 0.1.0 |
+| `team-defensive-auditor` | 0.1.1 |
 | `team-engineering` | 0.5.7 |
 | `team-handoff` | 0.5.5 |
 | `team-legal` | 0.1.0 |
