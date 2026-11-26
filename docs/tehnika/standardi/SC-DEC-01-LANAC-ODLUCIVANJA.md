@@ -2,6 +2,10 @@
 
 Status: kandidat za CI i nezavisnu evaluaciju; vlasnik odobrio nadogradnju. Baseline 9d638c4730caf63c02e2c01397a1eea96f2197eb. Dodatak SC-REL-01, SC-QA-02, SC-AGENT-01, PL-01, PW-01; ne zamenjuje nijedan gate. Jedan decision record po zadatku; dva specijalistička skilla primenjuju postojeći D0–D8 proces.
 
+## Predaja nalaza i odluka
+
+Handoff pokazuje postojeći zapis zadatka sa odobrenim opsegom, tačnim commitom ili buildom, izvršiocima, relevantnim diffom, odlukama i dostupnim dokazima. Za bezbednosni ili etički nalaz koristi polja i pragove iz [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md). Zabeleži odvojene zaključke auditora i QA, neslaganje i ciljnu proveru. Status provere i odluka vlasnika o merge/deploy vode se odvojeno. D7 nezavisno proverava originalne dokaze.
+
 ## D0–D8
 - D0 Engineering: zamrzni zahtev, scope, baseline SHA, candidate plan, nezavisni oracle i required gates pre izmena. Za dirty tree zabeleži diff/hash; ne tvrdi clean commit identity za lokalne izmene.
 - D1 Engineering: pročitaj stvarno telo, pozivaoce i dinamičke ivice, state reads/writes, lifecycle, ugovor i odobrena pravila. Razlikuj OBSERVED, HYPOTHESIS, PROVEN. Dokumentacija ne dokazuje runtime.

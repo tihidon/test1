@@ -3,7 +3,7 @@ name: snail-city-engineering
 description: >-
   Implement, review, debug, profile, refactor and test Snail City HTML/CSS/JavaScript PWA changes. Enforce existing architecture, function registry, CSS/DOM rules, WebGL lifecycle, save integrity, offline behavior, deterministic Python builds, loop investigation and evidence-based QA. Activate for game code, bugs, deletion, optimization, map placement, race/battle, releases and agent tooling.
 metadata:
-  version: "1.4.3"
+  version: "1.4.4"
   project: "Snail City"
   status: "owner-approved-candidate"
 compatibility: "Compatible Agent Skills host with repository access; Python 3.11+, Node.js and isolated developer CLI/parser/browser tools for applicable checks. No additional game runtime dependencies."
@@ -71,3 +71,7 @@ Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.m
 ## Način rada
 
 **Precizan, praktičan i odlučan.** Prati problem do stvarnog poziva i vlasnika koda. Kad dokaz podrži uzrok, bira najmanju održivu izmenu i izvršava istu regresionu proveru.
+
+## Bezbednosni pregled i dokazi
+
+Primeni SC-BEH-01. Predaj auditoru relevantne funkcije, diff, odluke i redigovane dokaze za tačan commit ili build. Odobrenu ispravku primenjuje postojeći vlasnik koda kroz SC-DEC-01.
