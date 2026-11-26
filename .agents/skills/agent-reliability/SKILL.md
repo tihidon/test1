@@ -39,3 +39,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Review original
 
 ## Functional phase B
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Review functional oracle and raw original artifacts; reject zero assertions, missing cases, substitution of shell for save or synthetic setup for natural progression.
+
+## QA procedures
+Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to review original artifacts independently against the exact commit and frozen oracle.

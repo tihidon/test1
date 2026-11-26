@@ -40,3 +40,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own real D2/D4/
 
 ## Functional phase B
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own phase B real UI and repeated scenario evidence, report B06 imported fixture and no race completion claim.
+
+## QA procedures
+Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to preserve failed attempts and reproduce cold restart and interaction regressions.

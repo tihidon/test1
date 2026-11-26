@@ -64,3 +64,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Use rev
 
 ## Infrastructure failure recovery
 Apply the canonical SC-DEBUG-01 infrastructure strategy pivot. Record unchanged failure and choose an authorized alternate execution path; verify snapshot bytes/modes and history requirements. Keep D7 and all existing gates. Do not mistake connector read access for a local checkout.
+
+## QA procedures
+Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to freeze migration expectations and define repeatable regression assertions.

@@ -60,7 +60,7 @@ Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --
 
 ## Team coordination (26.11.2026)
 
-Team plugin v0.2.0 koordinira postojeći SC-DEC-01, ne uvodi drugi standard ili registar. Grafički specijalista koristi [projektni rendering candidate](.agents/skills/snail-city-rendering-performance/SKILL.md) kada je odgovarajući zadatak; podržava D1/D3/D4/D6, ne menja vlasnike faza. Bez stvarne delegacije prijaviti sekvencijalno izvršavanje, D7 nezavisnost BLOCKED. Originalni zasebni rendering i komunikacija skill nisu verifikovani; handoff prema SC-DEC-01 ostaje kanonski.
+Team plugin v0.5.5 koordinira postojeći SC-DEC-01, ne uvodi drugi standard ili registar. Grafički specijalista koristi [projektni rendering candidate](.agents/skills/snail-city-rendering-performance/SKILL.md) kada je odgovarajući zadatak; podržava D1/D3/D4/D6, ne menja vlasnike faza. Bez stvarne delegacije prijaviti sekvencijalno izvršavanje, D7 nezavisnost BLOCKED. Handoff prema SC-DEC-01 ostaje kanonski.
 
 ## Zajedničko ponašanje svih agenata
 Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) uz SC-DEC-01 i SC-REL-01. Važi za svih šest projektnih skillova, koordinatora i buduće uloge, unutar stvarne hijerarhije instrukcija platforme. Team plugin v0.3.0 sadrži prateće uputstvo; nezavisna evaluacija nije izvršena.
@@ -74,3 +74,6 @@ Every agent must apply [SC-PMV-01](docs/tehnika/standardi/SC-PMV-01-POST-MERGE-V
 
 ## Shared Chrome DevTools MCP — candidate
 Use [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md#chrome-devtools-mcp--p0-kandidat-26112026) and SC-QA-02. Coordinator checks actual availability; Engineering/Architecture own identity and setup; QA/Stress reproduce; Rendering inspects traces and heaps; Reliability independently reviews originals. Isolated localhost only. MCP diagnostics do not replace Playwright B01–B06, PL-01 uninstrumented A/B/R, PW-01 or D7. Preserve original artifacts, target SHA and browser/tool version. Missing MCP does not block existing QA; pivot. Installed ChatGPT plugin and Codex activation are separate from repo configuration.
+
+## QA procedure za agente
+Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavisni D7 pregled koristi [zajedničke QA procedure](.agents/skills/chromium-runtime-qa/references/qa-procedures.md). Primeni ih prema ulozi i važećim standardima projekta.
