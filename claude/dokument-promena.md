@@ -227,3 +227,7 @@ Candidate Netlify command uses existing Python build, then exact byte comparison
 ## Usklađivanje test1 / test-cl1 — 26.11.2026
 
 Zajednički referentni snapshot: test1 `e51b1e6cba31bedd61ad0bbb269c90f065117279`, test-cl1 `8d9fec8405674cbfcc97dd97224bb3a8de596c15`. Oba imaju iste runtime/src/SW i standarde; Cloudflare ima četiri posebna infrastrukturna fajla. Usklađeni AGENTS.md, docs/README.md, kanonski PW-01 i ovaj changelog, sa istim sadržajem u oba kandidata. Zadržana istorija P1/P3/P10, neuspešni CI i razlike između hostinga. Aktuelni status u docs/README.md; fizički test je potvrda vlasnika, ne pun device dokaz. Nezavisni D7, javni HTTP integritet i formalno release zatvaranje ostaju otvoreni. Docs-only: nema izmene runtime-a, SW, hostinga, CI gate-ova ili istorijskih skill kopija; nema odobrenog merge/deploy. Potrebno pregledati oba PR-a i izvršiti PMV posle merge-a.
+
+### DOC-003 — razdvajanje istorije i aktuelnih verzija (26.11.2026)
+- Istorijski QA-001 i v0.5.1 ostaju sačuvani. Team 0.5.5 i 11 stvarnih skill metapodataka evidentirani odvojeno u docs/README.md; team-handoff 0.5.4, ostalih 10 0.5.5.
+- DOC-VER-01 u SC-AGENT-01; AGENTS i PMV upućuju na isti registar. Bez izmene igre, SW, CI ili deployment konfiguracije; bez ponovne objave plugina. Kandidat za oba aktivna repoa; merge/PMV i nezavisni pregled nisu potvrđeni.
