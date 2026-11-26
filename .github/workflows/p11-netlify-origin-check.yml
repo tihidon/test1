@@ -1,0 +1,70 @@
+name: P11 Netlify read-only origin verification
+on:
+  push:
+    branches: ['qa/p11-netlify-origin-check']
+    paths: ['.github/workflows/p11-netlify-origin-check.yml']
+permissions:
+  contents: read
+jobs:
+  verify-origin:
+    if: github.repository == 'tihidon/test1' && github.ref == 'refs/heads/qa/p11-netlify-origin-check'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: e51b1e6cba31bedd61ad0bbb269c90f065117279
+          persist-credentials: false
+      - name: Verify pinned P11 reference
+        run: |
+          test "$(git rev-parse HEAD)" = e51b1e6cba31bedd61ad0bbb269c90f065117279
+          python3 tools/build.py
+          cmp dist/index.html index.html
+          echo '492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a  index.html' | sha256sum -c -
+      - name: Compare HTTPS public shell bytes and response headers
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, pathlib, urllib.request, urllib.error, sys
+          origin = "https://exquisite-dolphin-2a094a.netlify.app"
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self, req, fp, code, msg, headers, newurl):
+                  return None
+          opener = urllib.request.build_opener(NoRedirect())
+          checks = []
+          for remote, local, mime in [
+              ("/", "index.html", "text/html"),
+              ("/index.html", "index.html", "text/html"),
+              ("/sw.js", "sw.js", "javascript"),
+              ("/manifest.webmanifest", "manifest.webmanifest", "manifest"),
+              ("/img/icon-192.png", "img/icon-192.png", "image/png"),
+              ("/img/icon-512.png", "img/icon-512.png", "image/png"),
+              ("/img/icon-maskable.png", "img/icon-maskable.png", "image/png"),
+              ("/privacy.html", "privacy.html", "text/html"),
+              ("/delete-account.html", "delete-account.html", "text/html"),
+          ]:
+              row = {"path": remote, "expected_sha256": hashlib.sha256(pathlib.Path(local).read_bytes()).hexdigest()}
+              try:
+                  request = urllib.request.Request(origin + remote, headers={"Accept-Encoding":"identity", "Cache-Control":"no-cache", "User-Agent":"SnailCity-QA-readonly/1"})
+                  with opener.open(request, timeout=25) as response:
+                      body = response.read(16 * 1024 * 1024 + 1)
+                      row.update(status=response.status, url=response.url,
+                                 bytes=len(body), sha256=hashlib.sha256(body).hexdigest(),
+                                 headers={k:response.headers.get(k) for k in ("Content-Type","Cache-Control","ETag","Age","Content-Encoding","X-Nf-Request-Id","Service-Worker-Allowed")})
+                      actual = (response.headers.get("Content-Type") or "").lower()
+                      row["pass"] = response.status == 200 and response.url == origin + remote and len(body) <= 16*1024*1024 and row["sha256"] == row["expected_sha256"] and mime in actual
+              except Exception as exc:
+                  row.update(error=str(exc), **{"pass":False})
+              checks.append(row)
+              print(json.dumps(row), flush=True)
+          report = {"scope":"read-only public HTTPS response bytes; no actual installed PWA, deploy ID or player save verification", "reference":"e51b1e6cba31bedd61ad0bbb269c90f065117279", "origin":origin, "checks":checks, "status":"PASS" if all(x["pass"] for x in checks) else "FAIL_OR_BLOCKED"}
+          pathlib.Path("origin-report.json").write_text(json.dumps(report,indent=2)+"\n")
+          sys.exit(0 if report["status"]=="PASS" else 1)
+          PY
+      - name: Preserve origin evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-p11-netlify-origin
+          path: origin-report.json
+          if-no-files-found: warn
+          retention-days: 14
