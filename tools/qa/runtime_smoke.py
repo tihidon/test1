@@ -1,7 +1,7 @@
 """Actual local Chromium shell test; no game source modifications."""
 import argparse
 import hashlib
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler
 import json
 import re
 from pathlib import Path
@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import threading
+from origin_transport import OriginTransport
 from dom_audit import measure_dom
 from cdp_diagnostic import Diagnostic, has_observations
 
@@ -58,14 +58,14 @@ def scenario_steps(path):
     return data
 
 
-def run(root, out, scenario, diagnostic=False):
+def run(root, out, scenario, diagnostic=False, functional=False):
     try:
         from playwright.sync_api import sync_playwright, expect
     except ImportError:
         write(out, "report.json", {"status":"BLOCKED","reason":"Playwright not installed"})
         return 2
     report = {"status":"FAIL","scope":"local Chromium shell; not complete gameplay, save or Android QA",
-              "diagnostic_mode":diagnostic,"steps":[],"dom_snapshots":[],"page_errors":[],"local_http_errors":[],"blocked_external_requests":0}
+              "diagnostic_mode":diagnostic,"functional_mode":functional,"steps":[],"dom_snapshots":[],"page_errors":[],"local_http_errors":[],"blocked_external_requests":0}
     def stage(name):
         report["steps"].append(name)
         write(out,"report.json",report)
@@ -97,12 +97,18 @@ def run(root, out, scenario, diagnostic=False):
                 def end_headers(self):
                     self.send_header("Cache-Control","no-cache")
                     super().end_headers()
-            server=ThreadingHTTPServer(("127.0.0.1",0),lambda *a,**kw:Handler(*a,directory=tmp,**kw))
-            thread=threading.Thread(target=server.serve_forever,daemon=True)
-            thread.start()
-            origin=f"http://127.0.0.1:{server.server_port}"
+            transport=OriginTransport(lambda *a,**kw:Handler(*a,directory=tmp,**kw))
+            transport.start()
+            origin=transport.origin
             report["origin"]=origin
             try:
+                if functional:
+                    from functional_suite import run_suite
+                    with sync_playwright() as pw:
+                        run_suite(pw,origin,report,out,stage,transport)
+                    report["status"]="PASS"
+                    write(out,"report.json",report)
+                    return 0
                 with sync_playwright() as pw:
                     stage("launch Chromium")
                     browser=pw.chromium.launch(headless=True)
@@ -219,9 +225,7 @@ def run(root, out, scenario, diagnostic=False):
                         context.close()
                         browser.close()
             finally:
-                server.shutdown()
-                server.server_close()
-                thread.join(timeout=3)
+                transport.stop()
         report["status"]="PASS"
         report["scenario_steps_executed"]=len(steps)
     except Exception as exc:
@@ -236,6 +240,10 @@ if __name__=="__main__":
     p.add_argument("--root",type=Path,required=True)
     p.add_argument("--out",type=Path,required=True)
     p.add_argument("--scenario",type=Path)
-    p.add_argument("--diagnostic",action="store_true")
+    mode=p.add_mutually_exclusive_group()
+    mode.add_argument("--diagnostic",action="store_true")
+    mode.add_argument("--functional",action="store_true")
     a=p.parse_args()
-    sys.exit(run(a.root.resolve(),a.out.resolve(),a.scenario,a.diagnostic))
+    if a.functional and a.scenario:
+        p.error("functional suite uses its own reviewed contract, not --scenario")
+    sys.exit(run(a.root.resolve(),a.out.resolve(),a.scenario,a.diagnostic,a.functional))

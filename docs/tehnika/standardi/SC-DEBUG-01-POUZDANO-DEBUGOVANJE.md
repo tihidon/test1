@@ -29,10 +29,30 @@ From repository root with isolated CI dependencies installed:
 - Preserve original artifacts in private CI; do not expose source/data from real accounts.
 
 ## Next phase (NOT RUN)
-Real gameplay/save/cold reopen scenarios; actual RAF/timer/listener teardown, async interleaving, GPU/heap/texture identity, layout trace, phase-separated CPU, generated-to-src offset map, flake harness, near clones, lockfile and separately verified Node24 actions, agent behavioral eval. Physical HONOR proof remains separate.
+Remaining functional depth (race completion/reward, natural progression, direct reducer and concurrent command rejection, save recovery/cache upgrade); actual RAF/timer/listener teardown, async interleaving, GPU/heap/texture identity, layout trace, phase-separated CPU, generated-to-src offset map, flake harness, near clones, lockfile and separately verified Node24 actions, agent behavioral eval. Physical HONOR proof remains separate.
 
 ## Sources checked 2026-11-26
 ESLint https://eslint.org/blog/2026/11/eslint-v10.15.0-released/ ; https://eslint.org/docs/latest/integrate/nodejs-api ; https://eslint.org/docs/latest/rules/
 CDP https://chromedevtools.github.io/devtools-protocol/tot/Profiler/ ; https://chromedevtools.github.io/devtools-protocol/tot/CSS/
 DevTools https://developer.chrome.com/docs/devtools/javascript/breakpoints/ ; https://developer.chrome.com/docs/devtools/coverage/
 Git https://git-scm.com/docs/git-bisect . Installed browser/rules and actual fixtures determine compatibility.
+
+
+## Phase B — functional contract and scope (candidate)
+Reviewed against fcce2f365b64230b1ac4e554265d50329d8b559d, src/js/block-21.js Git blob 893ac8998acabcd0dde557f71de9cc90cba303c2 and current block-08.js/catalog. No production file changes. B uses the same local publish whitelist/origin and external watchdog as shell QA; separate persistent Chromium profiles, no diagnostic coverage or CPU profiling. Traces are evidence, not timing. Run `python tools/qa/runtime_watchdog.py --functional --timeout 300 --out /tmp/sc-functional-new`. Existing --scenario and --diagnostic modes retain their scope; cannot combine with --functional.
+
+| ID | Independent expected behavior |
+|---|---|
+| B01 | Collection, progress, settings, incubator, shop and race gate through real UI. Level 1 race construction disabled. No durable inventory changes. |
+| B02 | 20 shop open/close cycles from places; exact cycle count, same inventory; DOM snapshots first/last. No leak or FPS inference. |
+| B03 | Profile name change via real settings UI; same saveId, higher committed revision, visible name. Not a level change. |
+| B05 | Fresh level-1 profile has one egg and capacity two; one standard egg costs 100 sliz (block-08.js L12, block-21.js L384/L835–842). Exact debit, one new unique egg of kind 0, no other currency/level/snail changes. Disabled second purchase clicked natively, 300ms bounded negative observation; not direct reducer/concurrency proof. UI incubator count matches IDB. |
+| B04 | Close persistent Chromium, reopen same profile/origin in new process/context with network offline; SW response matches HTML SHA and uncached fetch rejects; same save identity, revision nondecreasing, same wallet, level, eggs/snails and visible name/count. Not Android Force Stop or physical network test. |
+| B06 | Separate fresh profile; actual UI import synthetic level 3 and built races fixture, then boot normalization. No natural level-up/construction claim. Start training, observe race progress >0, pause, abandon, same canvas, real first shop action after return. No finish/reward/latency claim. |
+
+Source anchors: block-21.js L486–494 newGame; L835–842 buy-egg; L929–931 player-name; L1236 revision; L3310–3388 IndexedDB current/atomic commit; L3548–3554 locked building; L3765–3798 incubator; L3846–3903 shop; L3962–3984 race; L4300–4347 places/settings; L4459–4495 screen; L5096–5159 show/dismiss/open; L5246–5280 commit/replace; L5333–5410 start/return/pause; L5959–5987 controls; L6294–6299 file import; L6351–6437 boot. Actual template navigation controls confirmed. Historical docs are not current execution evidence.
+
+Readonly IDB oracle opens existing database `snail-city-rebuild` version 1, store `snapshots`, key `current`; no fallback, abort unexpected upgrade. Wait for read transaction completion; only test synthetic data, hash save/egg/snail identifiers in summary. Compare stable inventory fields rather than requiring identical revision or timestamps because ordinary settlement can advance them. No runtime state injection. Fixture bytes SHA-256 retained; imported state is explicit setup, not test result. Failure/timeout stops run; unfinished cases NOT RUN/RUNNING (not PASS). Watchdog rejects missing case or zero assertions and missing trace/screenshot. CI requires all B01–B06 (execution order B01 B02 B03 B05 B04 B06) and existing gates. Contract tests exercise double debit, duplicate egg, wrong kind, lost commit, reset, wrong identity, inventory mutation and missing coverage. Real CI evidence pending; no behavioral evaluation claim.
+
+### B04 QA infrastructure correction (26.11.2026)
+Run 45725385724: B01/B02/B03/B05 passed (9/22/3/4 recorded checks); B04 failed at uncached network probe, B06 NOT RUN. The failure does not establish a production SW or storage defect. The old probe used a nonexistent URL and checked rejection under browser offline emulation; an HTTP response (including 404) resolves fetch. Actual response status and reason for emulation behavior were not retained, so no causal claim about Playwright routing. The revised test checks a known reachable non-core query variant of index.html (no-store) for HTTP 200 online, closes the real localhost listener before reopening the same persistent profile, verifies TCP connection refusal before and after navigation, requires the same probe to reject, then checks unchanged original save/identity/UI assertions and restarts the same origin for B06. Browser offline emulation remains enabled. This is a stronger independent transport cut, not a weakened oracle or a physical Android/network test. Single server owner shared with existing smoke; two stdlib regression tests verify real cut, restoration and rejection of an active server. No game/SW change. Prior failures retained. CI pending.

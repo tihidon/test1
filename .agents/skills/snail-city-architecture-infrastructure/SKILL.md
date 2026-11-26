@@ -44,3 +44,6 @@ Use the role procedure and evidence record for every investigation. Other refere
 
 ## Reliable debugging and specialist handoff
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own D0/D1/D3/D5 and shared lint/AST/CI; preserve existing owner and frozen oracle; no self-approval.
+
+## Functional phase B
+Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own storage contract and frozen source/build identity. No new storage owner or runtime modifications for test.
