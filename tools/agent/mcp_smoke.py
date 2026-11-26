@@ -66,7 +66,7 @@ def main(out):
     config = tomllib.loads((ROOT / "tools/agent/chrome-devtools-mcp.toml").read_text())["mcp_servers"]["chrome-devtools"]
     report = {"status": "NOT RUN", "scope": "synthetic tool smoke, not game",
               "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
-              "command": [config["command"], *config["args"]], "checks": []}
+              "command": [config["command"], *config["args"], "--filesystem-root", str(out)], "checks": []}
     server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Fixture)
     threading.Thread(target=server.serve_forever, daemon=True).start()
     url = f"http://127.0.0.1:{server.server_port}/"
