@@ -173,3 +173,10 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Staro:** ID-only egg comparison; purchase omitted profile and built invariants.
 - **Novo:** ID/kind pairs, strict integer kind, duplicate rejection, unchanged existing egg kind/profile/building. Preserved time/revision flexibility.
 - **Dokaz:** baseline four false accepts of eight synthetic controls; candidate 28 local fixture methods PASS. Real Chromium CI and independent review pending. No game/SW/balance or production save changes.
+
+
+### QA-003 — PW-DEF-01 reproduction candidate (26.11.2026)
+- **Version:** game/SW unchanged.
+- **Scope:** diagnostic QA and CI only; tools/qa/pwa_migration_diagnostic.py, engineering-gates.yml, SC-DEBUG-01.
+- **Old:** no real Chromium cache migration diagnostic; Node VM reproduced conditional same-name cache loss.
+- **New:** exact-SW synthetic origin test, real transport cut, cache bytes/IDB controls, explicit DEFECT_REPRODUCED status, artifacts. No product acceptance claim; real CI pending.
