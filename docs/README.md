@@ -162,3 +162,6 @@ Dokumentacija pregledana na `test1@d82f17e2149c4c9ec5ed8e950c373eb7487f78de`. Ra
 | Ponašanje agenata | [SC-BEH-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) definiše 26 slučajeva. Izvršna evaluacija kataloga NOT RUN. D7 nezavisan pregled nije potvrđen. |
 | Android, produkcija i performanse | Sveže izvršavanje za ovaj pregled NOT RUN. Za tvrdnju o uzroku zastoja potrebni su originalni trace, konkretan poziv, prvo odstupanje i uporediv kontrolni scenario. |
 | Noćni zadatak | Prijavljeno 0/10 ispravki i 0 commitova iz tog zadatka. Lokalni Git bio je blokiran DNS-om. Raniji CI prolazi pripadaju zasebnim PR-ovima. |
+
+## 16. SC-TEAM-004 — infrastructure lesson (26.11.2026)
+See [SC-DEBUG-01 infrastructure strategy pivot](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). The authenticated API tree was accessible at `8ed4417a6d2e423800a88436b4465a7a28f1dcab`; full local snapshot and runtime were not verified. Engineering/Architecture and AGENTS entry points refer to the same rule. External Coordinator package update and behavioral evaluation remain separate. NS01 oracle is defined in the canonical standard; no game fix claimed.

@@ -47,3 +47,6 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own D0/D1/D3/D5
 
 ## Functional phase B
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own storage contract and frozen source/build identity. No new storage owner or runtime modifications for test.
+
+## Infrastructure strategy pivot
+Own the SC-DEBUG-01 infrastructure strategy pivot: preserve exact errors, change a material condition or select a viable authorized API/snapshot/CI route, verify source identity and history requirements, report BLOCKED per gate rather than repeating identical failures. Do not weaken QA or claim independent review.

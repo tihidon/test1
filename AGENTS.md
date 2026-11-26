@@ -64,3 +64,6 @@ Team plugin v0.2.0 koordinira postojeći SC-DEC-01, ne uvodi drugi standard ili 
 
 ## Zajedničko ponašanje svih agenata
 Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) uz SC-DEC-01 i SC-REL-01. Važi za svih šest projektnih skillova, koordinatora i buduće uloge, unutar stvarne hijerarhije instrukcija platforme. Team plugin v0.3.0 sadrži prateće uputstvo; nezavisna evaluacija nije izvršena.
+
+## Infrastructure failures — mandatory strategy pivot
+Apply [SC-DEBUG-01 infrastructure strategy pivot](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). Do not repeat unchanged failed operations. Architecture records failure, selects a viable authorized alternative (API, verified snapshot, private CI), preserves identity and gates; Coordinator routes unblocked work. No fabricated PASS or independent review.
