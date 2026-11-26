@@ -56,3 +56,6 @@ https://developer.chrome.com/docs/devtools/performance/reference/
 
 ## CI incident 25.11.2026 — v1.0.1
 Run 45703980206, job 139522291296: package installation succeeded but Playwright 1.56.0 rejected Ubuntu 26.04 (ubuntu-latest). Browser, watchdog fixtures and shell smoke did not run. Artifact upload also failed because runtime directory did not exist. Classification: infrastructure FAIL; game runtime BLOCKED/NOT RUN. Pin browser job to ubuntu-24.04, preserve setup log/status even when browser setup fails, retain fail-fast checks. Do not interpret absence of game report as PASS. No game files changed. Exact new candidate CI must prove compatibility.
+
+## Chrome DevTools MCP integration candidate
+SC-CLI-01 owns pinned setup. Use exploratory UI, logpoints, heap retaining paths and raw trace on isolated test browser. Existing Playwright watchdog remains regression owner. Discovery/fixture PASS cannot replace B01–B06, physical Android, PW-01 or D7. Record actual tool/browser versions, source hash, target, raw artifacts and oracle. Separate diagnostics from PL-01 timing runs. NS01/NS02 first targets after live capability verification. No game modification based on tooling smoke.

@@ -71,3 +71,6 @@ Apply [SC-DEBUG-01 infrastructure strategy pivot](docs/tehnika/standardi/SC-DEBU
 ## Post-merge verification — SC-PMV-01
 
 Every agent must apply [SC-PMV-01](docs/tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) after each merge; Coordinator owns closure, not independent self-approval. Keep G0–G7 and D0–D8 intact. Actual merge SHA, ancestry, exact-SHA post-merge CI, relevant regressions and evidence are mandatory before VERIFIED. No unapproved release or rollback. PR CI is not post-merge CI.
+
+## Shared Chrome DevTools MCP — candidate
+Use [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md#chrome-devtools-mcp--p0-kandidat-26112026) and SC-QA-02. Coordinator checks actual availability; Engineering/Architecture own identity and setup; QA/Stress reproduce; Rendering inspects traces and heaps; Reliability independently reviews originals. Isolated localhost only. MCP diagnostics do not replace Playwright B01–B06, PL-01 uninstrumented A/B/R, PW-01 or D7. Preserve original artifacts, target SHA and browser/tool version. Missing MCP does not block existing QA; pivot. Installed ChatGPT plugin and Codex activation are separate from repo configuration.

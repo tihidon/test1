@@ -1,0 +1,38 @@
+name: Chrome DevTools MCP candidate smoke
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/agent/chrome-devtools-mcp.toml'
+      - 'tools/agent/mcp_smoke.py'
+      - '.github/workflows/chrome-devtools-mcp.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mcp-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Version and synthetic browser probe
+        run: |
+          mkdir -p "$RUNNER_TEMP/sc-mcp"
+          set -o pipefail
+          { node --version; npm --version; google-chrome --version; python -m py_compile tools/agent/mcp_smoke.py; python tools/agent/mcp_smoke.py "$RUNNER_TEMP/sc-mcp/probe"; } 2>&1 | tee "$RUNNER_TEMP/sc-mcp/setup.log"
+      - name: Preserve MCP evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-chrome-devtools-mcp-evidence
+          path: ${{ runner.temp }}/sc-mcp/
+          if-no-files-found: error
+          retention-days: 14
