@@ -1,6 +1,6 @@
 # SC-RAD-01 — Postavka, izmena i brisanje koda (radni postupak za agente)
 
-> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Istorijski izvršni kod na `main` bio je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Za trenutni target proveriti checkout i [AGENTS.md](../../../AGENTS.md); istorijski indeks je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
 
 > **Kopija za `tihidon/test1` (0.8.92-css-unified-p1).** Izvor: [snail-city-test@12f986c](https://github.com/tihidon/snail-city-test/blob/12f986c/docs/tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md) (grana otvorenog PR #12). Provereno prema test1 `main` `2d66e55` (`index.html` SHA-256 `c19cc1ac…`) 25.11.2026: §3 je **prepisan za test1** (izvorni §3 opisuje `snail-city-test` 0.8.90). Postupak (§4–§7) ne zavisi od builda. Izmene u odnosu na izvor: §3 tabela (uključujući ispravku broja verzijskih tačaka), R04 komande, R05. Pregled svih kopija: [docs/README.md](../../README.md).
 
