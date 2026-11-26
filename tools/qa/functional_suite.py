@@ -50,7 +50,7 @@ def wait_save(page,predicate,description,timeout=10):
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
-def run_suite(pw,origin,report,out,stage):
+def run_suite(pw,origin,report,out,stage,transport):
     report["scope"]="local desktop Chromium functional QA; no physical Android, cloud or full progression"
     report["functional_cases"]={k:{"status":"NOT RUN","assertions":0} for k in CASE_IDS}
     report["functional_mode"]=True
@@ -61,6 +61,16 @@ def run_suite(pw,origin,report,out,stage):
         "B05 negative control is disabled native button and bounded observed no mutation; not direct reducer rejection or concurrent command test.",
         "Offline is same persistent desktop profile, new Chromium process/context, same origin; not installed Android/Force Stop.",
         "DOM probes and Playwright tracing are diagnostic, not performance benchmarks."]
+    probe_path="/index.html?__sc_qa_network_probe__=1"
+    def network_probe(page):
+        return page.evaluate("""async (path) => {
+          try {
+            const r=await fetch(path,{cache:'no-store'});
+            return {resolved:true,status:r.status};
+          } catch(e) {
+            return {resolved:false,error:String(e)};
+          }
+        }""",probe_path)
     active=[None]
     def step(label):
         stage("functional "+label)
@@ -226,19 +236,26 @@ def run_suite(pw,origin,report,out,stage):
                 saved=read(p)
                 rec.update(before=snapshot(before),after=snapshot(saved),negative_observation_ms=300)
             case("B05",buy)
+            report["functional_online_network_probe"]=network_probe(p)
+            require(report["functional_online_network_probe"]=={"resolved":True,"status":200},
+                    "positive uncached network control failed")
+            step("B04 online network control complete")
         finally:
             close(ctx,"functional-online-trace.zip")
 
         def cold(rec):
             require(saved is not None,"no committed purchase")
+            transport.stop()
+            transport.assert_closed()
+            rec["origin_port_closed_before_reopen"]=True
+            step("B04 origin transport stopped")
             ctx,p=launch(profile,offline=True)
             try:
                 rec["identity"]=navigate(p,offline=True)
-                network_failed=p.evaluate("""async () => {
-                  try{await fetch('/__sc_qa_uncached_network_probe__',{cache:'no-store'});return false;}
-                  catch(e){return true;}
-                }""")
-                check(network_failed,"uncached network probe must fail")
+                rec["offline_network_probe"]=network_probe(p)
+                check(rec["offline_network_probe"]["resolved"] is False,"uncached network probe must fail")
+                transport.assert_closed()
+                check(True,"origin port still closed")
                 after=read(p)
                 durable(saved,after);check(True,"same durable save after process close/reopen")
                 expect(p.locator("#level")).to_have_text(str(saved["level"]))
@@ -253,6 +270,9 @@ def run_suite(pw,origin,report,out,stage):
             finally:
                 close(ctx,"functional-offline-trace.zip")
         case("B04",cold)
+        transport.start()
+        require(transport.origin==origin,"origin changed after restore")
+        step("B04 origin restored for independent race profile")
 
         def race(rec):
             ctx,p=launch(Path(tmp)/"race-fixture")

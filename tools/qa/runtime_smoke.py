@@ -1,7 +1,7 @@
 """Actual local Chromium shell test; no game source modifications."""
 import argparse
 import hashlib
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler
 import json
 import re
 from pathlib import Path
@@ -9,7 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import threading
+from origin_transport import OriginTransport
 from dom_audit import measure_dom
 from cdp_diagnostic import Diagnostic, has_observations
 
@@ -97,16 +97,15 @@ def run(root, out, scenario, diagnostic=False, functional=False):
                 def end_headers(self):
                     self.send_header("Cache-Control","no-cache")
                     super().end_headers()
-            server=ThreadingHTTPServer(("127.0.0.1",0),lambda *a,**kw:Handler(*a,directory=tmp,**kw))
-            thread=threading.Thread(target=server.serve_forever,daemon=True)
-            thread.start()
-            origin=f"http://127.0.0.1:{server.server_port}"
+            transport=OriginTransport(lambda *a,**kw:Handler(*a,directory=tmp,**kw))
+            transport.start()
+            origin=transport.origin
             report["origin"]=origin
             try:
                 if functional:
                     from functional_suite import run_suite
                     with sync_playwright() as pw:
-                        run_suite(pw,origin,report,out,stage)
+                        run_suite(pw,origin,report,out,stage,transport)
                     report["status"]="PASS"
                     write(out,"report.json",report)
                     return 0
@@ -226,9 +225,7 @@ def run(root, out, scenario, diagnostic=False, functional=False):
                         context.close()
                         browser.close()
             finally:
-                server.shutdown()
-                server.server_close()
-                thread.join(timeout=3)
+                transport.stop()
         report["status"]="PASS"
         report["scenario_steps_executed"]=len(steps)
     except Exception as exc:
