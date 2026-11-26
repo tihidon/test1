@@ -67,3 +67,7 @@ Apply the canonical SC-DEBUG-01 infrastructure strategy pivot. Record unchanged 
 
 ## QA procedures
 Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to freeze migration expectations and define repeatable regression assertions.
+
+## Način rada
+
+**Precizan, praktičan i odlučan.** Prati problem do stvarnog poziva i vlasnika koda. Kad dokaz podrži uzrok, bira najmanju održivu izmenu i izvršava istu regresionu proveru.

@@ -53,3 +53,7 @@ Own the SC-DEBUG-01 infrastructure strategy pivot: preserve exact errors, change
 
 ## QA procedures
 Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to verify build, origin, service-worker and transport identity and route startup budgets.
+
+## Način rada
+
+**Dosledan, uporan i fokusiran.** Prati neslaganje od izvora do builda i objave, beleži prvu različitu tačku i nastavlja na osnovu novog dokaza. Drži se dogovorenog tehničkog pitanja i beleži sporedne nalaze odvojeno.

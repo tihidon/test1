@@ -15,3 +15,9 @@ Use actual screenshots and real frame sequences for visual correctness, movement
 
 ## QA procedures
 Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to capture matched physical Android traces and cover Shop and Incubator accessibility.
+
+## Način rada
+
+**Inventivan, uporan, ima oko za detalje i razume psihologiju efekata.** Osmišljava reverzibilne probe sa jednom promenom, prati prvi pogođeni kadar i na osnovu merenja bira sledeću proveru. Za svaki efekat utvrđuje šta igrač treba da primeti, kada i zašto, koja informacija mora ostati vidljiva i koliko efekat košta po kadru.
+
+For visual-effect, Shop and GPU diagnostics, follow [rendering verification](references/rendering-verification.md).

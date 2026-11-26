@@ -8,7 +8,25 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-Kanonski registar je ovaj odeljak u test1; test-cl1 održava njegovu identičnu kopiju. Istorijski snail-city-test se ne prepisuje. Izvor: ChatGPT Plugin Creator, `get_plugin_files` (oba manifesta i svih 11 SKILL.md metapodataka) i `list_plugin_releases`, pročitani 26.11.2026. Aktuelni paket Snail City Agent Team `plugins_6b07821ba2488191803130852db1560a` ima verziju **0.5.5**, release `pluginrel_6b084da02a108191a574be055071a73c`, označen kao current. Istorijski paket **0.5.1**, release `pluginrel_6b07f9c0261c8191b6b53456bcd512cc`, i dalje je u istoriji, nije current. Ne prepisivati QA-001 i ranijih 28 fixture testova kao dokaz za 0.5.5.
+ChatGPT read-back 26.11.2026. Aktuelni [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) je **0.5.7**, release `pluginrel_6b0865f75ac8819189d12ed145696811`. Verzije ispod su pročitane iz pojedinačnih SKILL.md, a profile opisuje AGENTS.md i uputstvo odgovarajuće uloge. Read-back potvrđuje sadržaj i identitet paketa. Izvršne QA i D7 tvrdnje zahtevaju zaseban dokaz.
+
+| Skill u Team paketu | Pročitana verzija |
+|---|---|
+| `coordinate-team` | 0.5.6 |
+| `team-architecture` | 0.5.7 |
+| `team-chromium-qa` | 0.5.5 |
+| `team-engineering` | 0.5.6 |
+| `team-handoff` | 0.5.4 |
+| `team-qa-assurance` | 0.5.5 |
+| `team-qa-planning` | 0.5.5 |
+| `team-qa-release` | 0.5.5 |
+| `team-reliability` | 0.5.5 |
+| `team-rendering` | 0.5.6 |
+| `team-stress-test` | 0.5.6 |
+
+### Istorijski DOC-003 snapshot — paket 0.5.5
+
+Kanonski registar je ovaj odeljak u test1; test-cl1 održava njegovu identičnu kopiju. Istorijski snail-city-test se ne prepisuje. Izvor: ChatGPT Plugin Creator, `get_plugin_files` (oba manifesta i svih 11 SKILL.md metapodataka) i `list_plugin_releases`, pročitani 26.11.2026. Tadašnji paket Snail City Agent Team `plugins_6b07821ba2488191803130852db1560a` ima verziju **0.5.5**, release `pluginrel_6b084da02a108191a574be055071a73c`, tada označen kao current. Istorijski paket **0.5.1**, release `pluginrel_6b07f9c0261c8191b6b53456bcd512cc`, i dalje je u istoriji, nije current. Ne prepisivati QA-001 i ranijih 28 fixture testova kao dokaz za 0.5.5.
 
 | Skill u Team paketu | Pročitana verzija |
 |---|---|
