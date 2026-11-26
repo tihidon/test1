@@ -222,6 +222,8 @@ PR #38 merged at `f422312`. Run [45738038440](https://github.com/tihidon/test1/a
 
 ## 14. Model Spec — SC-BEH-01 (26.11.2026)
 
+Dopuna kandidat: [SC-PRO-01 i SC-KG-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) — obavezna proaktivnost u opsegu i karantin/pregled/odobrenje pre trajnog usvajanja znanja i tehnologija. Ne menja DOC-003 aktuelne verzije, izvršni kod ili dozvole. Nezavisni D7 i behavioral evaluacija nisu izvršeni; aktivacija i release odvojeni od odobrenja pripreme kandidata.
+
 [Zajedničko ponašanje agenata](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md), povezano iz AGENTS.md. Koordinator v0.3.0. Jedini evaluacioni katalog proširen na 26 REL/TEAM/BEH slučajeva; behavioral NOT RUN. Bez runtime/SW/deploy izmene.
 
 ## 15. Stanje dokaza tima (26.11.2026)
