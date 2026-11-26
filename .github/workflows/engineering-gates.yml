@@ -140,6 +140,8 @@ jobs:
         run: python tools/qa/runtime_watchdog.py --diagnostic --out "$RUNNER_TEMP/sc-diagnostic-evidence"
       - name: SC-DEBUG-01 phase B real functional scenarios
         run: python tools/qa/runtime_watchdog.py --functional --timeout 300 --out "$RUNNER_TEMP/sc-functional-evidence"
+      - name: QA-003 migration diagnostic (known defect reproduction, not acceptance)
+        run: timeout 180s python tools/qa/pwa_migration_diagnostic.py --out "$RUNNER_TEMP/sc-pwa-migration"
       - name: Report functional scenario outcome (including failures)
         if: always()
         run: |
@@ -173,5 +175,6 @@ jobs:
             ${{ runner.temp }}/sc-runtime-evidence/
             ${{ runner.temp }}/sc-diagnostic-evidence/
             ${{ runner.temp }}/sc-functional-evidence/
+            ${{ runner.temp }}/sc-pwa-migration/
           if-no-files-found: error
           retention-days: 14
