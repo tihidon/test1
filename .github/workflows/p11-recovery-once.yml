@@ -1,0 +1,54 @@
+name: One-time P11 artifact recovery
+on:
+  push:
+    branches: ['fix/p11-publish-recovery']
+    paths: ['.github/workflows/p11-recovery-once.yml']
+permissions:
+  contents: read
+concurrency:
+  group: p11-recovery-once
+  cancel-in-progress: false
+jobs:
+  regenerate:
+    if: github.repository == 'tihidon/test1' && github.ref == 'refs/heads/fix/p11-publish-recovery' && github.event_name == 'push'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: true
+      - name: Verify pinned recovery inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git rev-parse HEAD:src)" = f4f0d28e56d26e1d9d81f84412251f6ec98e0326
+          test "$(git rev-parse HEAD:sw.js)" = 2f57bfd2fd38f8d220af090caa5c55c7580007f3
+          test "$(git rev-parse HEAD:index.html)" = 57ff0991646cff4e63c8c74868168905d1004b62
+          test "$(git rev-parse HEAD:tools/build.py)" = e27de219e1ed030378a2b998ea174d715ae1affc
+          test "$(git rev-parse HEAD:tools/agent/check_build.py)" = 1e30bcce450ff1d8f8a65fe4813c03db62165808
+          test -z "$(git status --porcelain)"
+      - name: Regenerate and independently verify P11
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/build.py
+          echo '492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a  dist/index.html' | sha256sum -c -
+          cp dist/index.html index.html
+          python tools/agent/check_build.py --require-publish-match
+          test "$(git diff --name-only)" = index.html
+          git diff --check
+          sha256sum index.html
+      - name: Commit generated HTML to recovery branch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/fix/p11-publish-recovery
+          git add -- index.html
+          test "$(git diff --cached --name-only)" = index.html
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'build: regenerate verified P11 root artifact'
+          git push origin HEAD:refs/heads/fix/p11-publish-recovery
+          git rev-parse HEAD
