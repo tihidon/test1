@@ -1,5 +1,9 @@
 # AGENTS.md — uputstvo za agente (tihidon/test1)
 
+## Kanonski repozitorijum (P0, 26.11.2026)
+
+`tihidon/test1` je primarni razvojni repozitorijum i kanonski izvor aktivnih projektnih standarda, registara i skillova. `tihidon/snail-city-test` je istorijska referenca; ne sinhronizovati pravila unazad niti prepisivati aktivne standarde iz istorijskih kopija. Istorijska v0.8.90 ostaje zaštićena. Svaki zadatak utvrđuje stvarni checkout i prijavljuje neslaganja. PL-01/CSS-01 je obavezan: [standard](docs/tehnika/standardi/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md). Jutarnji pregled, popodnevna provera i večernji QA ne autorizuju automatske izmene.
+
 Projektni autoritet je stvarni checkout i kanonski standardi, ne istorijski broj verzije. Snapshot koordinacije 26.11.2026: commit `5d57b32919477b6636c9093b2f81b9f8ae897e16`; root `index.html` Git blob `57ff0991646cff4e63c8c74868168905d1004b62`; `src/js/block-00.js` startup build `0.8.92-css-unified-p10`; `sw.js` cache `snail-city-shell-0.8.92-css-unified-p10-r1`. `SC_PWA_STATUS.version` je family `0.8.92`, ne dokaz punog build identiteta. Netlify kopira whitelist root fajlova u `dist/`. SHA-256 HTML-a, svih šest tačaka verzije, build/publish jednakost i runtime nisu ponovo izvršno provereni u ovom docs-only zadatku; ne proglašavati ih PASS. Svaki budući zadatak ponovo utvrđuje identitet iz checkout-a.
 
 Istorijska referenca P3: `5b4b030`, SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`; P1/P3 dokazi ne važe automatski za P10.

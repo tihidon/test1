@@ -2,6 +2,8 @@
 
 Poslednja izmena indeksa: 2026-11-26
 
+**P0 — kanonski autoritet:** `tihidon/test1` je primarni razvojni repo; `snail-city-test` je istorijski izvor. Aktivna pravila se održavaju ovde. P1/P3 podaci ispod su istorijski, ne dokaz za P10. P10 je koordinacioni snapshot iz AGENTS.md, ne novo izvršno merenje.
+
 Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1` `main` `5b4b030` (PR #13), `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `const VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Kopije označene „`2d66e55` / `c19cc1ac…`“ proverene su samo nad p1 commit-om i nisu ponovo proverene nad p3. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
 
 ## Sadržaj
@@ -89,7 +91,7 @@ Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
 
 ## 5. Održavanje kopija
 
-- Opšta pravila (SSOT, PL-01, SC-CODE-01, SC-RAD-01, SC-REND-01) imaju izvor u `tihidon/snail-city-test`; svaka kopija na vrhu navodi izvor i commit. Izmena opšteg pravila ide prvo u izvor, pa se kopija ponovo prenosi i proverava. Bez toga dve verzije istog pravila se razilaze.
+- Opšta pravila (SSOT, PL-01, SC-CODE-01, SC-RAD-01, SC-REND-01) održavaju se kanonski u `tihidon/test1`. Istorijske izvore i commit reference sačuvati; nema obaveznog prenosa iz starog repoa.
 - Činjenice o ovom buildu (linije, verzije, putanje) važe za `2d66e55`. Posle izmene `index.html` regenerisati [SC-FUNC-01](./tehnika/standardi/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md) (SC-F08) i ažurirati SC-RAD-01 §3 i SC-ARCH-01 §4 u istom PR-u.
 - Mesto u kodu se navodi imenom funkcije ili sidrom; broj linije samo uz commit.
 
@@ -99,8 +101,8 @@ Netačne tvrdnje u izvornim dokumentima, provereno nad kodom 25.11.2026:
 
 1. **Javnost `docs/`:** konfiguracija u repozitorijumu objavljuje whitelist fajlova iz `dist/`. Stvarni Netlify deploy i podešavanja sajta nisu provereni u ovom pregledu.
 2. **`AGENTS.md` u korenu test1:** dodat u PR #4 (spojen); sadrži redosled čitanja i ključna pravila sa vezom na ovaj indeks.
-3. **`verify_edit.py` K2:** ispravka (šest tačaka, `version.json` opcion) je u PR #13 `snail-city-test`, čeka spajanje. Provereno: test1 PASS, build tag 0.8.91 u kopiji FAIL.
-4. **`snail-city-test` SC-RAD-01 §3:** broj verzijskih tačaka ispravljen na šest u PR #13 (čeka spajanje).
+3. **`verify_edit.py` K2:** ispravka (šest tačaka, `version.json` opcion) je u PR #13 `snail-city-test`, istorijski status PR-a, nije aktuelna potvrda. Ranije provereno: test1 PASS, build tag 0.8.91 u kopiji FAIL.
+4. **`snail-city-test` SC-RAD-01 §3:** broj verzijskih tačaka ispravljen na šest u PR #13 (istorijski status, nije aktuelna potvrda).
 5. PW-01 na uređaju, vizuelni QA i animacije za 0.8.92: NIJE TESTIRANO.
 6. PR #12 u `snail-city-test` (SC-REND-01, SC-CODE-01, SC-RAD-01) spojen je 25.11.2026 kao `f32b290`. Kopije u ovom repou su rađene sa `12f986c`, koji je sadržan u tom spajanju.
 
