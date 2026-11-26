@@ -181,3 +181,11 @@ PR #51 merged at `1b3ecbd`. [PR MCP run 45798818665](https://github.com/tihidon/
 ### MCP qualification artifact path correction
 
 Run [45805792394](https://github.com/tihidon/test1/actions/runs/45805792394) failed at performance_stop_trace because RUNNER_TEMP is outside the server default filesystem roots; seven unit tests passed. Use the tagged v1.14.0 documented `--filesystem-root` with only the newly created resolved output directory. No unrestricted paths, no relaxed URL allowlist, no changed click/trace oracle. Re-run actual MCP CI; candidate remains unverified. Source: https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/chrome-devtools-mcp-v1.14.0/docs/configuration.md
+
+
+### P0 recovery after PR #49 (26.11.2026)
+- Merged commit `9b5658db2bde10b2c1a938212429d4a26eb55f6d`: source P11, root HTML P10; post-merge tooling run [45807116303](https://github.com/tihidon/test1/actions/runs/45807116303) failed build/publish equality. Expected P11 SHA-256 `492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a` from independent CI assembly.
+- Corrective candidate: regenerate root HTML using existing Python build, verify exact digest and existing build gate. Advance CACHE_NAME to `snail-city-shell-0.8.92-css-unified-p11-r2` because r1 may contain old HTML. Retain existing collision guard, all game sources, family labels (title/status/SW comment 0.8.92), no save/economy changes. No Netlify configuration change. Actual deployed origin/ID unknown; no release claim.
+- Candidate PR and CI required; D7 and post-merge PMV pending. Revert candidate only under owner approval; never delete player data or manually clear caches.
+
+Recovery evidence: [run 45808612656](https://github.com/tihidon/test1/actions/runs/45808612656), job 139870295474, generated commit `bcd3c6e658f1684649fb26dabcca7c0fb8a0cdd5`, HTML blob `f730698c8251c30c91d798ea816986a91e189a01`, SHA-256 `492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a`, 7606179 bytes, independent assembly/syntax and root equality PASS. Temporary write-enabled recovery workflow removed before PR. Full PR CI, D7 and exact-SHA PMV remain pending. No deploy claim.
