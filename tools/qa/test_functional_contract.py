@@ -40,3 +40,36 @@ class FunctionalContractTests(unittest.TestCase):
         self.assertFalse(accepted_cases(r))
         r["functional_cases"]["B06"].update(status="PASS",assertions=0)
         self.assertFalse(accepted_cases(r))
+    def test_durable_existing_kind_change(self):
+        a=copy.deepcopy(self.b);a["eggs"][0]["kind"]=1
+        with self.assertRaisesRegex(AssertionError,"egg_kinds"):durable(self.b,a)
+    def test_purchase_existing_kind_change(self):
+        self.b["eggs"][0]["kind"]=1
+        with self.assertRaisesRegex(AssertionError,"existing egg kind"):purchase(self.a,self.b)
+    def test_unchanged_existing_kind_change(self):
+        a=copy.deepcopy(self.a);a["eggs"][0]["kind"]=1
+        with self.assertRaisesRegex(AssertionError,"egg_kinds"):unchanged_inventory(self.a,a)
+    def test_purchase_profile_change(self):
+        self.b["playerName"]="unexpected"
+        with self.assertRaisesRegex(AssertionError,"profile/building"):purchase(self.a,self.b)
+    def test_purchase_building_change(self):
+        self.b["built"]=["unexpected"]
+        with self.assertRaisesRegex(AssertionError,"profile/building"):purchase(self.a,self.b)
+    def test_durable_duplicate_existing_identity(self):
+        a=copy.deepcopy(self.b);a["eggs"][1]["id"]="a"
+        with self.assertRaisesRegex(AssertionError,"duplicate committed egg"):durable(self.b,a)
+    def test_durable_invalid_kind(self):
+        for kind in (None,False,"0",0.0):
+            with self.subTest(kind=kind):
+                a=copy.deepcopy(self.b);a["eggs"][0]["kind"]=kind
+                with self.assertRaisesRegex(AssertionError,"invalid committed egg"):durable(self.b,a)
+    def test_durable_missing_kind(self):
+        a=copy.deepcopy(self.b);del a["eggs"][0]["kind"]
+        with self.assertRaisesRegex(AssertionError,"invalid committed egg"):durable(self.b,a)
+    def test_egg_order_and_time_fields_may_change(self):
+        a=copy.deepcopy(self.b);a["eggs"].reverse();a["eggs"][0]["readyAt"]=42;a["revision"]+=1
+        durable(self.b,a)
+    def test_durable_kind_swap_same_ids(self):
+        a=copy.deepcopy(self.b);a["eggs"][0]["kind"]=1
+        b=copy.deepcopy(a);b["eggs"][0]["kind"],b["eggs"][1]["kind"]=0,1
+        with self.assertRaisesRegex(AssertionError,"egg_kinds"):durable(a,b)

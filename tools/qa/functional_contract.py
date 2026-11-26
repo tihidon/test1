@@ -15,6 +15,15 @@ def require(ok,message):
 def digest(value):
     return hashlib.sha256(str(value).encode("utf-8")).hexdigest()
 
+def egg_kinds(eggs):
+    pairs=[]
+    for egg in eggs:
+        require(isinstance(egg,dict) and "id" in egg and type(egg.get("kind")) is int,
+                "invalid committed egg kind or identity")
+        pairs.append([digest(egg["id"]),egg["kind"]])
+    require(len({pair[0] for pair in pairs})==len(pairs),"duplicate committed egg identity")
+    return sorted(pairs)
+
 def snapshot(s):
     require(isinstance(s,dict) and isinstance(s.get("saveId"),str) and type(s.get("revision")) is int,
             "invalid committed snapshot identity")
@@ -23,12 +32,13 @@ def snapshot(s):
     return {"save_id_sha256":digest(s["saveId"]),"revision":s["revision"],
         "level":s["level"],"sliz":s["sliz"],"diamonds":s["diamonds"],"tokens":s["tokens"],
         "egg_ids":sorted(digest(e["id"]) for e in s["eggs"]),
+        "egg_kinds":egg_kinds(s["eggs"]),
         "snail_ids":sorted(digest(n["id"]) for n in s["snails"]),
         "profile_name":s.get("playerName",""),"built":sorted(s["built"])}
 
 def unchanged_inventory(before,after):
     a,b=snapshot(before),snapshot(after)
-    for key in ("save_id_sha256","sliz","diamonds","tokens","egg_ids","snail_ids","level","built","profile_name"):
+    for key in ("save_id_sha256","sliz","diamonds","tokens","egg_ids","egg_kinds","snail_ids","level","built","profile_name"):
         require(a[key]==b[key],"unexpected mutation: "+key)
     require(b["revision"]>=a["revision"],"revision went backwards")
 
@@ -43,7 +53,12 @@ def purchase(before,after):
     require(len(new)==1 and len(after["eggs"])==len(before["eggs"])+1 and
             old.issubset({e["id"] for e in after["eggs"]}) and new[0]["kind"]==EGG_KIND,
             "wrong egg addition or existing egg lost")
+    current=dict(b["egg_kinds"])
+    require(all(current.get(egg_id)==kind for egg_id,kind in a["egg_kinds"]),
+            "existing egg kind changed")
     require(a["snail_ids"]==b["snail_ids"] and a["level"]==b["level"],"unexpected level/snail change")
+    require(a["profile_name"]==b["profile_name"] and a["built"]==b["built"],
+            "unexpected profile/building change")
 
 def durable(before,after):
     unchanged_inventory(before,after)

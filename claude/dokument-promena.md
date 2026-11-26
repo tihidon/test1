@@ -164,3 +164,12 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Stara vrednost:** pull_request i workflow_dispatch; nema automatskog main push; bez eksplicitne checkout provere.
 - **Nova vrednost:** push main uz postojeće jobove, HEAD == GITHUB_SHA, push baseline event.before i ancestry validacija; PR i manualni/frozen baseline očuvani.
 - **Razlog:** QA-001, PR #41 merged bez potvrđenog post-merge CI. QA-DEF-01–04 popravljeni u zasebnom pluginu, 28 lokalnih fixture testova PASS. CI kandidata i D7 čekaju stvarne dokaze. Bez runtime, SW ili Netlify izmena.
+
+
+### QA-002 — save oracle (kandidat, 26.11.2026)
+- **Verzija:** igra/SW nepromenjeni.
+- **Oblast:** QA test tooling, IndexedDB.
+- **Fajl/funkcije:** tools/qa/functional_contract.py (egg_kinds, snapshot, unchanged_inventory, purchase; durable inherits), test_functional_contract.py.
+- **Staro:** ID-only egg comparison; purchase omitted profile and built invariants.
+- **Novo:** ID/kind pairs, strict integer kind, duplicate rejection, unchanged existing egg kind/profile/building. Preserved time/revision flexibility.
+- **Dokaz:** baseline four false accepts of eight synthetic controls; candidate 28 local fixture methods PASS. Real Chromium CI and independent review pending. No game/SW/balance or production save changes.
