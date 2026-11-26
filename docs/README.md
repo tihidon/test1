@@ -144,3 +144,7 @@ Snapshot koordinacije 26.11.2026: commit `5d57b32919477b6636c9093b2f81b9f8ae897e
 ## 13. Team CI coverage correction (26.11.2026)
 
 PR #38 merged at `f422312`. Run [45738038440](https://github.com/tihidon/test1/actions/runs/45738038440) tooling job passed but its explicit skill list did not include Rendering Performance. Add the existing rendering candidate to `skills-ref validate` and `to-prompt`; do not weaken any existing gate. Correct historical P3 labels in SC-RAD-01 and SC-AGENT-01 without changing normative rules. Candidate CI and independent review pending; no game/SW/deploy configuration changes. Official skill validation is not behavioral agent evaluation.
+
+## 14. Model Spec — SC-BEH-01 (26.11.2026)
+
+[Zajedničko ponašanje agenata](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md), povezano iz AGENTS.md. Koordinator v0.3.0. Jedini evaluacioni katalog proširen na 26 REL/TEAM/BEH slučajeva; behavioral NOT RUN. Bez runtime/SW/deploy izmene.
