@@ -190,3 +190,6 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 ### Chrome DevTools MCP — memory capability correction (26.11.2026)
 - Prior run 45796898865: FAIL, missing compare_heapsnapshots after MCP initialization. PR #48 was merged despite failed dedicated test; PMV not established.
 - Candidate: enable documented --memory-debugging; preserve same smoke assertions. No game/runtime/build/deploy change. CI and D7 pending.
+
+### MCP page identity correction (26.11.2026)
+- Run 45798347841 FAIL after successful tool discovery, exact page ID oracle not satisfied. Tagged source shows title (url) format. Candidate parser accepts exact titled/bare URLs, rejects duplicates and wrong URL; four fixture tests; unchanged DOM marker. No game changes. CI/D7/PMV pending.

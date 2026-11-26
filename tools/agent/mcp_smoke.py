@@ -31,6 +31,16 @@ def require(condition, reason):
     if not condition:
         raise RuntimeError(reason)
 
+def fixture_page_id(pages, url):
+    # v1.14.0 McpResponse.formatPage: title (url), or bare url without title.
+    # Match an entire page label; never guess the selected tab or accept a prefix.
+    page_text = "\n".join(c.get("text", "") for c in pages.get("content", []))
+    suffix = r"(?: \[selected\])?\s*$"
+    label = r"(?:" + re.escape(url) + r"|[^\r\n]+ \(" + re.escape(url) + r"\))"
+    ids = re.findall(r"(?m)^[ \t]*(\d+):[ \t]*" + label + suffix, page_text)
+    require(len(ids) == 1, "fixture page ID not uniquely listed")
+    return int(ids[0])
+
 def main(out):
     out.mkdir(parents=True, exist_ok=False)
     config = tomllib.loads((ROOT / "tools/agent/chrome-devtools-mcp.toml").read_text())["mcp_servers"]["chrome-devtools"]
@@ -104,11 +114,9 @@ def main(out):
             report["checks"].append("tool discovery")
             send("tools/call", {"name": "new_page", "arguments": {"url": url}})
             pages = send("tools/call", {"name": "list_pages", "arguments": {}})
-            page_text = "\n".join(c.get("text", "") for c in pages.get("content", []))
-            ids = re.findall(r"(?m)^\s*(\d+)\s*:\s*" + re.escape(url) + r"(?:\s|$)", page_text)
-            require(len(ids) == 1, "fixture page ID not uniquely listed")
+            page_id = fixture_page_id(pages, url)
             result = send("tools/call", {"name": "evaluate_script", "arguments": {
-                "pageId": int(ids[0]), "function": "() => document.querySelector('#probe').textContent"}})
+                "pageId": page_id, "function": "() => document.querySelector('#probe').textContent"}})
             require(any(MARKER in c.get("text", "") for c in result.get("content", [])), "fixture DOM oracle failed")
             report["checks"].append("real Chrome DOM read")
             report["status"] = "PASS"
