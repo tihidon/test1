@@ -1,6 +1,6 @@
 # SC-ARCH-01 — Struktura fajlova, funkcija i sistema (test1 0.8.92)
 
-> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Istorijski snapshot izvršnog koda bio je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3 niti P10**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
 
 > **Izdanje za `tihidon/test1`.** Revizija 1.0 je projektni dokument (24.11.2026) pisan nad ZIP-om 0.8.93; ovde su njegova pravila prenesena, a sve činjenice o kodu (linije, putanje, tabela paketa) **ponovo izmerene nad test1** `main` `2d66e55`, `index.html` SHA-256 `c19cc1ac…`, 25.11.2026. Linije iz 0.8.93 su uklonjene jer ovde ne važe. GameMaker deo je sveden na jednu rečenicu (odluka vlasnika: projekat nema GML koda). Pregled svih dokumenata: [docs/README.md](../../README.md).
 
@@ -52,7 +52,7 @@ Stvarno stablo test1 (provereno `ls`, 25.11.2026); poklapa se sa ciljnom struktu
 ```
 
 - `version.json` **ne postoji** u test1. Nije obavezan runtime fajl; ako se uvede, mora biti izveden iz odobrenog identiteta izdanja i ulazi u verzijske tačke (danas šest mesta u `index.html` i `sw.js`) ([SC-RAD-01 §3](./SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md#3-činjenice-o-kodu-koje-agent-mora-znati)).
-- **Upozorenje:** repo nema `netlify.toml`, pa ako Netlify objavljuje koren repoa, `docs/` je javno dostupan na sajtu. Ne utiče na offline rad (`docs/` nije u `CORE_PATHS`), ali dokumentacija postaje javna. Publish directory nije proveren u Netlify podešavanjima (NIJE PROVERENO). Ne premeštati fajlove bez odluke vlasnika.
+- **Upozorenje:** u istorijskom P1 snapshot-u repo nije imao `netlify.toml` (noviji snapshot u AGENTS.md navodi whitelist publish u dist/), pa ako Netlify objavljuje koren repoa, `docs/` je javno dostupan na sajtu. Ne utiče na offline rad (`docs/` nije u `CORE_PATHS`), ali dokumentacija postaje javna. Publish directory nije proveren u Netlify podešavanjima (NIJE PROVERENO). Ne premeštati fajlove bez odluke vlasnika.
 
 `_headers` u test1 (doslovno, isti kao referentni iz 0.8.90):
 
