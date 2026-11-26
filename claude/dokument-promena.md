@@ -180,3 +180,9 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Scope:** diagnostic QA and CI only; tools/qa/pwa_migration_diagnostic.py, engineering-gates.yml, SC-DEBUG-01.
 - **Old:** no real Chromium cache migration diagnostic; Node VM reproduced conditional same-name cache loss.
 - **New:** exact-SW synthetic origin test, real transport cut, cache bytes/IDB controls, explicit DEFECT_REPRODUCED status, artifacts. No product acceptance claim; real CI pending.
+
+
+### QA-003 — PW-DEF-01 correction (draft, 26.11.2026)
+- **Version:** candidate full build 0.8.92-css-unified-p11, cache p11-r1; family 0.8.92 unchanged. Root artifact remains p10 due connector transport failure; do not merge.
+- **Scope:** existing SW install handler, two build identity anchors, manifest digests, CI cache revision gate and regression. No game economy/logic/save change.
+- **Evidence:** Node VM 5/5 PASS; actual Chromium regression pending. Root build/publish gate remains mandatory, D7 and PMV pending.

@@ -93,6 +93,13 @@ jobs:
           retention-days: 14
       - name: Historical P3 isolated round-trip
         run: python tools/test_roundtrip.py
+      - name: PW-01 cache revision gate
+        env:
+          SC_PWA_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          base="$SC_PWA_BASE"
+          if [ -z "$base" ]; then base="$(git rev-parse HEAD^1)"; fi
+          python tools/agent/check_cache_revision.py --base "$base"
       - name: Current build and published bytes
         run: python tools/agent/check_build.py --require-publish-match
       - name: AST loop review inventory
@@ -140,7 +147,7 @@ jobs:
         run: python tools/qa/runtime_watchdog.py --diagnostic --out "$RUNNER_TEMP/sc-diagnostic-evidence"
       - name: SC-DEBUG-01 phase B real functional scenarios
         run: python tools/qa/runtime_watchdog.py --functional --timeout 300 --out "$RUNNER_TEMP/sc-functional-evidence"
-      - name: QA-003 migration diagnostic (known defect reproduction, not acceptance)
+      - name: QA-003 required cache preservation regression
         run: timeout 180s python tools/qa/pwa_migration_diagnostic.py --out "$RUNNER_TEMP/sc-pwa-migration"
       - name: Report functional scenario outcome (including failures)
         if: always()

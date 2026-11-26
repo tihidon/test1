@@ -1,4 +1,4 @@
-"""QA-003 diagnostic, not a release acceptance test. Isolated synthetic origin only."""
+"""QA-003 required cache migration regression. Isolated synthetic origin only."""
 import argparse
 import hashlib
 import json
@@ -12,7 +12,6 @@ from origin_transport import OriginTransport
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE_BLOB = "446a11bc377c036f2dcc5b74217a7b4a4abcab5b"
 OLD = "snail-city-shell-qa003-old-fixture"
 FOREIGN = "qa003-unrelated"
 PATHS = {"/index.html", "/manifest.webmanifest", "/img/icon-192.png",
@@ -42,8 +41,9 @@ SEED = """async name=>{const c=await caches.open(name);await c.put('/foreign',ne
  t.onerror=()=>bad(t.error);t.onabort=()=>bad(t.error)}})}"""
 
 def run_case(pw, sw, new, case):
-    same = case == "same_name_failure"
-    fail = case in ("distinct_failure", "same_name_failure")
+    same = case in ("same_name_failure", "same_name_healthy")
+    fail = same or case == "distinct_failure"
+    inject_http_failure = case in ("distinct_failure", "same_name_failure")
     old = new if same else OLD
     data = {"sw": sw.replace(new.encode(), old.encode(), 1), "label": "old", "fail": False}
     requests, checks = [], []
@@ -101,19 +101,22 @@ def run_case(pw, sw, new, case):
                 tab.goto(origin+"/index.html", wait_until="domcontentloaded")
                 tab.wait_for_function("!!navigator.serviceWorker.controller")
                 tab.evaluate("window.changes=0;navigator.serviceWorker.addEventListener('controllerchange',()=>window.changes++)")
+                request_mark = len(requests)
                 data.update(sw=sw+b"\n// QA-003 intentionally reused cache name\n" if same else sw,
-                            label="new", fail=fail)
+                            label="new", fail=inject_http_failure)
                 outcome = p.evaluate(UPDATE)
                 check("terminal worker state", outcome == ("redundant" if fail else "activated"), outcome)
                 after = p.evaluate(STATE)
                 check("foreign cache bytes unchanged", after.get(FOREIGN) == before[FOREIGN], after)
                 check("synthetic IDB online", p.evaluate(READ) == "test-only")
                 if fail:
-                    check("controlled HTTP failure observed", any(r["path"]=="/img/icon-512.png" and
-                          r["status"]==503 for r in requests), requests)
+                    check("old cache bytes unchanged", after.get(old) == before[old], after)
                     check("old controller retained", tab.evaluate("window.changes===0 && !!navigator.serviceWorker.controller"))
-                    if not same:
-                        check("old cache bytes unchanged", after.get(old) == before[old], after)
+                    if same:
+                        check("collision rejected before core fetch", not any(r["path"] in PATHS for r in requests[request_mark:]), requests[request_mark:])
+                    else:
+                        check("controlled HTTP failure observed", any(r["path"]=="/img/icon-512.png" and
+                              r["status"]==503 for r in requests[request_mark:]), requests)
                         check("partial new cache removed", new not in after, after)
                 else:
                     check("new cache complete", set(after.get(new, {})) == PATHS, after)
@@ -143,18 +146,10 @@ def run_case(pw, sw, new, case):
                                      "from_sw": response.from_service_worker if response else False}
                 check("real transport remains closed", (transport.assert_closed() is None))
                 check("synthetic IDB offline", tab.evaluate(READ)=="test-only")
-                if same:
-                    # This explicit diagnostic expectation is NOT a passing product invariant.
-                    # No other failure is accepted as reproduction.
-                    check("known cache deletion reproduced", old not in after, after)
-                    check("known offline navigation failure reproduced", response is None and
-                          nav_error is not None and "net::ERR_FAILED" in nav_error, nav_error)
-                    result["status"] = "DEFECT_REPRODUCED"
-                else:
-                    expected = "old" if fail or case=="rollback" else "new"
-                    check("offline navigation exact", response is not None and response.ok and
-                          response.from_service_worker and body==expected, result["offline"])
-                    result["status"] = "PASS"
+                expected = "old" if fail or case=="rollback" else "new"
+                check("offline navigation exact", response is not None and response.ok and
+                      response.from_service_worker and body==expected, result["offline"])
+                result["status"] = "PASS"
             finally:
                 ctx.close()
                 ctx = None
@@ -179,26 +174,24 @@ def main():
         (args.out/"report.json").write_text(json.dumps(report, indent=2)+"\n", encoding="utf-8")
     save()
     try:
-        if blob != BASE_BLOB:
-            raise AssertionError("diagnostic baseline SW changed; review oracle before running")
         names = re.findall(rb"const CACHE_NAME = '([^']+)'", sw)
         if len(names)!=1:
             raise AssertionError("ambiguous CACHE_NAME")
         with sync_playwright() as pw:
-            for case in ("success","distinct_failure","same_name_failure","rollback"):
+            for case in ("success","distinct_failure","same_name_failure","same_name_healthy","rollback"):
                 r = run_case(pw,sw,names[0].decode(),case)
                 report["cases"].append(r)
                 print(json.dumps(r),flush=True)
                 save()
-        expected = ["PASS","PASS","DEFECT_REPRODUCED","PASS"]
-        report["status"] = "DIAGNOSTIC_COMPLETE_DEFECT_OPEN" if [r["status"] for r in report["cases"]]==expected else "FAIL"
+        expected = ["PASS"] * 5
+        report["status"] = "PASS" if [r["status"] for r in report["cases"]]==expected else "FAIL"
     except Exception:
         report["status"] = "BLOCKED_OR_FAIL"
         report["error"] = traceback.format_exc()
     finally:
         save()
         print(json.dumps({"status":report["status"],"source_blob":blob}),flush=True)
-    return 0 if report["status"]=="DIAGNOSTIC_COMPLETE_DEFECT_OPEN" else 1
+    return 0 if report["status"]=="PASS" else 1
 
 if __name__ == "__main__":
     raise SystemExit(main())
