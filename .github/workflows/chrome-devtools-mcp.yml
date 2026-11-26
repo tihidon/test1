@@ -5,6 +5,14 @@ on:
     paths:
       - 'tools/agent/chrome-devtools-mcp.toml'
       - 'tools/agent/mcp_smoke.py'
+      - 'tools/agent/test_mcp_smoke.py'
+      - '.github/workflows/chrome-devtools-mcp.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/agent/chrome-devtools-mcp.toml'
+      - 'tools/agent/mcp_smoke.py'
+      - 'tools/agent/test_mcp_smoke.py'
       - '.github/workflows/chrome-devtools-mcp.yml'
   workflow_dispatch:
 permissions:
@@ -23,11 +31,13 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
+      - name: Verify exact checkout
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - name: Version and synthetic browser probe
         run: |
           mkdir -p "$RUNNER_TEMP/sc-mcp"
           set -o pipefail
-          { node --version; npm --version; google-chrome --version; python -m py_compile tools/agent/mcp_smoke.py; python tools/agent/mcp_smoke.py "$RUNNER_TEMP/sc-mcp/probe"; } 2>&1 | tee "$RUNNER_TEMP/sc-mcp/setup.log"
+          { node --version; npm --version; google-chrome --version; python -m py_compile tools/agent/mcp_smoke.py; python -m unittest discover -s tools/agent -p 'test_mcp_smoke.py' -v; python tools/agent/mcp_smoke.py "$RUNNER_TEMP/sc-mcp/probe"; } 2>&1 | tee "$RUNNER_TEMP/sc-mcp/setup.log"
       - name: Preserve MCP evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
