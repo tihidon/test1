@@ -180,3 +180,9 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - **Scope:** diagnostic QA and CI only; tools/qa/pwa_migration_diagnostic.py, engineering-gates.yml, SC-DEBUG-01.
 - **Old:** no real Chromium cache migration diagnostic; Node VM reproduced conditional same-name cache loss.
 - **New:** exact-SW synthetic origin test, real transport cut, cache bytes/IDB controls, explicit DEFECT_REPRODUCED status, artifacts. No product acceptance claim; real CI pending.
+
+### Chrome DevTools MCP — P0 candidate (26.11.2026)
+- Oblast: agent tooling, no game version/runtime/deploy change.
+- Nova vrednost: pinned 1.14.0 isolated localhost config, synthetic MCP+Chrome smoke and separate private evidence workflow; SC-CLI-01, SC-QA-02 and AGENTS linked.
+- Razlog: function-level and memory diagnostics; existing gameplay QA unchanged.
+- CI, actual host activation and D7 pending; no game fix counted.
