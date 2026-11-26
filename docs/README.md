@@ -169,3 +169,7 @@ See [SC-DEBUG-01 infrastructure strategy pivot](tehnika/standardi/SC-DEBUG-01-PO
 ## 17. Central QA / PMV-01 (26.11.2026)
 
 [SC-PMV-01](tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) — mandatory closure gate for all agents, extending existing G0–G7 and D0–D8. QA-001 found no automatic main-push workflow; proposed existing workflow extension, preserved ratchets and exact checkout verification. ChatGPT Coordinator v0.5.1 package read back; 28 helper fixture tests PASS, independent agent eval not run. Actual post-merge CI and release remain unverified until original evidence exists. No game/SW/deploy change.
+
+## 18. QA-002 — save oracle
+
+[SC-DEBUG-01 QA-002](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#qa-002--committed-save-oracle-hardening-26112026) records four reproduced false accepts and candidate oracle corrections. 28 local fixture methods passed; real candidate Chromium and independent review remain pending. No production save or game change.
