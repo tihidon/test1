@@ -1,6 +1,8 @@
 # AGENTS.md — uputstvo za agente (tihidon/test1)
 
-Ovaj repozitorijum sadrži build Snail City **0.8.92-css-unified-p3** (`index.html` je jedini izvršni fajl igre, plus `sw.js`, `manifest.webmanifest`, `_headers`, `img/`). Izvršni kod na `main` je merodavan: `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Dokumenti koji još pominju p1 (`2d66e55`, SHA `c19cc1ac…`) važe samo za taj commit.
+Projektni autoritet je stvarni checkout i kanonski standardi, ne istorijski broj verzije. Snapshot koordinacije 26.11.2026: commit `5d57b32919477b6636c9093b2f81b9f8ae897e16`; root `index.html` Git blob `57ff0991646cff4e63c8c74868168905d1004b62`; `src/js/block-00.js` startup build `0.8.92-css-unified-p10`; `sw.js` cache `snail-city-shell-0.8.92-css-unified-p10-r1`. `SC_PWA_STATUS.version` je family `0.8.92`, ne dokaz punog build identiteta. Netlify kopira whitelist root fajlova u `dist/`. SHA-256 HTML-a, svih šest tačaka verzije, build/publish jednakost i runtime nisu ponovo izvršno provereni u ovom docs-only zadatku; ne proglašavati ih PASS. Svaki budući zadatak ponovo utvrđuje identitet iz checkout-a.
+
+Istorijska referenca P3: `5b4b030`, SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`; P1/P3 dokazi ne važe automatski za P10.
 
 ## Pre bilo kakve izmene
 
@@ -24,7 +26,7 @@ Navedi: izmenjene fajlove i funkcije, izmenu po funkciji, i kako je provereno (s
 
 ## Skill i dodatni gate-ovi (25.11.2026)
 
-Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SKILL.md` (Codex: `$snail-city-engineering`), bez učitavanja kompletnog istorijskog registra. Primenjuj [SC-BUILD-01](docs/tehnika/standardi/SC-BUILD-01-PYTHON-BUILD.md), [SC-LOOP-01](docs/tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md) i [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md). Stari P3 identitet iz vrha je istorijski; stvarni target/version/hash i publish root proveriti svaki put. Ne pokretati split nad aktivnim src/. Pre i posle runtime izmene dokazati build/publish jednakost; ako nedostaje alat ili postojeći baseline ne prolazi, prijavi BLOCKED/FAIL. Zadržati sve relevantne G0–G7 i ne menjati deploy bez odobrenja.
+Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SKILL.md` (Codex: `$snail-city-engineering`), bez učitavanja kompletnog istorijskog registra. Primenjuj [SC-BUILD-01](docs/tehnika/standardi/SC-BUILD-01-PYTHON-BUILD.md), [SC-LOOP-01](docs/tehnika/standardi/SC-LOOP-01-LOOP-I-BUG-AUDIT.md) i [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md). stvarni target/version/hash i publish root proveriti svaki put. Ne pokretati split nad aktivnim src/. Pre i posle runtime izmene dokazati build/publish jednakost; ako nedostaje alat ili postojeći baseline ne prolazi, prijavi BLOCKED/FAIL. Zadržati sve relevantne G0–G7 i ne menjati deploy bez odobrenja.
 
 ## Uloge dva agenta
 
@@ -51,3 +53,7 @@ Apply [SC-DEBUG-01](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md) 
 
 ## SC-DEBUG-01 functional phase B
 Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --functional`, and original per-case evidence. Distinguish shell reload, desktop persistent cold reopen, synthetic race import, natural progression and physical Android. Stress specialist owns scenario execution; architecture specialist owns actual contract and storage/build identity; Reliability independently verifies. No PASS with missing cases or wrong failure reason.
+
+## Team coordination (26.11.2026)
+
+Team plugin v0.2.0 koordinira postojeći SC-DEC-01, ne uvodi drugi standard ili registar. Grafički specijalista koristi [projektni rendering candidate](.agents/skills/snail-city-rendering-performance/SKILL.md) kada je odgovarajući zadatak; podržava D1/D3/D4/D6, ne menja vlasnike faza. Bez stvarne delegacije prijaviti sekvencijalno izvršavanje, D7 nezavisnost BLOCKED. Originalni zasebni rendering i komunikacija skill nisu verifikovani; handoff prema SC-DEC-01 ostaje kanonski.
