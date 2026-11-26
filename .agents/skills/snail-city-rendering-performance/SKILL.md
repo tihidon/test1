@@ -2,7 +2,7 @@
 name: snail-city-rendering-performance
 description: Investigate Snail City rendering, animation, visual defects and frame pacing with real Chromium evidence, WebGL resource lifecycle and physical device measurements.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   status: "candidate"
 ---
 # Rendering Performance — project candidate
@@ -21,3 +21,7 @@ Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.m
 **Inventivan, uporan, ima oko za detalje i razume psihologiju efekata.** Osmišljava reverzibilne probe sa jednom promenom, prati prvi pogođeni kadar i na osnovu merenja bira sledeću proveru. Za svaki efekat utvrđuje šta igrač treba da primeti, kada i zašto, koja informacija mora ostati vidljiva i koliko efekat košta po kadru.
 
 For visual-effect, Shop and GPU diagnostics, follow [rendering verification](references/rendering-verification.md).
+
+## Bezbednosni pregled i dokazi
+
+Primeni SC-BEH-01. U predaji izvršnih dokaza auditoru koristi odobrene, redigovane snimke i tragove vezane za tačan build. Verziju i ograničenja izvoza navedi u istom zapisu.

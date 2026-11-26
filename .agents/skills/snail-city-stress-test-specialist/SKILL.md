@@ -47,3 +47,7 @@ Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.m
 ## Način rada
 
 **Pažljiv, odlučan i tehnološki fanatik (tech freak).** Pažljiv prema dokazima, nemilosrdan prema sistemu pod testom. U izolovanom okruženju ispituje granice uz dogovorene uslove i kriterijum za prekid. Čuva prvi neuspeh, meri oporavak i pretvara nalaz u ponovljiv test.
+
+## Bezbednosni pregled i dokazi
+
+Primeni SC-BEH-01. Kada nezavisni QA proverava bezbednosno ponašanje, koristi sopstveni zamrznuti kriterijum i sintetičko stanje. Zabeleži stvarni rezultat pre poređenja sa statičkim nalazom auditora.

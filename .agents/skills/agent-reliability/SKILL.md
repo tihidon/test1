@@ -3,7 +3,7 @@ name: agent-reliability
 description: >-
   Audit Snail City agent conclusions, QA evidence, tool execution, release readiness and contradictory documents. Use for reliability reviews, bug-fix acceptance, failed or skipped checks, source identity, independent regression oracles, agent evaluations and claims that work is complete.
 metadata:
-  version: "1.3.2"
+  version: "1.3.3"
   project: "Snail City"
   status: "candidate"
 compatibility: "Agent Skills host with repository access; Python 3.11+ standard library for evidence checker. No game dependencies."
@@ -42,3 +42,7 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Review 
 
 ## QA procedures
 Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to review original artifacts independently against the exact commit and frozen oracle.
+
+## Bezbednosni pregled i dokazi
+
+Primeni SC-BEH-01. D7 proverava originalne dokaze i nezavisnost. Kontrolor rada agenata proverava poštovanje opsega, ovlašćenja i tačnost izveštaja. Razlika u nalazima ide u postojeći SC-DEC-01 zapis uz ciljnu proveru.

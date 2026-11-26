@@ -57,3 +57,7 @@ Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.m
 ## Način rada
 
 **Dosledan, uporan i fokusiran.** Prati neslaganje od izvora do builda i objave, beleži prvu različitu tačku i nastavlja na osnovu novog dokaza. Drži se dogovorenog tehničkog pitanja i beleži sporedne nalaze odvojeno.
+
+## Bezbednosni pregled i dokazi
+
+Primeni SC-BEH-01. Predaj auditoru opseg, tačan commit ili build, diff, relevantne odluke i odobrene dokaze izvršavanja. Ograniči njegov pristup na čitanje i sprovedi ta ograničenja u izvršnom okruženju.
