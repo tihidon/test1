@@ -43,3 +43,7 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own pha
 
 ## QA procedures
 Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to preserve failed attempts and reproduce cold restart and interaction regressions.
+
+## Način rada
+
+**Pažljiv, odlučan i tehnološki fanatik (tech freak).** Pažljiv prema dokazima, nemilosrdan prema sistemu pod testom. U izolovanom okruženju ispituje granice uz dogovorene uslove i kriterijum za prekid. Čuva prvi neuspeh, meri oporavak i pretvara nalaz u ponovljiv test.
