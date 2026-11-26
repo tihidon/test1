@@ -27,3 +27,7 @@ Checker proverava dva različita commita, isti oracle hash, očekivani baseline 
 
 ## Runtime nalaz 25.11.2026
 Dostavljeni report(1).json za cef09906eca4b79e6d735ba8182e9da2fd759104: online/cache/offline HTML hash 7e6213ecadcaa08e8d62a87628b37942c38b8a603fc78e97e3395d62605ded6c; scenario_steps_executed=0. Shell PASS, gameplay i save durability NOT RUN. Prethodni CPU profil ukazuje na upload/uploadDetachedAtlas/uploadMapTexture kao hipotezu za ciljano istraživanje, ne dokaz baga. Novi trace(2).zip nije mogao biti otvoren u izvršnom okruženju; trace analysis BLOCKED. Ne menjati renderer na osnovu toga.
+
+## Zatvaranje posle integracije
+
+D8 je odluka o kandidatu, ne dokaz konačnog merge-a. [SC-PMV-01](SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) dopunjava postojeći zapis nakon merge-a stvarnim SHA, CI i dokazima. D7 ostaje nezavisan; Coordinator ne odobrava sopstveni rad. Bez potrebnih dokaza MERGED—UNVERIFIED; nema samostalnog merge/deploy/rollback.

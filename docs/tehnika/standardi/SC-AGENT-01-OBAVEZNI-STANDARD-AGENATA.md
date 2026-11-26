@@ -185,3 +185,7 @@ Preneti iz revizije 1.0 (provereni 24.11.2026). Primenjivati prema postojećem b
 - [MDN Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers) — lifecycle i offline arhitektura.
 
 **Obavezna primena:** agent mora navesti konkretan izvor i kriterijum koji je primenio. Tehnički savet, automatizovani lint, simulacija i tekstualni game-brief checker nisu dokaz funkcionalnosti. Ako alat nema pristup realnom okruženju, ne sme tvrditi da je implementacija verifikovana.
+
+## Obavezna kontrola posle merge-a
+
+[SC-PMV-01](SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) dopunjava G0–G7 bez njihove zamene. G7 ostaje pre-merge review/odobrenje; po stvarnom merge-u Coordinator mora potvrditi identitet, post-merge CI i relevantne dokaze na ciljnom SHA pre zatvaranja. MERGED—UNVERIFIED nije DONE.

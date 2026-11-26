@@ -165,3 +165,7 @@ Dokumentacija pregledana na `test1@d82f17e2149c4c9ec5ed8e950c373eb7487f78de`. Ra
 
 ## 16. SC-TEAM-004 — infrastructure lesson (26.11.2026)
 See [SC-DEBUG-01 infrastructure strategy pivot](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). The authenticated API tree was accessible at `8ed4417a6d2e423800a88436b4465a7a28f1dcab`; full local snapshot and runtime were not verified. Engineering/Architecture and AGENTS entry points refer to the same rule. External Coordinator package update and behavioral evaluation remain separate. NS01 oracle is defined in the canonical standard; no game fix claimed.
+
+## 17. Central QA / PMV-01 (26.11.2026)
+
+[SC-PMV-01](tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) — mandatory closure gate for all agents, extending existing G0–G7 and D0–D8. QA-001 found no automatic main-push workflow; proposed existing workflow extension, preserved ratchets and exact checkout verification. ChatGPT Coordinator v0.5.1 package read back; 28 helper fixture tests PASS, independent agent eval not run. Actual post-merge CI and release remain unverified until original evidence exists. No game/SW/deploy change.

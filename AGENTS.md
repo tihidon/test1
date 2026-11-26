@@ -67,3 +67,7 @@ Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENA
 
 ## Infrastructure failures — mandatory strategy pivot
 Apply [SC-DEBUG-01 infrastructure strategy pivot](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). Do not repeat unchanged failed operations. Architecture records failure, selects a viable authorized alternative (API, verified snapshot, private CI), preserves identity and gates; Coordinator routes unblocked work. No fabricated PASS or independent review.
+
+## Post-merge verification — SC-PMV-01
+
+Every agent must apply [SC-PMV-01](docs/tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) after each merge; Coordinator owns closure, not independent self-approval. Keep G0–G7 and D0–D8 intact. Actual merge SHA, ancestry, exact-SHA post-merge CI, relevant regressions and evidence are mandatory before VERIFIED. No unapproved release or rollback. PR CI is not post-merge CI.
