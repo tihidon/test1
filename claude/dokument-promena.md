@@ -187,6 +187,10 @@ Format unosa: verzija · oblast · fajl · mesto · stara vrednost · nova vredn
 - Razlog: function-level and memory diagnostics; existing gameplay QA unchanged.
 - CI, actual host activation and D7 pending; no game fix counted.
 
+### Chrome DevTools MCP — memory capability correction (26.11.2026)
+- Prior run 45796898865: FAIL, missing compare_heapsnapshots after MCP initialization. PR #48 was merged despite failed dedicated test; PMV not established.
+- Candidate: enable documented --memory-debugging; preserve same smoke assertions. No game/runtime/build/deploy change. CI and D7 pending.
+
 ### QA-003 — PW-DEF-01 correction (draft, 26.11.2026)
 - **Version:** candidate full build 0.8.92-css-unified-p11, cache p11-r1; family 0.8.92 unchanged. Root artifact remains p10 due connector transport failure; do not merge.
 - **Scope:** existing SW install handler, two build identity anchors, manifest digests, CI cache revision gate and regression. No game economy/logic/save change.
