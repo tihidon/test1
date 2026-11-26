@@ -1,10 +1,10 @@
 # SC-PL-01 — Standard za layout, Canvas resize i zabranu neosnovanog brisanja
 
-> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Izvršni kod na `main` je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
+> **Stanje identiteta (25.11.2026):** ovaj dokument navodi p1 (`2d66e55`, `index.html` SHA-256 `c19cc1ac…`). Istorijski snapshot izvršnog koda bio je **p3** (`5b4b030`, SHA `594026b9…`, `VERSION = '0.8.92-css-unified-p3'`). Tvrdnje o proverama u ovom dokumentu važe za p1 i **nisu ponovo proverene na p3 niti P10**. Merodavan izvor je [docs/README.md](https://github.com/tihidon/test1/blob/main/docs/README.md).
 
 > **Kopija za `tihidon/test1` (0.8.92-css-unified-p1).** Izvor: [snail-city-test@1e3258f](https://github.com/tihidon/snail-city-test/blob/1e3258f/docs/tehnika/standardi/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md). Provereno prema test1 `main` `2d66e55` (`index.html` SHA-256 `c19cc1ac…`) 25.11.2026: tabela CSS-01 (§7) potvrđena nad test1: 4 navedene `--sc85-*` vrednosti postoje sa 3/2/1/3 `var()` referenci; postoji i peta vrednost iznad praga, `--sc174-snail-art` (46.682 znaka, 2 reference). Trace podaci iz §1 i §5 pripadaju 0.8.90 i nisu ponovljeni na 0.8.92. Izmene u odnosu na izvor: dodata napomena o petoj vrednosti u §7. Pregled svih kopija: [docs/README.md](../../README.md).
 
-**Status:** OBAVEZNO PROJEKTNO PRAVILO (referenca: root [AGENTS.md](https://github.com/tihidon/snail-city-test/blob/1e3258f/AGENTS.md)).  
+**Status:** OBAVEZNO PROJEKTNO PRAVILO (kanonski autoritet: [test1 AGENTS.md](../../../AGENTS.md); istorijski izvor ostaje zabeležen). P10 je koordinacioni snapshot, ne dokaz ponovljenog runtime QA.  
 **Datum:** 23.11.2026.  
 **Opseg:** Snail City, PWA, WebGL rendering, UI, HTML/CSS, IndexedDB, build i QA.  
 **Odgovornost:** svaki AI agent pre patch-a, svaki reviewer pre merge-a.  
