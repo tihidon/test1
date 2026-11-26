@@ -7,6 +7,13 @@ on:
       - 'tools/agent/mcp_smoke.py'
       - 'tools/agent/test_mcp_smoke.py'
       - '.github/workflows/chrome-devtools-mcp.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/agent/chrome-devtools-mcp.toml'
+      - 'tools/agent/mcp_smoke.py'
+      - 'tools/agent/test_mcp_smoke.py'
+      - '.github/workflows/chrome-devtools-mcp.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -24,6 +31,8 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
+      - name: Verify exact checkout
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - name: Version and synthetic browser probe
         run: |
           mkdir -p "$RUNNER_TEMP/sc-mcp"

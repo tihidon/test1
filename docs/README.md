@@ -173,3 +173,11 @@ See [SC-DEBUG-01 infrastructure strategy pivot](tehnika/standardi/SC-DEBUG-01-PO
 ## 18. QA-002 — save oracle
 
 [SC-DEBUG-01 QA-002](tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#qa-002--committed-save-oracle-hardening-26112026) records four reproduced false accepts and candidate oracle corrections. 28 local fixture methods passed; real candidate Chromium and independent review remain pending. No production save or game change.
+
+## 19. Chrome DevTools MCP qualification — candidate
+
+PR #51 merged at `1b3ecbd`. [PR MCP run 45798818665](https://github.com/tihidon/test1/actions/runs/45798818665) actually initialized MCP 1.14.0, discovered tools and read synthetic Chrome DOM; no trace, heap or actual game scenario executed by that smoke. [Main engineering run 45799727773](https://github.com/tihidon/test1/actions/runs/45799727773) passed; MCP-specific push evidence missing. New candidate extends the existing isolated fixture to native click, frozen positive/negative marker oracle, parsed nonempty trace and PNG artifact with SHA-256, checks actual server schema, and adds path-scoped main push trigger and exact checkout assertion. No game/SW/deploy change. Candidate CI and D7 pending. Tool qualification is not Snail City gameplay or agent behavioral certification.
+
+### MCP qualification artifact path correction
+
+Run [45805792394](https://github.com/tihidon/test1/actions/runs/45805792394) failed at performance_stop_trace because RUNNER_TEMP is outside the server default filesystem roots; seven unit tests passed. Use the tagged v1.14.0 documented `--filesystem-root` with only the newly created resolved output directory. No unrestricted paths, no relaxed URL allowlist, no changed click/trace oracle. Re-run actual MCP CI; candidate remains unverified. Source: https://github.com/ChromeDevTools/chrome-devtools-mcp/blob/chrome-devtools-mcp-v1.14.0/docs/configuration.md
