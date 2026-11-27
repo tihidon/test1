@@ -98,3 +98,8 @@ Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavi
 ## SC-EQ-01 — kandidat za kvalifikaciju evaluatora (P0)
 
 [SC-EQ-01](docs/tehnika/standardi/SC-EQ-01-KVALIFIKACIJA-EVALUATORA.md) objedinjuje predlog kvalifikacije evaluatora pre formalnog kvalifikovanja drugih agenata. E0–E7 i ZERO-FALSE-PASS dopunjuju, ne menjaju D0–D8/G0–G7, SC-KG-01 i PMV. Nezavisni specijalista ostaje van tima, ZADRŽI ZA QA; bez E7 nema formalnog sertifikata. Kandidat dokumenta čeka nezavisni pregled i odobrenje tačne revizije; nema nove aktivne dozvole.
+
+
+## SSOT i QA-FREEZE — predlog proširenja
+
+Kandidat za kolektivni pregled: [SSOT-01–08](docs/tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md#projektni-obuhvat-ssot-0108--kandidat-za-kolektivni-pregled-27112026), [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) (kolektivni izuzetak) i [SC-INTEGRITY-01 §8](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) (freeze). Kanonski tekst ostaje u tim postojećim dokumentima. Bez paralelnih sistema i evidencije; ne ukidati nezavisne zaštite. Kandidat ZADRŽI ZA QA, ne aktivna nova instrukcija do SC-KG-01 odobrenja i verifikacije.

@@ -255,3 +255,8 @@ Implementacioni kandidat P0 za oba repoa; incident test-cl1 PR #11 (205 D, 381 A
 ## P1 — zamrznuta QA baza (27.11.2026)
 
 Vlasnik odobrio koncept. Kreiran i read-back potvrđen `qa/base/p1-20261127-r1` na `07b7dcb7e9b6dbe2c42d893af939f43493fffe72`, tree `edd42ebc1fd69b7c01dddbb61a032650b4081785`; main ostaje netaknut. Zapis QA-FREEZE-01 u postojećem SC-INTEGRITY-01 je kandidat za pregled, ne drugi registar. PR #71 ostaje privremena dijagnostika, neuspešni preflight artefakti sačuvani. Nema novog izvršavanja, merge/deploy-a ni promene dozvola/privatnosti; tehnička zaštita ref-a i izvršni postupak nisu kvalifikovani. Repo API prijavio public; prethodna pretpostavka privatnog CI-a nije potvrđena. D7 BLOCKED. D8 ZADRŽI ZA QA.
+
+
+### SSOT proširenje i QA-FREEZE-01 — kolektivni kandidat (27.11.2026)
+
+Vlasnik traži zabranu neodobrenih paralelnih sistema u svim segmentima i razradu tri freeze kontrole. U postojećem SSOT dokumentu predloženi SSOT-01–08 i S1–S8; SC-BEH-01 upućuje na isti autoritet i postojeći kolektivni postupak; SC-INTEGRITY-01 §8.1 precizira ref, trusted CI i governance drift; AGENTS.md samo upućuje na kandidate. Očuvani postojeći registri, nezavisni gate-ovi, backup, izolovani eksperimenti i legitimna redundansa. Baseline `b9833aeddc663344580eb0411e4470bee2ed7d0f`. Jedan izvršilac pročitao 16 Team skillova, pripremio predlog; stvarni zasebni stručni odgovori i D7 nisu dostupni. Nema novog kataloga, aktivacije pravila, izmene runtime-a, CI-ja, dozvola, privatnosti ili deploy-a; kvalifikacija NOT RUN. D8 ZADRŽI ZA QA.
