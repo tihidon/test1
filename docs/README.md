@@ -308,3 +308,6 @@ Sources: https://developers.cloudflare.com/workers/static-assets/routing/advance
 ## SC-INTEGRITY-01 — implementacioni kandidat 0.2
 
 [Standard](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md), checker tools/agent/check_integrity.py, negativni fixture i read-only base-controlled workflow. Oba repoa isti checker/testovi; platform enforcement, nezavisni deploy guard i D7 otvoreni. Status ZADRŽI ZA QA.
+
+### Kandidat — produktivnost i izveštavanje
+[SC-BEH-01: SC-TEAM-005, SC-REPORT-01, ENV-01–08](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md). Status: kandidat, izvršna evaluacija otvorena.

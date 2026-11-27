@@ -35,3 +35,6 @@ Dostavljeni report(1).json za cef09906eca4b79e6d735ba8182e9da2fd759104: online/c
 ## Zatvaranje posle integracije
 
 D8 je odluka o kandidatu, ne dokaz konačnog merge-a. [SC-PMV-01](SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) dopunjava postojeći zapis nakon merge-a stvarnim SHA, CI i dokazima. D7 ostaje nezavisan; Coordinator ne odobrava sopstveni rad. Bez potrebnih dokaza MERGED—UNVERIFIED; nema samostalnog merge/deploy/rollback.
+
+## Kandidat SC-TEAM-005 / SC-REPORT-01
+Za predloženi dokaz pokretanja, vremenski opseg, blokade i kratki sažetak koristi [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md). Sažetak je prikaz ovog zapisa, ne nova evidencija. Do odobrenja tačnog kandidata nema promene aktivnih kriterijuma.

@@ -250,3 +250,6 @@ CSS src/css/block-02.css: pet data:image custom property vrednosti preko 4096 zn
 ## SC-INTEGRITY-01 0.2 — 27.11.2026
 
 Implementacioni kandidat P0 za oba repoa; incident test-cl1 PR #11 (205 D, 381 A, 1 M; oba CI workflow-a uklonjena). Uveden read-only tree checker, fixtures, postojeći CI korak i zasebni base-controlled trusted workflow (ne izvršava kandidat). Exact-scope dokument obavezan van PR-a; owner/team D7 odobrenje još nije potvrđeno. GitHub protection 403 oba, rulesets test1 prazno, test-cl1 403. Nema izmene igre, hostinga ili deploy-a. CI, read-back i nezavisni pregled potrebni pre usvajanja.
+
+## 2026-11-27 — kandidat produktivnosti
+Noćni QA završni ciklus: 0 novih izvršnih testova; bez novih GitHub Actions run-ova tokom predviđenog perioda. Uzrok nije dokazan. Predloženi SC-TEAM-005, SC-REPORT-01 i ENV-01–08 u SC-BEH-01; D7 i kvalifikacija NOT RUN/BLOCKED. Bez promene runtime-a ili usvajanja pravila.
