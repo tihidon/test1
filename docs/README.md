@@ -298,3 +298,13 @@ Recovery evidence: [run 45808612656](https://github.com/tihidon/test1/actions/ru
 
 Canonical development: tihidon/test1 at e51b1e6cba31bedd61ad0bbb269c90f065117279; test-cl1 import f6c2b4d91f489e497ead625fda2e437437bf1a16 contains identical P11-r2 runtime/source and 193 matching blobs, but lacks two CI workflow files and all ancestral Git commits (root import). Restore both workflows byte-for-byte; historical ESLint ratchet commit cd79662b45b2477d2d53aba000e60f90fefc8662 is absent (API 404). Full engineering CI cannot be qualified until source history is imported by authorized Git fetch/merge; do not weaken or reset the frozen baseline. Cloudflare candidate only: wrangler.toml static assets ./dist, no server-side script, html_handling none, no wildcard fallback; _redirects exact / -> /index.html 200 internal proxy. Build uses existing Netlify whitelist/identity command, then adds _redirects; Python >=3.11 for tomllib. Dashboard build command: bash tools/cloudflare-build.sh; deploy command: npx wrangler deploy; root /. Keep builds disabled until reviewed and approved. New tests exercise exact whitelist and stale root rejection, not actual Cloudflare routing. Validate live exact URL status/MIME/bytes and no redirects on all SW core resources, private path 404s, physical PWA and synthetic save persistence. No changes to test1, game HTML, SW, save, or cache version. New origin has separate storage. Actual hosting configuration and deploy not accessible here; D7, CI and PMV pending.
 Sources: https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/ ; https://developers.cloudflare.com/workers/static-assets/redirects/ ; https://developers.cloudflare.com/workers/ci-cd/builds/configuration/
+
+
+## SC-INTEGRITY-01 — predlog P0 (27.11.2026)
+
+[Zaštita integriteta projekta](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) — incident test-cl1 PR #11, 18 rizika, izvršni ugovor i 10 grupa kvalifikacionih testova. Predlog dokumentacije; implementacija i nezavisna verifikacija otvorene.
+
+
+## SC-INTEGRITY-01 — implementacioni kandidat 0.2
+
+[Standard](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md), checker tools/agent/check_integrity.py, negativni fixture i read-only base-controlled workflow. Oba repoa isti checker/testovi; platform enforcement, nezavisni deploy guard i D7 otvoreni. Status ZADRŽI ZA QA.
