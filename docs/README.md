@@ -8,7 +8,7 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-Provereno 28.11.2026. [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.7**, izdanje `pluginrel_6b0a0b385834819194b9eb31670f2401`. Oba manifesta navode 0.7.7. Svih 16 profila navodi internu proveru D7 i odluku vlasnika D8. Provera obuhvata objavljene instrukcije.
+Provereno 28.11.2026. [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.8**, izdanje `pluginrel_6b0a106cb0188191897f81bff2bf5a18`. Oba manifesta navode 0.7.8. Svih 16 profila navodi internu proveru D7 i odluku vlasnika D8. Provera obuhvata objavljene instrukcije.
 
 | Profil u Team paketu | Pročitana verzija |
 |---|---|
