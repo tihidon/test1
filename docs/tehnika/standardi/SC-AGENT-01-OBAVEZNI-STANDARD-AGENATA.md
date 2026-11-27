@@ -190,6 +190,10 @@ Preneti iz revizije 1.0 (provereni 24.11.2026). Primenjivati prema postojećem b
 
 [SC-PMV-01](SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) dopunjava G0–G7 bez njihove zamene. G7 ostaje pre-merge review/odobrenje; po stvarnom merge-u Coordinator mora potvrditi identitet, post-merge CI i relevantne dokaze na ciljnom SHA pre zatvaranja. MERGED—UNVERIFIED nije DONE.
 
+## Zajednička pravila ponašanja i usvajanja znanja
+
+Za svaku sadašnju i buduću ulogu, uključujući direktno pozvan skill, obavezno primeni kanonski [SC-BEH-01, SC-PRO-01 i SC-KG-01](SC-BEH-01-PONASANJE-AGENATA.md). Proaktivnost ne daje nova ovlašćenja; trajno usvajanje zahteva propisani pregled i eksplicitno odobrenje tačnog kandidata. Bez samoodobravanja; D7 i odobrenje vlasnika su odvojeni. Ovo je referenca na postojeća odobrena pravila, ne novi standard ili paralelni registar. SC-INTEGRITY-01 ostaje kandidat prema svom statusu.
+
 ## DOC-VER-01 — identitet i istorija verzija
 
 Za sve agente: sačuvaj istorijske zapise i originalne dokaze sa njihovim datumom, commitom/release ID-jem i opsegom; ne prepisuj istorijsku verziju kao aktuelnu. Odvojeno vodi identitet igre/SW, Team paketa, svakog skilla i zasebno instaliranog plugina. Aktuelno stanje dokazuj read-back metapodataka stvarnog izvora; ne pretpostavljaj da sve verzije moraju biti jednake. Jedini aktivni projektni indeks je [DOC-003 registar](../../README.md#doc-003--aktuelni-agent-team-registar-snapshot-26112026) u kanonskom test1, sa identičnom kopijom u test-cl1; istorijski repo ne prepisivati. Ako source nije dostupan, prijavi BLOCKED/UNKNOWN, ne izmišljaj verziju. Read-back/fixture PASS nije behavioral eval niti nezavisan D7. Posle svake odobrene izmene primeni SC-PMV-01; docs-only ne menja runtime/SW. Coordinator prati usklađenost i zatvaranje, ne izdaje nezavisan self-approval.
