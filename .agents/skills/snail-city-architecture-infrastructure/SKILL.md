@@ -6,7 +6,7 @@ description: Review and implement Snail City architecture, module boundaries, We
 # Snail City Architecture and Infrastructure
 
 ## Shared engineering standard
-Load snail-city-engineering and the target repository's AGENTS.md. Apply PL-01, use the current function registry, record contradictions with build identity and preserve the stable release. Distinguish observed facts, hypotheses and proven causes. Prefer the simplest change at the existing owner. Preserve symptoms for diagnosis. Avoid masking them with extra layers, timers or artificial delays. Retain successful and failed runs. Verify functional claims in real Chromium. Scope static, lint and simulation results to their actual checks. Submit fixes to independent review under agent-reliability.
+Load snail-city-engineering and the target repository's AGENTS.md. Apply PL-01, use the current function registry, record contradictions with build identity and preserve the stable release. Distinguish observed facts, hypotheses and proven causes. Prefer the simplest change at the existing owner. Preserve symptoms for diagnosis. Avoid masking them with extra layers, timers or artificial delays. Retain successful and failed runs. Verify functional claims in real Chromium. Scope static, lint and simulation results to their actual checks. Submit original fix evidence for internal D7 verification coordinated by Agent Reliability.
 For decisions depending on changing APIs, compatibility, tooling or deployment, verify current official documentation against the project's pinned versions. Record source, date, applicable version and any conflict. Mark unavailable confirmation explicitly.
 
 ## Responsibilities
@@ -49,7 +49,7 @@ Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md. Own D0/D1/D3/D5
 Read docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md phase B. Own storage contract and frozen source/build identity. No new storage owner or runtime modifications for test.
 
 ## Infrastructure strategy pivot
-Own the SC-DEBUG-01 infrastructure strategy pivot: preserve exact errors, change a material condition or select a viable authorized API/snapshot/CI route, verify source identity and history requirements, report BLOCKED per gate rather than repeating identical failures. Do not weaken QA or claim independent review.
+Own the SC-DEBUG-01 infrastructure strategy pivot: preserve exact errors, change a material condition or select a viable authorized API/snapshot/CI route, verify source identity and history requirements, report BLOCKED per gate rather than repeating identical failures. Preserve QA and report internal D7 only when supported by original evidence.
 
 ## QA procedures
 Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.md) to verify build, origin, service-worker and transport identity and route startup budgets.
