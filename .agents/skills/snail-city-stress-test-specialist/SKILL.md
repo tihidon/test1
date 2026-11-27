@@ -6,7 +6,7 @@ description: Stress-test Snail City gameplay, performance, lifecycle and offline
 # Snail City Stress Test Specialist
 
 ## Shared engineering standard
-Load snail-city-engineering and the target repository's AGENTS.md. Apply PL-01, use the current function registry, record contradictions with build identity and preserve the stable release. Distinguish observed facts, hypotheses and proven causes. Prefer the simplest change at the existing owner. Preserve symptoms for diagnosis. Avoid masking them with extra layers, timers or artificial delays. Retain successful and failed runs. Verify functional claims in real Chromium. Scope static, lint and simulation results to their actual checks. Submit fixes to independent review under agent-reliability.
+Load snail-city-engineering and the target repository's AGENTS.md. Apply PL-01, use the current function registry, record contradictions with build identity and preserve the stable release. Distinguish observed facts, hypotheses and proven causes. Prefer the simplest change at the existing owner. Preserve symptoms for diagnosis. Avoid masking them with extra layers, timers or artificial delays. Retain successful and failed runs. Verify functional claims in real Chromium. Scope static, lint and simulation results to their actual checks. Submit original fix evidence for internal D7 verification coordinated by Agent Reliability.
 For decisions depending on changing APIs, compatibility, tooling or deployment, verify current official documentation against the project's pinned versions. Record source, date, applicable version and any conflict. Mark unavailable confirmation explicitly.
 
 ## Responsibilities
