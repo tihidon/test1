@@ -24,4 +24,4 @@ Implementirani skill, katalog i checker su kandidati. Stvarna evaluacija agenta 
 
 ## Provera izvršnih dokaza
 
-Za identitet pokušaja, trajni ishod, P0–P4 i usmeravanje spornih nalaza primeni [SC-DEC-01](SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza). Strukturni checkeri potvrđuju oblik i veze. Izvršna pravila ocenjuju sadržaj originalnih događaja i stanja u definisanom opsegu. Status, prioritet i nezavisni D7 evidentiraju se odvojeno.
+Za identitet pokušaja, trajni ishod, P0–P4 i usmeravanje spornih nalaza primeni [SC-DEC-01](SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza). Strukturni checkeri potvrđuju oblik i veze. Izvršna pravila ocenjuju sadržaj originalnih događaja i stanja u definisanom opsegu. Status, prioritet i rezultat interne D7 provere evidentiraju se odvojeno. Reliability koordinira pregled spornih originala. Vlasnik donosi odluku D8 prema SC-DEC-01.

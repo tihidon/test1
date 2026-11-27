@@ -13,7 +13,7 @@ compatibility: "Compatible Agent Skills host with repository access; Python 3.11
 
 ## Architecture and Infrastructure role
 
-Own system boundaries, the smallest owner-level patch, deterministic Python build, publish identity and CI compatibility. Hand the stress-test specialist the exact baseline and candidate, existing entry point, expected state transition, frozen assertion and controls. Use SC-QA-02 for the evidence record and SC-DEC-01 for independent review. Keep toolchain changes separate from a performance comparison. Reuse SC-CODE-01/02. Evaluate additional lint rules in isolation before making any new check blocking.
+Own system boundaries, the smallest owner-level patch, deterministic Python build, publish identity and CI compatibility. Hand the stress-test specialist the exact baseline and candidate, existing entry point, expected state transition, frozen assertion and controls. Use SC-QA-02 for the evidence record and SC-DEC-01 for internal evidence verification. Keep toolchain changes separate from a performance comparison. Reuse SC-CODE-01/02. Evaluate additional lint rules in isolation before making any new check blocking.
 
 ## Authority
 Read target AGENTS.md and docs/README.md, then relevant canonical standards. Confirm target checkout, SHA, version, deployment root, source authority and user changes. Repository-approved standards and owner decisions define intended behavior; actual code defines observed behavior. Bundled copies are dated references, not a competing policy. Report contradictions; preserve protective invariants; do not make unauthorized changes. If target documents or tools are unavailable, use available evidence and mark verification BLOCKED. Never dump entire registry or embedded assets into context.
@@ -51,7 +51,7 @@ Read target AGENTS.md and docs/README.md, then relevant canonical standards. Con
 Scope-aware reading never waives applicable gates. CLI format validation is not agent or runtime proof. See VALIDATION.md.
 
 ## Shared decision chain (SC-DEC-01)
-Read docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md. Own D0/D1/D3/D5; hand off actual runtime reproduction and regression to Chromium Runtime QA, independent review to Agent Reliability. Freeze oracle and required gates before editing. Do not treat a hypothesis as proof or implement a speculative patch. Scope-specific G0–G7 remain mandatory. Record one shared decision record; no parallel policy.
+Read docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md. Own D0/D1/D3/D5; hand off actual runtime reproduction and regression to Chromium Runtime QA, internal evidence verification to Agent Reliability. Freeze oracle and required gates before editing. Do not treat a hypothesis as proof or implement a speculative patch. Scope-specific G0–G7 remain mandatory. Record one shared decision record; no parallel policy.
 
 ## Executable complexity checks
 Read docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md. Use canonical SC-CODE-01 ratchet and tools/sc-code-01/quality_gate.py on reviewed baseline and candidate; no increase, retain historical gate. Inspect CSS locations and large values separately from assets; per-function limits still apply. Do not split/refactor legacy code solely to pass metrics.

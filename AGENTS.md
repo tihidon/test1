@@ -36,7 +36,7 @@ Za Snail City razvoj učitaj projektni `.agents/skills/snail-city-engineering/SK
 
 - **Stres-test specijalista** koristi `.agents/skills/snail-city-stress-test-specialist/SKILL.md` zajedno sa `.agents/skills/chromium-runtime-qa/SKILL.md`. Vodi reprodukciju, kontrolne scenarije i regresione provere D2/D4/D6. Predaje sirove dokaze, prvo opaženo odstupanje i granice nalaza.
 - **Arhitektura i infrastruktura** koristi `.agents/skills/snail-city-architecture-infrastructure/SKILL.md` uz `.agents/skills/snail-city-engineering/SKILL.md`. Vodi D0/D1/D3/D5, određuje postojećeg vlasnika izmene i odgovara za build, publish identitet i CI. Za promenu koja utiče na rezultat testa dogovara zamrznute uslove sa stres-test specijalistom.
-- Za D7/D8 primeni `agent-reliability` u nezavisnom pregledu originalnih dokaza. Ako su oba agenta učestvovala u istrazi ili implementaciji, nezavisni pregled može obaviti vlasnik ili drugi reviewer. Do tada status kandidata je **ZADRŽI ZA QA**.
+- Za D7 primeni `agent-reliability` u internoj proveri originalnih dokaza po SC-DEC-01. Posebno odobrenje nezavisnog agenta je ukinuto. Vlasnik donosi odluku D8. Nedostajući dokaz ili nerazrešen materijalan spor zadržava pogođeni nalaz u QA.
 
 ## Chromium Runtime QA
 
@@ -62,7 +62,7 @@ Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --
 
 ## Team coordination (26.11.2026)
 
-Aktuelni identitet paketa i svakog skilla je u [DOC-003 registru](docs/README.md#doc-003--aktuelni-agent-team-registar-snapshot-26112026); primeni DOC-VER-01 iz SC-AGENT-01. Team paket koordinira postojeći SC-DEC-01. DOC-003 razlikuje verzije paketa na sajtu i lokalnih repo profila. Grafički specijalista koristi [projektni rendering candidate](.agents/skills/snail-city-rendering-performance/SKILL.md) kada je odgovarajući zadatak; podržava D1/D3/D4/D6, ne menja vlasnike faza. Bez stvarne delegacije prijaviti sekvencijalno izvršavanje, D7 nezavisnost BLOCKED. Handoff prema SC-DEC-01 ostaje kanonski.
+Aktuelni identitet paketa i svakog skilla je u [DOC-003 registru](docs/README.md#doc-003--aktuelni-agent-team-registar-snapshot-26112026); primeni DOC-VER-01 iz SC-AGENT-01. Team paket koordinira postojeći SC-DEC-01. DOC-003 razlikuje verzije paketa na sajtu i lokalnih repo profila. Grafički specijalista koristi [projektni rendering candidate](.agents/skills/snail-city-rendering-performance/SKILL.md) kada je odgovarajući zadatak; podržava D1/D3/D4/D6, ne menja vlasnike faza. Bez stvarne delegacije prijaviti sekvencijalno izvršavanje. D7 status zavisi od izvršenih provera i originalnih dokaza. Handoff prema SC-DEC-01 ostaje kanonski.
 
 ## Zajedničko ponašanje svih agenata
 Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) uz SC-DEC-01 i SC-REL-01. Važi za sve projektne uloge unutar stvarne hijerarhije instrukcija platforme. Za specijalizovane preglede koristi [pravnog specijalistu](.agents/skills/snail-city-legal/SKILL.md), [defanzivnog auditora](.agents/skills/snail-city-defensive-auditor/SKILL.md) i [kontrolora rada agenata](.agents/skills/snail-city-agent-conduct/SKILL.md). D7 i autorizacija vlasnika idu kroz postojeći SC-DEC-01 postupak. Istorijski Team plugin v0.3.0 sadržao je prateće uputstvo; nezavisna evaluacija nije izvršena.
@@ -95,7 +95,7 @@ Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavi
 
 ## SC-INTEGRITY-01 — kandidat 0.2, 27.11.2026
 
-[SC-INTEGRITY-01](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) proširuje SC-RAD-01/G0/G1/G7/PMV: kontrola celog stabla, trusted preflight i INT-APPROVAL-01. Kandidat, ne aktivna potvrda. Obavezan exact-scope pregled iz odobrenog izvora i odvojena odobrenja prema SC-KG-01; strukturni CI nije autorizacija. Bez stvarne nezavisne delegacije D7 BLOCKED. Bez izmene runtime-a/deploy-a.
+[SC-INTEGRITY-01](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) proširuje SC-RAD-01/G0/G1/G7/PMV: kontrola celog stabla, trusted preflight i INT-APPROVAL-01. Kandidat, ne aktivna potvrda. Obavezan exact-scope pregled iz odobrenog izvora i odvojena odobrenja prema SC-KG-01; strukturni CI nije autorizacija. D7 primeni interno prema SC-DEC-01. Bez izmene runtime-a/deploy-a.
 
 ## SC-EQ-01 — kandidat za kvalifikaciju evaluatora (P0)
 

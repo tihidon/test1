@@ -35,7 +35,7 @@ SC-PRO-01/SC-KG-01: odobrena primena postojećeg governance-a, ne blanket odobre
 
 [SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza) u test1 main sadrži interni postupak, prioritete P0–P4 i postupanje pri poplavi događaja. [PR #83](https://github.com/tihidon/test1/pull/83) je spojen kao `7b453697`. [PR CI #106](https://github.com/tihidon/test1/actions/runs/46063984212) je PASS za head `d121722f`. CI za tačan merge SHA ovde nije potvrđen.
 
-Izvršeni piloti su sintetički. QA prijem i stvarni zapisi igre još nisu provereni ovom metodom. Eksterni kontrolor i njegova slepa proba su ukinuti. Formalni interni D7 revizije `b559a871…` ostaje BLOCKED. ChatGPT Team paket 0.7.3 je odvojen release i nije ažuriran ovom repo izmenom.
+Izvršeni piloti su sintetički. QA prijem i stvarni zapisi igre još nisu provereni ovom metodom. Eksterni kontrolor, eksterna slepa proba i obavezno odobrenje nezavisnog agenta su ukinuti. Interna provera originalnih dokaza ostaje u D7, a odluka vlasnika u D8. Formalni interni D7 revizije `b559a871…` ostaje BLOCKED. ChatGPT Team paket 0.7.3 je odvojen release i nije ažuriran ovom repo izmenom.
 
 ### Istorijski DOC-003 snapshot — paket 0.7.2
 
