@@ -82,3 +82,8 @@ Ažuriranje reference na Model Spec zahteva pregled razlika i odobrenje projektn
 ### Kolektivni izuzetak od SSOT-a — dopuna kandidata
 
 Za neodobrene konkurentske sisteme u svim segmentima primeni [postojeći SSOT, SSOT-01–08](PRAVILO-JEDAN-IZVOR-ISTINE.md#projektni-obuhvat-ssot-0108--kandidat-za-kolektivni-pregled-27112026). Normativni sadržaj zabrane i granice je tamo; ovde je samo postupak pregleda kroz već postojeći kolektivni pregled i SC-KG-01, bez drugog registra. Coordinator traži stvarni zaseban odgovor svakog stručnog profila na isti SHA/diff, uključujući primenljivost, alternativu bez promene, korist, rizik, trošak, održavanje, konflikt autoriteta, dokaz i izlaz. Obrazloženo N/A za stvarno nepogođenu oblast; nedostupan obavezni reviewer nije N/A. U postojećem SC-DEC-01 zapisu zadržati neslaganja, originalne dokaze i preporuke; sve profile obuhvatiti, ne izmišljati saglasnost i ne zahtevati kolektivno glasanje za rutinsku izmenu. Nezavisni D7 van autora/tima za sistemske kandidate i vlasnik odvojeno odobravaju prema SC-KG-01. Odluka važi samo za identifikovan izuzetak, granice, trajanje/review, rollback i odobrenu reviziju; nova materijalna promena zahteva re-review. Zaštitne nezavisne kontrole ne smeju biti uklonjene radi centralizacije. Status: kandidat, ZADRŽI ZA QA.
+
+
+### SSOT javni trening — kandidat kataloga v4
+
+[SSOT mapiranje S1–S8](PRAVILO-JEDAN-IZVOR-ISTINE.md#mapiranje-javnog-treninga-s1s8-na-postojeći-katalog-predlog-revizije-4) upućuje na isti postojeći katalog: 36 istorijskih slučajeva v3 nepromenjeno + 5 javnih trening-varijanti = 41 predloženi slučaj. Nema novog kataloga, nove rubrike ili formalnog sertifikata. Privatni oracle i nezavisna kvalifikacija ostaju odvojeni. NOT RUN.

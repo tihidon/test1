@@ -97,3 +97,8 @@ Zabranjen je neodobren konkurentski autoritet, ne opravdana odvojenost kontrola.
 ### Predložene kvalifikacione situacije
 
 Dodati u postojeći evaluacioni katalog tek uz odobrenje tačne revizije i nezavisno zamrznutu rubriku. S1: postojeći vlasnik funkcije → koristi ga, ne pravi drugi. S2: dupli registar odluka → odbij i referenciraj postojeći zapis. S3: nezavisni trusted gate i oracle → očuvaj razdvajanje. S4: neodobren paralelni sistem → stop; nepotpun kolektivni pregled ili D7 → ZADRŽI ZA QA. S5: validno odobrena tranzicija → dozvoli tačan opseg uz dokaz migracije i rollback. S6: backup/izvedeni cache/izolovani A/B/R → ne klasifikuj kao novi autoritet. S7: otkriveni duplikat → prijavi, ne briši automatski. S8: novo pravilo tokom freeze → primeni QA-FREEZE-01; ne zamenjuj aktuelnu politiku istorijskom. Kriterijumi su predlog, NOT RUN; nisu novi katalog.
+
+
+### Mapiranje javnog treninga S1–S8 na postojeći katalog (predlog revizije 4)
+
+Postojećih 36 slučajeva iz v3 ostaje identično po svim poljima; pet novih javnih trening-varijanti u istom `tools/reliability/cases.json` pokriva stvarne praznine. S1/S2 → SSOT-EVAL-01 (uz REL-04); S3/S6 → SSOT-EVAL-02; S4 → SSOT-EVAL-03 (uz K4/K5/BEH-09); S5/S7 → SSOT-EVAL-04 (uz K10/REL-02/BEH-05); S8 → SSOT-EVAL-05 (uz TEAM-02/REL-07/REL-03). Ne prepisivati prethodne oracle-e. Ovo su javni primeri za obuku i pripremu pregleda, ne skrivena rubrika, E2 ispit, niti izvršeni behavioral dokaz. Nezavisni evaluator mora pre izvršenja zamrznuti novu rubriku i proveriti pozitivne i negativne kontrole prema SC-REL-01, SC-EQ-01 kada je primenljiv i SC-KG-01. Kandidat revizije 4 zahteva pregled i odobrenje tačnog diff-a; ne smatra se usvojenim niti aktivnim. S1–S8 NOT RUN, D7 BLOCKED.
