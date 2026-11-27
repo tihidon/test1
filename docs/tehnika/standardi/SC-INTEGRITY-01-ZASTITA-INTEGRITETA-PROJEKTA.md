@@ -1,6 +1,6 @@
 # SC-INTEGRITY-01 — Zaštita integriteta projekta
 
-Revizija 0.1, 27.11.2026. Prioritet P0. **PREDLOG ZA USVAJANJE; nije implementiran izvršni gate.** Važi za buduće odobrene izmene svih agenata, ljudi, build/deploy automatizacija i arhiva. Dopuna SC-RAD-01 §6–7, SC-AGENT-01 G0/G1/G7, SC-DEC-01 D0–D8 i SC-PMV-01; ne menja ovlašćenja, postojeće orakle, tri provere pre brisanja ili nezavisnost D7. Jedan SC-DEC-01 zapis; nema paralelnog procesa.
+Revizija 0.2, 27.11.2026. Prioritet P0. **KANDIDAT ZA USVAJANJE; implementacija u PR-u, verifikacija i odobrenje otvoreni.** Važi za buduće odobrene izmene svih agenata, ljudi, build/deploy automatizacija i arhiva. Dopuna SC-RAD-01 §6–7, SC-AGENT-01 G0/G1/G7, SC-DEC-01 D0–D8 i SC-PMV-01; ne menja ovlašćenja, postojeće orakle, tri provere pre brisanja ili nezavisnost D7. Jedan SC-DEC-01 zapis; nema paralelnog procesa.
 
 ## 1. Dokaz incidenta (OBSERVED)
 
@@ -31,7 +31,7 @@ Revizija 0.1, 27.11.2026. Prioritet P0. **PREDLOG ZA USVAJANJE; nije implementir
 | INT-17 | Izvor != izvršni build | Postojeći check_build.py --require-publish-match i publish gate; nema auto-overwrite kao zamene za dokaz. |
 | INT-18 | Lažni merge/test/deploy PASS | PMV-01, stvarni ref/merge SHA, svi obavezni jobovi, originalni dokazi, D7 kad je potreban. |
 
-## 3. Izvršni ugovor kandidata (nije implementiran)
+## 3. Izvršni ugovor kandidata
 
 1. Pre prve izmene zamrznuti odobren opseg: repo, grana, očekivani base/head, vrsta zadatka, tačan allowlist promena/dodavanja/brisanja (i mode/type promena), vlasnik i dokaz odobrenja. Odobrenje teksta PR-a nije samo po sebi autorizacija; ne verovati samostalno generisanom allowlistu kandidata. Ako obim nije poznat, stop za destruktivnu operaciju.
 2. Pre push-a i pre merge-a uporediti kompletna stabla baze i stvarnog kandidata/merge rezultata po putanjama, mode/type, size i blob hash; rename je brisanje + dodavanje za oracle; ne koristiti samo diff --stat, prvu stranicu PR-a ili odabrane putanje. Izveštaj posebno ispisuje A/D/M/type, bez sadržaja tajni. Truncation, nepoznat baseline ili nedostupan dokaz = BLOCKED.
@@ -60,4 +60,24 @@ D0/D1: Engineering/Architecture identitet i scope; D2/D4/D6: QA/Stress originaln
 
 ## 5. Status i otvoreno
 
-Ovaj dokument je definicija. Stvarni checker, test fixtures, integracija u postojeći CI, trusted preflight, deploy guard, mogućnost platformskog enforcement-a, D7 i sinhronizacija u test-cl1 nisu izvršeni/odobreni ovim zadatkom. Ne proglašavati zaštitu aktivnom. Svaki budući incident/near miss dobija dopunu istog registra i reproduktivan negativni test, bez automatskog usvajanja novih pravila. Usvajanje po SC-KG-01 i PMV-01. 
+Checker, fixtures i rani CI korak su implementirani kao kandidati u oba repoa; zasebni read-only trusted workflow koristi bazni checkout i samo čita Git objekte. Prvi bootstrap PR ne može koristiti workflow koji još nije u bazi; potreban je spoljašnji read-only pregled exact tree. D7, stvarna CI kvalifikacija, usvajanje, platform enforcement i nezavisan deploy guard ostaju otvoreni. Ne proglašavati zaštitu aktivnom. Svaki budući incident/near miss dobija dopunu istog registra i reproduktivan negativni test, bez automatskog usvajanja novih pravila. Usvajanje po SC-KG-01 i PMV-01. 
+
+
+## 6. Odobravanje i odgovornost — INT-APPROVAL-01
+
+- D0: vlasnik odobrava namenu i tačan opseg; Coordinator evidentira repo, base, očekivani head, putanje, operacije, dokaz i rollback. Agent koji predlaže ne može odobriti sopstveni predlog.
+- D1: Engineering/Architecture proveravaju minimalni opseg, identitet i očuvanje igre/hostinga/pravila. D2/D4/D6: Stress/QA proveravaju pozitivne, negativne i istorijske scenarije. Agent Conduct/Defensive Auditor proveravaju proširenje dozvola, privatnost i mogućnost nestanka samih kontrola. D7: zaseban Reliability/nezavisni reviewer proverava originalne logove, kompletan diff i negativni oracle; isti izvršilac ili role adapter nije nezavisan. Coordinator konsoliduje, vlasnik odobrava tačan pregledani kandidat; neslaganje ili nedostajući potpis = ZADRŽI ZA QA. Ne izmišljati glasove ili potpise.
+- Pre merge-a reviewer iz odobrenog checkout-a izvršava check_integrity.py nad tačnim base i merge tree; polje scope iz izveštaja je predlog inventara, ne odobrenje. Odobreni scope JSON mora biti van kandidata, vezan za repo/base/head i kompletan A/D/M/T sa starim/novim mode/type/size/oid. Tek nakon nezavisne potvrde i odobrenja vlasnika proslediti --scope FILE --require-scope; alat ne autentifikuje odobrenje. Novi head/base poništava prethodno odobrenje.
+- Automatski checker bez scope-a odbija sva brisanja i mode/type izmene, nedostajuće/prazne kritične fajlove, symlink/gitlink kandidate. Ne dokazuje da je svaka neobrisana promena autorizovana ili da je validan HTML. Postojeći build/QA orakli i ručni exact-scope review ostaju obavezni. Legitimne migracije koje brišu fajl zahtevaju posebno odobren trusted mehanizam pre automatskog prolaza; ova verzija nema auto-izuzetak u CI-u. Kritične putanje ne mogu biti uklonjene samo scope JSON-om. Veličina nije zamrznuta.
+- Trusted workflow pull_request_target je namerno odvojen: samo contents:read, base checkout, fetch merge ref i provereni roditelji; nema izvršenja koda PR-a, checkout-a kandidata, secrets, cache ili write dozvola. Izveštaj razlikovati od ordinary candidate CI. Missing/stale workflow/result = BLOCKED. Bootstrap zahteva zaseban read-only pregled. Ni ovaj workflow ne garantuje server-side blokadu: GitHub branch protection/ruleset mora biti stvarno konfigurisan i verifikovan, uključujući vezivanje statusa za tačan kandidat; dok nije, ručni stop pre merge-a.
+- GitHub API 27.11.2026: branch protection 403 oba repoa; test1 rulesets prazna lista; test-cl1 rulesets 403 (plan/private repo). Ne menjati privatnost repoa. Ne tvrditi da je enforced required check. Nema automatskog merge/deploy-a. Postojeći publish guard i cache/testovi ostaju; nezavisan pre-deploy guard van kandidata zahteva poseban autorizovani hosting postupak.
+- Svaki incident/near miss, uključujući pogrešan tree, zastareo ref, delimičan upload, falsifikovan PASS ili izostanak QA, dodati u ovaj registar i negativne testove uz nezavisnu proveru. Ne usvajati nova pravila bez SC-KG-01.
+
+### Komande za nezavisni pregled
+
+Iz odobrenog checkout-a, ne iz PR koda:
+python tools/agent/check_integrity.py --repository REPO --base BASE_SHA --head MERGE_SHA --out /safe/location/report.json
+Posle potvrde odobrenja odvojeno:
+python tools/agent/check_integrity.py --repository REPO --base BASE_SHA --head MERGE_SHA --scope /safe/location/approved.json --require-scope --out /safe/location/verified.json
+
+Git root i ref moraju biti verifikovani prema autorizovanom origin-u izvan alata; --repository je oznaka, ne autentifikacija remote-a. Kod ne radi fetch, checkout, deploy ili izvršenje kandidata. Exit 0 = strukturno ili exact-scope podudaranje, 1 = FAIL, 2 = BLOCKED. Uvek čitati report.level i authorization_verified=false. Fixture testovi ne zamenjuju build, live deploy, fizički PW-01 ili D7.

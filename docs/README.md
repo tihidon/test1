@@ -303,3 +303,8 @@ Sources: https://developers.cloudflare.com/workers/static-assets/routing/advance
 ## SC-INTEGRITY-01 — predlog P0 (27.11.2026)
 
 [Zaštita integriteta projekta](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) — incident test-cl1 PR #11, 18 rizika, izvršni ugovor i 10 grupa kvalifikacionih testova. Predlog dokumentacije; implementacija i nezavisna verifikacija otvorene.
+
+
+## SC-INTEGRITY-01 — implementacioni kandidat 0.2
+
+[Standard](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md), checker tools/agent/check_integrity.py, negativni fixture i read-only base-controlled workflow. Oba repoa isti checker/testovi; platform enforcement, nezavisni deploy guard i D7 otvoreni. Status ZADRŽI ZA QA.

@@ -29,6 +29,22 @@ jobs:
       - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
         with:
           python-version: '3.12'
+      - name: SC-INTEGRITY-01 tree integrity (structural)
+        env:
+          SC_INTEGRITY_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          set -euo pipefail
+          base="$SC_INTEGRITY_BASE"
+          if [ -z "$base" ]; then base="$(git rev-parse HEAD^1)"; fi
+          python tools/agent/check_integrity.py --repository "$GITHUB_REPOSITORY" --base "$base" --head "$GITHUB_SHA" --out "$RUNNER_TEMP/sc-integrity.json"
+      - name: Preserve integrity report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-integrity
+          path: ${{ runner.temp }}/sc-integrity.json
+          if-no-files-found: error
+          retention-days: 14
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'

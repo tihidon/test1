@@ -89,3 +89,8 @@ Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavi
 ## Predlog SC-INTEGRITY-01 — P0
 
 [SC-INTEGRITY-01](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) definiše kontrolu celog Git stabla i odobrenog opsega, zaštitu izvršnog koda i sopstvenih QA kontrola, read-back i negativne testove incidenta PR #11. Predlog za nezavisni pregled i odobrenje vlasnika; nije tvrdnja o aktivnom izvršnom gate-u. Postojeći SC-RAD-01, G0–G7, D0–D8 i PMV ostaju obavezni.
+
+
+## SC-INTEGRITY-01 — kandidat 0.2, 27.11.2026
+
+[SC-INTEGRITY-01](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) proširuje SC-RAD-01/G0/G1/G7/PMV: kontrola celog stabla, trusted preflight i INT-APPROVAL-01. Kandidat, ne aktivna potvrda. Obavezan exact-scope pregled iz odobrenog izvora i odvojena odobrenja prema SC-KG-01; strukturni CI nije autorizacija. Bez stvarne nezavisne delegacije D7 BLOCKED. Bez izmene runtime-a/deploy-a.

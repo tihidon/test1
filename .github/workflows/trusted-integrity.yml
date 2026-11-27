@@ -1,0 +1,40 @@
+name: Snail City trusted integrity
+# Base-controlled workflow. Never check out or execute PR content.
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  trusted-tree:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+      - name: Verify base and fetch exact candidate merge tree without checkout
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          [[ "$BASE" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$HEAD_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]
+          test "$(git rev-parse HEAD)" = "$BASE"
+          git fetch --no-tags origin "refs/pull/$PR_NUMBER/merge"
+          merged="$(git rev-parse FETCH_HEAD)"
+          test "$(git show -s --format=%P "$merged")" = "$BASE $HEAD_SHA"
+          python3 tools/agent/check_integrity.py --repository "$GITHUB_REPOSITORY" --base "$BASE" --head "$merged" --out "$RUNNER_TEMP/sc-trusted-integrity.json"
+      - name: Preserve trusted tree report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-trusted-integrity
+          path: ${{ runner.temp }}/sc-trusted-integrity.json
+          if-no-files-found: error
+          retention-days: 14
