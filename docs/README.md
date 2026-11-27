@@ -333,3 +333,7 @@ Sources: https://developers.cloudflare.com/workers/static-assets/routing/advance
 ## SC-INTEGRITY-01 — implementacioni kandidat 0.2
 
 [Standard](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md), checker tools/agent/check_integrity.py, negativni fixture i read-only base-controlled workflow. Oba repoa isti checker/testovi; platform enforcement, nezavisni deploy guard i D7 otvoreni. Status ZADRŽI ZA QA.
+
+### SC-EQ-01 — organizacioni kandidat (27.11.2026)
+
+[SC-EQ-01](tehnika/standardi/SC-EQ-01-KVALIFIKACIJA-EVALUATORA.md): jedan kanonski predlog za sve evaluatore; javni pilot, slepi ispit, odvojeni oracle, ograničeno ovlašćenje i obnova. E0–E7 NOT RUN, nezavisni D7 BLOCKED, sertifikat nije izdat. Odluka i referenca na dokaz u SC-DEC-01; DOC-003 ostaje indeks, ne novi registar. Nema promene Team release-a.
