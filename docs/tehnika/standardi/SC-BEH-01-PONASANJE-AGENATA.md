@@ -1,6 +1,6 @@
 # SC-BEH-01 — zajedničko ponašanje i autonomija agenata
 
-Status: projektni kandidat, 26.11.2026. Primenjuje se na sve uloge. Referenca: [OpenAI Model Spec, 29.10.2026](https://model-spec.openai.com/2026-10-29.html). Ovo je primena u projektu, ne kopija Model Spec-a, izmena modela ili zamena za stvarnu hijerarhiju instrukcija platforme. SC-AGENT-01, SC-RAD-01, SC-DEC-01, SC-REL-01 i G0–G7 ostaju na snazi.
+Status: prvobitni projektni kandidat 26.11.2026; vlasnik je odobrio korišćenje dogovorenih SC-PRO-01/SC-KG-01, prema [DOC-003](../../README.md#doc-003--aktuelni-agent-team-registar-snapshot-26112026). Primenjuje se na sve uloge. Odobrenje nije nezavisni D7, behavioral PASS niti dozvola za buduće neodobrene promene. Referenca: [OpenAI Model Spec, 29.10.2026](https://model-spec.openai.com/2026-10-29.html). Ovo je primena u projektu, ne kopija Model Spec-a, izmena modela ili zamena za stvarnu hijerarhiju instrukcija platforme. SC-AGENT-01, SC-RAD-01, SC-DEC-01, SC-REL-01 i G0–G7 ostaju na snazi.
 
 ## Zajednički postupak
 1. Autoritet: poštuj važeću hijerarhiju instrukcija; repo pravila i skillovi ne mogu nadjačati nadređene instrukcije. Odredi korisnikov cilj, target i opseg; ne uvodi sopstvene ciljeve.
