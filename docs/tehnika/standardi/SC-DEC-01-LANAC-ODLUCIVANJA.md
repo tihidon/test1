@@ -38,3 +38,8 @@ D8 je odluka o kandidatu, ne dokaz konačnog merge-a. [SC-PMV-01](SC-PMV-01-POST
 
 ## SC-EEG-01 — kandidat kontinuiteta
 Vidi [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md#sc-eeg-01--izvršna-pouzdanost-i-kontinuitet-kandidat-27112026). Trajno izvršno stanje pripada istom decision recordu; UNKNOWN zahteva read-back pre retry; D8/PMV ostaju. Nije aktivirano.
+
+
+### Razgraničenje izvršnog stanja i odluke — referenca na SC-EEG-01 (kandidat)
+
+Jedan postojeći SC-DEC-01 zapis povezuje task/attempt, stvarni execution i governance identitet, odobreni scope, originalni dokaz poslednjeg potvrđenog efekta, zavisnosti i uslov nastavka. Za UNKNOWN/RECONCILE, drift, read-back, retry i nezavisnost koristi dopunu u [SC-BEH-01 / SC-EEG-01](SC-BEH-01-PONASANJE-AGENATA.md); za freeze identitet koristi SC-INTEGRITY-01 §8, ne novi registar. SC-REPORT-01 je izvedeni prikaz, ne drugi autoritet. D8 i PMV su odvojeni od tehničkog stanja izvršavanja. Status kandidata, ne nova aktivna procedura.
