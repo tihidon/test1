@@ -8,7 +8,7 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-Provereno 28.11.2026. [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.8**, izdanje `pluginrel_6b0a106cb0188191897f81bff2bf5a18`. Oba manifesta navode 0.7.8. Svih 16 profila navodi internu proveru D7 i odluku vlasnika D8. Provera obuhvata objavljene instrukcije.
+Provereno u noći 27/28.11.2026. (CET). [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.8**, izdanje `pluginrel_6b0a106cb0188191897f81bff2bf5a18`. Oba manifesta navode 0.7.8. Svih 16 profila navodi internu proveru D7 i odluku vlasnika D8. Provera obuhvata objavljene instrukcije. USER/PRIVATE. Ovo nije dokaz stvarnog ponašanja, zasebne aktivacije ni delegacije. Naslov registra zadržava postojeći anchor radi kompatibilnosti linkova; aktuelnost određuje datum ovog read-backa, ne datum u naslovu.
 
 | Profil u Team paketu | Pročitana verzija |
 |---|---|
@@ -36,6 +36,33 @@ SC-PRO-01/SC-KG-01: odobrena primena postojećeg governance-a, ne blanket odobre
 [SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza) u test1 main sadrži interni postupak, prioritete P0–P4 i postupanje pri poplavi događaja. [PR #83](https://github.com/tihidon/test1/pull/83) je spojen kao `7b453697`. [PR CI #106](https://github.com/tihidon/test1/actions/runs/46063984212) je PASS za head `d121722f`. CI za tačan merge SHA ovde nije potvrđen.
 
 Izvršeni piloti su sintetički. QA prijem i stvarni zapisi igre još nisu provereni ovom metodom. Eksterni kontrolor, eksterna slepa proba i obavezno odobrenje nezavisnog agenta su ukinuti. Interna provera originalnih dokaza ostaje u D7, a odluka vlasnika u D8. Formalni interni D7 revizije `b559a871…` ostaje BLOCKED. Identitet objavljenog Team paketa evidentiran je u DOC-003 iznad.
+
+### Istorijski DOC-003 snapshot — paket 0.7.3
+
+Istorijski zapis pre promene politike D7; ne primenjivati stare uslove na aktuelne zadatke.
+
+Read-back 27.11.2026 CET: [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.3**, release `pluginrel_6b08be2734fc81918c145990f028045e`, USER/PRIVATE. Plugin Creator get_plugin_files: 34 fajla, oba manifesta 0.7.3, svih 16 SKILL.md pročitano; oba identifikatora SC-PRO-01 i SC-KG-01 prisutna u svakom. Ovo je potvrda sadržaja i identiteta paketa, ne dokaz ponašanja, zasebnih instaliranih plugina ili nezavisne delegacije.
+
+| Profil u Team paketu | Pročitana verzija |
+|---|---|
+| `coordinate-team` | 0.5.11 |
+| `team-agent-conduct` | 0.1.1 |
+| `team-architecture` | 0.5.9 |
+| `team-chromium-qa` | 0.5.6 |
+| `team-defensive-auditor` | 0.1.2 |
+| `team-engineering` | 0.5.8 |
+| `team-handoff` | 0.5.6 |
+| `team-legal` | 0.1.1 |
+| `team-marketing` | 0.3.2 |
+| `team-qa-assurance` | 0.5.7 |
+| `team-qa-planning` | 0.5.6 |
+| `team-qa-release` | 0.5.6 |
+| `team-reliability` | 0.5.7 |
+| `team-rendering` | 0.5.7 |
+| `team-stress-test` | 0.5.7 |
+| `team-visual-design` | 0.5.10 |
+
+SC-PRO-01/SC-KG-01: odobrena primena postojećeg governance-a, ne blanket odobrenje novih predloga. K1–K10 behavioral NOT RUN; nezavisni D7 BLOCKED. SC-INTEGRITY-01/INT-APPROVAL-01 ostaju kandidati prema sopstvenom standardu, bez tvrdnje o aktivnom platform enforcement-u. Repo snapshot pregleda: test1 `15add8492e830c1ca98f22d9a8ef9d8facf0621c`, test-cl1 `8731439629947d5a502af5c9ef0ef228a26f07fd`; razlike u AGENTS.md, docs/README.md i dva dokumenta nezavisnog kandidata zahtevaju zaseban pregled pre prenosa, ne prepisivanje. U 11 repo SKILL.md devet navodi SC-BEH-01; marketing i visual-design ne navode ga eksplicitno. Nijedan ne navodi oba SC-PRO-01/SC-KG-01 direktno; postojeći kanonski AGENTS.md već propisuje njihovu primenu svim ulogama. Predlog dopune ulaznih referenci nije dokaz izvršavanja. SC-DEC-01, DOC-VER-01 i PMV ostaju obavezni.
 
 ### Istorijski DOC-003 snapshot — paket 0.7.2
 
