@@ -10,6 +10,10 @@ Datum: 2026-11-26. Opseg: svi agenti, svaki merge u main, uključujući dokument
 4. CI i produkcioni deploy su odvojeni. Kada je deploy u scope-u, proveri stvarni deploy ID, commit, origin, publish identitet i relevantan smoke; nema neodobrenog deploy-a, rollback-a ili merge-a.
 5. Zabeleži originalne dokaze, sve pokušaje, kontradikcije, preostali rizik i rollback. Nezavisni D7 review kad ga zahtevaju kanonski standardi; isti izvršilac nije nezavisan. Nezatvoreni gate ne sme biti preskočen.
 
+## Integritet prenosa i objave
+
+Za svaki fajl/paket u opsegu merge-a, uploada ili objave primeni [DOC-VER-01 POST-UPLOAD](SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md#post-upload--obavezna-provera-kompletnosti-i-integriteta). Zamrznuti izvorni manifest i ponovo preuzeti ciljni bajtovi, broj/putanje, veličina po fajlu i SHA-256 moraju se poklopiti prema odobrenom ugovoru prenosa. Nedostajući dokaz ili neslaganje blokira VERIFIED; ponoviti proveru nakon autorizovane korekcije. Ne zamenjuje exact-SHA CI, D7, relevantni runtime ili autorizaciju.
+
 ## Status i ovlašćenja
 
 VERIFIED tek kada svi obavezni dokazi prolaze; MERGED—UNVERIFIED kada merge postoji ali nedostaju dokazi; FAIL za utvrđenu neuspešnu kontrolu; BLOCKED za nedostupnu sposobnost/dokaz; NOT RUN za neizvršeno; N/A uz obrazloženje. Coordinator blokira zatvaranje/release i prosleđuje problem vlasniku, ne izdaje samostalnu autorizaciju. CI rezultat sam po sebi nije odobrenje. Post-merge kontrola ne može retroaktivno sprečiti merge; sprečava lažnu potvrdu spremnosti.

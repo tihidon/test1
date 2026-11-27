@@ -69,6 +69,10 @@ Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENA
 
 Primeni [SC-PRO-01 i SC-KG-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) za sve sadašnje i buduće uloge. Istražuj odobrene alternative, ali ne usvajaj nova znanja, tehnologije, pravila ili skillove bez nezavisne kontrole i eksplicitnog odobrenja vlasnika za tačan pregledani kandidat. Bez samoodobravanja, automatskog preuzimanja instrukcija, širenja dozvola ili prenosa osetljivih podataka. Ako nezavisan pregled nije dostupan, ZADRŽI ZA QA. Jedan SC-DEC-01 zapis; DOC-VER-01 i PMV ostaju.
 
+## POST-UPLOAD — obavezno za sve agente
+
+Primeni [DOC-VER-01 POST-UPLOAD](docs/tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md#post-upload--obavezna-provera-kompletnosti-i-integriteta) nakon svakog autorizovanog prenosa fajla/paketa: zamrzni izvorni manifest, ponovo preuzmi ciljne bajtove, proveri kompletan broj i putanje, pojedinačne veličine u bajtovima i SHA-256, stvarni cilj, relevantne dozvole i upotrebljivost. Nedostajući dokaz ili neslaganje: ZADRŽI ZA QA. Posle odobrene korekcije ponovi celu proveru. Nema lažnog PASS, automatskog brisanja, merge/deploy ili samoodobravanja.
+
 ## Infrastructure failures — mandatory strategy pivot
 Apply [SC-DEBUG-01 infrastructure strategy pivot](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). Do not repeat unchanged failed operations. Architecture records failure, selects a viable authorized alternative (API, verified snapshot, private CI), preserves identity and gates; Coordinator routes unblocked work. No fabricated PASS or independent review.
 
