@@ -170,8 +170,9 @@ jobs:
         env:
           SC_P1_BASE: ${{ github.event.pull_request.base.sha }}
         run: |
-          test "$SC_P1_BASE" = "0f70b3990de1ef146afa8f9eb7cd0640fd0ba518"
           mkdir -p "$RUNNER_TEMP/sc-p1-xp"
+          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'b1928ed96a368735a45f0e2ef270c4f2844a820f' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-xp/preflight.txt"
+          test "$SC_P1_BASE" = "b1928ed96a368735a45f0e2ef270c4f2844a820f"
           python -m py_compile tools/qa/p1_xp_ribbon_probe.py
           python -c 'import sys; from pathlib import Path; sys.path.insert(0,"tools/qa"); from runtime_watchdog import run_bounded; p=Path(sys.argv[1]); r=run_bounded([sys.executable,"tools/qa/p1_xp_ribbon_probe.py",str(p)],p,480); print(r); sys.exit(0 if r["status"]=="PASS" else 1)' "$RUNNER_TEMP/sc-p1-xp"
       - name: Preserve temporary P1 evidence
