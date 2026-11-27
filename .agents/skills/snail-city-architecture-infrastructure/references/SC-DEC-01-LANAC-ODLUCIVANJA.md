@@ -1,5 +1,8 @@
 # SC-DEC-01 — lanac pouzdanog odlučivanja
 
+> **Istorijski snapshot.** Aktivna pravila su u [kanonskom SC-DEC-01](../../../../docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md).
+
+
 Status: kandidat za CI i nezavisnu evaluaciju; vlasnik odobrio nadogradnju. Baseline 9d638c4730caf63c02e2c01397a1eea96f2197eb. Dodatak SC-REL-01, SC-QA-02, SC-AGENT-01, PL-01, PW-01; ne zamenjuje nijedan gate. Jedan decision record po zadatku; ne uvoditi četvrti skill niti paralelni runtime sistem.
 
 ## D0–D8

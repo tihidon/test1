@@ -31,6 +31,12 @@ Read-back 27.11.2026 CET: [Snail City Agent Team](https://chatgpt.com/plugins/pl
 
 SC-PRO-01/SC-KG-01: odobrena primena postojećeg governance-a, ne blanket odobrenje novih predloga. K1–K10 behavioral NOT RUN; nezavisni D7 BLOCKED. SC-INTEGRITY-01/INT-APPROVAL-01 ostaju kandidati prema sopstvenom standardu, bez tvrdnje o aktivnom platform enforcement-u. Repo snapshot pregleda: test1 `15add8492e830c1ca98f22d9a8ef9d8facf0621c`, test-cl1 `8731439629947d5a502af5c9ef0ef228a26f07fd`; razlike u AGENTS.md, docs/README.md i dva dokumenta nezavisnog kandidata zahtevaju zaseban pregled pre prenosa, ne prepisivanje. U 11 repo SKILL.md devet navodi SC-BEH-01; marketing i visual-design ne navode ga eksplicitno. Nijedan ne navodi oba SC-PRO-01/SC-KG-01 direktno; postojeći kanonski AGENTS.md već propisuje njihovu primenu svim ulogama. Predlog dopune ulaznih referenci nije dokaz izvršavanja. SC-DEC-01, DOC-VER-01 i PMV ostaju obavezni.
 
+### Interni D7 i Provera izvršnih dokaza — 27.11.2026.
+
+[SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza) u test1 main sadrži interni postupak, prioritete P0–P4 i postupanje pri poplavi događaja. [PR #83](https://github.com/tihidon/test1/pull/83) je spojen kao `7b453697`. [PR CI #106](https://github.com/tihidon/test1/actions/runs/46063984212) je PASS za head `d121722f`. CI za tačan merge SHA ovde nije potvrđen.
+
+Izvršeni piloti su sintetički. QA prijem i stvarni zapisi igre još nisu provereni ovom metodom. Eksterni kontrolor, eksterna slepa proba i obavezno odobrenje nezavisnog agenta su ukinuti. Interna provera originalnih dokaza ostaje u D7, a odluka vlasnika u D8. Formalni interni D7 revizije `b559a871…` ostaje BLOCKED. ChatGPT Team paket 0.7.3 je odvojen release i nije ažuriran ovom repo izmenom.
+
 ### Istorijski DOC-003 snapshot — paket 0.7.2
 
 Read-back 27.11.2026 CET (26.11. UTC), preko autorizovanog Plugin Creator konektora. Tadašnji [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) bio je **0.7.2**, release `pluginrel_6b08bb6baf108191ac666b7a64f19df1`; oba manifesta 0.7.2, USER/PRIVATE, 34 fajla i 16 skillova u inventaru. Usklađeni Coordinator i zajednički behavior guide sa SC-PRO-01/SC-KG-01; ostali skill headeri ostaju na stvarno pročitanim verzijama. Pravila važe za sve uloge kroz SC-BEH-01 i zajednički vodič; stvarna aktivacija u pojedinačnoj sesiji i ponašanje nisu dokazani read-backom.

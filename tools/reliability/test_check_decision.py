@@ -27,7 +27,7 @@ class DecisionTests(unittest.TestCase):
             "evidence":{"commit":self.candidate,"checks":[artifact("regression")]},
             "first_divergence":{"symbol":"f","anchor":"src/f.js","caller":"g","expected":"1","actual":"2"},
             "unresolved_contradictions":[],"decision":"PRIHVATI KANDIDAT",
-            "review":{"status":"PASS","reviewer":"fixture reviewer","independent":True}}
+            "review":{"status":"PASS","reviewer":"fixture reviewer"}}
     def errors(self):
         return check(self.contract,self.record,self.root)
     def test_valid_structure_only(self):
@@ -42,8 +42,16 @@ class DecisionTests(unittest.TestCase):
         self.record["candidate"]=self.baseline
         self.assertTrue(self.errors())
     def test_missing_review(self):
-        self.record["review"]["independent"]=False
-        self.assertTrue(self.errors())
+        del self.record["review"]
+        self.assertIn("internal evidence review declaration missing",self.errors())
+    def test_legacy_independence_field_is_optional(self):
+        for value in (False,True):
+            with self.subTest(value=value):
+                self.record["review"]["independent"]=value
+                self.assertEqual(self.errors(),[])
+    def test_incomplete_internal_review(self):
+        self.record["review"]["status"]="BLOCKED"
+        self.assertIn("internal evidence review declaration missing",self.errors())
     def test_missing_gate(self):
         self.record["evidence"]["checks"]=[]
         self.assertTrue(self.errors())

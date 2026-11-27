@@ -12,8 +12,8 @@ For mobile jank use Chrome Remote Debugging on physical Android. Match device, b
 ## Shop and Incubator accessibility
 Exercise keyboard focus order, visible focus and focus return, accessible names and roles, physical touch targets, reduced motion, and access to essential canvas interactions where applicable. Use axe-core as a supplement for DOM checks. Preserve affected control, state, observed result and evidence. Record physical touch and assistive technology coverage separately.
 
-## Independent release review
-Engineering owns the oracle. Chromium QA records the actual steps, assertions and original artifacts. Reliability independently verifies the exact commit, CI attempts, build/origin and raw evidence against the oracle. Coordinator records coverage gaps and applies the existing PMV process. Record D7 as blocked if the same executor did the work and no separate reviewer checked originals. An untested gate stays explicit.
+## Internal evidence review
+Engineering owns the oracle. Chromium QA records the actual steps, assertions and original artifacts. Reliability verifies the exact commit, CI attempts, build/origin and raw evidence against the oracle. Coordinator records coverage gaps and applies the existing PMV process. Record the actual executor and evidence coverage. Keep D7 open where required evidence is missing or materially disputed. The owner decides D8. An untested gate stays explicit.
 
 ## References
 
