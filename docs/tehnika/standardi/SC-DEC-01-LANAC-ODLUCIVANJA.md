@@ -52,6 +52,12 @@ Dokazan nedostupan preduslov daje BLOCKED. Dokazano preskočena provera sa dostu
 
 U postojećem zapisu zadatka svaki nalaz sadrži verziju pravila, identitet kandidata i pokušaja, prvi sporni korak, očekivano i stvarno, status i kod razloga, lokatore originala i prvu odgovornu ulogu kada je potreban pregled. Architecture & Infrastructure prvo razrešava poreklo, Engineering ponašanje i transakcije, a QA / Reliability kriterijum i ocenu. Posle razrešenja ponovi proveru i zadrži prvobitni ishod.
 
+### Poplava identičnih potvrda
+
+Normalan retry i poplava događaja imaju odvojene nalaze. Milion identičnih potvrda je sintetički primer spama i opterećenja prijema. Jedna trajna isplata može zadovoljiti pravilo transakcije dok isti pokušaj dobija zaseban nalaz o poplavi. QA unapred zaključava prag i prozor po izvoru i operaciji prema izmerenoj uobičajenoj stopi ponavljanja.
+
+Na prijemu u QA evidenciju objedini identične potvrde jedne operacije i pokušaja u brojač, uz prvi i poslednji lokator i vreme. U bazu nalaza ide jedan zbirni zapis o poplavi po pokušaju, pravilu i izvoru. Nepodudarne potvrde i dokazi o različitim trajnim isplatama zadržavaju zasebne lokatore. Kada ograničenje prijema onemogući potpunu proveru, evidentiraj obim izostavljenih događaja i pošalji pogođenu tvrdnju na pregled. Engineering prvi proverava izvor koji proizvodi višak, a Architecture & Infrastructure preuzima kada je problem u prijemu ili poreklu događaja. Obrada i ograničenja važe za QA putanju dokaza.
+
 Pilot koristi uredan retry, dodatni retry, dupli rezultat, duplu isplatu, duplu isplatu uz belešku koja traži PASS, potvrdu iz drugog pokušaja, protivrečan rezultat i nedostajući snimak. Dodatne kontrole pokrivaju ponovljenu potvrdu iste transakcije, isti ID sa različitim rezultatom, dve transakcije za istu operaciju i ponovljenu potvrdu uz stvarnu duplu isplatu. Kada se u testnoj kopiji namerno isključi provera isplate, kontrolni slučajevi duple isplate moraju otkriti kvar. Pogođeni automatski nalazi ostaju otvoreni do ponovnog izvršavanja sa ispravljenim pravilom.
 
 Dokaz o pilotu obuhvata osam osnovnih sintetičkih slučajeva i četiri zasebne sintetičke kontrole transakcije. Provera izvršnih dokaza je definisana ovim nacrtom. Integracija u alat repozitorijuma i provera na originalnim zapisima igre tek slede.
