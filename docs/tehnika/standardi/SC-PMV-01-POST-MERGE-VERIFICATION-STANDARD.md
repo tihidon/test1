@@ -1,6 +1,6 @@
 # SC-PMV-01 — obavezna post-merge verifikacija
 
-Datum: 2026-11-26. Opseg: svi agenti, svaki merge u main, uključujući dokumentaciju, tooling i CI. Dodatna kontrola zatvaranja uz SC-AGENT-01 G0–G7 i SC-DEC-01 D0–D8; ne menja njihove vlasnike, kriterijume ili obavezna odobrenja. Coordinator vodi PMV; Architecture vodi Git/CI identitet, QA relevantne regresije, Reliability nezavisni pregled kad je obavezan. Jedan SC-DEC-01 zapis, bez paralelnog registra.
+Datum: 2026-11-26. Opseg: svi agenti, svaki merge u main, uključujući dokumentaciju, tooling i CI. Dodatna kontrola zatvaranja uz SC-AGENT-01 G0–G7 i SC-DEC-01 D0–D8; ne menja njihove vlasnike, kriterijume ili obavezna odobrenja. Coordinator vodi PMV; Architecture vodi Git/CI identitet, QA relevantne regresije, Reliability internu proveru dokaza kad je obavezan. Jedan SC-DEC-01 zapis, bez paralelnog registra.
 
 ## Obavezni postupak
 
