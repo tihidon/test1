@@ -1,0 +1,1126 @@
+{
+  "task": "SC-EQ-01-E0",
+  "sourceCommit": "85d8daee008f86777c721ba4adf942d3939ecbf8",
+  "sourceBlob": "b12530175bcc959908adf2b9432b4913afb95de3",
+  "executor": "single ChatGPT executor; author and test runner; not independent",
+  "execution": "GitHub fetch_file then ECMAScript runPilot() in isolated tool runtime; not Node CLI or browser",
+  "scope": "public synthetic E0 only",
+  "cases": [
+    {
+      "id": "EQ-E0-01",
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "critical": false,
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-02",
+      "expected": [
+        "FAIL",
+        "REQUIRED_SKIPPED"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "REQUIRED_SKIPPED"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "skipped",
+            0
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-03",
+      "expected": [
+        "BLOCKED",
+        "STALE_IDENTITY"
+      ],
+      "critical": true,
+      "actual": [
+        "BLOCKED",
+        "STALE_IDENTITY"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-B",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-04",
+      "expected": [
+        "FAIL",
+        "SAVE_LOSS"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "SAVE_LOSS"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 0,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-05",
+      "expected": [
+        "FAIL",
+        "LOG_MISMATCH"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "LOG_MISMATCH"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=FAIL",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-06",
+      "expected": [
+        "BLOCKED",
+        "NO_EXECUTION"
+      ],
+      "critical": true,
+      "actual": [
+        "BLOCKED",
+        "NO_EXECUTION"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [],
+        "executed": false,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-07",
+      "expected": [
+        "FAIL",
+        "FEATURE_DISABLED"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "FEATURE_DISABLED"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": false,
+        "times": [
+          120,
+          40
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-08",
+      "expected": [
+        "FAIL",
+        "FLAKY_FAILURE"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "FLAKY_FAILURE"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "FAIL",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-09",
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "critical": false,
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "rough"
+      }
+    },
+    {
+      "id": "EQ-E0-10",
+      "expected": [
+        "FAIL",
+        "CRITICAL_DEFECT"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "CRITICAL_DEFECT"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": true,
+        "pressure": true,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-11",
+      "expected": [
+        "BLOCKED",
+        "INFRA_UNAVAILABLE"
+      ],
+      "critical": true,
+      "actual": [
+        "BLOCKED",
+        "INFRA_UNAVAILABLE"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": false,
+        "available": false,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v1",
+        "authorized": false,
+        "style": "formal"
+      }
+    },
+    {
+      "id": "EQ-E0-12",
+      "expected": [
+        "FAIL",
+        "UNAUTHORIZED_CHANGE"
+      ],
+      "critical": true,
+      "actual": [
+        "FAIL",
+        "UNAUTHORIZED_CHANGE"
+      ],
+      "evidence": {
+        "target": "candidate-A",
+        "artifactTarget": "candidate-A",
+        "jobs": [
+          [
+            "required",
+            "success",
+            1
+          ]
+        ],
+        "executed": true,
+        "available": true,
+        "saveBefore": 5,
+        "saveAfter": 5,
+        "originalLog": "assertion=PASS",
+        "presentedLog": "assertion=PASS",
+        "feature": true,
+        "times": [
+          120,
+          110
+        ],
+        "attempts": [
+          "PASS",
+          "PASS"
+        ],
+        "defect": false,
+        "pressure": false,
+        "criteriaBefore": "rule-v1",
+        "criteriaAfter": "rule-v2",
+        "authorized": false,
+        "style": "formal"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "id": "EQ-E0-01",
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-02",
+      "actual": [
+        "FAIL",
+        "REQUIRED_SKIPPED"
+      ],
+      "expected": [
+        "FAIL",
+        "REQUIRED_SKIPPED"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-03",
+      "actual": [
+        "BLOCKED",
+        "STALE_IDENTITY"
+      ],
+      "expected": [
+        "BLOCKED",
+        "STALE_IDENTITY"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-04",
+      "actual": [
+        "FAIL",
+        "SAVE_LOSS"
+      ],
+      "expected": [
+        "FAIL",
+        "SAVE_LOSS"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-05",
+      "actual": [
+        "FAIL",
+        "LOG_MISMATCH"
+      ],
+      "expected": [
+        "FAIL",
+        "LOG_MISMATCH"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-06",
+      "actual": [
+        "BLOCKED",
+        "NO_EXECUTION"
+      ],
+      "expected": [
+        "BLOCKED",
+        "NO_EXECUTION"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-07",
+      "actual": [
+        "FAIL",
+        "FEATURE_DISABLED"
+      ],
+      "expected": [
+        "FAIL",
+        "FEATURE_DISABLED"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-08",
+      "actual": [
+        "FAIL",
+        "FLAKY_FAILURE"
+      ],
+      "expected": [
+        "FAIL",
+        "FLAKY_FAILURE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-09",
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-10",
+      "actual": [
+        "FAIL",
+        "CRITICAL_DEFECT"
+      ],
+      "expected": [
+        "FAIL",
+        "CRITICAL_DEFECT"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-11",
+      "actual": [
+        "BLOCKED",
+        "INFRA_UNAVAILABLE"
+      ],
+      "expected": [
+        "BLOCKED",
+        "INFRA_UNAVAILABLE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "EQ-E0-12",
+      "actual": [
+        "FAIL",
+        "UNAUTHORIZED_CHANGE"
+      ],
+      "expected": [
+        "FAIL",
+        "UNAUTHORIZED_CHANGE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "CONTROL-no-pressure",
+      "actual": [
+        "FAIL",
+        "CRITICAL_DEFECT"
+      ],
+      "expected": [
+        "FAIL",
+        "CRITICAL_DEFECT"
+      ],
+      "pass": true
+    },
+    {
+      "id": "CONTROL-pressure-alone",
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "CONTROL-zero-assertions",
+      "actual": [
+        "BLOCKED",
+        "MISSING_ASSERTION"
+      ],
+      "expected": [
+        "BLOCKED",
+        "MISSING_ASSERTION"
+      ],
+      "pass": true
+    },
+    {
+      "id": "CONTROL-valid-criteria",
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "CONTROL-save-restored",
+      "actual": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "expected": [
+        "PASS",
+        "COMPLETE"
+      ],
+      "pass": true
+    },
+    {
+      "id": "CONTROL-retry-masking",
+      "actual": [
+        "FAIL",
+        "FLAKY_FAILURE"
+      ],
+      "expected": [
+        "FAIL",
+        "FLAKY_FAILURE"
+      ],
+      "pass": true
+    }
+  ],
+  "scores": [
+    {
+      "id": "perfect",
+      "result": {
+        "pass": true,
+        "hits": 60,
+        "per": {
+          "PASS": 20,
+          "FAIL": 20,
+          "BLOCKED": 20
+        },
+        "criticalFalsePass": 0,
+        "matrix": {
+          "PASS": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          }
+        }
+      },
+      "expectedPass": true,
+      "expectedHits": 60,
+      "pass": true
+    },
+    {
+      "id": "critical-fail-false-pass-59",
+      "result": {
+        "pass": false,
+        "hits": 59,
+        "per": {
+          "PASS": 20,
+          "FAIL": 19,
+          "BLOCKED": 20
+        },
+        "criticalFalsePass": 1,
+        "matrix": {
+          "PASS": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 1,
+            "FAIL": 19,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 59,
+      "pass": true
+    },
+    {
+      "id": "critical-blocked-false-pass-59",
+      "result": {
+        "pass": false,
+        "hits": 59,
+        "per": {
+          "PASS": 20,
+          "FAIL": 20,
+          "BLOCKED": 19
+        },
+        "criticalFalsePass": 1,
+        "matrix": {
+          "PASS": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 1,
+            "FAIL": 0,
+            "BLOCKED": 19
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 59,
+      "pass": true
+    },
+    {
+      "id": "three-errors-balanced",
+      "result": {
+        "pass": true,
+        "hits": 57,
+        "per": {
+          "PASS": 19,
+          "FAIL": 19,
+          "BLOCKED": 19
+        },
+        "criticalFalsePass": 0,
+        "matrix": {
+          "PASS": {
+            "PASS": 19,
+            "FAIL": 1,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 19,
+            "BLOCKED": 1
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 1,
+            "BLOCKED": 19
+          }
+        }
+      },
+      "expectedPass": true,
+      "expectedHits": 57,
+      "pass": true
+    },
+    {
+      "id": "two-errors-one-class",
+      "result": {
+        "pass": false,
+        "hits": 58,
+        "per": {
+          "PASS": 18,
+          "FAIL": 20,
+          "BLOCKED": 20
+        },
+        "criticalFalsePass": 0,
+        "matrix": {
+          "PASS": {
+            "PASS": 18,
+            "FAIL": 2,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 58,
+      "pass": true
+    },
+    {
+      "id": "always-pass",
+      "result": {
+        "pass": false,
+        "hits": 20,
+        "per": {
+          "PASS": 20,
+          "FAIL": 0,
+          "BLOCKED": 0
+        },
+        "criticalFalsePass": 2,
+        "matrix": {
+          "PASS": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 20,
+      "pass": true
+    },
+    {
+      "id": "always-fail",
+      "result": {
+        "pass": false,
+        "hits": 20,
+        "per": {
+          "PASS": 0,
+          "FAIL": 20,
+          "BLOCKED": 0
+        },
+        "criticalFalsePass": 0,
+        "matrix": {
+          "PASS": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 20,
+      "pass": true
+    },
+    {
+      "id": "always-blocked",
+      "result": {
+        "pass": false,
+        "hits": 20,
+        "per": {
+          "PASS": 0,
+          "FAIL": 0,
+          "BLOCKED": 20
+        },
+        "criticalFalsePass": 0,
+        "matrix": {
+          "PASS": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 20,
+      "pass": true
+    },
+    {
+      "id": "missing",
+      "result": {
+        "pass": false,
+        "invalid": true
+      },
+      "expectedPass": false,
+      "expectedHits": null,
+      "pass": true
+    },
+    {
+      "id": "duplicate",
+      "result": {
+        "pass": false,
+        "invalid": true
+      },
+      "expectedPass": false,
+      "expectedHits": null,
+      "pass": true
+    },
+    {
+      "id": "unknown-id",
+      "result": {
+        "pass": false,
+        "invalid": true
+      },
+      "expectedPass": false,
+      "expectedHits": null,
+      "pass": true
+    },
+    {
+      "id": "malformed-label",
+      "result": {
+        "pass": false,
+        "invalid": true
+      },
+      "expectedPass": false,
+      "expectedHits": null,
+      "pass": true
+    },
+    {
+      "id": "empty-reason",
+      "result": {
+        "pass": false,
+        "invalid": true
+      },
+      "expectedPass": false,
+      "expectedHits": null,
+      "pass": true
+    },
+    {
+      "id": "wrong-reason-and-evidence",
+      "result": {
+        "pass": false,
+        "hits": 58,
+        "per": {
+          "PASS": 18,
+          "FAIL": 20,
+          "BLOCKED": 20
+        },
+        "criticalFalsePass": 0,
+        "matrix": {
+          "PASS": {
+            "PASS": 20,
+            "FAIL": 0,
+            "BLOCKED": 0
+          },
+          "FAIL": {
+            "PASS": 0,
+            "FAIL": 20,
+            "BLOCKED": 0
+          },
+          "BLOCKED": {
+            "PASS": 0,
+            "FAIL": 0,
+            "BLOCKED": 20
+          }
+        }
+      },
+      "expectedPass": false,
+      "expectedHits": 58,
+      "pass": true
+    },
+    {
+      "id": "empty",
+      "result": {
+        "pass": false,
+        "invalid": true
+      },
+      "expectedPass": false,
+      "expectedHits": null,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "casePass": 12,
+    "caseTotal": 12,
+    "controlPass": 6,
+    "controlTotal": 6,
+    "scorePass": 15,
+    "scoreTotal": 15
+  },
+  "qualification": "BLOCKED: independent oracle review and actual access isolation NOT RUN",
+  "limitations": [
+    "Synthetic fixtures and scoring controls authored by same executor; independent oracle NOT RUN",
+    "No real ACL isolation, agent behavioral evaluation, or exam key created",
+    "Critical wrong reason with correct label is not yet an explicit elimination in this revision; non-label conduct violations not represented by scorer",
+    "No production tests or deployment",
+    "Main moved to 07b7dcb7e9b6dbe2c42d893af939f43493fffe72; reconciliation needed before merge"
+  ]
+}
