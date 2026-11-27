@@ -337,3 +337,9 @@ Sources: https://developers.cloudflare.com/workers/static-assets/routing/advance
 ### SC-EQ-01 — organizacioni kandidat (27.11.2026)
 
 [SC-EQ-01](tehnika/standardi/SC-EQ-01-KVALIFIKACIJA-EVALUATORA.md): jedan kanonski predlog za sve evaluatore; javni pilot, slepi ispit, odvojeni oracle, ograničeno ovlašćenje i obnova. E0–E7 NOT RUN, nezavisni D7 BLOCKED, sertifikat nije izdat. Odluka i referenca na dokaz u SC-DEC-01; DOC-003 ostaje indeks, ne novi registar. Nema promene Team release-a.
+
+### Kandidat — produktivnost i izveštavanje
+[SC-BEH-01: SC-TEAM-005, SC-REPORT-01, ENV-01–08](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md). Status: kandidat, izvršna evaluacija otvorena.
+
+## SC-EEG-01 — kandidat 27.11.2026
+[SC-BEH-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) — predlog izvršne pouzdanosti i kontinuiteta; povezan sa SC-DEC-01/SC-REL-01/SC-EQ-01. ZADRŽI ZA QA; nije promena aktivnog plugina.

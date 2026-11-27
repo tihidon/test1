@@ -103,3 +103,9 @@ Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavi
 ## SSOT i QA-FREEZE — predlog proširenja
 
 Kandidat za kolektivni pregled: [SSOT-01–08](docs/tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md#projektni-obuhvat-ssot-0108--kandidat-za-kolektivni-pregled-27112026), [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) (kolektivni izuzetak) i [SC-INTEGRITY-01 §8](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) (freeze). Kanonski tekst ostaje u tim postojećim dokumentima. Bez paralelnih sistema i evidencije; ne ukidati nezavisne zaštite. Kandidat ZADRŽI ZA QA, ne aktivna nova instrukcija do SC-KG-01 odobrenja i verifikacije.
+
+## Kandidat za pregled: SC-TEAM-005 / SC-REPORT-01
+Predlog produktivnosti i ENV-01–08 nalazi se u [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md). Nije aktiviran; SC-KG-01, D7 i odobrenje konkretnog kandidata ostaju obavezni.
+
+## SC-EEG-01 — kandidat
+[SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) sadrži predlog izvršne kontrole i kontinuiteta. Nije aktiviran; SC-KG-01/D7 ostaju.

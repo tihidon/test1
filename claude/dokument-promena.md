@@ -265,3 +265,10 @@ Vlasnik traži zabranu neodobrenih paralelnih sistema u svim segmentima i razrad
 ### SSOT kolektivni pregled — dopuna pripreme (27.11.2026)
 
 Vlasnik traži nastavak tačaka 2/3/4. PR #81 prethodni head `d86cb06eb596656a5840a4135a91e1e737b6f0c2`: trusted-integrity run 46037373768 i engineering 46037373712 PASS (strukturna kontrola, ne autorizacija/D7), 51 funkcionalna provera. Kandidat v4 postojećeg kataloga: svih 36 originalnih slučajeva očuvano po svim poljima, pet novih javnih trening-varijanti SSOT-EVAL-01–05 mapirano na S1–S8, ukupno 41; provereni jedinstveni ID, oblik i očuvanje starih slučajeva. Ovo nije izvršena evaluacija. Uloge i prethodni nalazi u istom PR #81 zapisu (komentar 7223889218); stvarni zasebni odgovori i nezavisni D7 nedostaju. Team plugin v0.7.3 potvrđen, bez izmene aktivnih skillova. Autor odobrenje vlasnika za prethodni head ne prenosi kao odobrenje nove revizije. ZADRŽI ZA QA, nema merge/deploy, CI promene ili pomeranja frozen ref-a.
+
+## 2026-11-27 — kandidat produktivnosti
+Noćni QA završni ciklus: 0 novih izvršnih testova; bez novih GitHub Actions run-ova tokom predviđenog perioda. Uzrok nije dokazan. Predloženi SC-TEAM-005, SC-REPORT-01 i ENV-01–08 u SC-BEH-01; D7 i kvalifikacija NOT RUN/BLOCKED. Bez promene runtime-a ili usvajanja pravila.
+
+### Objedinjavanje governance kandidata #79/#81/#82 (27.11.2026)
+
+Vlasnik traži jedan usklađen kandidat i kontrolisano ažuriranje agenata. PR #81 je odabran za pregled, bez nove grane/kataloga/registra. Dodaci iz #79 i #82 preneti u postojeće dokumente bez zamene starijih sadržaja. Preciziranje odgovornosti u SC-BEH-01, provenance `1cede92de21925a6db8e349f8d4cb33000cdfc13`, `642754868d7abf00a3d45db9bbea145271e145ec`, `2db76a787f29dd7dbd7b3bc68c3279f3f1c65160`. #79 trusted CI 46032631631 FAIL (exit 128, nedostajući artifact; ne proglašavati kvar igre). #78 zaseban EQ izvršni kandidat, nije integrisan. Nema izmene izvršnog koda, CI, SW, dozvola ili aktivnog plugina. D7 BLOCKED; novi head zahteva pregled i odobrenje. ZADRŽI ZA QA.
