@@ -3,6 +3,7 @@ import argparse
 import hashlib
 from http.server import SimpleHTTPRequestHandler
 import json
+import os
 import re
 from pathlib import Path
 import shutil
@@ -32,6 +33,29 @@ def write(out, name, data):
 
 def git(root, *args):
     return subprocess.check_output(["git", "-C", str(root), *args], text=True, timeout=15).strip()
+
+
+def capture_p1_startup(page, out, phase, version):
+    # Temporary diagnostic only. Existing trace/profiler may perturb the
+    # values. A submitted canvas frame is not a presented frame.
+    if os.environ.get("SC_P1_CAPTURE_STARTUP") != "1":
+        return
+    page.wait_for_function("""() => {
+        const t=window.SC_STARTUP_TRACE?.export();
+        return t?.timings?.some(x=>x.label==='boot.overlayRemoved')
+            && t.timings.some(x=>x.label==='canvas.firstSubmittedFrame');
+    }""",timeout=30000)
+    data=page.evaluate("()=>window.SC_STARTUP_TRACE.export()")
+    require(data["build"]==version,"startup trace version mismatch")
+    labels={x["label"] for x in data["timings"]}
+    required={"boot.enter","boot.rendererInit","boot.parallelTasksStarted",
+              "boot.parallelTasksComplete","boot.finalStateValidation",
+              "boot.prepareIsland","boot.uiHydrate","boot.overlayRemoved",
+              "canvas.firstSubmittedFrame"}
+    require(required.issubset(labels),"missing startup stages: "+str(sorted(required-labels)))
+    require(not any(x["label"].startswith("decode.") for x in data["timings"]),
+            "decode probe must not run")
+    write(out,"p1-startup-"+phase+".json",data)
 
 
 def version_info(html, sw):
@@ -171,6 +195,7 @@ def run(root, out, scenario, diagnostic=False, functional=False):
                         }""",[cache,origin+"/index.html"])
                         report["cached_html_sha256"]=cached
                         require(cached==report["html_sha256"],"wrong cached HTML")
+                        capture_p1_startup(page,out,"online",version)
                         report["dom_snapshots"].append(measure_dom(page,"online-before-scenario"))
                         if probe:
                             phase=probe.capture("online-startup-identity")
@@ -205,6 +230,7 @@ def run(root, out, scenario, diagnostic=False, functional=False):
                             && window.SC_STARTUP_TRACE?.export()?.build""",timeout=15000)
                         require(page.evaluate("() => window.SC_STARTUP_TRACE.export().build")==version,
                                 "offline startup version mismatch")
+                        capture_p1_startup(page,out,"offline",version)
                         report["dom_snapshots"].append(measure_dom(page,"offline-shell"))
                         page.screenshot(path=str(out/"offline.png"),timeout=10000,animations="allow")
                         if probe:

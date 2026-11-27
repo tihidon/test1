@@ -165,6 +165,37 @@ jobs:
                   "reason":r.get("reason"),"cases":{k:{x:v.get(x) for x in ("status","assertions","reason")} for k,v in cases.items()}}
               print(json.dumps(summary,ensure_ascii=True,indent=2))
           PY
+      - name: Temporary P1 startup diagnostic readout
+        if: github.event_name == 'pull_request' && github.head_ref == 'qa/p1-startup-trace-readout'
+        env:
+          SC_P1_CAPTURE_STARTUP: '1'
+        run: |
+          test "$(sha256sum index.html | cut -d' ' -f1)" = "492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a"
+          test "$(git rev-parse HEAD:sw.js)" = "2f57bfd2fd38f8d220af090caa5c55c7580007f3"
+          mkdir -p "$RUNNER_TEMP/sc-p1-startup"
+          python -m py_compile tools/qa/runtime_smoke.py
+          for i in 1 2 3; do
+            python tools/qa/runtime_watchdog.py --out "$RUNNER_TEMP/sc-p1-startup/run-$i" --timeout 120
+            test -s "$RUNNER_TEMP/sc-p1-startup/run-$i/p1-startup-online.json"
+            test -s "$RUNNER_TEMP/sc-p1-startup/run-$i/p1-startup-offline.json"
+          done
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          root=Path(os.environ["RUNNER_TEMP"])/"sc-p1-startup"
+          for p in sorted(root.glob("run-*/p1-startup-*.json")):
+              r=json.loads(p.read_text())
+              selected=[x for x in r["timings"] if x["label"].startswith(("boot.","gpu.","canvas.","map.","island.","storage."))]
+              print(p.parent.name,p.name,json.dumps(selected,ensure_ascii=True))
+          PY
+      - name: Preserve temporary P1 startup evidence
+        if: always() && github.event_name == 'pull_request' && github.head_ref == 'qa/p1-startup-trace-readout'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-p1-startup-readout
+          path: ${{ runner.temp }}/sc-p1-startup/
+          if-no-files-found: error
+          retention-days: 14
       - name: Record missing runtime evidence
         if: always()
         env:
