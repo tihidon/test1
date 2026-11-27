@@ -165,6 +165,42 @@ jobs:
                   "reason":r.get("reason"),"cases":{k:{x:v.get(x) for x in ("status","assertions","reason")} for k,v in cases.items()}}
               print(json.dumps(summary,ensure_ascii=True,indent=2))
           PY
+      - name: Temporary P1 botanical-visual
+        if: github.event_name == 'pull_request' && github.head_ref == 'qa/p1-botanical-visual-startup-abr' && !cancelled() && steps.browser_setup.outcome == 'success'
+        env:
+          SC_P1_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/sc-p1-botanical-visual"
+          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'e1d856242fc02faf5a41375416cffc9b2ea162f2' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-botanical-visual/preflight.txt"
+          test "$SC_P1_BASE" = "e1d856242fc02faf5a41375416cffc9b2ea162f2"
+          python -m py_compile tools/qa/p1_botanical_visual.py
+          python -c 'import sys; from pathlib import Path; sys.path.insert(0,"tools/qa"); from runtime_watchdog import run_bounded; p=Path(sys.argv[1]); r=run_bounded([sys.executable,"tools/qa/p1_botanical_visual.py",str(p)],p,120); print(r); sys.exit(0 if r["status"]=="PASS" else 1)' "$RUNNER_TEMP/sc-p1-botanical-visual"
+      - name: Preserve temporary P1 botanical-visual evidence
+        if: always() && github.event_name == 'pull_request' && github.head_ref == 'qa/p1-botanical-visual-startup-abr'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-p1-botanical-visual
+          path: ${{ runner.temp }}/sc-p1-botanical-visual/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Temporary P1 startup-abr
+        if: github.event_name == 'pull_request' && github.head_ref == 'qa/p1-botanical-visual-startup-abr' && !cancelled() && steps.browser_setup.outcome == 'success'
+        env:
+          SC_P1_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/sc-p1-startup-abr"
+          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'e1d856242fc02faf5a41375416cffc9b2ea162f2' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-startup-abr/preflight.txt"
+          test "$SC_P1_BASE" = "e1d856242fc02faf5a41375416cffc9b2ea162f2"
+          python -m py_compile tools/qa/p1_startup_abr.py
+          python -c 'import sys; from pathlib import Path; sys.path.insert(0,"tools/qa"); from runtime_watchdog import run_bounded; p=Path(sys.argv[1]); r=run_bounded([sys.executable,"tools/qa/p1_startup_abr.py",str(p)],p,480); print(r); sys.exit(0 if r["status"]=="PASS" else 1)' "$RUNNER_TEMP/sc-p1-startup-abr"
+      - name: Preserve temporary P1 startup-abr evidence
+        if: always() && github.event_name == 'pull_request' && github.head_ref == 'qa/p1-botanical-visual-startup-abr'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-p1-startup-abr
+          path: ${{ runner.temp }}/sc-p1-startup-abr/
+          if-no-files-found: error
+          retention-days: 14
       - name: Record missing runtime evidence
         if: always()
         env:
