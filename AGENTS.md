@@ -94,3 +94,7 @@ Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavi
 ## SC-INTEGRITY-01 — kandidat 0.2, 27.11.2026
 
 [SC-INTEGRITY-01](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) proširuje SC-RAD-01/G0/G1/G7/PMV: kontrola celog stabla, trusted preflight i INT-APPROVAL-01. Kandidat, ne aktivna potvrda. Obavezan exact-scope pregled iz odobrenog izvora i odvojena odobrenja prema SC-KG-01; strukturni CI nije autorizacija. Bez stvarne nezavisne delegacije D7 BLOCKED. Bez izmene runtime-a/deploy-a.
+
+## SC-EQ-01 — kandidat za kvalifikaciju evaluatora (P0)
+
+[SC-EQ-01](docs/tehnika/standardi/SC-EQ-01-KVALIFIKACIJA-EVALUATORA.md) objedinjuje predlog kvalifikacije evaluatora pre formalnog kvalifikovanja drugih agenata. E0–E7 i ZERO-FALSE-PASS dopunjuju, ne menjaju D0–D8/G0–G7, SC-KG-01 i PMV. Nezavisni specijalista ostaje van tima, ZADRŽI ZA QA; bez E7 nema formalnog sertifikata. Kandidat dokumenta čeka nezavisni pregled i odobrenje tačne revizije; nema nove aktivne dozvole.
