@@ -46,3 +46,5 @@ Use the [shared QA procedures](../chromium-runtime-qa/references/qa-procedures.m
 ## Bezbednosni pregled i dokazi
 
 Primeni SC-BEH-01. D7 proverava originalne dokaze i nezavisnost. Kontrolor rada agenata proverava poštovanje opsega, ovlašćenja i tačnost izveštaja. Razlika u nalazima ide u postojeći SC-DEC-01 zapis uz ciljnu proveru.
+
+Za automatsku klasifikaciju izvršnih dokaza i prioritete nalaza koristi [SC-DEC-01](../../../docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza). Pri D7 proveri original, verziju pravila i obim sintetičkih ili stvarnih dokaza.
