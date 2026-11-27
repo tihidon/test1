@@ -1,6 +1,6 @@
 # SC-DEC-01 — lanac pouzdanog odlučivanja
 
-Status: kandidat za CI i nezavisnu evaluaciju; vlasnik odobrio nadogradnju. Baseline 9d638c4730caf63c02e2c01397a1eea96f2197eb. Dodatak SC-REL-01, SC-QA-02, SC-AGENT-01, PL-01, PW-01; ne zamenjuje nijedan gate. Jedan decision record po zadatku; dva specijalistička skilla primenjuju postojeći D0–D8 proces.
+Status: kandidat za CI i internu evaluaciju; vlasnik odobrio nadogradnju. Baseline 9d638c4730caf63c02e2c01397a1eea96f2197eb. Dodatak SC-REL-01, SC-QA-02, SC-AGENT-01, PL-01, PW-01; ne zamenjuje nijedan gate. Jedan decision record po zadatku; dva specijalistička skilla primenjuju postojeći D0–D8 proces.
 
 ## Predaja nalaza i odluka
 
@@ -16,6 +16,8 @@ Handoff pokazuje postojeći zapis zadatka sa odobrenim opsegom, tačnim commitom
 - D6 QA: isti test/oracle FAIL na baseline za očekivani razlog, PASS na kandidatu; relevantni pozitivni, negativni i lifecycle regression. PL-01 A/B/R sa odgovarajućim uslovima za performance; instrumentacija odvojena od merenja. Android fizički dokaz zasebno.
 - D7 interna provera: proveri originalne logove, diff, zamrznuti ugovor, identitet i obavezne gate-ove. Izvršiva pravila obrađuju pouzdane dokaze, a relevantna interna uloga razrešava sporne nalaze prema prvom nerazjašnjenom koraku. Obavezno odobrenje nezavisnog agenta je ukinuto. Evidentiraj ko je prikupio i ko je proverio dokaze. Nerazrešena materijalna kontradikcija ili nedostajući obavezan dokaz ostavlja pogođenu tvrdnju otvorenom.
 - D8 odluka: PRIHVATI KANDIDAT samo kada sve required provere prolaze i interna provera potvrdi dokaz; ZADRŽI ZA QA za nedostatke; ROLLBACK za dokazanu regresiju kada je odobreno; NO-CHANGE kada nema dokaza za patch. Merge/deploy samo uz owner authorization. Odluke o docs/tooling ne zahtevaju lažne gameplay testove; scope se definiše unapred.
+
+Eksterna provera može se razmatrati samo pred stvarno tržišno izdanje igre, ako je obavezna za konkretno tržište, platformu ili ugovor. Zahtev, njegov izvor i obim evidentira vlasnik u zapisu izdanja.
 
 ## Interna kvalifikacija D7 evaluatora (27.11.2026.)
 
