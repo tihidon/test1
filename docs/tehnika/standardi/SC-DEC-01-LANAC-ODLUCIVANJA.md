@@ -58,6 +58,22 @@ Normalan retry i poplava događaja imaju odvojene nalaze. Milion identičnih pot
 
 Na prijemu u QA evidenciju objedini identične potvrde jedne operacije i pokušaja u brojač, uz prvi i poslednji lokator i vreme. U bazu nalaza ide jedan zbirni zapis o poplavi po pokušaju, pravilu i izvoru. Nepodudarne potvrde i dokazi o različitim trajnim isplatama zadržavaju zasebne lokatore. Kada ograničenje prijema onemogući potpunu proveru, evidentiraj obim izostavljenih događaja i pošalji pogođenu tvrdnju na pregled. Engineering prvi proverava izvor koji proizvodi višak, a Architecture & Infrastructure preuzima kada je problem u prijemu ili poreklu događaja. Obrada i ograničenja važe za QA putanju dokaza.
 
+### Prioritet nalaza prema ponašanju
+
+Prioritet određuje redosled obrade nalaza. Status provere ostaje zasebno polje, kao i otvorenost pregleda.
+
+| Prioritet | Uslov | Postupak |
+|---|---|---|
+| P0 — Kritično | Dokazana dupla trajna isplata, gubitak sejva ili kontrolna proba koja potvrdi da checker takvoj grešci dodeljuje lažni PASS. | Zaustavi automatsko zatvaranje pogođenih nalaza. Engineering rešava kvar, Reliability proverava originale i ponovno izvršavanje. |
+| P1 — Visoko | Poplava prekoračuje zaključani budžet prijema, ugrožava njegov kapacitet ili dovodi do gubitka obaveznih dokaza. | Ograniči QA prijem prema ugovoru. Architecture & Infrastructure prvo proverava prijem, Engineering proverava izvor. Pogođenu tvrdnju bez dovoljnog dokaza pošalji na pregled. |
+| P2 — Srednje | Pomešani pokušaji, sukob potvrda ili nedostajući snimak čine nalaz neodlučivim. | Otvori jedan pregled i dodeli ga prema prvom spornom koraku. |
+| P3 — Nisko | Ponavljanje prelazi prag za taj izvor i operaciju, a prijem ostaje u budžetu i obavezni dokazi su kompletni. | Evidentiraj zbirni nalaz i prati trend. |
+| P4 — Očekivano | Retry ili ponovna potvrda je u izmerenom normalnom opsegu. | Obradi automatski bez timskog zadatka. |
+
+Jedan pokušaj može imati više nalaza. Sačuvaj svaki uz sopstveni razlog i lokatore, a za redosled obrade pokušaja koristi njegov najviši otvoreni prioritet. Ista isplata može imati PASS za trajnost i zaseban P3 ili P1 za spam. P0 za duplu isplatu važi kada su poreklo i stvarni broj isplata dokazani. Ako isti spor to onemogućava, zadrži tvrdnju otvorenom za pregled. Slobodan tekst iz loga ne utiče na prioritet, status ili usmeravanje.
+
+Prag retry-ja, vremenski prozor i budžet prijema zaključaj po izvoru i operaciji pre automatske klasifikacije. Ako nedostaje kalibracija, evidentiraj da P3/P4 nije utvrđen. Dokazana povreda budžeta ili gubitak obaveznog dokaza i dalje daje P1. Sirovi dokaz ostaje u izvornom QA artefaktu, a nalaz nosi brojač i lokatore. U SC-DEC-01 upiši primenjenu verziju pravila, izmereni uticaj, status, prioritet i prvu odgovornu ulogu kada je potreban pregled.
+
 Pilot koristi uredan retry, dodatni retry, dupli rezultat, duplu isplatu, duplu isplatu uz belešku koja traži PASS, potvrdu iz drugog pokušaja, protivrečan rezultat i nedostajući snimak. Dodatne kontrole pokrivaju ponovljenu potvrdu iste transakcije, isti ID sa različitim rezultatom, dve transakcije za istu operaciju i ponovljenu potvrdu uz stvarnu duplu isplatu. Kada se u testnoj kopiji namerno isključi provera isplate, kontrolni slučajevi duple isplate moraju otkriti kvar. Pogođeni automatski nalazi ostaju otvoreni do ponovnog izvršavanja sa ispravljenim pravilom.
 
 Dokaz o pilotu obuhvata osam osnovnih sintetičkih slučajeva i četiri zasebne sintetičke kontrole transakcije. Provera izvršnih dokaza je definisana ovim nacrtom. Integracija u alat repozitorijuma i provera na originalnim zapisima igre tek slede.
