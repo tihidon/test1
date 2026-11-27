@@ -31,3 +31,16 @@ Pregledaj dokaze read-only. Dodatne probe prosledi ovlašćenom QA izvršiocu za
 | Proveri ocenjivanje dokaza | Reviewer dobija odvojene sintetičke pakete sa ispravnim dokazom, dokazanim kvarom i zelenim CI-jem sa slabom asercijom. Sačuvaj ključ očekivanih ishoda odvojeno. Proveri da može i da prihvati valjan paket i da locira šta ostali paketi propuštaju. |
 
 Zapis male probe: [B17](references/proba-b17.md).
+
+## Ishod pilota — 27.11.2026.
+
+Vlasnik je zadržao specijalistu za nezavisne QA preglede u pilotu. Specijalista radi izvan Snail City Agent Team-a i preporuku predaje vlasniku. Formalno D7 ovlašćenje čeka odluku vlasnika.
+
+Slepi sintetički pilot: 4/4. Pilot na stvarnom N04 paketu: PASS za ponašanje reviewera pri pregledu originala. N04 ostaje **ZADRŽI ZA QA**.
+
+- Baza: `b1928ed96a368735a45f0e2ef270c4f2844a820f`. SHA-256 paketa: `18fa1c1ba6e688cb2f9d3267d1cd7565d0c252dfec49b35e5800550957a79b3b`. Poklapa se svih 11 kontrolnih suma iz manifesta.
+- `test.cjs:4–30` i `mock-report.json`: 96/96 u simulaciji izdvojenih metoda. Dostupan je zbirni rezultat. Negativna kontrola prihvata bilo koji izuzetak.
+- `native-webgl-trace.zip/trace.trace:13`, `call@11`: WebGL kontekst nedostupan, provere tekstura BLOCKED. Obnova neba u igri NOT RUN. Na identifikovanoj bazi i kandidatu proveriti događaj obnove, `lost` pri ulasku u `uploadSky`, ishod uploada i prvi ispravan kadar neba.
+- `N04-src.patch:43,56`: pomeren trenutak konverzije `key` u tekst. Asercije koriste tekstualne ključeve. Pre opšte tvrdnje o ekvivalentnosti proveriti tipove kod kanonskih pozivalaca.
+
+Ocena pokriva konkretne pilote. Nezavisni pregled tačne verzije instalabilnog paketa ostaje otvoren.
