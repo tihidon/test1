@@ -38,6 +38,24 @@ Postojeći tools/reliability/check_evidence.py ostaje vlasnik provere artefakata
 python tools/reliability/check_decision.py CONTRACT RECORD ARTIFACT_ROOT --contract-sha256 EXPECTED_HASH
 Checker proverava dva različita commita, isti oracle hash, očekivani baseline failure reason, gate-ove, nepromenjen ugovor, artefakte i deklarisano stanje. Ne proverava autentičnost reviewera, sadržaj oracle-a ili istinitost logova. Rezultat STRUCTURAL_PASS nikada sam ne odobrava merge/deploy. Stvarni nezavisni pregled ostaje obavezan. Za druge vrste zadataka koristi postojeći check_evidence i D0–D8 u odgovarajućem scope-u.
 
+## Automatska provera izvršnih dokaza
+
+**Provera izvršnih dokaza** je naziv drugog koraka. Postojeći `check_evidence.py` i `check_decision.py` proveravaju strukturu i vezu dokaza sa ugovorom. Provera izvršnih dokaza računa ishod iz originalnih događaja i trajnog stanja. Ugovor unapred zaključava pravilo, izvore, identitet kandidata i pokušaja i očekivane uslove. Slobodan tekst iz dokaza ostaje podatak. Automatski izračunat ishod koristi se za ocenu evaluatorske predaje u slučajevima sa izvršivim pravilom. U slepoj probi interni kontrolor beleži verziju pravila i zaključava izračunate očekivane ishode pre predaje ulaza. Posle zaključavanja odgovora poredi status, kod razloga i lokator dokaza.
+
+| Redosled | Provera i nalaz |
+|---|---|
+| 1. Identitet | Poveži build, run, attempt, profil, trku i operaciju. Pogrešna ili nejasna pripadnost obaveznog dokaza ide prvo Architecture & Infrastructure. |
+| 2. Izvršavanje | Poveži završetak trke sa potvrdom transakcije. Ponovljena potvrda istog ID-ja sa istim sadržajem predstavlja jednu transakciju. Isti ID sa različitim sadržajem ili dve različite potvrđene transakcije za jednu operaciju idu Engineeringu kada je poreklo potvrđeno. |
+| 3. Trajno stanje | U nezavisnom snimku posle ponovnog pokretanja proveri tačno jedan rezultat za trku i tačno jednu ugovorenu isplatu za operaciju. Dokazan duplikat ili pogrešan iznos daje automatski FAIL. Protivrečni izvori iste sačuvane revizije idu Engineeringu posle potvrde porekla. Ako tačno jedna transakcija, rezultat i isplata odgovaraju ugovoru, ishod je PASS. Pouzdano utvrđeni izostanak obaveznog rezultata ili isplate daje FAIL. Nedostupan snimak daje PREGLED jer odsustvo u stanju nije utvrđeno. |
+
+Dokazan nedostupan preduslov daje BLOCKED. Dokazano preskočena provera sa dostupnim preduslovima daje NOT RUN. Nepotpun dokaz, nepokriveno pravilo ili dvosmislen kriterijum ide QA / Reliability. Neslaganje evaluatora sa automatskim nalazom ide QA / Reliability uz obe ocene. Ako spor dovodi u pitanje poreklo ili brojanje istih isplata na kojima bi se zasnivao FAIL, nalaz ide na PREGLED. Pouzdano dokazan FAIL evidentira se i kada postoji zaseban spor koji ne utiče na taj nalaz. Odluka o puštanju ostaje u D8.
+
+U postojećem zapisu zadatka svaki nalaz sadrži verziju pravila, identitet kandidata i pokušaja, prvi sporni korak, očekivano i stvarno, status i kod razloga, lokatore originala i prvu odgovornu ulogu kada je potreban pregled. Architecture & Infrastructure prvo razrešava poreklo, Engineering ponašanje i transakcije, a QA / Reliability kriterijum i ocenu. Posle razrešenja ponovi proveru i zadrži prvobitni ishod.
+
+Pilot koristi uredan retry, dodatni retry, dupli rezultat, duplu isplatu, duplu isplatu uz belešku koja traži PASS, potvrdu iz drugog pokušaja, protivrečan rezultat i nedostajući snimak. Dodatne kontrole pokrivaju ponovljenu potvrdu iste transakcije, isti ID sa različitim rezultatom, dve transakcije za istu operaciju i ponovljenu potvrdu uz stvarnu duplu isplatu. Kada se u testnoj kopiji namerno isključi provera isplate, kontrolni slučajevi duple isplate moraju otkriti kvar. Pogođeni automatski nalazi ostaju otvoreni do ponovnog izvršavanja sa ispravljenim pravilom.
+
+Dokaz o pilotu obuhvata osam osnovnih sintetičkih slučajeva i četiri zasebne sintetičke kontrole transakcije. Provera izvršnih dokaza je definisana ovim nacrtom. Integracija u alat repozitorijuma i provera na originalnim zapisima igre tek slede.
+
 ## Runtime nalaz 25.11.2026
 Dostavljeni report(1).json za cef09906eca4b79e6d735ba8182e9da2fd759104: online/cache/offline HTML hash 7e6213ecadcaa08e8d62a87628b37942c38b8a603fc78e97e3395d62605ded6c; scenario_steps_executed=0. Shell PASS, gameplay i save durability NOT RUN. Prethodni CPU profil ukazuje na upload/uploadDetachedAtlas/uploadMapTexture kao hipotezu za ciljano istraživanje, ne dokaz baga. Novi trace(2).zip nije mogao biti otvoren u izvršnom okruženju; trace analysis BLOCKED. Ne menjati renderer na osnovu toga.
 
