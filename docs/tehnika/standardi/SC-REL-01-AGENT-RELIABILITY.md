@@ -21,3 +21,6 @@ Kritični prekršaji: lažni PASS; brisanje legitimnog koda bez dokaza; pogreša
 
 ## Status
 Implementirani skill, katalog i checker su kandidati. Stvarna evaluacija agenta nije pokrenuta. Nije dodat automatski LLM judge niti API ključ. Bez povećanja verzije igre.
+
+## SC-EEG-01 — kandidat autentičnosti
+Vidi [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md). Hash/structural PASS ne dokazuje autentičnost; odvojene dozvole i nezavisni D7 obavezni u predlogu. NOT RUN.

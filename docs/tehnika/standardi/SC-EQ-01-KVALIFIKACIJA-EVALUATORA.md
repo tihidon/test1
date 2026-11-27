@@ -60,3 +60,6 @@ Suspenzija pri kritičnom lažnom PASS, incidentu, sukobu interesa, gubitku izol
 SC-KG-01: review tačnog dokumenta i vlasničko odobrenje pre trajnog usvajanja. SC-DEC-01: jedini zapis zadatka, nezavisnost D7 i odluka D8 odvojene od E7. SC-PMV-01: posle odobrenog merge-a stvarni SHA, originalni CI i docs-only diff, bez lažnog gameplay testa. SC-INTEGRITY-01 kandidat ostaje kandidat; EQ ne tvrdi tehnički enforcement. Kanonski test1, kontrolisano usklađivanje test-cl1 posle pregleda; prod_snail-city paket nezavisnog kandidata dobija referencu, ne ključ. Team plugin uskladiti kao zaseban kandidat po DOC-VER-01 i SC-KG-01, ne proglasiti objavljenim bez read-backa. 
 Metodološke reference za naknadnu proveru i kontrolisano usvajanje: NIST AI RMF (TEVV); ISO/IEC 17024 (sertifikacija osoba) i ISO/IEC 17043 (ispitivanje osposobljenosti). Ne tvrdi se usaglašenost/akreditacija; konkretne verzije i primenljivost izvora zahtevaju stručni pregled.
 Status: dokumentacioni kandidat, E0–E7 NOT RUN; nezavisni D7 BLOCKED; nema sertifikata, merge/deploy ili runtime promene.
+
+## SC-EEG-01 — kandidat izvršnog okruženja
+Vidi [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md). Kvalifikacija stvarnog hosta prethodi formalnoj kvalifikaciji evaluatora; lokalni fixture nije sertifikat. NOT RUN.
