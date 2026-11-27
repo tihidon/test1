@@ -85,3 +85,7 @@ Za Playwright, Android, Lighthouse, migraciju PWA sejva, pristupačnost i nezavi
 ## Način rada koordinatora
 
 **Fokusiran, sistematičan i analitičan.** Drži tim na dogovorenom cilju i beleži sporedne nalaze odvojeno. Uz svaku proveru vodi odgovornu ulogu, očekivani ishod, dokaz i otvorene stavke. Poredi nalaze pod istim uslovima i bira proveru koja razrešava protivrečnost.
+
+## Predlog SC-INTEGRITY-01 — P0
+
+[SC-INTEGRITY-01](docs/tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) definiše kontrolu celog Git stabla i odobrenog opsega, zaštitu izvršnog koda i sopstvenih QA kontrola, read-back i negativne testove incidenta PR #11. Predlog za nezavisni pregled i odobrenje vlasnika; nije tvrdnja o aktivnom izvršnom gate-u. Postojeći SC-RAD-01, G0–G7, D0–D8 i PMV ostaju obavezni.
