@@ -250,3 +250,8 @@ CSS src/css/block-02.css: pet data:image custom property vrednosti preko 4096 zn
 ## SC-INTEGRITY-01 0.2 — 27.11.2026
 
 Implementacioni kandidat P0 za oba repoa; incident test-cl1 PR #11 (205 D, 381 A, 1 M; oba CI workflow-a uklonjena). Uveden read-only tree checker, fixtures, postojeći CI korak i zasebni base-controlled trusted workflow (ne izvršava kandidat). Exact-scope dokument obavezan van PR-a; owner/team D7 odobrenje još nije potvrđeno. GitHub protection 403 oba, rulesets test1 prazno, test-cl1 403. Nema izmene igre, hostinga ili deploy-a. CI, read-back i nezavisni pregled potrebni pre usvajanja.
+
+
+## P1 — zamrznuta QA baza (27.11.2026)
+
+Vlasnik odobrio koncept. Kreiran i read-back potvrđen `qa/base/p1-20261127-r1` na `07b7dcb7e9b6dbe2c42d893af939f43493fffe72`, tree `edd42ebc1fd69b7c01dddbb61a032650b4081785`; main ostaje netaknut. Zapis QA-FREEZE-01 u postojećem SC-INTEGRITY-01 je kandidat za pregled, ne drugi registar. PR #71 ostaje privremena dijagnostika, neuspešni preflight artefakti sačuvani. Nema novog izvršavanja, merge/deploy-a ni promene dozvola/privatnosti; tehnička zaštita ref-a i izvršni postupak nisu kvalifikovani. Repo API prijavio public; prethodna pretpostavka privatnog CI-a nije potvrđena. D7 BLOCKED. D8 ZADRŽI ZA QA.
