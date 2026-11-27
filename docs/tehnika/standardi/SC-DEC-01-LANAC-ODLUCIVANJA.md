@@ -17,6 +17,15 @@ Handoff pokazuje postojeći zapis zadatka sa odobrenim opsegom, tačnim commitom
 - D7 Reliability: nezavisno pregleda originalne logove, scope diff, oracle, hashes i obavezne gate-ove. Agent ne može sam sebe proglasiti nezavisnim reviewerom. Ako kontradikcija nije razrešena, blokiraj prihvatanje. Structural PASS nije potvrda istinitosti, behavioral eval ili release authorization.
 - D8 odluka: PRIHVATI KANDIDAT samo kada sve required provere prolaze i nezavisni pregled potvrdi dokaz; ZADRŽI ZA QA za nedostatke; ROLLBACK za dokazanu regresiju kada je odobreno; NO-CHANGE kada nema dokaza za patch. Merge/deploy samo uz owner authorization. Odluke o docs/tooling ne zahtevaju lažne gameplay testove; scope se definiše unapred.
 
+## Interna kvalifikacija D7 evaluatora (27.11.2026.)
+
+Vlasnik je odobrio interni postupak. Kontrolor može biti član tima ili vlasnik, pod uslovom da nije autor testirane revizije evaluatora niti izvršilac čije rezultate ocenjuje. Uloga kontrolora i formalna odluka vlasnika evidentiraju se u postojećem zapisu zadatka.
+
+1. Kontrolor priprema sveže slučajeve i očekivane statuse i razloge. Ključ i svi materijali koji otkrivaju očekivane ishode ostaju u lokalnom prostoru kontrolora van ChatGPT-a, Git-a, povezanih servisa i radnog prostora evaluatora. Pre predaje ulaza kontrolor beleži SHA-256 ključa i ugovora, vreme zaključavanja i identitet kontrolora. Evaluator dobija ugovor za učesnika i testne ulaze.
+2. Evaluator radi u novoj sesiji postojećeg internog okruženja. Poseban sandbox, drugi nalog i globalno gašenje istorije, memorije, konektora, Git-a ili mreže nisu uslovi interne probe. Kontrolor u preflight-u evidentira identitet sesije, model, učitanu reviziju i alate relevantne za ugovor. Uz inertan ulaz i probnu predaju proverava oba smera prenosa. Status razdvajanja zasniva se na tome gde su stvarni materijali napravljeni, čuvani i deljeni. Ako su očekivani ishodi bili dostupni kroz bilo koji izvor koji evaluator koristi ili ako se njihovo razdvajanje ne može utvrditi, pogođeni slučajevi se zamenjuju svežim.
+3. Kontrolor zaključava originalnu predaju i beleži SHA-256, vreme i redni broj pokušaja pre poređenja sa ključem. Proverava zaključani ključ, ocenjuje status i razlog po slučaju i povezuje nalaz sa originalnim ulazima i odgovorima. Vlasnik donosi odluku o D7 na osnovu te evidencije.
+4. Prethodni E0.6 za eksterno okruženje ostaje istorijski BLOCKED za stvarnu sesiju. Lokalnih 12/12 važi za POSIX pilot. Interna provera predaje i razdvajanja ima svoju evidenciju u istom zapisu. Za reviziju `b559a871…` početni status je ZADRŽI ZA QA. D7 ostaje BLOCKED dok interni uslovi nemaju dokaze i slepa proba ne prođe.
+
 ## Predaja između dva agenta
 
 Arhitektura i infrastruktura vodi D0/D1/D3/D5, a stres-test specijalista D2/D4/D6. Zajednički zapis sadrži identitet oba builda, zamrznutu proveru, očekivani razlog pada, kontrolni scenario, ishode svih pokušaja i izvorne dokaze. Agent Reliability određuje postupak pregleda D7/D8. Kada su oba agenta učestvovala, nezavisni pregled radi vlasnik ili drugi reviewer. Bez njega odluka ostaje **ZADRŽI ZA QA**.
