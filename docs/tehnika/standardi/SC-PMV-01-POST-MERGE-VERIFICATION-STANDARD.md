@@ -2,6 +2,10 @@
 
 Datum: 2026-11-26. Opseg: svi agenti, svaki merge u main, uključujući dokumentaciju, tooling i CI. Dodatna kontrola zatvaranja uz SC-AGENT-01 G0–G7 i SC-DEC-01 D0–D8; ne menja njihove vlasnike, kriterijume ili obavezna odobrenja. Coordinator vodi PMV; Architecture vodi Git/CI identitet, QA relevantne regresije, Reliability internu proveru dokaza kad je obavezan. Jedan SC-DEC-01 zapis, bez paralelnog registra.
 
+## CI kontrolne tačke — racionalan QA
+
+Automatsko pokretanje CI prema postojećem workflow-u nije obaveza agenta da ručno skenira stanje posle svakog commita. Pre rada utvrdi relevantni ugovor i obavezne gate-ove; tokom rada koristi lokalne ciljane provere i read-back, grupiši male logički zaokružene izmene i nastavi bezbedne odvojive zadatke. Proveri završni kandidat pre odobrenog merge-a, a zatim izvrši PMV na tačnom integrisanom SHA. Dodatna provera opravdana je kada je rezultat preduslov sledeće radnje, postoji relevantan signal neuspeha/incidenta, promenjen je kandidat ili ugovor, ili vlasnik traži stanje. Ne ponavljaj nepromenjen status bez novog signala, opravdanog vremenskog praga ili stvarne potrebe; pending nije FAIL niti PASS. Evidentiraj razlog svake dodatne provere i ponovne egzekucije. Ponovna upotreba originalnog dokaza dozvoljena je samo za nepromenjeni identitet, ugovor, uslove i opseg, nikada umesto obavezne post-merge provere na tačnom SHA. Ne menjaj workflow triggers, obavezne jobove, zaštitu grane, trošak ili deploy politiku ovim pravilom. Nema preskakanja gate-ova, automatskog merge-a ili lažnog zatvaranja. Coordinator i QA Planning planiraju tačke; QA Release proverava završne dokaze.
+
 ## Obavezni postupak
 
 1. Ponovo pročitaj stvarni PR: merged=true, ciljna grana, merge SHA, vreme merge-a, odobren scope. Dokaži da je merge SHA predak stvarnog main HEAD-a (Git/API). Ako je HEAD napredovao, odvojeno proveri originalni merge i novi HEAD; ne zameni dokaz jednog drugim.
