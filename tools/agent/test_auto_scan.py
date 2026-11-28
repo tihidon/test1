@@ -99,4 +99,66 @@ class AutoScanTests(unittest.TestCase):
     def test_dirty_worktree_commit_only(self):
         (self.root/'AGENTS.md').write_text('uncommitted'); r=self.run_scan(); self.assertEqual(r['status'],'LOCAL_INPUTS_VERIFIED'); self.assertFalse(r['authorization'])
 
+
+    def cli_fixture(self):
+        import json
+        f=self.root/'tools/agent/auto_scan.py'
+        f.parent.mkdir(parents=True,exist_ok=True)
+        f.write_text('fixed read-only fixture\n')
+        new=self.commit()
+        bundle={k:v for k,v in self.args.items() if k not in ('root','target_root','skill_bytes')}
+        bundle.update(expected=new,target_sha=new,skill_text=self.skill.decode())
+        return bundle, new
+
+    def call_cli(self,bundle):
+        import json,sys
+        f=self.root/'bundle.json'
+        f.write_text(bundle if isinstance(bundle,str) else json.dumps(bundle))
+        r=subprocess.run([sys.executable,a.__file__,'--canonical-root',str(self.root),
+                          '--target-root',str(self.root),'--bundle',str(f)],
+                         capture_output=True,text=True,timeout=30)
+        return r.returncode,json.loads(r.stdout)
+
+    def test_cli_executes_fixed_probe(self):
+        bundle,new=self.cli_fixture()
+        code,r=self.call_cli(bundle)
+        self.assertEqual(code,0)
+        self.assertTrue(r['probe_called'])
+        self.assertEqual(r['probe_result'],a.blob(self.root,new,'tools/agent/auto_scan.py'))
+        self.assertFalse(r['authorization'])
+        self.assertFalse(r['remote_freshness_verified'])
+
+    def test_cli_blocks_missing_skill_and_document(self):
+        bundle,new=self.cli_fixture()
+        code,r=self.call_cli(bundle|{'skill_text':''})
+        self.assertEqual(code,1)
+        self.assertFalse(r['probe_called'])
+        self.assertIn('MISSING_OR_MISMATCHED_SKILL',r['issues'])
+        (self.root/'bundle.json').unlink()
+        (self.root/'AGENTS.md').unlink()
+        new=self.commit()
+        code,r=self.call_cli(bundle|{'expected':new,'target_sha':new})
+        self.assertEqual(code,1)
+        self.assertFalse(r['probe_called'])
+        self.assertIn('MISSING_OR_INVALID:AGENTS.md',r['issues'])
+
+    def test_cli_blocks_duplicate_keys_and_extra_fields(self):
+        bundle,new=self.cli_fixture()
+        for bad in ('{"role":"a","role":"b"}',bundle|{'command':'not allowed'}):
+            with self.subTest(bad=type(bad).__name__):
+                code,r=self.call_cli(bad)
+                self.assertEqual(code,1)
+                self.assertFalse(r['probe_called'])
+                self.assertIn('INVALID_BUNDLE',r['issues'])
+
+    def test_cli_probe_failure_is_nonzero(self):
+        bundle,new=self.cli_fixture()
+        (self.root/'bundle.json').unlink(missing_ok=True)
+        (self.root/'tools/agent/auto_scan.py').unlink()
+        new=self.commit()
+        code,r=self.call_cli(bundle|{'expected':new,'target_sha':new})
+        self.assertEqual(code,1)
+        self.assertEqual(r['status'],'PROBE_FAILED')
+
+
 if __name__=='__main__': unittest.main(verbosity=2)

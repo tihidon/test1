@@ -173,3 +173,71 @@ def entry(scan_inputs, approved_read_only_probe):
             result['status']='PROBE_FAILED'
             result['issues'].append('PROBE_EXCEPTION:'+type(exc).__name__)
     return result
+
+
+def run_bundle(bundle, canonical_root, target_root):
+    """Invoke existing entry() for a fixed, pinned, read-only identity probe.
+
+    The caller must acquire trusted inputs and approve the task. This local
+    command does not fetch remote data or act as a ChatGPT host hook.
+    """
+    try:
+        if not isinstance(bundle, dict):
+            raise ValueError("expected object")
+        allowed = {"canonical_ref", "expected", "role", "skill_text", "skill_sha256",
+                   "target_ref", "target_sha", "task_id", "handoff", "extra_docs",
+                   "resolved_conflicts", "skill_manifest", "handoff_plan"}
+        if set(bundle) - allowed:
+            raise ValueError("unknown fields")
+        params = dict(bundle)
+        params["skill_bytes"] = params.pop("skill_text").encode("utf-8")
+        params["root"] = canonical_root
+        params["target_root"] = target_root
+        if "resolved_conflicts" in params:
+            conflicts = params["resolved_conflicts"]
+            if not isinstance(conflicts, dict) or any(
+                not isinstance(pair, list) or len(pair) != 2 or
+                any(not isinstance(x, str) or not SHA.fullmatch(x) for x in pair)
+                for pair in conflicts.values()
+            ):
+                raise ValueError("invalid conflict identities")
+            params["resolved_conflicts"] = {k: tuple(v) for k, v in conflicts.items()}
+        return entry(params, lambda: blob(target_root, params["target_sha"],
+                                          "tools/agent/auto_scan.py"))
+    except (KeyError, AttributeError, TypeError, ValueError, OSError):
+        return {"status": "BLOCKED", "issues": ["INVALID_BUNDLE"],
+                "probe_called": False, "authorization": False,
+                "comprehension_verified": False, "remote_freshness_verified": False}
+
+
+def main(argv=None):
+    import argparse
+    import json
+
+    def unique_pairs(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError("duplicate JSON key")
+            result[key] = value
+        return result
+
+    parser = argparse.ArgumentParser(description="Local AUTO SCAN pilot: fixed read-only identity probe")
+    parser.add_argument("--canonical-root", required=True, type=Path)
+    parser.add_argument("--target-root", required=True, type=Path)
+    parser.add_argument("--bundle", required=True, type=Path,
+                        help="Trusted coordinator's local UTF-8 JSON input")
+    args = parser.parse_args(argv)
+    try:
+        bundle = json.loads(args.bundle.read_text(encoding="utf-8"), object_pairs_hook=unique_pairs)
+        result = run_bundle(bundle, args.canonical_root, args.target_root)
+    except (OSError, ValueError, TypeError):
+        result = {"status": "BLOCKED", "issues": ["INVALID_BUNDLE"],
+                  "probe_called": False, "authorization": False,
+                  "comprehension_verified": False, "remote_freshness_verified": False}
+    print(json.dumps(result, ensure_ascii=True, sort_keys=True))
+    return 0 if result["status"] == "LOCAL_INPUTS_VERIFIED" and result.get("probe_called") is True else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
