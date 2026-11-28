@@ -12,6 +12,29 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
+Read-back 28.11.2026: [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.14**, release `pluginrel_6b0ae82c925c8191a4268bd96dcca3f1`, USER/PRIVATE. Oba manifesta potvrđena, 16 profila pročitano; svi referenciraju zajednički behavior.md i interni D7. Ovo je identitet objavljenog paketa, ne dokaz aktivacije, ponašanja ili delegacije. Nova pravila iz #95/#96 i lokalni AUTO SCAN iz #92 ne smatrati izvršnim ponašanjem plugina bez posebnog read-back i izvršnog dokaza.
+
+| Profil | Pročitana verzija |
+|---|---|
+| `coordinate-team` | 0.5.16 |
+| `team-agent-conduct` | 0.1.2 |
+| `team-architecture` | 0.5.10 |
+| `team-chromium-qa` | 0.5.7 |
+| `team-defensive-auditor` | 0.1.7 |
+| `team-engineering` | 0.5.9 |
+| `team-handoff` | 0.5.7 |
+| `team-legal` | 0.1.2 |
+| `team-marketing` | 0.3.3 |
+| `team-qa-assurance` | 0.5.8 |
+| `team-qa-planning` | 0.5.7 |
+| `team-qa-release` | 0.5.7 |
+| `team-reliability` | 0.5.8 |
+| `team-rendering` | 0.5.8 |
+| `team-stress-test` | 0.5.8 |
+| `team-visual-design` | 0.5.13 |
+
+### Istorijski DOC-003 snapshot — paket 0.7.3
+
 Read-back 27.11.2026 CET: [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.3**, release `pluginrel_6b08be2734fc81918c145990f028045e`, USER/PRIVATE. Plugin Creator get_plugin_files: 34 fajla, oba manifesta 0.7.3, svih 16 SKILL.md pročitano; oba identifikatora SC-PRO-01 i SC-KG-01 prisutna u svakom. Ovo je potvrda sadržaja i identiteta paketa, ne dokaz ponašanja, zasebnih instaliranih plugina ili nezavisne delegacije.
 
 | Profil u Team paketu | Pročitana verzija |
