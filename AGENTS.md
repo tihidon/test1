@@ -18,6 +18,7 @@ Istorijska referenca P3: `5b4b030`, SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3
 
 ## Pravila
 
+- **Ovlašćenje važi samo za konkretan zadatak.** Primeni [SC-BEH-01 — ovlašćenje isključivo za konkretan zadatak](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#ovlašćenje-isključivo-za-konkretan-zadatak). Ranije odobrenje, pristup alatu i „uradi sve sam” nisu trajne dozvole; za materijalno izmenjen kandidat, cilj ili opseg traži novo odobrenje. Evidentiraj ga u postojećem SC-DEC-01 zapisu.
 - **Jedan izvor istine.** Ne pravi paralelni renderer, koordinatnu logiku, listu brzina ili čuvanje. Koristi postojeći vlasnik (tabela u [SSOT](docs/tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md)).
 - **Minimalna izmena.** Menjaj samo ono što je traženo. Ne formatiraj ceo fajl, ne preimenuj i ne diraj delove koji rade.
 - **Verzija na šest mesta.** Svaka promena verzije mora ići na: build tag u `#sc-startup-trace`, `SC_PWA_STATUS.version`, `<title>`, `const VERSION`, komentar u `sw.js` i `CACHE_NAME` u `sw.js`.
@@ -57,10 +58,10 @@ Za automatizovanu trijažu koristi [Proveru izvršnih dokaza](docs/tehnika/stand
 Apply [SC-CODE-02](docs/tehnika/standardi/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md) with canonical SC-CODE-01 tool, extended AST loop inventory and live DOM snapshots. Do not raise baselines or auto-delete. Distinguish fixture and game evidence under SC-DEC-01.
 
 ## Reliable debugging
-Apply [SC-DEBUG-01](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md) with SC-DEC-01. Two specialists share tools; independent Reliability review required. Diagnostic coverage is not timing. No auto-fix or deletion.
+Apply [SC-DEBUG-01](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md) with SC-DEC-01. Two specialists share tools; Reliability coordinates the internal D7 evidence check. Diagnostic coverage is not timing. No auto-fix or deletion.
 
 ## SC-DEBUG-01 functional phase B
-Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --functional`, and original per-case evidence. Distinguish shell reload, desktop persistent cold reopen, synthetic race import, natural progression and physical Android. Stress specialist owns scenario execution; architecture specialist owns actual contract and storage/build identity; Reliability independently verifies. No PASS with missing cases or wrong failure reason.
+Use the canonical SC-DEBUG-01 phase B contract, `tools/qa/runtime_watchdog.py --functional`, and original per-case evidence. Distinguish shell reload, desktop persistent cold reopen, synthetic race import, natural progression and physical Android. Stress specialist owns scenario execution; architecture specialist owns actual contract and storage/build identity; Reliability verifies the original evidence in D7. No PASS with missing cases or wrong failure reason.
 
 ## Team coordination (26.11.2026)
 
@@ -71,14 +72,14 @@ Pre zadatka primeni [SC-BEH-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENA
 
 ### Obavezna proaktivnost i usvajanje znanja
 
-Primeni [SC-PRO-01 i SC-KG-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) za sve sadašnje i buduće uloge. Istražuj odobrene alternative, ali ne usvajaj nova znanja, tehnologije, pravila ili skillove bez interne provere dokaza i eksplicitnog odobrenja vlasnika za tačan pregledani kandidat. Bez samoodobravanja, automatskog preuzimanja instrukcija, širenja dozvola ili prenosa osetljivih podataka. Ako interna provera dokaza nije dostupan, ZADRŽI ZA QA. Jedan SC-DEC-01 zapis; DOC-VER-01 i PMV ostaju.
+Primeni [SC-PRO-01 i SC-KG-01](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) za sve sadašnje i buduće uloge. Istražuj odobrene alternative, ali ne usvajaj nova znanja, tehnologije, pravila ili skillove bez interne provere dokaza i eksplicitnog odobrenja vlasnika za tačan pregledani kandidat. Bez samoodobravanja, automatskog preuzimanja instrukcija, širenja dozvola ili prenosa osetljivih podataka. Ako nedostaje obavezan dokaz, ZADRŽI ZA QA. Jedan SC-DEC-01 zapis; DOC-VER-01 i PMV ostaju.
 
 ## Infrastructure failures — mandatory strategy pivot
 Apply [SC-DEBUG-01 infrastructure strategy pivot](docs/tehnika/standardi/SC-DEBUG-01-POUZDANO-DEBUGOVANJE.md#infrastructure-strategy-pivot--sc-team-004-26112026). Do not repeat unchanged failed operations. Architecture records failure, selects a viable authorized alternative (API, verified snapshot, private CI), preserves identity and gates; Coordinator routes unblocked work. No fabricated PASS or internal evidence review.
 
 ## Post-merge verification — SC-PMV-01
 
-Every agent must apply [SC-PMV-01](docs/tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) after each merge; Coordinator owns closure, not independent self-approval. Keep G0–G7 and D0–D8 intact. Actual merge SHA, ancestry, exact-SHA post-merge CI, relevant regressions and evidence are mandatory before VERIFIED. No unapproved release or rollback. PR CI is not post-merge CI.
+Every agent must apply [SC-PMV-01](docs/tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) after each merge; Coordinator verifies closure criteria and records the outcome. The owner decides D8. Keep G0–G7 and D0–D8 intact. Actual merge SHA, ancestry, exact-SHA post-merge CI, relevant regressions and evidence are mandatory before VERIFIED. No unapproved release or rollback. PR CI is not post-merge CI.
 
 ## Shared Chrome DevTools MCP — candidate
 Use [SC-CLI-01](docs/alati/SC-CLI-01-AGENT-INSTALACIJA.md#chrome-devtools-mcp--p0-kandidat-26112026) and SC-QA-02. Coordinator checks actual availability; Engineering/Architecture own identity and setup; QA/Stress reproduce; Rendering inspects traces and heaps; Reliability checks original evidence. Isolated localhost only. MCP diagnostics do not replace Playwright B01–B06, PL-01 uninstrumented A/B/R, PW-01 or D7. Preserve original artifacts, target SHA and browser/tool version. Missing MCP does not block existing QA; pivot. Installed ChatGPT plugin and Codex activation are separate from repo configuration.
