@@ -370,3 +370,7 @@ Sources: https://developers.cloudflare.com/workers/static-assets/routing/advance
 ### SC-EQ-01 — organizacioni kandidat (27.11.2026)
 
 [SC-EQ-01](tehnika/standardi/SC-EQ-01-KVALIFIKACIJA-EVALUATORA.md): jedan kanonski predlog za sve evaluatore; javni pilot, slepi ispit, odvojeni oracle, ograničeno ovlašćenje i obnova. E0–E7 NOT RUN, nezavisni D7 BLOCKED, sertifikat nije izdat. Odluka i referenca na dokaz u SC-DEC-01; DOC-003 ostaje indeks, ne novi registar. Nema promene Team release-a.
+
+### SSOT / QA-FREEZE / SC-EEG-01 — usklađeni kandidati #81/#82
+
+[SSOT](tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md), [QA-FREEZE](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) i [SC-BEH-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md) povezuju vlasništvo, kontinuitet, SC-TEAM-005/SC-REPORT-01 i ENV-01–08. Katalog v4: 36 aktuelnih + 5 javnih SSOT slučajeva. NOT RUN za ponašanje i stvarni host; nema aktivacije novih dozvola ili workflow-a.
