@@ -6,7 +6,7 @@
 
 - Kanonski target: [test1 main, f0a5b4ca04e134e4f987a77e9fece7f0f979fce1](https://github.com/tihidon/test1/commit/f0a5b4ca04e134e4f987a77e9fece7f0f979fce1). Dokumentacioni kandidat; nijedan nalaz nije tvrdnja o grešci na tom runtime-u.
 - U prethodnoj sesiji pročitani instalirani profili Coordinator 0.5.13, Engineering 0.5.9, Architecture 0.5.10, Rendering 0.5.8, Stress 0.5.8, Chromium QA 0.5.7, QA Planning 0.5.7, Reliability 0.5.8, Team Defensive Auditor 0.1.3 i zasebni Defensive Auditor 0.1.7. Repo kanonski auditor na navedenom SHA: 0.1.1. Verzije profila nisu verzija celog Team plugina niti dokaz ponašanja.
-- Izvršilac: jedna ChatGPT sesija sa kombinovanim stručnim profilima; ponovljene sintetičke Node provere izveo je ovlašćeni QA pristup u sesiji ažuriranja dokumentacije, ne zasebni auditor. Nema tvrdnje o delegaciji, nezavisnom izvršenju ili ponašajnoj kvalifikaciji.
+- Izvršilac: jedna ChatGPT sesija sa kombinovanim stručnim profilima; sintetičke Node provere ponovljene su u sesiji nastavka obuke, ne zasebni auditor. Nema tvrdnje o delegaciji, nezavisnom izvršenju ili ponašajnoj kvalifikaciji.
 - Postojeći dnevni Code Health Audit je aktivan, dnevno 20:30 Europe/Belgrade, prošireni pregled nedeljom; očitano u prethodnoj sesiji 28.11.2026, bez dostupnog prvog rezultata u tom očitavanju. Očuvati postojeći zadatak, alate i ritam; bez nove automatizacije.
 - Auditor: samo ručno dostavljeni nesenzitivni sintetički dokazi; bez mreže, shell-a, izvršavanja, upisa i tajni. Interni D7 koordinira Reliability; D8 vlasnik. Nema obavezne posebne spoljne kontrole.
 
@@ -33,9 +33,20 @@ Za svaku anomaliju: identitet commita, funkcija/putanja, vlasnik i stvarni poziv
 
 Kumulativni scenario za budući Chromium pilot: otvori/zatvori shop više puta uz istu scenu, profil, save fixture i build; uporedi sa kontrolom bez shop prelaza. Beleži DOM count, aktivne listenere i RAF ownership, layout/paint trag i prvo odstupanje; bez univerzalnih proizvoljnih pragova ili unapred pretpostavljenog uzroka. Dijagnostička instrumentacija je odvojena od nepristrasnog PL-01 merenja. Ne menjati igru da bi test prošao. Očekivanja se zamrzavaju pre novog pilota. Oceniti i lažno negativne nalaze, flakiness, kvalitet audit alata i rizik predložene popravke. Dovoljan protivdokaz može opravdati NO-CHANGE.
 
+## Srazmernost — dopuna po zahtevu vlasnika
+
+Zaštita ispravnog koda nije zaštita postojećeg koda po svaku cenu. Ako je povreda ugovora ili standarda dokaziva, prijaviti je bez nepotrebnog čekanja runtime testa; izvršnu posledicu označiti neproverenom kada nije izmerena. Dokazani defekt ne ublažavati radi očuvanja statusa quo. NO-CHANGE važi samo za pregledani opseg i nije sertifikat celog sistema; optimizacija ispravnog koda ostaje legitimna uz dokaz koristi i očuvanje funkcionalnosti.
+
+- Jednostavan, jasan nalaz: dovoljna ciljana provera i kratak zapis, bez dodatnih slojeva, ponovljenih kontrola ili obaveznih novih sastanaka.
+- Nejasan ili materijalan nalaz: najmanja provera koja razlikuje defekt od legitimne implementacije, uz postojeće gate-ove.
+- Kritičan rizik: odmah primeniti postojeći incidentni postupak; ne čekati kompletan audit.
+- Završiti istragu kada dodatni dokaz ne može promeniti odluku; ne ponavljati nepromenjeni neuspeh. Obavezne kontrole iz važećih standarda ne ukidati.
+
+Primer: različiti callbackovi koji se gomilaju nakon otvaranja shop-a opravdavaju ciljanu proveru lifecycle-a; ponovno registrovanje istog callbacka samo po sebi nije dokaz curenja. Ispravan CSS override ne treba ukloniti zbog sličnosti selektora, ali se dokazana nefunkcionalnost ili merljivo nepotrebna složenost ne čuvaju. Ova dopuna je deo istog QA kandidata, bez novog pravila, automatizacije ili dodatnog approval gate-a.
+
 ## Izvršni dokaz iz sesije dokumentacionog ažuriranja
 
-Lokalni Node.js v22.16.0, bez igre, mreže ili pravih sejvova. Očekivanja 5, 1, 1, 2 definisana pre izvršenja. Izvršena komanda (samostalni sintetički fixture):
+Lokalni Node.js v22.16.0, bez igre, mreže ili pravih sejvova. U sesiji nastavka obuke stvarno je ponovo izvršena sledeća komanda; ranija tvrdnja o ponavljanju u sesiji dokumentacionog ažuriranja nema dostupan originalni transcript. Očekivanja 5, 1, 1, 2 definisana pre izvršenja. Izvršena komanda (samostalni sintetički fixture):
 
 ```js
 // node <<'JS' ... JS
@@ -60,12 +71,12 @@ T03 unique labels: 1
 T04 unique labels: 2
 ```
 
-4/4 PASS samo za te četiri sintetičke assertions. T01/T02 su Node EventTarget, ne browser DOM; T03/T04 proveravaju kardinalnost skupa oznaka, ne izvršenje ili trajnost transakcije. Raniji opis obuke naveo je Node 4/4 i Chromium BLOCKED sa dva neuspešna pokušaja, ali originalni transcript tih pokušaja nije dostupan za verifikaciju. Korekcija: prethodni rezultati NEPROVERENO; gore su novi proverljivi Node rezultati. Chromium u sesiji ažuriranja nije pokrenut (NOT RUN); uzrok prethodne blokade nije potvrđen. Nema runtime ili fizičkog Android dokaza. Ostali slučajevi su otvorene edukativne analize, ne izvršeni testovi.
+4/4 PASS samo za te četiri sintetičke assertions. T01/T02 su Node EventTarget, ne browser DOM; T03/T04 proveravaju kardinalnost skupa oznaka, ne izvršenje ili trajnost transakcije. Raniji opis obuke naveo je Node 4/4 i Chromium BLOCKED sa dva neuspešna pokušaja, ali originalni transcript tih pokušaja nije dostupan za verifikaciju. Korekcija: prethodni rezultati NEPROVERENO; gore su novi proverljivi Node rezultati. U sesiji nastavka obuke pokušaj izolovanog lokalnog Chromium 144.0.7559.96 testa nad sintetičkim HTML-om (dva listener scenarija i dva CSS stanja) nije vratio rezultate: timeout 12s, exit 124, EGL_NOT_INITIALIZED i GPU process initialization errors u stderr-u. Komanda: chromium --headless --no-sandbox --disable-dev-shm-usage --disable-background-networking --disable-component-update --no-first-run --user-data-dir=<privremeni-profil> --dump-dom file://<privremeni-fixture>. BLOCKED za ovu probu; pojedinačne assertions NOT RUN/NEPROVERENO. Ne pripisivati uzrok igre niti tvrditi da je prethodna blokada istog porekla. Bez identičnog retry-a. Nema runtime ili fizičkog Android dokaza. Ostali slučajevi su otvorene edukativne analize, ne izvršeni testovi.
 
 ## Predaja i odluka
 
 - URAĐENO: pregled profila/pravila i instrukcije automatizacije u prethodnoj sesiji; dokumentacioni kandidat i ponovljene četiri lokalne assertions.
 - DELIMIČNO: otvorena praktična obuka; nedostaju sveži Chromium dokazi i ponašajni rezultati.
-- NOT RUN: odvojena evaluacija ponašanja auditora i igre; novi Chromium pilot. D7 za trajno usvajanje nije zatvoren.
+- NOT RUN: odvojena evaluacija ponašanja auditora i igre; novi Chromium pilot BLOCKED, assertions bez rezultata. D7 za trajno usvajanje nije zatvoren.
 - KANDIDAT: šest dopuna obuke (lažni pozitivni/negativni nalazi, kumulativni uzroci, kvalitet alata, protivdokazi, šteta od popravke, retrospektiva). Odgovarajuće stručne provere, originalni dokazi i eksplicitno odobrenje tačnog kandidata potrebni su pre trajne integracije po [SC-KG-01](../tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-kg-01--kontrolisano-usvajanje-znanja-tehnika-i-tehnologija).
 - Dokumentacioni PR: proveriti read-back, diff i neizmenjen runtime. PMV prema [SC-PMV-01](../tehnika/standardi/SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) posle eventualnog odobrenog merge-a; nije potvrđen ovim zapisom. Rollback: ne spojiti kandidat ili odobren revert dokumentacionih promena. Test-cl1 uskladiti kontrolisano posle odobrenog kanonskog merge-a.
