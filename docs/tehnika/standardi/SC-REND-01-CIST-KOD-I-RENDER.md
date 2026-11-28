@@ -321,3 +321,16 @@ Provereno 25.11.2026.
 - Kod: [tihidon/test1](https://github.com/tihidon/test1) `main` `2d66e558`; ovaj repo `main` `1e3258f`.
 
 <sub>[↑ Sadržaj](#sadržaj)</sub>
+
+
+## Dodatak za pregled — kreativni pravci i kontrolisana kompleksnost (28.11.2026.)
+
+**Status:** predlog formulacije za internu proveru i odobrenje tačnog diff-a; vlasnik je u razgovoru odobrio kreativne pravce i princip kontrolisane kompleksnosti. Ne predstavlja izmenu runtime-a, potvrdu D7 niti ukidanje postojećih gate-ova.
+
+Zajednički kreativni pravci Dizajna i Renderinga: živi minijaturni svet (grad); dragulji prirode (retki puževi); prirodna fantastika (staništa); karakter i humor (mimika i pokreti); magična evolucija (vizuelni napredak). Pravci su smernice za originalne vizuelne kandidate, ne obaveza da svaki asset sadrži svih pet.
+
+Kompleksnost vizuelnog rezultata nije sama po sebi razlog za odbacivanje. Dizajn i Rendering istražuju izvodljive alternative za dogovoreni vizuelni ishod, uključujući zahtevne tehnike. Složenost implementacije mora biti opravdana, razumljiva, merljiva, izmenjiva i održiva: poznati vlasnik, struktura slojeva/stanja, ulazi/izlazi, stvarni pozivaoci, zavisnosti, životni ciklus resursa, parametri, ograničenja i postupak izmene/rollback-a. Izvorne uređive komponente i način reprodukcije čuvaju se u odobrenom opsegu; izvršni asset može biti optimizovana izvedenica. Ne zahtevati poseban modul, sloj ili konfiguraciju bez stvarne potrebe.
+
+Rendering i Engineering koriste postojeći renderer i odgovornosti, SC-REND-01, SC-CODE-01/02, PL-01 i SSOT. Ne uvoditi paralelni renderer, duplikate, skrivene invalidacije ili nekontrolisane resurse. Ne podizati baseline i ne brisati ispravne elemente radi metrike. Ako postojeći obavezni prag blokira kandidata, tražiti kompatibilnu alternativu ili zasebnu obrazloženu odluku o promeni pravila prema SC-DEC-01/SC-KG-01; ne zaobilaziti ga. Porediti odobreni vizuelni ishod i trošak na istom scenariju i ciljnom uređaju. Bez merenja nema tvrdnje o prihvatljivim performansama. D7 i D8 ostaju odvojeni.
+
+Predaja: Dizajn definiše vizuelni cilj, stanja i uređive izvore; Rendering mapira putanju prikaza i dokazuje trošak i vizuelni rezultat; Engineering održava strukturu i postojeće vlasništvo; QA proverava funkcionalnost i regresije. Za kompleksnu komponentu demonstrirati jednu ciljanu izmenu i vraćanje prethodnog stanja, uz relevantne provere. Ovaj dodatak ne nalaže refaktor postojećeg ispravnog koda.
