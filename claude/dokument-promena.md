@@ -255,3 +255,7 @@ Implementacioni kandidat P0 za oba repoa; incident test-cl1 PR #11 (205 D, 381 A
 ## P1 — zamrznuta QA baza (27.11.2026)
 
 Vlasnik odobrio koncept. Kreiran i read-back potvrđen `qa/base/p1-20261127-r1` na `07b7dcb7e9b6dbe2c42d893af939f43493fffe72`, tree `edd42ebc1fd69b7c01dddbb61a032650b4081785`; main ostaje netaknut. Zapis QA-FREEZE-01 u postojećem SC-INTEGRITY-01 je kandidat za pregled, ne drugi registar. PR #71 ostaje privremena dijagnostika, neuspešni preflight artefakti sačuvani. Nema novog izvršavanja, merge/deploy-a ni promene dozvola/privatnosti; tehnička zaštita ref-a i izvršni postupak nisu kvalifikovani. Repo API prijavio public; prethodna pretpostavka privatnog CI-a nije potvrđena. D7 BLOCKED. D8 ZADRŽI ZA QA.
+
+## 28.11.2026 — usklađivanje #81/#82
+
+Izvori #81 e79e1f4f84d6eea0642bd3c2a40157b9c6323d65, #82 2db76a787f29dd7dbd7b3bc68c3279f3f1c65160, baza 489ff00922948ef043aad33d891ca6ec51398291. Sačuvani SSOT-01–08, QA-FREEZE §8.1, EEG-01–10 i pet javnih SSOT slučajeva; ne prepisuje se noviji #95 ni interni D7 iz #96. Stari dokazi i odluke ostaju u originalnim PR-ovima. Kandidati ostaju QA; stvarni host i ponašanje nisu kvalifikovani. Bez izmene igre ili test-cl1.
