@@ -48,8 +48,8 @@ def check(contract, record, root):
     if record.get("decision") != "PRIHVATI KANDIDAT":
         errors.append("record does not request candidate acceptance")
     review=record.get("review")
-    if not isinstance(review,dict) or review.get("status")!="PASS" or not isinstance(review.get("reviewer"),str) or not review["reviewer"].strip() or review.get("independent") is not True:
-        errors.append("independent review declaration missing")
+    if not isinstance(review,dict) or review.get("status")!="PASS" or not isinstance(review.get("reviewer"),str) or not review["reviewer"].strip():
+        errors.append("internal evidence review declaration missing")
     return errors
 
 def main():
@@ -69,7 +69,7 @@ def main():
         errors=[str(exc)]
     print(json.dumps({"structural_status":"FAIL" if errors else "PASS","errors":errors,
         "independence_verified":False,"release_authorized":False,
-        "limitation":"Original logs, oracle, reviewer identity and approval must be independently verified."},indent=2))
+        "limitation":"Structural validation only. Verify original logs and the frozen oracle through internal evidence review. The owner authorizes release."},indent=2))
     return int(bool(errors))
 
 if __name__=="__main__":

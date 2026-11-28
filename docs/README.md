@@ -1,14 +1,45 @@
 # Snail City — zajednička dokumentacija test1 / test-cl1
 
-Poslednja izmena indeksa: 2026-11-26
+Poslednja izmena indeksa: 2026-11-27
 
-**P0 — kanonski autoritet:** `tihidon/test1` je primarni razvojni repo; `snail-city-test` je istorijski izvor. Aktivna pravila se održavaju ovde. P1/P3 podaci ispod su istorijski, ne dokaz za P10. P10 je koordinacioni snapshot iz AGENTS.md, ne novo izvršno merenje.
+**P0 — kanonski autoritet:** `tihidon/test1` je primarni razvojni repo; `snail-city-test` je istorijski izvor. Aktivna pravila se održavaju ovde. P1/P3/P10 podaci ispod su istorijski snapshotovi, ne dokaz za aktuelni checkout ili novo izvršno merenje.
 
 Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1` `main` `5b4b030` (PR #13), `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `const VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Kopije označene „`2d66e55` / `c19cc1ac…`“ proverene su samo nad p1 commit-om i nisu ponovo proverene nad p3. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
-Read-back 27.11.2026 CET (26.11. UTC), preko autorizovanog Plugin Creator konektora. Aktuelni [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) je **0.7.2**, release `pluginrel_6b08bb6baf108191ac666b7a64f19df1`; oba manifesta 0.7.2, USER/PRIVATE, 34 fajla i 16 skillova u inventaru. Usklađeni Coordinator i zajednički behavior guide sa SC-PRO-01/SC-KG-01; ostali skill headeri ostaju na stvarno pročitanim verzijama. Pravila važe za sve uloge kroz SC-BEH-01 i zajednički vodič; stvarna aktivacija u pojedinačnoj sesiji i ponašanje nisu dokazani read-backom.
+Read-back 27.11.2026 CET: [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.3**, release `pluginrel_6b08be2734fc81918c145990f028045e`, USER/PRIVATE. Plugin Creator get_plugin_files: 34 fajla, oba manifesta 0.7.3, svih 16 SKILL.md pročitano; oba identifikatora SC-PRO-01 i SC-KG-01 prisutna u svakom. Ovo je potvrda sadržaja i identiteta paketa, ne dokaz ponašanja, zasebnih instaliranih plugina ili nezavisne delegacije.
+
+| Profil u Team paketu | Pročitana verzija |
+|---|---|
+| `coordinate-team` | 0.5.11 |
+| `team-agent-conduct` | 0.1.1 |
+| `team-architecture` | 0.5.9 |
+| `team-chromium-qa` | 0.5.6 |
+| `team-defensive-auditor` | 0.1.2 |
+| `team-engineering` | 0.5.8 |
+| `team-handoff` | 0.5.6 |
+| `team-legal` | 0.1.1 |
+| `team-marketing` | 0.3.2 |
+| `team-qa-assurance` | 0.5.7 |
+| `team-qa-planning` | 0.5.6 |
+| `team-qa-release` | 0.5.6 |
+| `team-reliability` | 0.5.7 |
+| `team-rendering` | 0.5.7 |
+| `team-stress-test` | 0.5.7 |
+| `team-visual-design` | 0.5.10 |
+
+SC-PRO-01/SC-KG-01: odobrena primena postojećeg governance-a, ne blanket odobrenje novih predloga. K1–K10 behavioral NOT RUN; nezavisni D7 BLOCKED. SC-INTEGRITY-01/INT-APPROVAL-01 ostaju kandidati prema sopstvenom standardu, bez tvrdnje o aktivnom platform enforcement-u. Repo snapshot pregleda: test1 `15add8492e830c1ca98f22d9a8ef9d8facf0621c`, test-cl1 `8731439629947d5a502af5c9ef0ef228a26f07fd`; razlike u AGENTS.md, docs/README.md i dva dokumenta nezavisnog kandidata zahtevaju zaseban pregled pre prenosa, ne prepisivanje. U 11 repo SKILL.md devet navodi SC-BEH-01; marketing i visual-design ne navode ga eksplicitno. Nijedan ne navodi oba SC-PRO-01/SC-KG-01 direktno; postojeći kanonski AGENTS.md već propisuje njihovu primenu svim ulogama. Predlog dopune ulaznih referenci nije dokaz izvršavanja. SC-DEC-01, DOC-VER-01 i PMV ostaju obavezni.
+
+### Interni D7 i Provera izvršnih dokaza — 27.11.2026.
+
+[SC-DEC-01](tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza) u test1 main sadrži interni postupak, prioritete P0–P4 i postupanje pri poplavi događaja. [PR #83](https://github.com/tihidon/test1/pull/83) je spojen kao `7b453697`. [PR CI #106](https://github.com/tihidon/test1/actions/runs/46063984212) je PASS za head `d121722f`. CI za tačan merge SHA ovde nije potvrđen.
+
+Izvršeni piloti su sintetički. QA prijem i stvarni zapisi igre još nisu provereni ovom metodom. Eksterni kontrolor, eksterna slepa proba i obavezno odobrenje nezavisnog agenta su ukinuti. Interna provera originalnih dokaza ostaje u D7, a odluka vlasnika u D8. Formalni interni D7 revizije `b559a871…` ostaje BLOCKED. ChatGPT Team paket 0.7.3 je odvojen release i nije ažuriran ovom repo izmenom.
+
+### Istorijski DOC-003 snapshot — paket 0.7.2
+
+Read-back 27.11.2026 CET (26.11. UTC), preko autorizovanog Plugin Creator konektora. Tadašnji [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) bio je **0.7.2**, release `pluginrel_6b08bb6baf108191ac666b7a64f19df1`; oba manifesta 0.7.2, USER/PRIVATE, 34 fajla i 16 skillova u inventaru. Usklađeni Coordinator i zajednički behavior guide sa SC-PRO-01/SC-KG-01; ostali skill headeri ostaju na stvarno pročitanim verzijama. Pravila važe za sve uloge kroz SC-BEH-01 i zajednički vodič; stvarna aktivacija u pojedinačnoj sesiji i ponašanje nisu dokazani read-backom.
 
 | Profil u Team paketu | Pročitana verzija |
 |---|---|
@@ -247,7 +278,7 @@ PR #38 merged at `f422312`. Run [45738038440](https://github.com/tihidon/test1/a
 
 ## 14. Model Spec — SC-BEH-01 (26.11.2026)
 
-Dopuna kandidat: [SC-PRO-01 i SC-KG-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) — obavezna proaktivnost u opsegu i karantin/pregled/odobrenje pre trajnog usvajanja znanja i tehnologija. Ne menja DOC-003 aktuelne verzije, izvršni kod ili dozvole. Nezavisni D7 i behavioral evaluacija nisu izvršeni; aktivacija i release odvojeni od odobrenja pripreme kandidata.
+Istorijski predlog (naknadno odobrena primena; vidi DOC-003): [SC-PRO-01 i SC-KG-01](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#sc-pro-01--obavezna-proaktivnost-u-odobrenom-opsegu) — obavezna proaktivnost u opsegu i karantin/pregled/odobrenje pre trajnog usvajanja znanja i tehnologija. Ne menja DOC-003 aktuelne verzije, izvršni kod ili dozvole. Nezavisni D7 i behavioral evaluacija nisu izvršeni; aktivacija i release odvojeni od odobrenja pripreme kandidata.
 
 [Zajedničko ponašanje agenata](tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md), povezano iz AGENTS.md. Koordinator v0.3.0. Jedini evaluacioni katalog proširen na 26 REL/TEAM/BEH slučajeva; behavioral NOT RUN. Bez runtime/SW/deploy izmene.
 
@@ -298,3 +329,17 @@ Recovery evidence: [run 45808612656](https://github.com/tihidon/test1/actions/ru
 
 Canonical development: tihidon/test1 at e51b1e6cba31bedd61ad0bbb269c90f065117279; test-cl1 import f6c2b4d91f489e497ead625fda2e437437bf1a16 contains identical P11-r2 runtime/source and 193 matching blobs, but lacks two CI workflow files and all ancestral Git commits (root import). Restore both workflows byte-for-byte; historical ESLint ratchet commit cd79662b45b2477d2d53aba000e60f90fefc8662 is absent (API 404). Full engineering CI cannot be qualified until source history is imported by authorized Git fetch/merge; do not weaken or reset the frozen baseline. Cloudflare candidate only: wrangler.toml static assets ./dist, no server-side script, html_handling none, no wildcard fallback; _redirects exact / -> /index.html 200 internal proxy. Build uses existing Netlify whitelist/identity command, then adds _redirects; Python >=3.11 for tomllib. Dashboard build command: bash tools/cloudflare-build.sh; deploy command: npx wrangler deploy; root /. Keep builds disabled until reviewed and approved. New tests exercise exact whitelist and stale root rejection, not actual Cloudflare routing. Validate live exact URL status/MIME/bytes and no redirects on all SW core resources, private path 404s, physical PWA and synthetic save persistence. No changes to test1, game HTML, SW, save, or cache version. New origin has separate storage. Actual hosting configuration and deploy not accessible here; D7, CI and PMV pending.
 Sources: https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/ ; https://developers.cloudflare.com/workers/static-assets/redirects/ ; https://developers.cloudflare.com/workers/ci-cd/builds/configuration/
+
+
+## SC-INTEGRITY-01 — predlog P0 (27.11.2026)
+
+[Zaštita integriteta projekta](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md) — incident test-cl1 PR #11, 18 rizika, izvršni ugovor i 10 grupa kvalifikacionih testova. Predlog dokumentacije; implementacija i nezavisna verifikacija otvorene.
+
+
+## SC-INTEGRITY-01 — implementacioni kandidat 0.2
+
+[Standard](tehnika/standardi/SC-INTEGRITY-01-ZASTITA-INTEGRITETA-PROJEKTA.md), checker tools/agent/check_integrity.py, negativni fixture i read-only base-controlled workflow. Oba repoa isti checker/testovi; platform enforcement, nezavisni deploy guard i D7 otvoreni. Status ZADRŽI ZA QA.
+
+### SC-EQ-01 — organizacioni kandidat (27.11.2026)
+
+[SC-EQ-01](tehnika/standardi/SC-EQ-01-KVALIFIKACIJA-EVALUATORA.md): jedan kanonski predlog za sve evaluatore; javni pilot, slepi ispit, odvojeni oracle, ograničeno ovlašćenje i obnova. E0–E7 NOT RUN, nezavisni D7 BLOCKED, sertifikat nije izdat. Odluka i referenca na dokaz u SC-DEC-01; DOC-003 ostaje indeks, ne novi registar. Nema promene Team release-a.

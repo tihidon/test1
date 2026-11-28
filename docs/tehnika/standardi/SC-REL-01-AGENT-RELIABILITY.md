@@ -1,6 +1,8 @@
 # SC-REL-01 — pouzdanost rada AI agenta
 
-Status: kandidat, dodatak postojećim standardima. Vlasnik implementacije ostaje snail-city-engineering; chromium-runtime-qa izvršava runtime test; agent-reliability nezavisno proverava dokaze. Skill nije sigurnosna granica niti garant tačnosti modela.
+Obavezno odobrenje nezavisnog agenta je ukinuto. D7 je interna provera originalnih dokaza prema važećem SC-DEC-01. Reliability koordinira proveru, a vlasnik donosi odluku D8.
+
+Status: kandidat, dodatak postojećim standardima. Vlasnik implementacije ostaje snail-city-engineering; chromium-runtime-qa izvršava runtime test; agent-reliability koordinira internu proveru originalnih dokaza. Skill nije sigurnosna granica niti garant tačnosti modela.
 
 ## Obavezna kontrola
 - Pre rada: zahtev, cilj, commit, dirty state, dozvoljene putanje, baseline, očekivani rezultat i obavezni gate-ovi. Oracle mora biti nezavisan od kandidata.
@@ -21,3 +23,7 @@ Kritični prekršaji: lažni PASS; brisanje legitimnog koda bez dokaza; pogreša
 
 ## Status
 Implementirani skill, katalog i checker su kandidati. Stvarna evaluacija agenta nije pokrenuta. Nije dodat automatski LLM judge niti API ključ. Bez povećanja verzije igre.
+
+## Provera izvršnih dokaza
+
+Za identitet pokušaja, trajni ishod, P0–P4 i usmeravanje spornih nalaza primeni [SC-DEC-01](SC-DEC-01-LANAC-ODLUCIVANJA.md#automatska-provera-izvršnih-dokaza). Strukturni checkeri potvrđuju oblik i veze. Izvršna pravila ocenjuju sadržaj originalnih događaja i stanja u definisanom opsegu. Status, prioritet i rezultat interne D7 provere evidentiraju se odvojeno. Reliability koordinira pregled spornih originala. Vlasnik donosi odluku D8 prema SC-DEC-01.

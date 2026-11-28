@@ -29,6 +29,22 @@ jobs:
       - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c
         with:
           python-version: '3.12'
+      - name: SC-INTEGRITY-01 tree integrity (structural)
+        env:
+          SC_INTEGRITY_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          set -euo pipefail
+          base="$SC_INTEGRITY_BASE"
+          if [ -z "$base" ]; then base="$(git rev-parse HEAD^1)"; fi
+          python tools/agent/check_integrity.py --repository "$GITHUB_REPOSITORY" --base "$base" --head "$GITHUB_SHA" --out "$RUNNER_TEMP/sc-integrity.json"
+      - name: Preserve integrity report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sc-integrity
+          path: ${{ runner.temp }}/sc-integrity.json
+          if-no-files-found: error
+          retention-days: 14
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
@@ -171,8 +187,8 @@ jobs:
           SC_P1_BASE: ${{ github.event.pull_request.base.sha }}
         run: |
           mkdir -p "$RUNNER_TEMP/sc-p1-botanical-visual"
-          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'e1d856242fc02faf5a41375416cffc9b2ea162f2' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-botanical-visual/preflight.txt"
-          test "$SC_P1_BASE" = "e1d856242fc02faf5a41375416cffc9b2ea162f2"
+          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'f0a5b4ca04e134e4f987a77e9fece7f0f979fce1' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-botanical-visual/preflight.txt"
+          test "$SC_P1_BASE" = "f0a5b4ca04e134e4f987a77e9fece7f0f979fce1"
           python -m py_compile tools/qa/p1_botanical_visual.py
           python -c 'import sys; from pathlib import Path; sys.path.insert(0,"tools/qa"); from runtime_watchdog import run_bounded; p=Path(sys.argv[1]); r=run_bounded([sys.executable,"tools/qa/p1_botanical_visual.py",str(p)],p,120); print(r); sys.exit(0 if r["status"]=="PASS" else 1)' "$RUNNER_TEMP/sc-p1-botanical-visual"
       - name: Preserve temporary P1 botanical-visual evidence
@@ -189,8 +205,8 @@ jobs:
           SC_P1_BASE: ${{ github.event.pull_request.base.sha }}
         run: |
           mkdir -p "$RUNNER_TEMP/sc-p1-startup-abr"
-          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'e1d856242fc02faf5a41375416cffc9b2ea162f2' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-startup-abr/preflight.txt"
-          test "$SC_P1_BASE" = "e1d856242fc02faf5a41375416cffc9b2ea162f2"
+          printf 'expected_base=%s\nactual_base=%s\nchecked_out=%s\n' 'f0a5b4ca04e134e4f987a77e9fece7f0f979fce1' "$SC_P1_BASE" "$(git rev-parse HEAD)" > "$RUNNER_TEMP/sc-p1-startup-abr/preflight.txt"
+          test "$SC_P1_BASE" = "f0a5b4ca04e134e4f987a77e9fece7f0f979fce1"
           python -m py_compile tools/qa/p1_startup_abr.py
           python -c 'import sys; from pathlib import Path; sys.path.insert(0,"tools/qa"); from runtime_watchdog import run_bounded; p=Path(sys.argv[1]); r=run_bounded([sys.executable,"tools/qa/p1_startup_abr.py",str(p)],p,480); print(r); sys.exit(0 if r["status"]=="PASS" else 1)' "$RUNNER_TEMP/sc-p1-startup-abr"
       - name: Preserve temporary P1 startup-abr evidence

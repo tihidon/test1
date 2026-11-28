@@ -17,7 +17,7 @@ from functional_suite import read, wait_save
 from functional_contract import unchanged_inventory, purchase
 
 ROOT=Path(__file__).resolve().parents[2]
-BASE="e1d856242fc02faf5a41375416cffc9b2ea162f2"
+BASE="f0a5b4ca04e134e4f987a77e9fece7f0f979fce1"
 HTML_SHA="492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a"
 OUT=Path(sys.argv[1]).resolve()
 REPORT={"status":"RUNNING","scope":"headless desktop, isolated online, no trace during timing; frame opportunity proxy, not presentation or INP; no GPU or Android claim","base":BASE,"runs":[],"page_errors":[],"http_errors":[]}

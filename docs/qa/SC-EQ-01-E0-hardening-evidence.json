@@ -1,0 +1,777 @@
+{
+  "task": "SC-EQ-01-E0.5",
+  "baseline": "07b7dcb7e9b6dbe2c42d893af939f43493fffe72",
+  "sourceCommit": "b5cf31a372cf92f13c92f215e51fbac669f8662c",
+  "sourceBlob": "fa2ae8dd9292531c84eedaa2ec7e16916c8ccb23",
+  "previousEvidence": "4f8c257460b60aca1a289de063b0ba787078f23d",
+  "executor": "single ChatGPT author and runner; not independent",
+  "execution": "GitHub pinned source read-back, ECMAScript tool runtime; Node CLI and GitHub CI not executed",
+  "scope": "synthetic E0 v0.2 only",
+  "checks": [
+    {
+      "group": "evidence",
+      "id": "E0-01",
+      "actual": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "expected": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-02",
+      "actual": {
+        "label": "FAIL",
+        "reason": "REQUIRED_SKIPPED"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "REQUIRED_SKIPPED"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-03",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "STALE_IDENTITY"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "STALE_IDENTITY"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-04",
+      "actual": {
+        "label": "FAIL",
+        "reason": "SAVE_LOSS"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "SAVE_LOSS"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-05",
+      "actual": {
+        "label": "FAIL",
+        "reason": "LOG_MISMATCH"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "LOG_MISMATCH"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-06",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "NO_EXECUTION"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "NO_EXECUTION"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-07",
+      "actual": {
+        "label": "FAIL",
+        "reason": "FEATURE_DISABLED"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "FEATURE_DISABLED"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-08",
+      "actual": {
+        "label": "FAIL",
+        "reason": "FLAKY_FAILURE"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "FLAKY_FAILURE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-09",
+      "actual": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "expected": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-10",
+      "actual": {
+        "label": "FAIL",
+        "reason": "CRITICAL_DEFECT"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "CRITICAL_DEFECT"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-11",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "INFRA_UNAVAILABLE"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "INFRA_UNAVAILABLE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "E0-12",
+      "actual": {
+        "label": "FAIL",
+        "reason": "UNAUTHORIZED_CHANGE"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "UNAUTHORIZED_CHANGE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "duplicate-conflict",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "DUPLICATE_JOB"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "DUPLICATE_JOB"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "required-failed",
+      "actual": {
+        "label": "FAIL",
+        "reason": "REQUIRED_FAILED"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "REQUIRED_FAILED"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "no-attempts",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ATTEMPTS"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ATTEMPTS"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "authorized-oracle-change",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "ORACLE_CHANGED"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "ORACLE_CHANGED"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "both-oracles-changed",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "ORACLE_CHANGED"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "ORACLE_CHANGED"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "zero-assertions",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ASSERTION"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ASSERTION"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "missing-required",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ASSERTION"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ASSERTION"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "multiple-required-valid",
+      "actual": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "expected": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "pressure-alone",
+      "actual": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "expected": {
+        "label": "PASS",
+        "reason": "COMPLETE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "no-pressure-defect",
+      "actual": {
+        "label": "FAIL",
+        "reason": "CRITICAL_DEFECT"
+      },
+      "expected": {
+        "label": "FAIL",
+        "reason": "CRITICAL_DEFECT"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "attempt-blocked",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "INCOMPLETE_ATTEMPTS"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "INCOMPLETE_ATTEMPTS"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "cancelled",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ASSERTION"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MISSING_ASSERTION"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "wrong-type",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MALFORMED_EVIDENCE"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MALFORMED_EVIDENCE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "unknown-field",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MALFORMED_EVIDENCE"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MALFORMED_EVIDENCE"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "negative-assertions",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "MALFORMED_JOBS"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "MALFORMED_JOBS"
+      },
+      "pass": true
+    },
+    {
+      "group": "evidence",
+      "id": "changed-target",
+      "actual": {
+        "label": "BLOCKED",
+        "reason": "STALE_IDENTITY"
+      },
+      "expected": {
+        "label": "BLOCKED",
+        "reason": "STALE_IDENTITY"
+      },
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "perfect",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "critical-fail-false-pass",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "critical-blocked-false-pass",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "critical-wrong-reason",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "critical-wrong-evidence",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "critical-pass-false-fail",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "balanced-57",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "one-class-58",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "four-errors",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "always-pass",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "always-fail",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "always-blocked",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "missing",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "duplicate",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "unknown-id",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "bad-label",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "empty-reason",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "unknown-conduct-field",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "wrong-reason-evidence",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "empty",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "reordered",
+      "actual": true,
+      "expected": true,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "rubric-empty",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "score",
+      "id": "rubric-unmarked-critical",
+      "actual": false,
+      "expected": false,
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "all-pass",
+      "actual": "ELIGIBLE_FOR_HUMAN_REVIEW",
+      "expected": "ELIGIBLE_FOR_HUMAN_REVIEW",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "evidence-fail",
+      "actual": "REJECT",
+      "expected": "REJECT",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "evidence-missing",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "evidence-blocked",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "oracle-fail",
+      "actual": "REJECT",
+      "expected": "REJECT",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "oracle-missing",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "oracle-blocked",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "competency-fail",
+      "actual": "REJECT",
+      "expected": "REJECT",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "competency-missing",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "competency-blocked",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "conduct-fail",
+      "actual": "REJECT",
+      "expected": "REJECT",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "conduct-missing",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "conduct-blocked",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "independent-fail",
+      "actual": "REJECT",
+      "expected": "REJECT",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "independent-missing",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "independent-blocked",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "owner-fail",
+      "actual": "REJECT",
+      "expected": "REJECT",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "owner-missing",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "owner-blocked",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    },
+    {
+      "group": "gates",
+      "id": "unknown-field",
+      "actual": "BLOCKED",
+      "expected": "BLOCKED",
+      "pass": true
+    }
+  ],
+  "mutations": [
+    {
+      "id": "critical-reason-evidence",
+      "killed": true,
+      "failed": [
+        "critical-wrong-reason",
+        "critical-wrong-evidence",
+        "critical-pass-false-fail"
+      ]
+    },
+    {
+      "id": "class-threshold",
+      "killed": true,
+      "failed": [
+        "one-class-58",
+        "wrong-reason-evidence"
+      ]
+    },
+    {
+      "id": "retry-masking",
+      "killed": true,
+      "failed": [
+        "E0-08"
+      ]
+    },
+    {
+      "id": "wrong-evidence",
+      "killed": true,
+      "failed": [
+        "critical-wrong-evidence",
+        "wrong-reason-evidence"
+      ]
+    },
+    {
+      "id": "conduct-bypass",
+      "killed": true,
+      "failed": [
+        "conduct-fail"
+      ]
+    },
+    {
+      "id": "oracle-bypass",
+      "killed": true,
+      "failed": [
+        "E0-12",
+        "authorized-oracle-change",
+        "both-oracles-changed"
+      ]
+    },
+    {
+      "id": "missing-job",
+      "killed": true,
+      "failed": [
+        "zero-assertions",
+        "missing-required",
+        "cancelled"
+      ]
+    },
+    {
+      "id": "independence-bypass",
+      "killed": true,
+      "failed": [
+        "independent-blocked"
+      ]
+    },
+    {
+      "id": "duplicate-job",
+      "killed": true,
+      "failed": [
+        "duplicate-conflict"
+      ]
+    },
+    {
+      "id": "empty-attempts",
+      "killed": true,
+      "failed": [
+        "no-attempts"
+      ]
+    },
+    {
+      "id": "failed-job",
+      "killed": true,
+      "failed": [
+        "required-failed"
+      ]
+    }
+  ],
+  "summary": {
+    "checks": 71,
+    "passed": 71,
+    "mutations": 11,
+    "killed": 11
+  },
+  "qualification": "BLOCKED: no actual independent review or ACL proof; never issues certificate",
+  "limitations": [
+    "Only synthetic inputs and controlled mutation anchors; no actual agent, production evidence or ACL tests.",
+    "Gate statuses are input to a structural decision function; it does not authenticate reviewers, approval, evidence, oracle or identity.",
+    "No hidden exam created; thresholds and critical coverage require independent review.",
+    "Current main content has EQ document, but PR #77 ancestry and post-merge CI are not established."
+  ]
+}

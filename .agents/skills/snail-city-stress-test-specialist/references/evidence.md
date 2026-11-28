@@ -8,4 +8,4 @@ Baseline / candidate / negative control: for EACH attempt record completed steps
 Performance method, diagnostic probes enabled, repetitions, raw values, confounders:
 Contradictions, missing evidence, affected scope and rollback:
 Test status PASS / FAIL / BLOCKED / NOT RUN and reason:
-Independent reviewer, evidence inspected, decision:
+Internal D7 verifier, evidence inspected, decision:

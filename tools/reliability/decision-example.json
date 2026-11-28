@@ -53,8 +53,7 @@
     "decision": "ZADRŽI ZA QA",
     "review": {
       "status": "NOT RUN",
-      "reviewer": "",
-      "independent": false
+      "reviewer": ""
     }
   }
 }

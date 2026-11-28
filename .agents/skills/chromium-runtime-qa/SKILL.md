@@ -15,7 +15,7 @@ Use with snail-city-engineering, not instead of it. Read AGENTS.md, SC-AGENT-01,
 
 ## Stress-test specialist role
 
-Own real user scenarios, controlled repetitions, first observed divergence from expected behavior, and before/after evidence. Use the scenario record, run modes and first gameplay case in SC-QA-02. Keep a per-run record of completed steps, assertion outcomes and failure reason. For any fix under review, transfer original artifacts to the reviewer and leave the decision pending until independent review is complete.
+Own real user scenarios, controlled repetitions, first observed divergence from expected behavior, and before/after evidence. Use the scenario record, run modes and first gameplay case in SC-QA-02. Keep a per-run record of completed steps, assertion outcomes and failure reason. For any fix under review, transfer original artifacts to the reviewer and leave the decision pending until internal D7 verification is complete.
 
 ## Four obligations
 

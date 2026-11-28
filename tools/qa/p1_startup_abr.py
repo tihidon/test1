@@ -17,7 +17,7 @@ from functional_contract import unchanged_inventory
 
 ROOT=Path(__file__).resolve().parents[2]
 OUT=Path(sys.argv[1]).resolve()
-BASE="e1d856242fc02faf5a41375416cffc9b2ea162f2"
+BASE="f0a5b4ca04e134e4f987a77e9fece7f0f979fce1"
 HTML_SHA="492d9de51360b6b2d16217dc6b93440b759161bfbbcbc63dab2c3416f590823a"
 REPORT={"status":"RUNNING","base":BASE,"runs":[],"page_errors":[],"http_errors":[],"scope":"headless desktop localhost; online fresh contexts and same-context offline reload; existing startup marks; no profiler or trace during timing; submitted frame not presentation, no physical device or GPU completion proof"}
 def save():

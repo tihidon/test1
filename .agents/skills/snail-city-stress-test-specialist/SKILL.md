@@ -6,7 +6,7 @@ description: Stress-test Snail City gameplay, performance, lifecycle and offline
 # Snail City Stress Test Specialist
 
 ## Shared engineering standard
-Load snail-city-engineering and the target repository's AGENTS.md. Apply PL-01, use the current function registry, record contradictions with build identity and preserve the stable release. Distinguish observed facts, hypotheses and proven causes. Prefer the simplest change at the existing owner. Preserve symptoms for diagnosis. Avoid masking them with extra layers, timers or artificial delays. Retain successful and failed runs. Verify functional claims in real Chromium. Scope static, lint and simulation results to their actual checks. Submit fixes to independent review under agent-reliability.
+Load snail-city-engineering and the target repository's AGENTS.md. Apply PL-01, use the current function registry, record contradictions with build identity and preserve the stable release. Distinguish observed facts, hypotheses and proven causes. Prefer the simplest change at the existing owner. Preserve symptoms for diagnosis. Avoid masking them with extra layers, timers or artificial delays. Retain successful and failed runs. Verify functional claims in real Chromium. Scope static, lint and simulation results to their actual checks. Submit original fix evidence for internal D7 verification coordinated by Agent Reliability.
 For decisions depending on changing APIs, compatibility, tooling or deployment, verify current official documentation against the project's pinned versions. Record source, date, applicable version and any conflict. Mark unavailable confirmation explicitly.
 
 ## Responsibilities
@@ -29,7 +29,7 @@ Use [the role procedure](references/procedure.md) and [the evidence record](refe
 - [PW-01-STANJE-0.8.92](references/PW-01-STANJE-0.8.92.md)
 - [PRAVILO-JEDAN-IZVOR-ISTINE](references/PRAVILO-JEDAN-IZVOR-ISTINE.md)
 - [SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI](references/SC-CODE-02-IZVRSNA-KONTROLA-KOMPLEKSNOSTI.md)
-- [SC-DEC-01-LANAC-ODLUCIVANJA](references/SC-DEC-01-LANAC-ODLUCIVANJA.md)
+- [SC-DEC-01-LANAC-ODLUCIVANJA](../../../docs/tehnika/standardi/SC-DEC-01-LANAC-ODLUCIVANJA.md)
 - [SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA](references/SC-FUNC-01-REGISTAR-FUNKCIJA-I-POZIVA.md)
 - [SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD](references/SC-PL-01-LAYOUT-INVALIDATION-REVIEW-STANDARD.md)
 - [SC-QA-02-CHROMIUM-RUNTIME](references/SC-QA-02-CHROMIUM-RUNTIME.md)
