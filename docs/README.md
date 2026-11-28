@@ -1,10 +1,14 @@
 # Snail City — zajednička dokumentacija test1 / test-cl1
 
-Poslednja izmena indeksa: 2026-11-27
+Poslednja izmena indeksa: 2026-11-28
 
 **P0 — kanonski autoritet:** `tihidon/test1` je primarni razvojni repo; `snail-city-test` je istorijski izvor. Aktivna pravila se održavaju ovde. P1/P3/P10 podaci ispod su istorijski snapshotovi, ne dokaz za aktuelni checkout ili novo izvršno merenje.
 
 Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1` `main` `5b4b030` (PR #13), `index.html` SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3f903ff84a27151a2330fb978dc58a`, `const VERSION = '0.8.92-css-unified-p3'`, SW `snail-city-shell-0.8.92-css-unified-p3-r2`. Kopije označene „`2d66e55` / `c19cc1ac…`“ proverene su samo nad p1 commit-om i nisu ponovo proverene nad p3. Svaki dokument je pre prenosa proveren prema ovom kodu 25.11.2026; netačne tvrdnje su ispravljene ili dokument nije prenet (§3).
+
+### Code Health Audit — otvorena obuka, 28.11.2026.
+
+[Zapis obuke i kandidat za dopunu](qa/CODE-HEALTH-AUDIT-OBUKA-2026-11-28.md) — 4/4 ponovljene lokalne sintetičke Node.js assertions; nisu dokaz igre, Chromiuma ili kvalifikacije auditora. Raniji izvršni rezultati bez dostupnih originala ostaju NEPROVERENO. Trajno usvajanje ZADRŽI ZA QA po SC-KG-01; postojeća dnevna automatizacija, skillovi i runtime ostaju nepromenjeni. Interni D7 i odluka vlasnika D8 prema važećem SC-DEC-01; istorijske formulacije o nezavisnom odobrenju nisu aktivni uslov.
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
