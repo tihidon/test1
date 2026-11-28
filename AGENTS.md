@@ -10,6 +10,8 @@ Istorijska referenca P3: `5b4b030`, SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3
 
 ## Pre bilo kakve izmene
 
+> **QA kandidat, 28.11.2026:** [Obavezni preflight — Forced Download / Forced Read](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#obavezni-preflight--forced-download--forced-read-qa-kandidat-28112026). Za pilot primeni kompletno i sveže čitanje, task-specific rasuđivanje i izvršni dokaz do kraja; ne tretiraj kandidata kao aktiviran standard. Važeća pravila i dozvole ostaju nepromenjeni.
+
 1. Pročitaj [docs/README.md](docs/README.md) (indeks dokumenata i šta je proveren za ovaj kod).
 2. Pročitaj [SC-RAD-01](docs/tehnika/standardi/SC-RAD-01-POSTAVKA-IZMENA-BRISANJE.md) §2 (hijerarhija autoriteta) i [SC-AGENT-01](docs/tehnika/standardi/SC-AGENT-01-OBAVEZNI-STANDARD-AGENATA.md) (postupak i QA gate-ovi).
 3. Kad se dokument i kod ne slažu, važi kod. Neslaganje prijavi, ne pretpostavljaj.
