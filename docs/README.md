@@ -12,6 +12,10 @@ Istorijski indeks dokumenata za P3 (nije trenutni runtime dokaz): `tihidon/test1
 
 ### DOC-003 — aktuelni Agent Team registar (snapshot 26.11.2026)
 
+Read-back 28.11.2026: [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.15**, release `pluginrel_6b0af31de3748191ae78b9446398e0ac`, USER/PRIVATE. Oba manifesta 0.7.15, inventar 36 fajlova, 16/16 profila pročitano i referencira zajednički behavior.md. Verzije pojedinačnih profila ostaju kao u tabeli snapshot-a 0.7.14 ispod. Zajednički vodič sadrži očuvanje smisla, produktivnost, očuvanje korisnog rada, logičku podelu i referencu na Forced Read/AUTO SCAN i kontrolisanu kompleksnost. Coordinator-stress sadrži C15–C18 kao javne trening-scenarije. Ovo je potvrda sadržaja objavljenog paketa, ne dokaz automatskog pokretanja, ponašajne kvalifikacije ili odvojenih sesija. #98 je integrisan u test1 na `f261012ab17ab55dd2854f464dd7a77e78fce8c9`; SSOT/QA-FREEZE/EEG ostaju dokumentacioni QA kandidati. Bez promene dozvola ili runtime-a.
+
+### Istorijski DOC-003 snapshot — paket 0.7.14
+
 Read-back 28.11.2026: [Snail City Agent Team](https://chatgpt.com/plugins/plugins_6b07821ba2488191803130852db1560a) **0.7.14**, release `pluginrel_6b0ae82c925c8191a4268bd96dcca3f1`, USER/PRIVATE. Oba manifesta potvrđena, 16 profila pročitano; svi referenciraju zajednički behavior.md i interni D7. Ovo je identitet objavljenog paketa, ne dokaz aktivacije, ponašanja ili delegacije. Nova pravila iz #95/#96 i lokalni AUTO SCAN iz #92 ne smatrati izvršnim ponašanjem plugina bez posebnog read-back i izvršnog dokaza.
 
 | Profil | Pročitana verzija |
