@@ -92,3 +92,11 @@ Dostavljeni report(1).json za cef09906eca4b79e6d735ba8182e9da2fd759104: online/c
 ## Zatvaranje posle integracije
 
 D8 je odluka o kandidatu, ne dokaz konačnog merge-a. [SC-PMV-01](SC-PMV-01-POST-MERGE-VERIFICATION-STANDARD.md) dopunjava postojeći zapis nakon merge-a stvarnim SHA, CI i dokazima. D7 evidentira rezultat interne provere, a vlasnik donosi odluku D8. Bez potrebnih dokaza MERGED—UNVERIFIED; nema samostalnog merge/deploy/rollback.
+
+## SC-EEG-01 — kandidat kontinuiteta
+Vidi [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md#sc-eeg-01--izvršna-pouzdanost-i-kontinuitet-kandidat-27112026). Trajno izvršno stanje pripada istom decision recordu; UNKNOWN zahteva read-back pre retry; D8/PMV ostaju. Nije aktivirano.
+
+
+### Razgraničenje izvršnog stanja i odluke — referenca na SC-EEG-01 (kandidat)
+
+Jedan postojeći SC-DEC-01 zapis povezuje task/attempt, stvarni execution i governance identitet, odobreni scope, originalni dokaz poslednjeg potvrđenog efekta, zavisnosti i uslov nastavka. Za UNKNOWN/RECONCILE, drift, read-back, retry i internu proveru koristi dopunu u [SC-BEH-01 / SC-EEG-01](SC-BEH-01-PONASANJE-AGENATA.md); za freeze identitet koristi SC-INTEGRITY-01 §8, ne novi registar. SC-REPORT-01 je izvedeni prikaz, ne drugi autoritet. D8 i PMV su odvojeni od tehničkog stanja izvršavanja. Status kandidata, ne nova aktivna procedura.
