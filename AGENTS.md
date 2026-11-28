@@ -16,6 +16,7 @@ Istorijska referenca P3: `5b4b030`, SHA-256 `594026b9ffab62ceb8dbbfa181c887edea3
 
 ## Pravila
 
+- **Ovlašćenje važi samo za konkretan zadatak.** Primeni [SC-BEH-01 — ovlašćenje isključivo za konkretan zadatak](docs/tehnika/standardi/SC-BEH-01-PONASANJE-AGENATA.md#ovlašćenje-isključivo-za-konkretan-zadatak). Ranije odobrenje, pristup alatu i „uradi sve sam” nisu trajne dozvole; za materijalno izmenjen kandidat, cilj ili opseg traži novo odobrenje. Evidentiraj ga u postojećem SC-DEC-01 zapisu.
 - **Jedan izvor istine.** Ne pravi paralelni renderer, koordinatnu logiku, listu brzina ili čuvanje. Koristi postojeći vlasnik (tabela u [SSOT](docs/tehnika/standardi/PRAVILO-JEDAN-IZVOR-ISTINE.md)).
 - **Minimalna izmena.** Menjaj samo ono što je traženo. Ne formatiraj ceo fajl, ne preimenuj i ne diraj delove koji rade.
 - **Verzija na šest mesta.** Svaka promena verzije mora ići na: build tag u `#sc-startup-trace`, `SC_PWA_STATUS.version`, `<title>`, `const VERSION`, komentar u `sw.js` i `CACHE_NAME` u `sw.js`.
