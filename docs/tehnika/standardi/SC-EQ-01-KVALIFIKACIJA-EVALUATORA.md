@@ -74,3 +74,6 @@ Pet kontrola, bez međusobne kompenzacije: validacija originalnih dokaza, zamrzn
 - Za kritične QA alate predložiti kontrolisani mutation test sa unapred definisanim ciljem i negativnim kontrolama u izolovanoj kopiji; ne mutirati produkciju ili aktivne gate-ove. Svaki relevantan preživeli mutant zahteva analizu, ne automatsko spuštanje kriterijuma. Mutacioni rezultat ograničen je na ispitane mutacije, ne dokazuje potpunu pokrivenost.
 
 Izvršni javni pilot: `node tools/reliability/eq_e0_pilot.js` (Node CLI tek treba proveriti); stvarno izvršavanje ove revizije iz pinovanog GitHub izvora u ECMAScript okruženju dalo 71/71 provera i 11/11 otkrivenih mutacija. Alat radi samo sa sintetičkim podacima, proverava strukturu i pravila; statusi kontrolora nisu autentifikovani, reference nisu dokaz autentičnosti, a formalni rubric/ključ i izolacija nisu napravljeni. Ne predstavlja aktivni security gate, nezavisan D7 ili E0 PASS. E0.6 ACL i E0.7 internu proveru dokaza BLOCKED/NOT RUN; E1–E7 NOT RUN. PMV PR #77 nije potvrđen (metapodaci merge i main snapshot zahtevaju proveru ancestry i originalnog CI). Bez runtime/deploy promene.
+
+## SC-EEG-01 — kandidat izvršnog okruženja
+Vidi [SC-BEH-01](SC-BEH-01-PONASANJE-AGENATA.md). Kvalifikacija stvarnog hosta prethodi formalnoj kvalifikaciji evaluatora; lokalni fixture nije sertifikat. NOT RUN.
